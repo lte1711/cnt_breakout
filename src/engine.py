@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from datetime import datetime
 from pathlib import Path
+from requests import HTTPError
 
 from src.account_reader import get_account_info
 from src.balance_reader import extract_asset_balance
@@ -25,7 +26,11 @@ from src.log_writer import append_log
 from src.order_executor import send_live_testnet_order, send_test_order
 from src.order_payload_builder import build_limit_order_payload
 from src.order_query import get_open_orders, get_order
-from src.order_validator import auto_adjust_order_inputs, validate_order
+from src.order_validator import (
+    auto_adjust_order_inputs,
+    validate_order,
+    validate_quantity,
+)
 from src.state_writer import write_state
 from src.target_exit import calculate_target_price, should_exit_long
 
@@ -62,6 +67,7 @@ def _save_and_finish(
     price: float,
     pending: dict | None,
     open_trade: dict | None,
+    reason: str = "ok",
 ) -> None:
     state["last_run_time"] = timestamp
     state["status"] = "stopped"
@@ -70,12 +76,13 @@ def _save_and_finish(
     state["open_trade"] = open_trade
     state["action"] = action
     state["price"] = price
+    state["reason"] = reason
 
     write_state(state_file, state)
 
     append_log(
         log_file,
-        f"[{timestamp}] action={action} price={price} pending={pending} open_trade={open_trade}",
+        f"[{timestamp}] action={action} price={price} pending={pending} open_trade={open_trade} reason={reason}",
     )
 
 
@@ -84,6 +91,51 @@ def _find_open_order_by_id(open_orders: list, order_id: int) -> dict | None:
         if int(item.get("orderId", 0)) == int(order_id):
             return item
     return None
+
+
+def _is_missing_order_error(error: Exception) -> bool:
+    message = str(error).lower()
+    return "code=-2013" in message or "order does not exist" in message
+
+
+def _extract_fill_price(order_info: dict) -> float:
+    order_price = float(order_info.get("price", 0) or 0)
+    if order_price > 0:
+        return order_price
+
+    executed_qty = float(order_info.get("executedQty", 0) or 0)
+    cumulative_quote_qty = float(order_info.get("cummulativeQuoteQty", 0) or 0)
+
+    if executed_qty > 0 and cumulative_quote_qty > 0:
+        return cumulative_quote_qty / executed_qty
+
+    return 0.0
+
+
+def _align_quantity_to_step(qty: float, filters: dict) -> float:
+    lot_size_filter = filters.get("lot_size_filter", {})
+    quantity_check = validate_quantity(qty, lot_size_filter)
+    return float(quantity_check.get("aligned_qty", qty))
+
+
+def _reconcile_open_trade(
+    *,
+    symbol_info: dict,
+    open_trade: dict,
+) -> tuple[str, dict | None]:
+    account_info = get_account_info()
+    base_asset = str(symbol_info.get("baseAsset", ""))
+    asset_balance = extract_asset_balance(account_info, base_asset)
+    held_qty = float(asset_balance.get("total", 0.0))
+    entry_qty = float(open_trade.get("entry_qty", 0.0))
+
+    if held_qty <= 0:
+        return "STALE_OPEN_TRADE_CLEARED", None
+
+    if held_qty + 1e-12 < entry_qty:
+        return "OPEN_TRADE_BALANCE_MISMATCH_KEEP", open_trade
+
+    return "OPEN_TRADE_CONFIRMED", open_trade
 
 
 def _reconcile_pending_order(
@@ -101,7 +153,7 @@ def _reconcile_pending_order(
             if pending.get("side") == "BUY":
                 open_trade = {
                     "status": "OPEN",
-                    "entry_price": float(order_info["price"]),
+                    "entry_price": _extract_fill_price(order_info),
                     "entry_qty": float(order_info["executedQty"]),
                     "entry_order_id": int(order_info["orderId"]),
                     "entry_side": "BUY",
@@ -115,6 +167,18 @@ def _reconcile_pending_order(
 
         return "PENDING_CLEARED", None, None
 
+    except HTTPError as error:
+        if _is_missing_order_error(error):
+            open_orders = get_open_orders(symbol)
+            matched_order = _find_open_order_by_id(open_orders, order_id)
+
+            if matched_order:
+                pending["status"] = matched_order.get("status", pending.get("status"))
+                return "PENDING_CONFIRMED_FROM_OPEN_ORDERS", pending, None
+
+            return "STALE_PENDING_ORDER_CLEARED", None, None
+
+        return "PENDING_RECONCILE_ERROR_KEEP", pending, None
     except Exception:
         return "PENDING_RECONCILE_ERROR_KEEP", pending, None
 
@@ -134,6 +198,10 @@ def start_engine() -> None:
     print("engine step19e started")
 
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    state: dict = {}
+    price = 0.0
+    pending = None
+    open_trade = None
 
     try:
         state = _load_state(state_file)
@@ -145,6 +213,17 @@ def start_engine() -> None:
         price = get_price(SYMBOL)
 
         if not has_api_credentials():
+            _save_and_finish(
+                state_file=state_file,
+                log_file=log_file,
+                state=state,
+                timestamp=timestamp,
+                action="CREDENTIALS_MISSING",
+                price=price,
+                pending=None,
+                open_trade=None,
+                reason="missing_api_credentials",
+            )
             return
 
         pending = state.get("pending_order")
@@ -166,6 +245,7 @@ def start_engine() -> None:
                     price=price,
                     pending=None,
                     open_trade=open_trade_after,
+                    reason="pending_buy_filled_promoted_to_open_trade",
                 )
                 return
 
@@ -178,10 +258,31 @@ def start_engine() -> None:
                 price=price,
                 pending=pending_after,
                 open_trade=open_trade,
+                reason=action.lower(),
             )
             return
 
         if open_trade:
+            open_trade_action, open_trade_after = _reconcile_open_trade(
+                symbol_info=symbol_info,
+                open_trade=open_trade,
+            )
+
+            if open_trade_action != "OPEN_TRADE_CONFIRMED":
+                _save_and_finish(
+                    state_file=state_file,
+                    log_file=log_file,
+                    state=state,
+                    timestamp=timestamp,
+                    action=open_trade_action,
+                    price=price,
+                    pending=None,
+                    open_trade=open_trade_after,
+                    reason=open_trade_action.lower(),
+                )
+                return
+
+            open_trade = open_trade_after
             entry_price = float(open_trade["entry_price"])
             entry_qty = float(open_trade["entry_qty"])
 
@@ -189,11 +290,34 @@ def start_engine() -> None:
             stop_price = calculate_stop_price(entry_price, STOP_LOSS_PCT)
 
             if should_exit_long(price, target_price):
+                adjusted_exit = auto_adjust_order_inputs(price, entry_qty, filters)
+                adjusted_exit_qty = min(entry_qty, float(adjusted_exit["adjusted_qty"]))
+
+                exit_validation = validate_order(
+                    float(adjusted_exit["adjusted_price"]),
+                    adjusted_exit_qty,
+                    filters,
+                )
+
+                if not exit_validation.get("all_valid", False):
+                    _save_and_finish(
+                        state_file=state_file,
+                        log_file=log_file,
+                        state=state,
+                        timestamp=timestamp,
+                        action="SELL_REJECTED_BY_VALIDATION",
+                        price=price,
+                        pending=None,
+                        open_trade=open_trade,
+                        reason="sell_limit_validation_failed",
+                    )
+                    return
+
                 payload = build_limit_order_payload(
                     symbol=SYMBOL,
                     side="SELL",
-                    price=price,
-                    quantity=entry_qty,
+                    price=float(adjusted_exit["adjusted_price"]),
+                    quantity=adjusted_exit_qty,
                 )
 
                 _validate_limit_order_before_live(payload)
@@ -214,18 +338,35 @@ def start_engine() -> None:
                     price=price,
                     pending=pending,
                     open_trade=open_trade,
+                    reason="target_exit_limit_submitted",
                 )
                 return
 
             if should_stop(price, stop_price):
+                aligned_stop_qty = _align_quantity_to_step(entry_qty, filters)
+
+                if aligned_stop_qty <= 0:
+                    _save_and_finish(
+                        state_file=state_file,
+                        log_file=log_file,
+                        state=state,
+                        timestamp=timestamp,
+                        action="STOP_REJECTED_INVALID_QTY",
+                        price=price,
+                        pending=None,
+                        open_trade=open_trade,
+                        reason="stop_market_qty_not_valid",
+                    )
+                    return
+
                 payload = {
                     "symbol": SYMBOL,
                     "side": "SELL",
                     "type": "MARKET",
-                    "quantity": str(entry_qty),
+                    "quantity": str(aligned_stop_qty),
                 }
 
-                order_response = send_live_testnet_order(payload)
+                send_live_testnet_order(payload)
 
                 _save_and_finish(
                     state_file=state_file,
@@ -236,6 +377,7 @@ def start_engine() -> None:
                     price=price,
                     pending=None,
                     open_trade=None,
+                    reason="protective_stop_market_submitted",
                 )
                 return
 
@@ -248,11 +390,26 @@ def start_engine() -> None:
                 price=price,
                 pending=None,
                 open_trade=open_trade,
+                reason="target_and_stop_not_triggered",
             )
             return
 
-        validation = validate_order(price, 0.001, filters)
         adj = auto_adjust_order_inputs(price, 0.001, filters)
+        final_validation = adj.get("final_validation", {})
+
+        if not final_validation.get("all_valid", False):
+            _save_and_finish(
+                state_file=state_file,
+                log_file=log_file,
+                state=state,
+                timestamp=timestamp,
+                action="BUY_REJECTED_BY_VALIDATION",
+                price=price,
+                pending=None,
+                open_trade=None,
+                reason="buy_limit_validation_failed",
+            )
+            return
 
         payload = build_limit_order_payload(
             symbol=SYMBOL,
@@ -267,7 +424,7 @@ def start_engine() -> None:
         if str(order_response.get("status")).upper() == "FILLED":
             open_trade = {
                 "status": "OPEN",
-                "entry_price": float(order_response["price"]),
+                "entry_price": _extract_fill_price(order_response),
                 "entry_qty": float(order_response["executedQty"]),
                 "entry_order_id": int(order_response["orderId"]),
                 "entry_side": "BUY",
@@ -291,7 +448,22 @@ def start_engine() -> None:
             price=price,
             pending=pending,
             open_trade=open_trade,
+            reason=action.lower(),
         )
 
     except Exception as e:
+        try:
+            _save_and_finish(
+                state_file=state_file,
+                log_file=log_file,
+                state=state,
+                timestamp=timestamp,
+                action="ERROR",
+                price=price,
+                pending=pending,
+                open_trade=open_trade,
+                reason=str(e),
+            )
+        except Exception:
+            pass
         print(f"ERROR: {e}")

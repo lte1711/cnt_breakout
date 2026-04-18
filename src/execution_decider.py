@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 from src.models.execution_decision import ExecutionDecision
+from src.models.portfolio_state import PortfolioState
 from src.models.strategy_signal import StrategySignal
 from src.order_validator import auto_adjust_order_inputs
+from src.risk.portfolio_risk_manager import check_portfolio_risk
 from src.risk.risk_guard import evaluate_risk
 
 
@@ -12,6 +14,7 @@ def decide_execution(
     balance: dict | None,
     filters: dict,
     requested_qty: float = 0.001,
+    portfolio_state: PortfolioState | None = None,
 ) -> ExecutionDecision:
     if not signal.entry_allowed:
         return ExecutionDecision(
@@ -26,9 +29,32 @@ def decide_execution(
             notional_value=None,
             risk_check_passed=False,
             risk_rejection_reason="signal_not_entry_allowed",
+            portfolio_rejection_reason=None,
+            selected_priority=None,
             slippage_check_passed=True,
             slippage_rejection_reason=None,
         )
+
+    if portfolio_state is not None:
+        portfolio_passed, portfolio_reason = check_portfolio_risk(signal, portfolio_state)
+        if not portfolio_passed:
+            return ExecutionDecision(
+                execute=False,
+                action="EXECUTION_BLOCKED_BY_PORTFOLIO_RISK",
+                reason=portfolio_reason or "portfolio_risk_rejected",
+                signal_reason=signal.reason,
+                strategy_name=signal.strategy_name,
+                symbol=signal.symbol,
+                validated_qty=None,
+                validated_price=None,
+                notional_value=None,
+                risk_check_passed=True,
+                risk_rejection_reason=None,
+                portfolio_rejection_reason=portfolio_reason,
+                selected_priority=1,
+                slippage_check_passed=True,
+                slippage_rejection_reason=None,
+            )
 
     risk_result = evaluate_risk(signal, state, balance)
     if not risk_result.passed:
@@ -44,6 +70,8 @@ def decide_execution(
             notional_value=None,
             risk_check_passed=False,
             risk_rejection_reason=risk_result.reason,
+            portfolio_rejection_reason=None,
+            selected_priority=1,
             slippage_check_passed=True,
             slippage_rejection_reason=None,
         )
@@ -62,6 +90,8 @@ def decide_execution(
             notional_value=None,
             risk_check_passed=True,
             risk_rejection_reason=None,
+            portfolio_rejection_reason=None,
+            selected_priority=1,
             slippage_check_passed=False,
             slippage_rejection_reason="invalid_entry_price_hint",
         )
@@ -84,6 +114,8 @@ def decide_execution(
             notional_value=adjusted_price * adjusted_qty,
             risk_check_passed=True,
             risk_rejection_reason=None,
+            portfolio_rejection_reason=None,
+            selected_priority=1,
             slippage_check_passed=False,
             slippage_rejection_reason="buy_limit_validation_failed",
         )
@@ -100,6 +132,8 @@ def decide_execution(
         notional_value=adjusted_price * adjusted_qty,
         risk_check_passed=True,
         risk_rejection_reason=None,
+        portfolio_rejection_reason=None,
+        selected_priority=1,
         slippage_check_passed=True,
         slippage_rejection_reason=None,
     )

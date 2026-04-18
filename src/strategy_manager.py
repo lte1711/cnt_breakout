@@ -4,7 +4,7 @@ import time
 from pathlib import Path
 
 from binance_client import get_price
-from config import ACTIVE_STRATEGY, ENTRY_INTERVAL, KLINES_LIMIT, PRIMARY_INTERVAL, SIGNAL_LOG_FILE, STRATEGY_PARAMS
+from config import ACTIVE_STRATEGIES, ACTIVE_STRATEGY, ENTRY_INTERVAL, KLINES_LIMIT, PRIMARY_INTERVAL, SIGNAL_LOG_FILE, STRATEGY_PARAMS
 from src.market_data import get_recent_closed_klines
 from src.models.market_context import MarketContext
 from src.models.strategy_signal import StrategySignal
@@ -37,14 +37,10 @@ def _append_signal_log_safely(signal_log_file: Path, signal: StrategySignal) -> 
         pass
 
 
-def generate_strategy_signal(symbol: str) -> StrategySignal:
-    active_strategy = ACTIVE_STRATEGY
-    project_root = Path(__file__).resolve().parent.parent
-    signal_log_file = project_root / SIGNAL_LOG_FILE
-
+def _run_strategy(strategy_name: str, symbol: str, signal_log_file: Path) -> StrategySignal:
     try:
-        strategy_class = STRATEGY_REGISTRY[active_strategy]
-        params = dict(STRATEGY_PARAMS[active_strategy])
+        strategy_class = STRATEGY_REGISTRY[strategy_name]
+        params = dict(STRATEGY_PARAMS[strategy_name])
         strategy = strategy_class(params)
         strategy.validate_params(params)
 
@@ -73,6 +69,19 @@ def generate_strategy_signal(symbol: str) -> StrategySignal:
         _append_signal_log_safely(signal_log_file, signal)
         return signal
     except Exception as error:
-        signal = _build_error_signal(symbol, active_strategy, str(error))
+        signal = _build_error_signal(symbol, strategy_name, str(error))
         _append_signal_log_safely(signal_log_file, signal)
         return signal
+
+
+def generate_strategy_signal(symbol: str) -> StrategySignal:
+    project_root = Path(__file__).resolve().parent.parent
+    signal_log_file = project_root / SIGNAL_LOG_FILE
+    return _run_strategy(ACTIVE_STRATEGY, symbol, signal_log_file)
+
+
+def generate_all_signals(symbol: str) -> list[StrategySignal]:
+    project_root = Path(__file__).resolve().parent.parent
+    signal_log_file = project_root / SIGNAL_LOG_FILE
+    strategy_names = ACTIVE_STRATEGIES or [ACTIVE_STRATEGY]
+    return [_run_strategy(strategy_name, symbol, signal_log_file) for strategy_name in strategy_names]

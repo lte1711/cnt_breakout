@@ -1,5 +1,5 @@
 STATUS=ACTIVE
-VERSION=1.4
+VERSION=2.0
 UPDATED=2026-04-19
 PROJECT_NAME=CNT
 MODE=BINANCE_SPOT_TESTNET
@@ -62,6 +62,8 @@ DEFAULT_SYMBOL=ETHUSDT
 STATE_FILE=data/state.json
 LOG_FILE=logs/runtime.log
 SIGNAL_LOG_FILE=logs/signal.log
+PORTFOLIO_STATE_FILE=data/portfolio_state.json
+PORTFOLIO_LOG_FILE=logs/portfolio.log
 RECV_WINDOW=5000
 REQUEST_TIMEOUT=5
 
@@ -95,25 +97,31 @@ The runtime strategy flow is:
 
 engine
   -> entry_gate
-    -> strategy_manager
-      -> strategy_registry
-        -> selected strategy class
-      -> StrategySignal
+    -> strategy_orchestrator
+      -> strategy_manager
+        -> strategy_registry
+          -> selected strategy class
+        -> StrategySignal
+      -> signal_ranker
   -> signal_logger
   -> execution_decider
     -> risk_guard
+    -> portfolio_risk_manager
     -> ExecutionDecision
   -> enhanced_exit_manager
     -> ExitSignal
 
 Notes:
 - engine owns execution, reconciliation, and state persistence
+- strategy_orchestrator owns multi-strategy collection and selection
 - entry_gate owns entry permission evaluation only
 - strategy_manager owns strategy selection, context construction, parameter validation, and strategy error isolation
+- signal_ranker owns best-signal selection
 - selected strategy owns signal generation and exit model construction
 - signal_logger owns signal observability only
 - execution_decider owns execution/no-execution decision only
 - risk_guard owns state-based risk blocking only
+- portfolio_risk_manager owns portfolio-level exposure blocking only
 - enhanced_exit_manager owns exit evaluation only
 
 # --------------------------------------------------
@@ -205,6 +213,26 @@ partial_exit_progress
 - consecutive_losses
 - last_loss_time
 
+### PositionState
+- position_id
+- symbol
+- market_type
+- strategy_name
+- entry_price
+- entry_qty
+- entry_time
+- stop_price
+- target_price
+- status
+
+### PortfolioState
+- schema_version
+- total_exposure
+- open_positions
+- cash_balance
+- daily_loss_count
+- consecutive_losses
+
 ### ExitSignal
 - should_exit
 - exit_type
@@ -224,6 +252,14 @@ partial_exit_progress
 - open_interest (optional, reserved)
 - long_short_ratio (optional, reserved)
 - orderbook_imbalance (optional, reserved)
+
+V2_PORTFOLIO_STATE_KEYS=
+schema_version
+total_exposure
+open_positions
+cash_balance
+daily_loss_count
+consecutive_losses
 
 # --------------------------------------------------
 # STATE TRUTH RULE
@@ -383,13 +419,25 @@ src/models/market_context.py=market_context_dataclass_only
 src/models/execution_decision.py=execution_decision_dataclass_only
 src/models/risk_result.py=risk_check_result_dataclass_only
 src/models/exit_signal.py=exit_signal_dataclass_only
+src/models/position_state.py=position_state_dataclass_only
+src/models/portfolio_state.py=portfolio_state_dataclass_only
 src/execution_decider.py=execution_decision_only
 src/signal_logger.py=signal_log_write_only
+src/portfolio/strategy_orchestrator.py=multi_strategy_signal_selection_only
+src/portfolio/signal_ranker.py=signal_ranking_only
+src/state/state_manager.py=portfolio_state_load_save_only
 src/risk/exit_models.py=exit_model_dataclass_only
 src/risk/risk_guard.py=state_based_risk_guard_only
+src/risk/portfolio_risk_manager.py=portfolio_risk_guard_only
 src/risk/enhanced_exit_manager.py=exit_evaluation_only
+src/execution/order_router.py=market_routing_only
+src/market/spot_adapter.py=spot_market_adapter_only
+src/market/futures_adapter.py=futures_market_adapter_only
+src/logging/portfolio_logger.py=portfolio_log_write_only
 src/strategies/base.py=base_strategy_interface_only
 src/strategies/breakout_v1.py=breakout_strategy_logic_only
+src/strategies/pullback_v1.py=pullback_strategy_logic_only
+src/strategies/mean_reversion_v1.py=mean_reversion_strategy_logic_only
 src/log_writer.py=log_write_only
 src/order_executor.py=order_submission_only
 src/order_payload_builder.py=limit_payload_build_only_until_extended

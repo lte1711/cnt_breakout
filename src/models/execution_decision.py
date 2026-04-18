@@ -16,5 +16,7 @@ class ExecutionDecision:
     notional_value: float | None
     risk_check_passed: bool
     risk_rejection_reason: str | None
-    slippage_check_passed: bool
-    slippage_rejection_reason: str | None
+    portfolio_rejection_reason: str | None = None
+    selected_priority: int | None = None
+    slippage_check_passed: bool = True
+    slippage_rejection_reason: str | None = None

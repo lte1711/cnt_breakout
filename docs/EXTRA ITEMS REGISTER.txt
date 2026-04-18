@@ -210,3 +210,99 @@ CHANGE LOG
 - REASON=Stage 2 구현 결과를 체크리스트 기준으로 재검토 가능하게 남기기 위한 문서.
 - CURRENT_DECISION=keep
 - NOTE=Stage 2 완료 및 승인 상태를 고정하는 기준 보고서.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/portfolio/strategy_orchestrator.py
+- SUMMARY=v2 multi-strategy orchestrator 추가
+- REASON=다중 전략 신호 수집과 선택을 상위 레이어로 분리하기 위한 v2 확장.
+- CURRENT_DECISION=keep
+- NOTE=engine가 직접 단일 strategy_manager 결과만 보지 않도록 연결.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/portfolio/signal_ranker.py
+- SUMMARY=v2 signal ranking 레이어 추가
+- REASON=복수 전략 신호 중 선택 정책을 독립 레이어로 분리하기 위한 v2 확장.
+- CURRENT_DECISION=keep
+- NOTE=초기 정책은 confidence 최고값 1개 선택.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/models/position_state.py
+- SUMMARY=v2 PositionState dataclass 추가
+- REASON=단일 open_trade를 넘어 포지션 단위 상태 모델을 도입하기 위한 v2 확장.
+- CURRENT_DECISION=keep
+- NOTE=portfolio_state의 open_positions 구성 요소.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/models/portfolio_state.py
+- SUMMARY=v2 PortfolioState dataclass 추가
+- REASON=포트폴리오 단위 노출과 포지션 상태를 별도 schema로 관리하기 위한 v2 확장.
+- CURRENT_DECISION=keep
+- NOTE=기존 state.json과 분리된 2.0 schema 사이드카 상태.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/state/state_manager.py
+- SUMMARY=v2 portfolio state manager 추가
+- REASON=portfolio_state load/save와 runtime state 변환을 분리하기 위한 v2 확장.
+- CURRENT_DECISION=keep
+- NOTE=data/portfolio_state.json 관리 담당.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/risk/portfolio_risk_manager.py
+- SUMMARY=v2 portfolio risk manager 추가
+- REASON=계정 전체 노출과 one-per-symbol 정책을 execution_decider 상위에서 차단하기 위한 v2 확장.
+- CURRENT_DECISION=keep
+- NOTE=MAX_PORTFOLIO_EXPOSURE와 ONE_PER_SYMBOL_POLICY 반영.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/market/spot_adapter.py
+- SUMMARY=spot adapter 추가
+- REASON=시장 타입별 실행 차이를 adapter 레이어로 분리하기 위한 v2 확장.
+- CURRENT_DECISION=keep
+- NOTE=현재는 dry path 중심 구조 제공.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/market/futures_adapter.py
+- SUMMARY=futures adapter 추가
+- REASON=leverage, margin_mode, reduce_only 등 futures 전용 파라미터를 분리하기 위한 v2 확장.
+- CURRENT_DECISION=keep
+- NOTE=현재는 dry path 중심 구조 제공.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/execution/order_router.py
+- SUMMARY=v2 market order router 추가
+- REASON=spot/futures adapter 분기를 실행 레이어에서 분리하기 위한 v2 확장.
+- CURRENT_DECISION=keep
+- NOTE=현재는 dry routing 검증용 구조 포함.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/logging/portfolio_logger.py
+- SUMMARY=v2 portfolio logger 추가
+- REASON=선택된 전략과 포트폴리오 수준 의사결정을 별도 로그로 남기기 위한 v2 확장.
+- CURRENT_DECISION=keep
+- NOTE=logs/portfolio.log 기록 담당.
+
+- DATE=2026-04-19
+- TYPE=runtime
+- PATH=data/portfolio_state.json
+- SUMMARY=v2 portfolio sidecar state 파일
+- REASON=기존 state.json과 분리된 portfolio schema 2.0 상태 저장 대상.
+- CURRENT_DECISION=keep
+- NOTE=단일 런타임 state와 별개로 portfolio 관점 상태를 저장.
+
+- DATE=2026-04-19
+- TYPE=runtime
+- PATH=logs/portfolio.log
+- SUMMARY=v2 portfolio decision 로그 파일
+- REASON=selected strategy 및 portfolio-level decision을 관측하기 위한 신규 로그 대상.
+- CURRENT_DECISION=keep
+- NOTE=no_ranked_signal 등 포트폴리오 관점 의사결정 기록용.

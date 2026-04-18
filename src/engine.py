@@ -20,6 +20,8 @@ from config import (
     ENABLE_PARTIAL_EXIT,
     ENABLE_TEST_ORDER_VALIDATION,
     LOG_FILE,
+    PORTFOLIO_LOG_FILE,
+    PORTFOLIO_STATE_FILE,
     STATE_FILE,
     STRATEGY_PARAMS,
     SYMBOL,
@@ -29,7 +31,8 @@ from config import (
 from src.account_reader import get_account_info
 from src.balance_reader import extract_asset_balance
 from src.execution_decider import decide_execution
-from src.entry_gate import evaluate_entry_gate_from_signal, get_entry_signal
+from src.entry_gate import evaluate_entry_gate_from_signal
+from src.logging.portfolio_logger import append_portfolio_log
 from src.log_writer import append_log
 from src.models.exit_signal import ExitSignal
 from src.order_executor import send_live_testnet_order, send_test_order
@@ -40,7 +43,9 @@ from src.order_validator import (
     validate_order,
     validate_quantity,
 )
+from src.portfolio.strategy_orchestrator import get_selected_signal
 from src.risk.enhanced_exit_manager import evaluate_exit
+from src.state.state_manager import build_portfolio_state, load_portfolio_state, save_portfolio_state
 from src.state_writer import write_state
 
 
@@ -257,6 +262,8 @@ def _save_and_finish(
     open_trade: dict | None,
     reason: str = "ok",
     risk_metrics: dict | None = None,
+    portfolio_state_file: Path | None = None,
+    cash_balance: float = 0.0,
 ) -> None:
     next_state = _build_state(
         timestamp=timestamp,
@@ -270,6 +277,8 @@ def _save_and_finish(
     state.update(next_state)
 
     write_state(state_file, next_state)
+    if portfolio_state_file is not None:
+        save_portfolio_state(portfolio_state_file, build_portfolio_state(next_state, cash_balance=cash_balance))
 
     append_log(
         log_file,
@@ -572,6 +581,8 @@ def start_engine() -> None:
     project_root = Path(__file__).resolve().parent.parent
     log_file = project_root / LOG_FILE
     state_file = project_root / STATE_FILE
+    portfolio_state_file = project_root / PORTFOLIO_STATE_FILE
+    portfolio_log_file = project_root / PORTFOLIO_LOG_FILE
 
     print("engine strategy v1 started")
 
@@ -581,10 +592,12 @@ def start_engine() -> None:
     pending = None
     open_trade = None
     risk_metrics = _default_risk_metrics()
+    cash_balance = 0.0
 
     try:
         state = _load_state(state_file)
         risk_metrics = _normalize_risk_metrics(state.get("risk_metrics"))
+        portfolio_state = load_portfolio_state(portfolio_state_file)
 
         ping()
         get_server_time()
@@ -604,6 +617,8 @@ def start_engine() -> None:
                 open_trade=None,
                 reason="missing_api_credentials",
                 risk_metrics=risk_metrics,
+                portfolio_state_file=portfolio_state_file,
+                cash_balance=cash_balance,
             )
             return
 
@@ -624,13 +639,15 @@ def start_engine() -> None:
                     state=state,
                     timestamp=timestamp,
                     action=action,
-                    price=price,
-                    pending=None,
-                    open_trade=open_trade_after,
-                    reason="pending_buy_filled_promoted_to_open_trade",
-                    risk_metrics=risk_metrics,
-                )
-                return
+                price=price,
+                pending=None,
+                open_trade=open_trade_after,
+                reason="pending_buy_filled_promoted_to_open_trade",
+                risk_metrics=risk_metrics,
+                portfolio_state_file=portfolio_state_file,
+                cash_balance=cash_balance,
+            )
+            return
 
             if action == "PARTIAL_EXIT_FILLED":
                 _save_and_finish(
@@ -658,6 +675,8 @@ def start_engine() -> None:
                 open_trade=open_trade,
                 reason=action.lower(),
                 risk_metrics=risk_metrics,
+                portfolio_state_file=portfolio_state_file,
+                cash_balance=cash_balance,
             )
             return
 
@@ -684,6 +703,8 @@ def start_engine() -> None:
                         else open_trade_action.lower()
                     ),
                     risk_metrics=risk_metrics,
+                    portfolio_state_file=portfolio_state_file,
+                    cash_balance=cash_balance,
                 )
                 return
 
@@ -703,6 +724,8 @@ def start_engine() -> None:
                     open_trade=open_trade,
                     reason=exit_signal.reason,
                     risk_metrics=risk_metrics,
+                    portfolio_state_file=portfolio_state_file,
+                    cash_balance=cash_balance,
                 )
                 return
 
@@ -730,6 +753,8 @@ def start_engine() -> None:
                         open_trade=open_trade,
                         reason="sell_limit_validation_failed",
                         risk_metrics=risk_metrics,
+                        portfolio_state_file=portfolio_state_file,
+                        cash_balance=cash_balance,
                     )
                     return
 
@@ -758,6 +783,8 @@ def start_engine() -> None:
                             open_trade=updated_open_trade,
                             reason="partial_exit_limit_filled",
                             risk_metrics=risk_metrics,
+                            portfolio_state_file=portfolio_state_file,
+                            cash_balance=cash_balance,
                         )
                         return
 
@@ -772,6 +799,8 @@ def start_engine() -> None:
                         open_trade=None,
                         reason="target_exit_limit_filled",
                         risk_metrics=risk_metrics,
+                        portfolio_state_file=portfolio_state_file,
+                        cash_balance=cash_balance,
                     )
                     return
 
@@ -801,6 +830,8 @@ def start_engine() -> None:
                         )
                     ),
                     risk_metrics=risk_metrics,
+                    portfolio_state_file=portfolio_state_file,
+                    cash_balance=cash_balance,
                 )
                 return
 
@@ -819,6 +850,8 @@ def start_engine() -> None:
                         open_trade=open_trade,
                         reason="stop_market_qty_not_valid",
                         risk_metrics=risk_metrics,
+                        portfolio_state_file=portfolio_state_file,
+                        cash_balance=cash_balance,
                     )
                     return
 
@@ -848,6 +881,8 @@ def start_engine() -> None:
                             else "protective_stop_market_filled"
                         ),
                         risk_metrics=risk_metrics,
+                        portfolio_state_file=portfolio_state_file,
+                        cash_balance=cash_balance,
                     )
                     return
 
@@ -876,10 +911,34 @@ def start_engine() -> None:
                         else "protective_stop_market_submitted"
                     ),
                     risk_metrics=risk_metrics,
+                    portfolio_state_file=portfolio_state_file,
+                    cash_balance=cash_balance,
                 )
                 return
 
-        signal = get_entry_signal(SYMBOL)
+        signal = get_selected_signal(SYMBOL)
+        if signal is None:
+            append_portfolio_log(portfolio_log_file, f"symbol={SYMBOL} selected_strategy=NONE reason=no_ranked_signal")
+            _save_and_finish(
+                state_file=state_file,
+                log_file=log_file,
+                state=state,
+                timestamp=timestamp,
+                action="NO_ENTRY_SIGNAL",
+                price=price,
+                pending=None,
+                open_trade=None,
+                reason="no_ranked_signal",
+                risk_metrics=risk_metrics,
+                portfolio_state_file=portfolio_state_file,
+                cash_balance=cash_balance,
+            )
+            return
+
+        append_portfolio_log(
+            portfolio_log_file,
+            f"symbol={SYMBOL} selected_strategy={signal.strategy_name} confidence={signal.confidence} reason={signal.reason}",
+        )
         entry_action, entry_reason = evaluate_entry_gate_from_signal(signal)
 
         if entry_action != "ENTRY_ALLOWED":
@@ -894,6 +953,8 @@ def start_engine() -> None:
                 open_trade=None,
                 reason=entry_reason,
                 risk_metrics=risk_metrics,
+                portfolio_state_file=portfolio_state_file,
+                cash_balance=cash_balance,
             )
             return
 
@@ -909,18 +970,22 @@ def start_engine() -> None:
                 open_trade=None,
                 reason="missing_exit_model",
                 risk_metrics=risk_metrics,
+                portfolio_state_file=portfolio_state_file,
+                cash_balance=cash_balance,
             )
             return
 
         quote_asset = str(symbol_info.get("quoteAsset", ""))
         account_info = get_account_info()
         quote_balance = extract_asset_balance(account_info, quote_asset)
+        cash_balance = float(quote_balance.get("total", 0.0))
         decision = decide_execution(
             signal=signal,
             state=state,
             balance=quote_balance,
             filters=filters,
             requested_qty=0.001,
+            portfolio_state=portfolio_state,
         )
 
         if not decision.execute:
@@ -935,6 +1000,8 @@ def start_engine() -> None:
                 open_trade=None,
                 reason=decision.reason,
                 risk_metrics=risk_metrics,
+                portfolio_state_file=portfolio_state_file,
+                cash_balance=cash_balance,
             )
             return
 
@@ -957,6 +1024,8 @@ def start_engine() -> None:
                 open_trade=None,
                 reason="buy_limit_validation_failed",
                 risk_metrics=risk_metrics,
+                portfolio_state_file=portfolio_state_file,
+                cash_balance=cash_balance,
             )
             return
 
@@ -1012,6 +1081,8 @@ def start_engine() -> None:
             open_trade=open_trade,
             reason=action.lower(),
             risk_metrics=risk_metrics,
+            portfolio_state_file=portfolio_state_file,
+            cash_balance=cash_balance,
         )
 
     except Exception as error:
@@ -1027,6 +1098,8 @@ def start_engine() -> None:
                 open_trade=open_trade,
                 reason=str(error),
                 risk_metrics=risk_metrics,
+                portfolio_state_file=portfolio_state_file,
+                cash_balance=cash_balance,
             )
         except Exception:
             pass

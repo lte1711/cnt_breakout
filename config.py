@@ -69,6 +69,10 @@ SIGNAL_LOG_FILE = "logs/signal.log"
 
 STRATEGY_ENABLED = True
 ACTIVE_STRATEGY = "breakout_v1"
+ACTIVE_STRATEGIES = [
+    "breakout_v1",
+    "pullback_v1",
+]
 
 STRATEGY_PARAMS = {
     "breakout_v1": {
@@ -84,7 +88,25 @@ STRATEGY_PARAMS = {
         "target_pct": 0.002,
         "stop_loss_pct": 0.0015,
         "signal_age_limit_sec": 15,
-    }
+    },
+    "pullback_v1": {
+        "ema_fast_period": 9,
+        "ema_slow_period": 20,
+        "rsi_period": 14,
+        "pullback_rsi_max": 52,
+        "pullback_rsi_min": 40,
+        "target_pct": 0.0018,
+        "stop_loss_pct": 0.0015,
+        "signal_age_limit_sec": 15,
+    },
+    "mean_reversion_v1": {
+        "ema_period": 20,
+        "rsi_period": 14,
+        "rsi_oversold": 35,
+        "target_pct": 0.0015,
+        "stop_loss_pct": 0.0015,
+        "signal_age_limit_sec": 15,
+    },
 }
 
 # =========================
@@ -110,3 +132,13 @@ LOSS_COOLDOWN_MINUTES = 60
 TRAILING_STOP_PCT = 0.01
 TIME_EXIT_MINUTES = 240
 ENABLE_PARTIAL_EXIT = True
+
+# =========================
+# V2 PORTFOLIO CONFIG
+# =========================
+
+PORTFOLIO_STATE_FILE = "data/portfolio_state.json"
+PORTFOLIO_LOG_FILE = "logs/portfolio.log"
+PORTFOLIO_STATE_SCHEMA_VERSION = "2.0"
+MAX_PORTFOLIO_EXPOSURE = 1000.0
+ONE_PER_SYMBOL_POLICY = True

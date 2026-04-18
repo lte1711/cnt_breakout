@@ -1,0 +1,10 @@
+.codex/
+.windsurf/
+__pycache__/
+*.py[cod]
+
+logs/
+runtime.log
+
+state.json
+data/state.json

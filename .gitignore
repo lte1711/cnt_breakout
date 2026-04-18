@@ -3,6 +3,12 @@
 __pycache__/
 *.py[cod]
 .env
+.env.*
+!.env.example
+.git/
+*.pyc
+docs.zip
+src.zip
 
 logs/
 runtime.log

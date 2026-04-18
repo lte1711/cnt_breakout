@@ -298,7 +298,7 @@ def _reconcile_open_trade(
 ) -> tuple[str, dict | None]:
     normalized_open_trade = _normalize_open_trade(open_trade)
     if normalized_open_trade is None:
-        return "STALE_OPEN_TRADE_CLEARED", None
+        return "INVALID_OPEN_TRADE_CLEARED", None
 
     entry_order_id = int(normalized_open_trade["entry_order_id"])
     try:
@@ -474,7 +474,7 @@ def start_engine() -> None:
                     open_trade=open_trade_after,
                     reason=(
                         "invalid_or_stale_open_trade_state"
-                        if open_trade_action == "STALE_OPEN_TRADE_CLEARED"
+                        if open_trade_action == "INVALID_OPEN_TRADE_CLEARED"
                         else open_trade_action.lower()
                     ),
                 )

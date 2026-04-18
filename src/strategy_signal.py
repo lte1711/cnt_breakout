@@ -1,10 +1,15 @@
 from __future__ import annotations
 
+# DEPRECATED:
+# This module is a compatibility wrapper.
+# New code must import generate_strategy_signal from src.strategy_manager.
+# Planned removal target: v1.1 after all internal references are removed.
+
 from src.strategy_manager import generate_strategy_signal as _generate_strategy_signal
 
 
 def generate_strategy_signal(symbol: str) -> dict:
-    # Legacy compatibility wrapper. New code should use src.strategy_manager.
+    """Deprecated compatibility wrapper. Use src.strategy_manager.generate_strategy_signal."""
     signal = _generate_strategy_signal(symbol)
     return {
         "strategy_name": signal.strategy_name,

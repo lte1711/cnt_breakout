@@ -88,6 +88,23 @@ ENGINE_SEQUENCE=
 11. write_state
 12. append_log
 
+## CURRENT STRATEGY FLOW
+
+The runtime strategy flow is:
+
+engine
+  -> entry_gate
+    -> strategy_manager
+      -> strategy_registry
+        -> selected strategy class
+      -> StrategySignal
+
+Notes:
+- engine owns execution, reconciliation, and state persistence
+- entry_gate owns entry permission evaluation only
+- strategy_manager owns strategy selection, context construction, parameter validation, and strategy error isolation
+- selected strategy owns signal generation and exit model construction
+
 # --------------------------------------------------
 # STATE MACHINE
 # --------------------------------------------------
@@ -101,6 +118,8 @@ OPEN_TRADE -> SELL -> PENDING -> FILLED -> CLOSED
 # --------------------------------------------------
 
 STATE_TOP_LEVEL_KEYS=
+schema_version
+strategy_name
 last_run_time
 status
 symbol
@@ -120,6 +139,45 @@ entry_price
 entry_qty
 entry_order_id
 entry_side
+strategy_name
+stop_price
+target_price
+
+## STRATEGY DATA CONTRACTS
+
+### StrategySignal
+- strategy_name
+- symbol
+- signal_timestamp
+- signal_age_limit_sec
+- entry_allowed
+- side
+- trigger
+- reason
+- confidence
+- market_state
+- volatility_state
+- entry_price_hint
+- exit_model
+
+### ExitModel
+- stop_price
+- target_price
+- trailing_stop_pct (reserved)
+- partial_exit_levels (reserved)
+- time_based_exit_minutes (reserved)
+
+### MarketContext
+- symbol
+- primary_interval
+- entry_interval
+- klines_primary
+- klines_entry
+- last_price
+- funding_rate (optional, reserved)
+- open_interest (optional, reserved)
+- long_short_ratio (optional, reserved)
+- orderbook_imbalance (optional, reserved)
 
 # --------------------------------------------------
 # STATE TRUTH RULE
@@ -254,6 +312,7 @@ action
 price
 pending_order
 open_trade
+strategy_name
 reason
 
 ERROR_POLICY=
@@ -271,7 +330,14 @@ config.py=runtime_config_only
 main.py=application_entry_only
 src/engine.py=execution_orchestration_only
 src/entry_gate.py=new_entry_gate_evaluation_only
-src/strategy_signal.py=strategy_signal_generation_only
+src/strategy_manager.py=strategy_selection_context_validation_and_error_isolation_only
+src/strategy_registry.py=strategy_registry_only
+src/strategy_signal.py=legacy_compatibility_wrapper_only
+src/models/strategy_signal.py=strategy_signal_dataclass_only
+src/models/market_context.py=market_context_dataclass_only
+src/risk/exit_models.py=exit_model_dataclass_only
+src/strategies/base.py=base_strategy_interface_only
+src/strategies/breakout_v1.py=breakout_strategy_logic_only
 src/log_writer.py=log_write_only
 src/order_executor.py=order_submission_only
 src/order_payload_builder.py=limit_payload_build_only_until_extended
@@ -306,6 +372,15 @@ EVERY_MEANINGFUL_STEP_MUST_HAVE=
 - it does not bypass entry chain
 - it does not change exchange/order truth rules
 - it is explicitly approved in design record
+
+## LEGACY COMPATIBILITY
+
+src/strategy_signal.py is now a compatibility wrapper.
+
+Rules:
+- new code must use src/strategy_manager.py
+- legacy wrapper exists only to avoid immediate breakage
+- wrapper is scheduled for removal in v1.1 after internal references are fully removed
 
 # --------------------------------------------------
 # PRINCIPLE

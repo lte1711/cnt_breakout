@@ -178,6 +178,14 @@ def _align_quantity_to_step(qty: float, filters: dict) -> float:
     return float(quantity_check.get("aligned_qty", qty))
 
 
+def _build_pending_order_from_response(order_response: dict, side: str) -> dict:
+    return {
+        "orderId": int(order_response["orderId"]),
+        "status": str(order_response["status"]).upper(),
+        "side": side.upper(),
+    }
+
+
 def _reconcile_open_trade(
     *,
     symbol: str,
@@ -408,12 +416,23 @@ def start_engine() -> None:
 
                 _validate_limit_order_before_live(payload)
                 order_response = send_live_testnet_order(payload)
+                order_status = str(order_response.get("status", "")).upper()
 
-                pending = {
-                    "orderId": order_response["orderId"],
-                    "status": order_response["status"],
-                    "side": "SELL",
-                }
+                if order_status == "FILLED":
+                    _save_and_finish(
+                        state_file=state_file,
+                        log_file=log_file,
+                        state=state,
+                        timestamp=timestamp,
+                        action="SELL_FILLED",
+                        price=price,
+                        pending=None,
+                        open_trade=None,
+                        reason="target_exit_limit_filled",
+                    )
+                    return
+
+                pending = _build_pending_order_from_response(order_response, "SELL")
 
                 _save_and_finish(
                     state_file=state_file,
@@ -452,17 +471,34 @@ def start_engine() -> None:
                     "quantity": str(aligned_stop_qty),
                 }
 
-                send_live_testnet_order(payload)
+                order_response = send_live_testnet_order(payload)
+                order_status = str(order_response.get("status", "")).upper()
+
+                if order_status == "FILLED":
+                    _save_and_finish(
+                        state_file=state_file,
+                        log_file=log_file,
+                        state=state,
+                        timestamp=timestamp,
+                        action="STOP_MARKET_FILLED",
+                        price=price,
+                        pending=None,
+                        open_trade=None,
+                        reason="protective_stop_market_filled",
+                    )
+                    return
+
+                pending = _build_pending_order_from_response(order_response, "SELL")
 
                 _save_and_finish(
                     state_file=state_file,
                     log_file=log_file,
                     state=state,
                     timestamp=timestamp,
-                    action="STOP_MARKET_FILLED",
+                    action="STOP_MARKET_SUBMITTED",
                     price=price,
-                    pending=None,
-                    open_trade=None,
+                    pending=pending,
+                    open_trade=open_trade,
                     reason="protective_stop_market_submitted",
                 )
                 return

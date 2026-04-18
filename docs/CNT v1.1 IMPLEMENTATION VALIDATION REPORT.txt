@@ -5,7 +5,7 @@ DOCUMENT_NAME = cnt_v1.1_implementation_validation_report
 PROJECT       = CNT
 VERSION       = 1.1
 DATE          = 2026-04-19
-STATUS        = STAGE_1_VALIDATED
+STATUS        = STAGE_1_VALIDATION_FINALIZED
 BASELINE      = CNT v1 (CLOSED)
 REFERENCE_1   = cnt_v1.1_architecture_design
 REFERENCE_2   = cnt_v1.1_implementation_work_instruction
@@ -14,9 +14,9 @@ REFERENCE_3   = cnt_v1.1_implementation_validation_checklist
 
 ---
 
-# 1. SUMMARY
+# 1. EXECUTIVE SUMMARY
 
-CNT v1.1 Stage 1 was implemented and validated against the Stage 1 scope.
+CNT v1.1 Stage 1 implementation has been completed and formally validated against the approved Stage 1 scope.
 
 Validated scope:
 
@@ -31,13 +31,13 @@ Validated scope:
 * optional state risk_metrics persistence
 * config and AGENTS updates
 
-Stage 2 items were not implemented in this step.
+Stage 2 items were intentionally excluded from this step and remain future work.
 
 ---
 
-# 2. VALIDATION RESULT
+# 2. VALIDATION RESULTS
 
-## Document and structure
+## 2.1 Document and structure
 
 PASS
 
@@ -51,7 +51,7 @@ Confirmed:
 
 ---
 
-## Entry flow linkage
+## 2.2 Entry flow linkage
 
 PASS
 
@@ -70,7 +70,7 @@ Verified in code:
 
 ---
 
-## Risk guard
+## 2.3 Risk guard
 
 PASS
 
@@ -90,7 +90,7 @@ pass= True ok
 
 ---
 
-## Signal logger
+## 2.4 Signal logger
 
 PASS
 
@@ -108,7 +108,7 @@ Observed sample:
 
 ---
 
-## State persistence
+## 2.5 State persistence
 
 PASS
 
@@ -134,7 +134,7 @@ Observed state result:
 
 ---
 
-## Runtime validation
+## 2.6 Runtime validation
 
 PASS
 
@@ -190,7 +190,7 @@ block= False EXECUTION_BLOCKED_BY_RISK DAILY_LOSS_LIMIT
 
 ---
 
-## Exit extension
+## 2.7 Exit extension
 
 NOT_APPLICABLE_IN_THIS_STEP
 
@@ -221,7 +221,23 @@ Ready for next implementation stage
 
 ---
 
-# 4. NOTES
+# 4. FORMAL CONCLUSION
+
+CNT v1.1 Stage 1 is approved as implemented and validated.
+
+The current result confirms:
+
+* signal generation and execution decision are separated
+* state-based risk blocking is active
+* signal observability is active
+* optional `risk_metrics` persistence is active
+* closed CNT v1 baseline behavior remains intact within the validated scope
+
+This report closes the Stage 1 implementation validation cycle.
+
+---
+
+# 5. NOTES
 
 * Validation was performed without forced BUY execution.
 * Stage 1 was verified as an extension layer on top of closed CNT v1 baseline.

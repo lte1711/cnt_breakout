@@ -178,3 +178,11 @@ CHANGE LOG
 - REASON=Stage 1 구현 결과를 체크리스트 기준으로 재검토 가능하게 남기기 위한 문서.
 - CURRENT_DECISION=keep
 - NOTE=Stage 1 완료, Stage 2 미구현 상태를 명시하는 기준 보고서.
+
+- DATE=2026-04-19
+- TYPE=compat
+- PATH=src/strategy_signal.py
+- SUMMARY=legacy compatibility wrapper 제거 완료
+- REASON=v1.1 Stage 1에서 내부 참조 0건 확인 후 wrapper 제거가 완료됨.
+- CURRENT_DECISION=removed
+- NOTE=기존 compat 항목은 이력 보존용이며, 현재 파일은 저장소에 존재하지 않음.

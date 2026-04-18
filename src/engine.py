@@ -20,7 +20,6 @@ from config import (
     ENABLE_TEST_ORDER_VALIDATION,
     LOG_FILE,
     STATE_FILE,
-    STRATEGY_ENABLED,
     SYMBOL,
 )
 from src.entry_gate import evaluate_entry_gate

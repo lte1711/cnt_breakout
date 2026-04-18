@@ -34,7 +34,7 @@ _load_dotenv()
 # =========================
 
 BINANCE_BASE_URL = "https://testnet.binance.vision"
-REQUEST_TIMEOUT = 10
+REQUEST_TIMEOUT = 5
 
 # Binance timing protection
 RECV_WINDOW = 5000  # ms
@@ -69,13 +69,6 @@ STATE_FILE = "data/state.json"
 STRATEGY_ENABLED = True
 
 # =========================
-# TEST OVERRIDE
-# =========================
-
-FORCE_BUY_FOR_TEST = False
-FORCE_TARGET_EXIT_TEST = False
-
-# =========================
 # MARKET DATA CONFIG
 # =========================
 
@@ -103,5 +96,3 @@ ENTRY_RSI_THRESHOLD = 55
 ENTRY_RSI_OVERHEAT = 75
 
 BREAKOUT_LOOKBACK = 3
-
-FORCE_PRICE_FOR_TEST = None

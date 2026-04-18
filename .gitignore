@@ -2,6 +2,7 @@
 .windsurf/
 __pycache__/
 *.py[cod]
+.env
 
 logs/
 runtime.log

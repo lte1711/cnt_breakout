@@ -1,0 +1,94 @@
+CNT EXTRA ITEMS REGISTER
+
+목적:
+- 구현 작업지시서 범위를 벗어나지만 현재 저장소에 존재하는 항목을 기록한다.
+- 즉시 제거하지 않고, 나중에 유지/제거/문서화 여부를 다시 판단할 수 있도록 남긴다.
+- 앞으로 새로 발견되는 초과 항목도 이 문서에 계속 누적한다.
+
+운영 규칙:
+- 새 초과 항목은 기존 내용을 지우지 않고 아래에 추가한다.
+- 각 항목은 날짜, 구분, 경로, 이유, 현재 판단을 함께 기록한다.
+- 제거 결정이 나도 기존 기록은 남기고 상태만 갱신한다.
+
+기록 형식:
+- DATE=YYYY-MM-DD
+- TYPE=code|config|editor|doc|runtime|compat
+- PATH=...
+- SUMMARY=...
+- REASON=...
+- CURRENT_DECISION=keep|optional|review_later|remove_later
+- NOTE=...
+
+CHANGE LOG
+
+- DATE=2026-04-19
+- TYPE=config
+- PATH=config.py
+- SUMMARY=repo-root .env 자동 로드 지원
+- REASON=실행 편의성과 환경변수 관리 단순화를 위해 추가됨. 구현 작업지시서 v1의 직접 요구 사항은 아님.
+- CURRENT_DECISION=review_later
+- NOTE=운영 진행에는 유용하지만 전략 아키텍처 구현의 필수 항목은 아님.
+
+- DATE=2026-04-19
+- TYPE=editor
+- PATH=.vscode/settings.json
+- SUMMARY=VS Code 터미널 .env 자동 주입 설정
+- REASON=개발 편의성 향상 목적. 구현 작업지시서 v1 범위 밖의 편의 설정임.
+- CURRENT_DECISION=review_later
+- NOTE=에디터 종속 설정이라 배포/운영 필수 요소는 아님.
+
+- DATE=2026-04-19
+- TYPE=config
+- PATH=.env.example
+- SUMMARY=.env 예시 파일 추가
+- REASON=환경변수 입력 형식 안내 목적. 구현 작업지시서 v1의 직접 요구 사항은 아님.
+- CURRENT_DECISION=review_later
+- NOTE=신규 작업자 온보딩에는 유용함.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/engine_runtime_validation_checklist_v1.txt
+- SUMMARY=읽기 전용 및 1회 실행 검증 체크리스트
+- REASON=검증 절차 표준화를 위해 추가됨. 구현 작업지시서 v1의 직접 구현 요구는 아님.
+- CURRENT_DECISION=review_later
+- NOTE=운영 전 점검 문서로는 가치가 있으나 필수 코드는 아님.
+
+- DATE=2026-04-19
+- TYPE=compat
+- PATH=src/strategy_signal.py
+- SUMMARY=신규 strategy_manager 구조를 감싸는 호환 래퍼 유지
+- REASON=구조 전환 중 기존 호출부와의 호환성 확보 목적. 구현 작업지시서 v1의 핵심 산출물은 아님.
+- CURRENT_DECISION=review_later
+- NOTE=새 구조가 완전히 안정화되면 deprecated 또는 제거 후보가 될 수 있음.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/engine.py
+- SUMMARY=청산 응답 상태를 FILLED/SUBMITTED로 구분하는 보수적 해석 보강
+- REASON=실주문 응답 처리 안정성 향상을 위해 추가됨. 구현 작업지시서 v1의 직접 항목은 아니지만 운영 안전성에 도움이 됨.
+- CURRENT_DECISION=keep
+- NOTE=현재 운영 기준에서는 유지 가치가 큼.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/DESIGN SUMMARY.txt
+- SUMMARY=작업 설계 요약 문서
+- REASON=작업 기록 목적. 구현 작업지시서 v1의 직접 구현 범위는 아님.
+- CURRENT_DECISION=review_later
+- NOTE=기록성 문서.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/RECORD TEXT.txt
+- SUMMARY=작업 결과 기록 문서
+- REASON=작업 기록 목적. 구현 작업지시서 v1의 직접 구현 범위는 아님.
+- CURRENT_DECISION=review_later
+- NOTE=기록성 문서.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/VALIDATION RESULT.txt
+- SUMMARY=검증 결과 기록 문서
+- REASON=검증 기록 목적. 구현 작업지시서 v1의 직접 구현 범위는 아님.
+- CURRENT_DECISION=review_later
+- NOTE=기록성 문서.

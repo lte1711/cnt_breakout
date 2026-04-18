@@ -116,3 +116,10 @@ CHANGE LOG
 - REASON=배포 위생(T16) 정리를 위해 추가됨. 구현 작업지시서 v1의 직접 구현 항목은 아님.
 - CURRENT_DECISION=review_later
 - NOTE=외부 제출용 산출물 생성 보조 스크립트.
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/cnt_v1_closure_validation_report.txt
+- SUMMARY=v1 마감 검증 최종 보고서
+- REASON=v1 마감 판정을 재검토 가능하게 남기기 위한 독립 산출물. 구현 작업지시서 v1의 직접 코드 요구사항은 아니며 검증/인수 목적의 추가 문서.
+- CURRENT_DECISION=review_later
+- NOTE=마감 판정 근거와 PASS/FAIL 결과를 한곳에 고정하는 문서.

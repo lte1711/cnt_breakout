@@ -1,5 +1,5 @@
 STATUS=ACTIVE
-VERSION=1.2
+VERSION=1.3
 UPDATED=2026-04-19
 PROJECT_NAME=CNT
 MODE=BINANCE_SPOT_TESTNET
@@ -61,6 +61,7 @@ SAPI_USAGE=FORBIDDEN
 DEFAULT_SYMBOL=ETHUSDT
 STATE_FILE=data/state.json
 LOG_FILE=logs/runtime.log
+SIGNAL_LOG_FILE=logs/signal.log
 RECV_WINDOW=5000
 REQUEST_TIMEOUT=5
 
@@ -98,12 +99,19 @@ engine
       -> strategy_registry
         -> selected strategy class
       -> StrategySignal
+  -> signal_logger
+  -> execution_decider
+    -> risk_guard
+    -> ExecutionDecision
 
 Notes:
 - engine owns execution, reconciliation, and state persistence
 - entry_gate owns entry permission evaluation only
 - strategy_manager owns strategy selection, context construction, parameter validation, and strategy error isolation
 - selected strategy owns signal generation and exit model construction
+- signal_logger owns signal observability only
+- execution_decider owns execution/no-execution decision only
+- risk_guard owns state-based risk blocking only
 
 # --------------------------------------------------
 # STATE MACHINE
@@ -127,6 +135,7 @@ pending_order
 open_trade
 action
 price
+risk_metrics
 
 PENDING_ORDER_KEYS=
 orderId
@@ -166,6 +175,26 @@ target_price
 - trailing_stop_pct (reserved)
 - partial_exit_levels (reserved)
 - time_based_exit_minutes (reserved)
+
+### ExecutionDecision
+- execute
+- action
+- reason
+- signal_reason
+- strategy_name
+- symbol
+- validated_qty
+- validated_price
+- notional_value
+- risk_check_passed
+- risk_rejection_reason
+- slippage_check_passed
+- slippage_rejection_reason
+
+### RiskMetrics
+- daily_loss_count
+- consecutive_losses
+- last_loss_time
 
 ### MarketContext
 - symbol
@@ -332,10 +361,14 @@ src/engine.py=execution_orchestration_only
 src/entry_gate.py=new_entry_gate_evaluation_only
 src/strategy_manager.py=strategy_selection_context_validation_and_error_isolation_only
 src/strategy_registry.py=strategy_registry_only
-src/strategy_signal.py=legacy_compatibility_wrapper_only
 src/models/strategy_signal.py=strategy_signal_dataclass_only
 src/models/market_context.py=market_context_dataclass_only
+src/models/execution_decision.py=execution_decision_dataclass_only
+src/models/risk_result.py=risk_check_result_dataclass_only
+src/execution_decider.py=execution_decision_only
+src/signal_logger.py=signal_log_write_only
 src/risk/exit_models.py=exit_model_dataclass_only
+src/risk/risk_guard.py=state_based_risk_guard_only
 src/strategies/base.py=base_strategy_interface_only
 src/strategies/breakout_v1.py=breakout_strategy_logic_only
 src/log_writer.py=log_write_only
@@ -372,15 +405,6 @@ EVERY_MEANINGFUL_STEP_MUST_HAVE=
 - it does not bypass entry chain
 - it does not change exchange/order truth rules
 - it is explicitly approved in design record
-
-## LEGACY COMPATIBILITY
-
-src/strategy_signal.py is now a compatibility wrapper.
-
-Rules:
-- new code must use src/strategy_manager.py
-- legacy wrapper exists only to avoid immediate breakage
-- wrapper is scheduled for removal in v1.1 after internal references are fully removed
 
 # --------------------------------------------------
 # PRINCIPLE

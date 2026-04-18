@@ -25,6 +25,7 @@ from config import (
 )
 from src.account_reader import get_account_info
 from src.balance_reader import extract_asset_balance
+from src.execution_decider import decide_execution
 from src.entry_gate import evaluate_entry_gate_from_signal, get_entry_signal
 from src.log_writer import append_log
 from src.order_executor import send_live_testnet_order, send_test_order
@@ -49,6 +50,25 @@ def should_exit_long(price: float, target_price: float) -> bool:
     return price >= target_price
 
 
+def _default_risk_metrics() -> dict:
+    return {
+        "daily_loss_count": 0,
+        "consecutive_losses": 0,
+        "last_loss_time": None,
+    }
+
+
+def _normalize_risk_metrics(risk_metrics: dict | None) -> dict:
+    if not isinstance(risk_metrics, dict):
+        return _default_risk_metrics()
+
+    return {
+        "daily_loss_count": int(risk_metrics.get("daily_loss_count", 0) or 0),
+        "consecutive_losses": int(risk_metrics.get("consecutive_losses", 0) or 0),
+        "last_loss_time": risk_metrics.get("last_loss_time"),
+    }
+
+
 def _load_state(path: Path) -> dict:
     if not path.exists():
         return {}
@@ -60,6 +80,7 @@ def _load_state(path: Path) -> dict:
 
         loaded.setdefault("schema_version", SCHEMA_VERSION)
         loaded.setdefault("strategy_name", ACTIVE_STRATEGY)
+        loaded["risk_metrics"] = _normalize_risk_metrics(loaded.get("risk_metrics"))
         return loaded
     except Exception:
         return {}
@@ -157,6 +178,7 @@ def _build_state(
     price: float,
     pending: dict | None,
     open_trade: dict | None,
+    risk_metrics: dict | None = None,
 ) -> dict:
     normalized_pending = _normalize_pending_order(pending)
     normalized_open_trade = _normalize_open_trade(open_trade)
@@ -171,6 +193,7 @@ def _build_state(
         "open_trade": normalized_open_trade,
         "action": action,
         "price": price,
+        "risk_metrics": _normalize_risk_metrics(risk_metrics),
     }
 
 
@@ -185,6 +208,7 @@ def _save_and_finish(
     pending: dict | None,
     open_trade: dict | None,
     reason: str = "ok",
+    risk_metrics: dict | None = None,
 ) -> None:
     next_state = _build_state(
         timestamp=timestamp,
@@ -192,6 +216,7 @@ def _save_and_finish(
         price=price,
         pending=pending,
         open_trade=open_trade,
+        risk_metrics=risk_metrics,
     )
     state.clear()
     state.update(next_state)
@@ -395,9 +420,11 @@ def start_engine() -> None:
     price = 0.0
     pending = None
     open_trade = None
+    risk_metrics = _default_risk_metrics()
 
     try:
         state = _load_state(state_file)
+        risk_metrics = _normalize_risk_metrics(state.get("risk_metrics"))
 
         ping()
         get_server_time()
@@ -416,6 +443,7 @@ def start_engine() -> None:
                 pending=None,
                 open_trade=None,
                 reason="missing_api_credentials",
+                risk_metrics=risk_metrics,
             )
             return
 
@@ -439,6 +467,7 @@ def start_engine() -> None:
                     pending=None,
                     open_trade=open_trade_after,
                     reason="pending_buy_filled_promoted_to_open_trade",
+                    risk_metrics=risk_metrics,
                 )
                 return
 
@@ -452,6 +481,7 @@ def start_engine() -> None:
                 pending=pending_after,
                 open_trade=open_trade,
                 reason=action.lower(),
+                risk_metrics=risk_metrics,
             )
             return
 
@@ -477,6 +507,7 @@ def start_engine() -> None:
                         if open_trade_action == "INVALID_OPEN_TRADE_CLEARED"
                         else open_trade_action.lower()
                     ),
+                    risk_metrics=risk_metrics,
                 )
                 return
 
@@ -495,6 +526,7 @@ def start_engine() -> None:
                     pending=None,
                     open_trade=open_trade,
                     reason="missing_target_or_stop_price",
+                    risk_metrics=risk_metrics,
                 )
                 return
 
@@ -521,6 +553,7 @@ def start_engine() -> None:
                         pending=None,
                         open_trade=open_trade,
                         reason="sell_limit_validation_failed",
+                        risk_metrics=risk_metrics,
                     )
                     return
 
@@ -546,6 +579,7 @@ def start_engine() -> None:
                         pending=None,
                         open_trade=None,
                         reason="target_exit_limit_filled",
+                        risk_metrics=risk_metrics,
                     )
                     return
 
@@ -561,6 +595,7 @@ def start_engine() -> None:
                     pending=pending,
                     open_trade=open_trade,
                     reason="target_exit_limit_submitted",
+                    risk_metrics=risk_metrics,
                 )
                 return
 
@@ -578,6 +613,7 @@ def start_engine() -> None:
                         pending=None,
                         open_trade=open_trade,
                         reason="stop_market_qty_not_valid",
+                        risk_metrics=risk_metrics,
                     )
                     return
 
@@ -602,6 +638,7 @@ def start_engine() -> None:
                         pending=None,
                         open_trade=None,
                         reason="protective_stop_market_filled",
+                        risk_metrics=risk_metrics,
                     )
                     return
 
@@ -617,6 +654,7 @@ def start_engine() -> None:
                     pending=pending,
                     open_trade=open_trade,
                     reason="protective_stop_market_submitted",
+                    risk_metrics=risk_metrics,
                 )
                 return
 
@@ -630,6 +668,7 @@ def start_engine() -> None:
                 pending=None,
                 open_trade=open_trade,
                 reason="target_and_stop_not_triggered",
+                risk_metrics=risk_metrics,
             )
             return
 
@@ -647,6 +686,7 @@ def start_engine() -> None:
                 pending=None,
                 open_trade=None,
                 reason=entry_reason,
+                risk_metrics=risk_metrics,
             )
             return
 
@@ -661,10 +701,41 @@ def start_engine() -> None:
                 pending=None,
                 open_trade=None,
                 reason="missing_exit_model",
+                risk_metrics=risk_metrics,
             )
             return
 
-        adj = auto_adjust_order_inputs(price, 0.001, filters)
+        quote_asset = str(symbol_info.get("quoteAsset", ""))
+        account_info = get_account_info()
+        quote_balance = extract_asset_balance(account_info, quote_asset)
+        decision = decide_execution(
+            signal=signal,
+            state=state,
+            balance=quote_balance,
+            filters=filters,
+            requested_qty=0.001,
+        )
+
+        if not decision.execute:
+            _save_and_finish(
+                state_file=state_file,
+                log_file=log_file,
+                state=state,
+                timestamp=timestamp,
+                action=decision.action,
+                price=price,
+                pending=None,
+                open_trade=None,
+                reason=decision.reason,
+                risk_metrics=risk_metrics,
+            )
+            return
+
+        adj = auto_adjust_order_inputs(
+            float(decision.validated_price or price),
+            float(decision.validated_qty or 0.001),
+            filters,
+        )
         final_validation = adj.get("final_validation", {})
 
         if not final_validation.get("all_valid", False):
@@ -678,6 +749,7 @@ def start_engine() -> None:
                 pending=None,
                 open_trade=None,
                 reason="buy_limit_validation_failed",
+                risk_metrics=risk_metrics,
             )
             return
 
@@ -726,6 +798,7 @@ def start_engine() -> None:
             pending=pending,
             open_trade=open_trade,
             reason=action.lower(),
+            risk_metrics=risk_metrics,
         )
 
     except Exception as error:
@@ -740,6 +813,7 @@ def start_engine() -> None:
                 pending=pending,
                 open_trade=open_trade,
                 reason=str(error),
+                risk_metrics=risk_metrics,
             )
         except Exception:
             pass

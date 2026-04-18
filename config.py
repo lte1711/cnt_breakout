@@ -61,6 +61,7 @@ ENABLE_TEST_ORDER_VALIDATION = True
 
 LOG_FILE = "logs/runtime.log"
 STATE_FILE = "data/state.json"
+SIGNAL_LOG_FILE = "logs/signal.log"
 
 # =========================
 # STRATEGY ENABLE SWITCH
@@ -93,3 +94,11 @@ STRATEGY_PARAMS = {
 KLINES_LIMIT = 200
 PRIMARY_INTERVAL = "5m"
 ENTRY_INTERVAL = "1m"
+
+# =========================
+# RISK CONFIG
+# =========================
+
+MAX_DAILY_LOSS_COUNT = 3
+MAX_CONSECUTIVE_LOSSES = 3
+LOSS_COOLDOWN_MINUTES = 60

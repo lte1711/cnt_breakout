@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 import time
+from pathlib import Path
 
 from binance_client import get_price
-from config import ACTIVE_STRATEGY, ENTRY_INTERVAL, KLINES_LIMIT, PRIMARY_INTERVAL, STRATEGY_PARAMS
+from config import ACTIVE_STRATEGY, ENTRY_INTERVAL, KLINES_LIMIT, PRIMARY_INTERVAL, SIGNAL_LOG_FILE, STRATEGY_PARAMS
 from src.market_data import get_recent_closed_klines
 from src.models.market_context import MarketContext
 from src.models.strategy_signal import StrategySignal
+from src.signal_logger import append_signal_log
 from src.strategy_registry import STRATEGY_REGISTRY
 
 
@@ -28,8 +30,17 @@ def _build_error_signal(symbol: str, strategy_name: str, message: str) -> Strate
     )
 
 
+def _append_signal_log_safely(signal_log_file: Path, signal: StrategySignal) -> None:
+    try:
+        append_signal_log(signal_log_file, signal)
+    except Exception:
+        pass
+
+
 def generate_strategy_signal(symbol: str) -> StrategySignal:
     active_strategy = ACTIVE_STRATEGY
+    project_root = Path(__file__).resolve().parent.parent
+    signal_log_file = project_root / SIGNAL_LOG_FILE
 
     try:
         strategy_class = STRATEGY_REGISTRY[active_strategy]
@@ -58,6 +69,10 @@ def generate_strategy_signal(symbol: str) -> StrategySignal:
             last_price=last_price,
         )
 
-        return strategy.evaluate(context)
+        signal = strategy.evaluate(context)
+        _append_signal_log_safely(signal_log_file, signal)
+        return signal
     except Exception as error:
-        return _build_error_signal(symbol, active_strategy, str(error))
+        signal = _build_error_signal(symbol, active_strategy, str(error))
+        _append_signal_log_safely(signal_log_file, signal)
+        return signal

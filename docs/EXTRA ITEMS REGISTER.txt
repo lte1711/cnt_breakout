@@ -123,3 +123,50 @@ CHANGE LOG
 - REASON=v1 마감 판정을 재검토 가능하게 남기기 위한 독립 산출물. 구현 작업지시서 v1의 직접 코드 요구사항은 아니며 검증/인수 목적의 추가 문서.
 - CURRENT_DECISION=review_later
 - NOTE=마감 판정 근거와 PASS/FAIL 결과를 한곳에 고정하는 문서.
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/models/execution_decision.py
+- SUMMARY=ExecutionDecision dataclass 추가
+- REASON=v1.1에서 신호와 실행 결정을 분리하기 위한 신규 모델. v1 직접 범위 밖의 확장 항목.
+- CURRENT_DECISION=keep
+- NOTE=engine가 주문 실행 여부를 구조화해서 받는 기준 모델.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/models/risk_result.py
+- SUMMARY=RiskCheckResult dataclass 추가
+- REASON=v1.1 risk_guard 결과를 표준화하기 위한 신규 모델. 확장용 항목.
+- CURRENT_DECISION=keep
+- NOTE=risk_guard의 passed/reason 계약을 고정.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/execution_decider.py
+- SUMMARY=ExecutionDecision 생성 레이어 추가
+- REASON=StrategySignal과 실제 실행 가능 여부를 분리하는 v1.1 핵심 확장.
+- CURRENT_DECISION=keep
+- NOTE=gate 이후 validator/executor 이전에 위치.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/risk/risk_guard.py
+- SUMMARY=state 기반 risk guard 추가
+- REASON=로그 파싱 없이 daily loss limit과 cooldown 차단을 수행하기 위한 v1.1 확장.
+- CURRENT_DECISION=keep
+- NOTE=signal, state, balance를 입력으로 사용.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/signal_logger.py
+- SUMMARY=signal observability 레이어 추가
+- REASON=진입 허용/차단 사유를 signal.log에 별도 기록하기 위한 v1.1 확장.
+- CURRENT_DECISION=keep
+- NOTE=runtime.log와 분리된 전략 신호 관측 로그.
+
+- DATE=2026-04-19
+- TYPE=runtime
+- PATH=logs/signal.log
+- SUMMARY=전략 신호 기록 로그 파일
+- REASON=signal_logger 연결로 생성되는 신규 운영 로그 대상.
+- CURRENT_DECISION=keep
+- NOTE=entry_allowed, trigger, reason, confidence 등의 관측 기록용.

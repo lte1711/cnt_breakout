@@ -17,17 +17,21 @@ from binance_client import (
 from config import (
     ACTIVE_STRATEGY,
     BINANCE_BASE_URL,
+    ENABLE_PARTIAL_EXIT,
     ENABLE_TEST_ORDER_VALIDATION,
     LOG_FILE,
     STATE_FILE,
     STRATEGY_PARAMS,
     SYMBOL,
+    TIME_EXIT_MINUTES,
+    TRAILING_STOP_PCT,
 )
 from src.account_reader import get_account_info
 from src.balance_reader import extract_asset_balance
 from src.execution_decider import decide_execution
 from src.entry_gate import evaluate_entry_gate_from_signal, get_entry_signal
 from src.log_writer import append_log
+from src.models.exit_signal import ExitSignal
 from src.order_executor import send_live_testnet_order, send_test_order
 from src.order_payload_builder import build_limit_order_payload
 from src.order_query import get_open_orders, get_order
@@ -36,6 +40,7 @@ from src.order_validator import (
     validate_order,
     validate_quantity,
 )
+from src.risk.enhanced_exit_manager import evaluate_exit
 from src.state_writer import write_state
 
 
@@ -113,6 +118,27 @@ def _normalize_pending_order(pending: dict | None) -> dict | None:
     if "target_price" in pending and pending["target_price"] is not None:
         normalized["target_price"] = float(pending["target_price"])
 
+    if "trailing_stop_pct" in pending and pending["trailing_stop_pct"] is not None:
+        normalized["trailing_stop_pct"] = float(pending["trailing_stop_pct"])
+
+    if "time_based_exit_minutes" in pending and pending["time_based_exit_minutes"] is not None:
+        normalized["time_based_exit_minutes"] = int(pending["time_based_exit_minutes"])
+
+    if "partial_exit_levels" in pending and pending["partial_exit_levels"] is not None:
+        normalized["partial_exit_levels"] = [
+            {
+                "qty_ratio": float(item["qty_ratio"]),
+                "target_price": float(item["target_price"]),
+            }
+            for item in pending["partial_exit_levels"]
+        ]
+
+    if "exit_type" in pending:
+        normalized["exit_type"] = str(pending["exit_type"]).upper()
+
+    if "partial_qty" in pending and pending["partial_qty"] is not None:
+        normalized["partial_qty"] = float(pending["partial_qty"])
+
     return normalized
 
 
@@ -158,6 +184,28 @@ def _normalize_open_trade(open_trade: dict | None) -> dict | None:
         "strategy_name": strategy_name,
         "stop_price": stop_price,
         "target_price": target_price,
+        "trailing_stop_pct": (
+            float(open_trade["trailing_stop_pct"])
+            if open_trade.get("trailing_stop_pct") is not None
+            else None
+        ),
+        "partial_exit_levels": [
+            {
+                "qty_ratio": float(item["qty_ratio"]),
+                "target_price": float(item["target_price"]),
+            }
+            for item in (open_trade.get("partial_exit_levels") or [])
+        ],
+        "time_based_exit_minutes": (
+            int(open_trade["time_based_exit_minutes"])
+            if open_trade.get("time_based_exit_minutes") is not None
+            else None
+        ),
+        "highest_price_since_entry": float(
+            open_trade.get("highest_price_since_entry", entry_price) or entry_price
+        ),
+        "entry_time": open_trade.get("entry_time"),
+        "partial_exit_progress": int(open_trade.get("partial_exit_progress", 0) or 0),
     }
 
 
@@ -264,12 +312,63 @@ def _align_quantity_to_step(qty: float, filters: dict) -> float:
     return float(quantity_check.get("aligned_qty", qty))
 
 
+def _serialize_partial_exit_levels(partial_exit_levels) -> list[dict] | None:
+    if not partial_exit_levels:
+        return None
+
+    serialized: list[dict] = []
+    for item in partial_exit_levels:
+        if isinstance(item, dict):
+            serialized.append(
+                {
+                    "qty_ratio": float(item["qty_ratio"]),
+                    "target_price": float(item["target_price"]),
+                }
+            )
+        else:
+            serialized.append(
+                {
+                    "qty_ratio": float(item.qty_ratio),
+                    "target_price": float(item.target_price),
+                }
+            )
+    return serialized
+
+
+def _build_exit_extension_fields(signal_exit_model, entry_price: float) -> dict:
+    trailing_stop_pct = TRAILING_STOP_PCT
+    time_based_exit_minutes = TIME_EXIT_MINUTES
+    partial_exit_levels = None
+
+    if signal_exit_model is not None:
+        if signal_exit_model.trailing_stop_pct is not None:
+            trailing_stop_pct = float(signal_exit_model.trailing_stop_pct)
+        if signal_exit_model.time_based_exit_minutes is not None:
+            time_based_exit_minutes = int(signal_exit_model.time_based_exit_minutes)
+        if ENABLE_PARTIAL_EXIT:
+            partial_exit_levels = _serialize_partial_exit_levels(signal_exit_model.partial_exit_levels)
+
+    return {
+        "trailing_stop_pct": trailing_stop_pct,
+        "partial_exit_levels": partial_exit_levels if ENABLE_PARTIAL_EXIT else None,
+        "time_based_exit_minutes": time_based_exit_minutes,
+        "highest_price_since_entry": entry_price,
+        "entry_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "partial_exit_progress": 0,
+    }
+
+
 def _build_pending_order_from_response(
     order_response: dict,
     side: str,
     strategy_name: str | None = None,
     stop_price: float | None = None,
     target_price: float | None = None,
+    trailing_stop_pct: float | None = None,
+    partial_exit_levels: list[dict] | None = None,
+    time_based_exit_minutes: int | None = None,
+    exit_type: str | None = None,
+    partial_qty: float | None = None,
 ) -> dict:
     pending = {
         "orderId": int(order_response["orderId"]),
@@ -286,6 +385,21 @@ def _build_pending_order_from_response(
     if target_price is not None:
         pending["target_price"] = target_price
 
+    if trailing_stop_pct is not None:
+        pending["trailing_stop_pct"] = trailing_stop_pct
+
+    if partial_exit_levels is not None:
+        pending["partial_exit_levels"] = partial_exit_levels
+
+    if time_based_exit_minutes is not None:
+        pending["time_based_exit_minutes"] = time_based_exit_minutes
+
+    if exit_type is not None:
+        pending["exit_type"] = exit_type.upper()
+
+    if partial_qty is not None:
+        pending["partial_qty"] = partial_qty
+
     return pending
 
 
@@ -294,11 +408,21 @@ def _build_open_trade_from_order(order_info: dict, pending: dict | None = None) 
     strategy_name = ACTIVE_STRATEGY
     stop_price = None
     target_price = None
+    trailing_stop_pct = TRAILING_STOP_PCT
+    partial_exit_levels = None
+    time_based_exit_minutes = TIME_EXIT_MINUTES
+    entry_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    partial_exit_progress = 0
 
     if isinstance(pending, dict):
         strategy_name = str(pending.get("strategy_name") or ACTIVE_STRATEGY)
         stop_price = pending.get("stop_price")
         target_price = pending.get("target_price")
+        trailing_stop_pct = pending.get("trailing_stop_pct", TRAILING_STOP_PCT)
+        partial_exit_levels = pending.get("partial_exit_levels")
+        time_based_exit_minutes = pending.get("time_based_exit_minutes", TIME_EXIT_MINUTES)
+        entry_time = pending.get("entry_time", entry_time)
+        partial_exit_progress = int(pending.get("partial_exit_progress", 0) or 0)
 
     if stop_price is None or target_price is None:
         stop_price, target_price = _build_exit_model_from_strategy(strategy_name, entry_price)
@@ -312,7 +436,34 @@ def _build_open_trade_from_order(order_info: dict, pending: dict | None = None) 
         "strategy_name": strategy_name,
         "stop_price": stop_price,
         "target_price": target_price,
+        "trailing_stop_pct": trailing_stop_pct,
+        "partial_exit_levels": partial_exit_levels,
+        "time_based_exit_minutes": time_based_exit_minutes,
+        "highest_price_since_entry": entry_price,
+        "entry_time": entry_time,
+        "partial_exit_progress": partial_exit_progress,
     }
+
+
+def _update_open_trade_runtime_fields(open_trade: dict, current_price: float) -> dict:
+    normalized = dict(open_trade)
+    previous_highest = float(normalized.get("highest_price_since_entry", normalized.get("entry_price", current_price)))
+    normalized["highest_price_since_entry"] = max(previous_highest, current_price)
+    normalized.setdefault("entry_time", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    normalized.setdefault("partial_exit_progress", 0)
+    return normalized
+
+
+def _apply_partial_exit_fill(open_trade: dict, partial_qty: float) -> dict | None:
+    updated = dict(open_trade)
+    remaining_qty = float(updated["entry_qty"]) - float(partial_qty)
+    updated["entry_qty"] = max(remaining_qty, 0.0)
+    updated["partial_exit_progress"] = int(updated.get("partial_exit_progress", 0) or 0) + 1
+
+    if updated["entry_qty"] <= 0:
+        return None
+
+    return updated
 
 
 def _reconcile_open_trade(
@@ -359,6 +510,7 @@ def _reconcile_pending_order(
     *,
     symbol: str,
     pending: dict,
+    open_trade: dict | None,
 ) -> tuple[str, dict | None, dict | None]:
     normalized_pending = _normalize_pending_order(pending)
     if normalized_pending is None:
@@ -374,6 +526,14 @@ def _reconcile_pending_order(
             if normalized_pending.get("side") == "BUY":
                 open_trade = _build_open_trade_from_order(order_info, normalized_pending)
                 return "PROMOTE_TO_OPEN_TRADE", None, open_trade
+            if normalized_pending.get("exit_type") == "PARTIAL" and isinstance(open_trade, dict):
+                updated_open_trade = _apply_partial_exit_fill(
+                    open_trade,
+                    float(normalized_pending.get("partial_qty", 0.0) or 0.0),
+                )
+                if updated_open_trade is None:
+                    return "SELL_FILLED", None, None
+                return "PARTIAL_EXIT_FILLED", None, updated_open_trade
 
             return "SELL_FILLED", None, None
 
@@ -454,6 +614,7 @@ def start_engine() -> None:
             action, pending_after, open_trade_after = _reconcile_pending_order(
                 symbol=SYMBOL,
                 pending=pending,
+                open_trade=open_trade,
             )
 
             if action == "PROMOTE_TO_OPEN_TRADE":
@@ -467,6 +628,21 @@ def start_engine() -> None:
                     pending=None,
                     open_trade=open_trade_after,
                     reason="pending_buy_filled_promoted_to_open_trade",
+                    risk_metrics=risk_metrics,
+                )
+                return
+
+            if action == "PARTIAL_EXIT_FILLED":
+                _save_and_finish(
+                    state_file=state_file,
+                    log_file=log_file,
+                    state=state,
+                    timestamp=timestamp,
+                    action=action,
+                    price=price,
+                    pending=None,
+                    open_trade=open_trade_after,
+                    reason="partial_exit_filled",
                     risk_metrics=risk_metrics,
                 )
                 return
@@ -512,28 +688,28 @@ def start_engine() -> None:
                 return
 
             open_trade = open_trade_after
-            target_price = open_trade.get("target_price")
-            stop_price = open_trade.get("stop_price")
+            open_trade = _update_open_trade_runtime_fields(open_trade, price)
+            exit_signal = evaluate_exit(open_trade, price, state, filters)
 
-            if target_price is None or stop_price is None:
+            if not exit_signal.should_exit:
                 _save_and_finish(
                     state_file=state_file,
                     log_file=log_file,
                     state=state,
                     timestamp=timestamp,
-                    action="OPEN_TRADE_MISSING_EXIT_MODEL",
+                    action="HOLD_OPEN_TRADE",
                     price=price,
                     pending=None,
                     open_trade=open_trade,
-                    reason="missing_target_or_stop_price",
+                    reason=exit_signal.reason,
                     risk_metrics=risk_metrics,
                 )
                 return
 
             entry_qty = float(open_trade["entry_qty"])
-
-            if should_exit_long(price, float(target_price)):
-                adjusted_exit = auto_adjust_order_inputs(price, entry_qty, filters)
+            if exit_signal.exit_type in {"TARGET", "PARTIAL", "TIME_EXIT"}:
+                exit_qty = entry_qty if exit_signal.exit_type != "PARTIAL" else float(exit_signal.partial_qty or 0.0)
+                adjusted_exit = auto_adjust_order_inputs(price, exit_qty, filters)
                 adjusted_exit_qty = min(entry_qty, float(adjusted_exit["adjusted_qty"]))
 
                 exit_validation = validate_order(
@@ -569,6 +745,22 @@ def start_engine() -> None:
                 order_status = str(order_response.get("status", "")).upper()
 
                 if order_status == "FILLED":
+                    if exit_signal.exit_type == "PARTIAL":
+                        updated_open_trade = _apply_partial_exit_fill(open_trade, adjusted_exit_qty)
+                        _save_and_finish(
+                            state_file=state_file,
+                            log_file=log_file,
+                            state=state,
+                            timestamp=timestamp,
+                            action="PARTIAL_EXIT_FILLED",
+                            price=price,
+                            pending=None,
+                            open_trade=updated_open_trade,
+                            reason="partial_exit_limit_filled",
+                            risk_metrics=risk_metrics,
+                        )
+                        return
+
                     _save_and_finish(
                         state_file=state_file,
                         log_file=log_file,
@@ -583,23 +775,36 @@ def start_engine() -> None:
                     )
                     return
 
-                pending = _build_pending_order_from_response(order_response, "SELL")
+                pending = _build_pending_order_from_response(
+                    order_response,
+                    "SELL",
+                    exit_type=exit_signal.exit_type,
+                    partial_qty=adjusted_exit_qty if exit_signal.exit_type == "PARTIAL" else None,
+                )
 
                 _save_and_finish(
                     state_file=state_file,
                     log_file=log_file,
                     state=state,
                     timestamp=timestamp,
-                    action="SELL_SUBMITTED",
+                    action="PARTIAL_EXIT_SUBMITTED" if exit_signal.exit_type == "PARTIAL" else "SELL_SUBMITTED",
                     price=price,
                     pending=pending,
                     open_trade=open_trade,
-                    reason="target_exit_limit_submitted",
+                    reason=(
+                        "partial_exit_limit_submitted"
+                        if exit_signal.exit_type == "PARTIAL"
+                        else (
+                            "time_exit_limit_submitted"
+                            if exit_signal.exit_type == "TIME_EXIT"
+                            else "target_exit_limit_submitted"
+                        )
+                    ),
                     risk_metrics=risk_metrics,
                 )
                 return
 
-            if should_stop(price, float(stop_price)):
+            if exit_signal.exit_type in {"STOP", "TRAILING_STOP"}:
                 aligned_stop_qty = _align_quantity_to_step(entry_qty, filters)
 
                 if aligned_stop_qty <= 0:
@@ -633,44 +838,46 @@ def start_engine() -> None:
                         log_file=log_file,
                         state=state,
                         timestamp=timestamp,
-                        action="STOP_MARKET_FILLED",
+                        action="TRAILING_STOP_FILLED" if exit_signal.exit_type == "TRAILING_STOP" else "STOP_MARKET_FILLED",
                         price=price,
                         pending=None,
                         open_trade=None,
-                        reason="protective_stop_market_filled",
+                        reason=(
+                            "trailing_stop_market_filled"
+                            if exit_signal.exit_type == "TRAILING_STOP"
+                            else "protective_stop_market_filled"
+                        ),
                         risk_metrics=risk_metrics,
                     )
                     return
 
-                pending = _build_pending_order_from_response(order_response, "SELL")
+                pending = _build_pending_order_from_response(
+                    order_response,
+                    "SELL",
+                    exit_type=exit_signal.exit_type,
+                )
 
                 _save_and_finish(
                     state_file=state_file,
                     log_file=log_file,
                     state=state,
                     timestamp=timestamp,
-                    action="STOP_MARKET_SUBMITTED",
+                    action=(
+                        "TRAILING_STOP_SUBMITTED"
+                        if exit_signal.exit_type == "TRAILING_STOP"
+                        else "STOP_MARKET_SUBMITTED"
+                    ),
                     price=price,
                     pending=pending,
                     open_trade=open_trade,
-                    reason="protective_stop_market_submitted",
+                    reason=(
+                        "trailing_stop_market_submitted"
+                        if exit_signal.exit_type == "TRAILING_STOP"
+                        else "protective_stop_market_submitted"
+                    ),
                     risk_metrics=risk_metrics,
                 )
                 return
-
-            _save_and_finish(
-                state_file=state_file,
-                log_file=log_file,
-                state=state,
-                timestamp=timestamp,
-                action="HOLD_OPEN_TRADE",
-                price=price,
-                pending=None,
-                open_trade=open_trade,
-                reason="target_and_stop_not_triggered",
-                risk_metrics=risk_metrics,
-            )
-            return
 
         signal = get_entry_signal(SYMBOL)
         entry_action, entry_reason = evaluate_entry_gate_from_signal(signal)
@@ -765,6 +972,7 @@ def start_engine() -> None:
         order_status = str(order_response.get("status", "")).upper()
 
         if order_status == "FILLED":
+            exit_extensions = _build_exit_extension_fields(signal.exit_model, _extract_fill_price(order_response))
             open_trade = {
                 "status": "OPEN",
                 "entry_price": _extract_fill_price(order_response),
@@ -774,16 +982,21 @@ def start_engine() -> None:
                 "strategy_name": signal.strategy_name,
                 "stop_price": signal.exit_model.stop_price,
                 "target_price": signal.exit_model.target_price,
+                **exit_extensions,
             }
             pending = None
             action = "BUY_FILLED"
         else:
+            exit_extensions = _build_exit_extension_fields(signal.exit_model, float(adj["adjusted_price"]))
             pending = _build_pending_order_from_response(
                 order_response,
                 "BUY",
                 strategy_name=signal.strategy_name,
                 stop_price=signal.exit_model.stop_price,
                 target_price=signal.exit_model.target_price,
+                trailing_stop_pct=exit_extensions["trailing_stop_pct"],
+                partial_exit_levels=exit_extensions["partial_exit_levels"],
+                time_based_exit_minutes=exit_extensions["time_based_exit_minutes"],
             )
             open_trade = None
             action = "BUY_SUBMITTED"

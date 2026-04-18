@@ -186,3 +186,27 @@ CHANGE LOG
 - REASON=v1.1 Stage 1에서 내부 참조 0건 확인 후 wrapper 제거가 완료됨.
 - CURRENT_DECISION=removed
 - NOTE=기존 compat 항목은 이력 보존용이며, 현재 파일은 저장소에 존재하지 않음.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/models/exit_signal.py
+- SUMMARY=Stage 2 ExitSignal dataclass 추가
+- REASON=Stage 2에서 exit 판단과 실행 경로를 분리하기 위한 신규 모델.
+- CURRENT_DECISION=keep
+- NOTE=should_exit, exit_type, reason, partial_qty 등을 구조화하는 기준 모델.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/risk/enhanced_exit_manager.py
+- SUMMARY=Stage 2 exit evaluation 레이어 추가
+- REASON=trailing stop, time exit, partial exit를 기존 엔진 실행 경로 위에 확장하기 위한 신규 모듈.
+- CURRENT_DECISION=keep
+- NOTE=판단만 수행하고 실제 주문 실행은 engine의 기존 SELL 경로를 사용.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION REPORT.txt
+- SUMMARY=Stage 2 구현 검증 보고서
+- REASON=Stage 2 구현 결과를 체크리스트 기준으로 재검토 가능하게 남기기 위한 문서.
+- CURRENT_DECISION=keep
+- NOTE=Stage 2 완료 및 승인 상태를 고정하는 기준 보고서.

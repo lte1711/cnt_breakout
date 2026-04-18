@@ -1,5 +1,5 @@
 STATUS=ACTIVE
-VERSION=1.3
+VERSION=1.4
 UPDATED=2026-04-19
 PROJECT_NAME=CNT
 MODE=BINANCE_SPOT_TESTNET
@@ -103,6 +103,8 @@ engine
   -> execution_decider
     -> risk_guard
     -> ExecutionDecision
+  -> enhanced_exit_manager
+    -> ExitSignal
 
 Notes:
 - engine owns execution, reconciliation, and state persistence
@@ -112,6 +114,7 @@ Notes:
 - signal_logger owns signal observability only
 - execution_decider owns execution/no-execution decision only
 - risk_guard owns state-based risk blocking only
+- enhanced_exit_manager owns exit evaluation only
 
 # --------------------------------------------------
 # STATE MACHINE
@@ -151,6 +154,12 @@ entry_side
 strategy_name
 stop_price
 target_price
+trailing_stop_pct
+partial_exit_levels
+time_based_exit_minutes
+highest_price_since_entry
+entry_time
+partial_exit_progress
 
 ## STRATEGY DATA CONTRACTS
 
@@ -195,6 +204,14 @@ target_price
 - daily_loss_count
 - consecutive_losses
 - last_loss_time
+
+### ExitSignal
+- should_exit
+- exit_type
+- reason
+- target_price
+- stop_price
+- partial_qty
 
 ### MarketContext
 - symbol
@@ -365,10 +382,12 @@ src/models/strategy_signal.py=strategy_signal_dataclass_only
 src/models/market_context.py=market_context_dataclass_only
 src/models/execution_decision.py=execution_decision_dataclass_only
 src/models/risk_result.py=risk_check_result_dataclass_only
+src/models/exit_signal.py=exit_signal_dataclass_only
 src/execution_decider.py=execution_decision_only
 src/signal_logger.py=signal_log_write_only
 src/risk/exit_models.py=exit_model_dataclass_only
 src/risk/risk_guard.py=state_based_risk_guard_only
+src/risk/enhanced_exit_manager.py=exit_evaluation_only
 src/strategies/base.py=base_strategy_interface_only
 src/strategies/breakout_v1.py=breakout_strategy_logic_only
 src/log_writer.py=log_write_only

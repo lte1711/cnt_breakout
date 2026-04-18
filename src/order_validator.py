@@ -94,6 +94,21 @@ def validate_quantity(qty: float, lot_size_filter: dict) -> dict:
     }
 
 
+def prepare_partial_exit_quantity(entry_qty: float, qty_ratio: float, lot_size_filter: dict) -> dict:
+    raw_qty = entry_qty * qty_ratio
+    quantity_result = validate_quantity(raw_qty, lot_size_filter)
+    aligned_qty = float(quantity_result.get("aligned_qty", 0.0) or 0.0)
+    min_qty = float(lot_size_filter.get("min_qty", 0) or 0)
+
+    return {
+        "raw_qty": raw_qty,
+        "adjusted_qty": aligned_qty,
+        "valid": aligned_qty >= min_qty and aligned_qty > 0,
+        "reason": "ok" if aligned_qty >= min_qty and aligned_qty > 0 else "partial_qty_below_min_qty",
+        "min_qty": min_qty,
+    }
+
+
 def validate_notional(price: float, qty: float, notional_filter: dict) -> dict:
     notional = price * qty
 

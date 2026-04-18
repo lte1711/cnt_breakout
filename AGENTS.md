@@ -82,6 +82,9 @@ ENGINE_SEQUENCE=
 8. reconcile_open_trade_state
 9. evaluate_exit
 10. evaluate_new_entry
+10-1. evaluate entry gate
+10-2. validate entry order inputs
+10-3. submit BUY LIMIT only if entry gate passed
 11. write_state
 12. append_log
 
@@ -267,6 +270,8 @@ binance_client.py=shared_exchange_client_and_signing
 config.py=runtime_config_only
 main.py=application_entry_only
 src/engine.py=execution_orchestration_only
+src/entry_gate.py=new_entry_gate_evaluation_only
+src/strategy_signal.py=strategy_signal_generation_only
 src/log_writer.py=log_write_only
 src/order_executor.py=order_submission_only
 src/order_payload_builder.py=limit_payload_build_only_until_extended
@@ -274,7 +279,6 @@ src/order_query.py=exchange_query_only_using_shared_signing
 src/order_validator.py=filter_validation_and_adjustment_only
 src/state_writer.py=state_write_only
 src/target_exit.py=target_exit_calculation_only
-
 # --------------------------------------------------
 # RECORD RULE
 # --------------------------------------------------
@@ -297,6 +301,11 @@ EVERY_MEANINGFUL_STEP_MUST_HAVE=
 7. unvalidated live order submission
 8. duplicate signing logic
 9. structure rewrite without explicit approval
+9-EXCEPTION. new internal module creation is allowed when:
+- it reduces engine responsibility
+- it does not bypass entry chain
+- it does not change exchange/order truth rules
+- it is explicitly approved in design record
 
 # --------------------------------------------------
 # PRINCIPLE

@@ -20,8 +20,10 @@ from config import (
     ENABLE_TEST_ORDER_VALIDATION,
     LOG_FILE,
     STATE_FILE,
+    STRATEGY_ENABLED,
     SYMBOL,
 )
+from src.entry_gate import evaluate_entry_gate
 from src.log_writer import append_log
 from src.order_executor import send_live_testnet_order, send_test_order
 from src.order_payload_builder import build_limit_order_payload
@@ -513,6 +515,22 @@ def start_engine() -> None:
                 pending=None,
                 open_trade=open_trade,
                 reason="target_and_stop_not_triggered",
+            )
+            return
+
+        entry_action, entry_reason = evaluate_entry_gate(SYMBOL)
+
+        if entry_action != "ENTRY_ALLOWED":
+            _save_and_finish(
+                state_file=state_file,
+                log_file=log_file,
+                state=state,
+                timestamp=timestamp,
+                action=entry_action,
+                price=price,
+                pending=None,
+                open_trade=None,
+                reason=entry_reason,
             )
             return
 

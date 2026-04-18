@@ -1,3 +1,5 @@
+import os
+
 # =========================
 # BINANCE CONFIG
 # =========================
@@ -12,8 +14,8 @@ RECV_WINDOW = 5000  # ms
 # API KEY (binance_client 호환 필수)
 # =========================
 
-BINANCE_API_KEY = ""
-BINANCE_API_SECRET = ""
+BINANCE_API_KEY = os.getenv("BINANCE_API_KEY", "")
+BINANCE_API_SECRET = os.getenv("BINANCE_API_SECRET", "")
 
 # (호환 alias)
 API_KEY = BINANCE_API_KEY
@@ -35,6 +37,13 @@ STATE_FILE = "data/state.json"
 # =========================
 
 STRATEGY_ENABLED = True
+
+# =========================
+# TEST OVERRIDE
+# =========================
+
+FORCE_BUY_FOR_TEST = False
+FORCE_TARGET_EXIT_TEST = False
 
 # =========================
 # MARKET DATA CONFIG
@@ -64,3 +73,5 @@ ENTRY_RSI_THRESHOLD = 55
 ENTRY_RSI_OVERHEAT = 75
 
 BREAKOUT_LOOKBACK = 3
+
+FORCE_PRICE_FOR_TEST = None

@@ -13,6 +13,7 @@ from config import (
     KLINES_LIMIT,
     PRIMARY_INTERVAL,
     RSI_PERIOD,
+    FORCE_BUY_FOR_TEST,
 )
 from src.indicators import atr, ema, extract_closes, extract_highs, extract_lows, rsi
 from src.market_data import get_recent_closed_klines
@@ -194,6 +195,18 @@ def build_entry_signal(klines_1m: list[dict], market_state: dict) -> dict:
 
 
 def generate_strategy_signal(symbol: str) -> dict:
+    # =========================
+    # TEST FORCE BUY
+    # =========================
+    if FORCE_BUY_FOR_TEST:
+        return {
+            "market_state": "TREND_UP",
+            "volatility_state": "HIGH",
+            "entry_signal": "BUY",
+            "trigger": "TEST_FORCE",
+            "reason": "forced_buy_for_engine_test",
+        }
+
     klines_5m = get_recent_closed_klines(
         symbol=symbol,
         interval=PRIMARY_INTERVAL,

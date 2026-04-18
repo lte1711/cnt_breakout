@@ -92,3 +92,27 @@ CHANGE LOG
 - REASON=검증 기록 목적. 구현 작업지시서 v1의 직접 구현 범위는 아님.
 - CURRENT_DECISION=review_later
 - NOTE=기록성 문서.
+
+- DATE=2026-04-19
+- TYPE=runtime
+- PATH=archive/legacy_root_files
+- SUMMARY=루트 구버전 state.json 및 runtime.log 보존 디렉터리
+- REASON=루트 정리(T10) 과정에서 삭제 대신 보존 이동을 선택하며 추가됨. 구현 작업지시서 v1의 직접 산출물은 아님.
+- CURRENT_DECISION=review_later
+- NOTE=증적 보존 목적의 아카이브 경로.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/SHARING CHECKLIST.txt
+- SUMMARY=외부 공유 전 점검 체크리스트
+- REASON=배포 위생(T16) 정리를 위해 추가됨. 구현 작업지시서 v1의 직접 구현 항목은 아님.
+- CURRENT_DECISION=review_later
+- NOTE=공유/배포 절차 표준화 목적.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=scripts/export_shareable_zip.ps1
+- SUMMARY=.env와 .git 등을 제외한 공유용 ZIP 생성 스크립트
+- REASON=배포 위생(T16) 정리를 위해 추가됨. 구현 작업지시서 v1의 직접 구현 항목은 아님.
+- CURRENT_DECISION=review_later
+- NOTE=외부 제출용 산출물 생성 보조 스크립트.

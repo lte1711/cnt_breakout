@@ -54,7 +54,13 @@ def _load_state(path: Path) -> dict:
         return {}
 
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
+        loaded = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(loaded, dict):
+            return {}
+
+        loaded.setdefault("schema_version", SCHEMA_VERSION)
+        loaded.setdefault("strategy_name", ACTIVE_STRATEGY)
+        return loaded
     except Exception:
         return {}
 
@@ -67,8 +73,12 @@ def _normalize_pending_order(pending: dict | None) -> dict | None:
     if not required.issubset(pending):
         return None
 
+    order_id = int(pending["orderId"])
+    if order_id <= 0:
+        return None
+
     normalized = {
-        "orderId": int(pending["orderId"]),
+        "orderId": order_id,
         "status": str(pending["status"]).upper(),
         "side": str(pending["side"]).upper(),
     }
@@ -108,6 +118,10 @@ def _normalize_open_trade(open_trade: dict | None) -> dict | None:
 
     strategy_name = str(open_trade.get("strategy_name") or ACTIVE_STRATEGY)
     entry_price = float(open_trade["entry_price"])
+    entry_order_id = int(open_trade["entry_order_id"])
+    if entry_order_id <= 0:
+        return None
+
     stop_price = open_trade.get("stop_price")
     target_price = open_trade.get("target_price")
 
@@ -118,7 +132,7 @@ def _normalize_open_trade(open_trade: dict | None) -> dict | None:
         "status": str(open_trade["status"]),
         "entry_price": entry_price,
         "entry_qty": float(open_trade["entry_qty"]),
-        "entry_order_id": int(open_trade["entry_order_id"]),
+        "entry_order_id": entry_order_id,
         "entry_side": str(open_trade["entry_side"]).upper(),
         "strategy_name": strategy_name,
         "stop_price": stop_price,
@@ -458,7 +472,11 @@ def start_engine() -> None:
                     price=price,
                     pending=None,
                     open_trade=open_trade_after,
-                    reason=open_trade_action.lower(),
+                    reason=(
+                        "invalid_or_stale_open_trade_state"
+                        if open_trade_action == "STALE_OPEN_TRADE_CLEARED"
+                        else open_trade_action.lower()
+                    ),
                 )
                 return
 

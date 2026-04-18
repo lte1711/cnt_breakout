@@ -67,6 +67,24 @@ STATE_FILE = "data/state.json"
 # =========================
 
 STRATEGY_ENABLED = True
+ACTIVE_STRATEGY = "breakout_v1"
+
+STRATEGY_PARAMS = {
+    "breakout_v1": {
+        "ema_fast_period": 9,
+        "ema_slow_period": 20,
+        "rsi_period": 14,
+        "atr_period": 14,
+        "ema_gap_threshold": 0.001,
+        "atr_expansion_multiplier": 1.2,
+        "rsi_threshold": 55,
+        "rsi_overheat": 75,
+        "breakout_lookback": 3,
+        "target_pct": 0.002,
+        "stop_loss_pct": 0.0015,
+        "signal_age_limit_sec": 15,
+    }
+}
 
 # =========================
 # MARKET DATA CONFIG

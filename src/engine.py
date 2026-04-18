@@ -37,6 +37,15 @@ from src.target_exit import calculate_target_price, should_exit_long
 
 TARGET_PCT = 0.002
 STOP_LOSS_PCT = 0.0015
+STATE_TOP_LEVEL_KEYS = (
+    "last_run_time",
+    "status",
+    "symbol",
+    "pending_order",
+    "open_trade",
+    "action",
+    "price",
+)
 
 
 def calculate_stop_price(entry_price: float, stop_pct: float) -> float:
@@ -57,6 +66,56 @@ def _load_state(path: Path) -> dict:
         return {}
 
 
+def _normalize_pending_order(pending: dict | None) -> dict | None:
+    if not isinstance(pending, dict):
+        return None
+
+    if "orderId" not in pending or "status" not in pending or "side" not in pending:
+        return None
+
+    return {
+        "orderId": int(pending["orderId"]),
+        "status": str(pending["status"]),
+        "side": str(pending["side"]).upper(),
+    }
+
+
+def _normalize_open_trade(open_trade: dict | None) -> dict | None:
+    if not isinstance(open_trade, dict):
+        return None
+
+    required_keys = {"status", "entry_price", "entry_qty", "entry_order_id", "entry_side"}
+    if not required_keys.issubset(open_trade):
+        return None
+
+    return {
+        "status": str(open_trade["status"]),
+        "entry_price": float(open_trade["entry_price"]),
+        "entry_qty": float(open_trade["entry_qty"]),
+        "entry_order_id": int(open_trade["entry_order_id"]),
+        "entry_side": str(open_trade["entry_side"]).upper(),
+    }
+
+
+def _build_state(
+    *,
+    timestamp: str,
+    action: str,
+    price: float,
+    pending: dict | None,
+    open_trade: dict | None,
+) -> dict:
+    return {
+        "last_run_time": timestamp,
+        "status": "stopped",
+        "symbol": SYMBOL,
+        "pending_order": _normalize_pending_order(pending),
+        "open_trade": _normalize_open_trade(open_trade),
+        "action": action,
+        "price": price,
+    }
+
+
 def _save_and_finish(
     *,
     state_file: Path,
@@ -69,16 +128,17 @@ def _save_and_finish(
     open_trade: dict | None,
     reason: str = "ok",
 ) -> None:
-    state["last_run_time"] = timestamp
-    state["status"] = "stopped"
-    state["symbol"] = SYMBOL
-    state["pending_order"] = pending
-    state["open_trade"] = open_trade
-    state["action"] = action
-    state["price"] = price
-    state["reason"] = reason
+    next_state = _build_state(
+        timestamp=timestamp,
+        action=action,
+        price=price,
+        pending=pending,
+        open_trade=open_trade,
+    )
+    state.clear()
+    state.update(next_state)
 
-    write_state(state_file, state)
+    write_state(state_file, next_state)
 
     append_log(
         log_file,
@@ -120,9 +180,27 @@ def _align_quantity_to_step(qty: float, filters: dict) -> float:
 
 def _reconcile_open_trade(
     *,
+    symbol: str,
     symbol_info: dict,
     open_trade: dict,
 ) -> tuple[str, dict | None]:
+    entry_order_id = int(open_trade.get("entry_order_id", 0))
+    try:
+        entry_order = get_order(symbol, entry_order_id, BINANCE_BASE_URL)
+    except HTTPError as error:
+        if _is_missing_order_error(error):
+            return "STALE_OPEN_TRADE_CLEARED", None
+        return "OPEN_TRADE_RECONCILE_ERROR_KEEP", open_trade
+    except Exception:
+        return "OPEN_TRADE_RECONCILE_ERROR_KEEP", open_trade
+
+    order_status = str(entry_order.get("status", "")).upper()
+    order_side = str(entry_order.get("side", "")).upper()
+    executed_qty = float(entry_order.get("executedQty", 0) or 0)
+
+    if order_status != "FILLED" or order_side != "BUY" or executed_qty <= 0:
+        return "STALE_OPEN_TRADE_CLEARED", None
+
     account_info = get_account_info()
     base_asset = str(symbol_info.get("baseAsset", ""))
     asset_balance = extract_asset_balance(account_info, base_asset)
@@ -133,9 +211,16 @@ def _reconcile_open_trade(
         return "STALE_OPEN_TRADE_CLEARED", None
 
     if held_qty + 1e-12 < entry_qty:
-        return "OPEN_TRADE_BALANCE_MISMATCH_KEEP", open_trade
+        return "STALE_OPEN_TRADE_CLEARED", None
 
-    return "OPEN_TRADE_CONFIRMED", open_trade
+    confirmed_open_trade = {
+        "status": "OPEN",
+        "entry_price": _extract_fill_price(entry_order),
+        "entry_qty": executed_qty,
+        "entry_order_id": int(entry_order["orderId"]),
+        "entry_side": "BUY",
+    }
+    return "OPEN_TRADE_CONFIRMED", confirmed_open_trade
 
 
 def _reconcile_pending_order(
@@ -264,6 +349,7 @@ def start_engine() -> None:
 
         if open_trade:
             open_trade_action, open_trade_after = _reconcile_open_trade(
+                symbol=SYMBOL,
                 symbol_info=symbol_info,
                 open_trade=open_trade,
             )

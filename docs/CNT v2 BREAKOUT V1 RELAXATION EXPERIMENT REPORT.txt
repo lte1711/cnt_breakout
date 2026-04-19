@@ -5,7 +5,7 @@ DOCUMENT_NAME = cnt_v2_breakout_v1_relaxation_experiment_report
 PROJECT       = CNT
 VERSION       = 2.0
 DATE          = 2026-04-20
-STATUS        = IN_PROGRESS_INITIAL_EVIDENCE_RECORDED
+STATUS        = IN_PROGRESS_CONTINUED_OBSERVATION
 REFERENCE_1   = CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT PLAN
 REFERENCE_2   = CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION REPORT
 ```
@@ -112,7 +112,43 @@ EXPERIMENT_STATUS       = CONTINUE_OBSERVATION
 
 ---
 
-# 6. REQUIRED FINAL FIELDS
+# 6. CURRENT PHASE DECISION
+
+Current reviewed decision:
+
+* experiment start is valid
+* no new blocker was discovered
+* the next correct action is to keep the current relaxed parameters unchanged
+* additional cycles must be accumulated before deciding whether to further relax thresholds or revisit the trend filter
+
+Current tracked interpretation:
+
+1. `selected_strategy_counts = {}` is not yet treated as a code failure
+2. it currently means fresh selection-path evidence with `selection_reason=highest_score` has not yet been produced
+3. `scheduler_stdout.log` encoding noise and write-collision risk remain operational follow-up items, not experiment blockers
+
+Current operating rule:
+
+```text
+KEEP_CURRENT_VALUES = TRUE
+ADDITIONAL_PARAMETER_CHANGE = NOT_ALLOWED_YET
+NEXT_REVIEW_POINT = after more scheduler cycles accumulate
+```
+
+Required ongoing tracking:
+
+* `market_not_trend_up`
+* `trend_not_up`
+* `volatility_not_high`
+* `pullback_rsi_not_in_range`
+* `rsi_below_entry_threshold`
+* `breakout_not_confirmed`
+* `selection_reason=highest_score`
+* `selected_strategy_counts`
+
+---
+
+# 7. REQUIRED FINAL FIELDS
 
 The completed report must later include:
 

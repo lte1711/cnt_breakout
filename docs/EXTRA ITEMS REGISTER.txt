@@ -707,3 +707,11 @@ CHANGE LOG
 - REASON=the experiment start required a report that preserves both the initial post-change evidence and the parallel operational issues being tracked.
 - CURRENT_DECISION=keep
 - NOTE=currently in progress with initial evidence recorded and continued observation required.
+
+- DATE=2026-04-20
+- TYPE=doc
+- PATH=docs/CNT v2 BREAKOUT V1 RELAXATION CONTINUATION NOTE.txt
+- SUMMARY=records that the current breakout experiment should continue without further parameter changes yet
+- REASON=the latest review confirmed there is no new blocker, but also no evidence yet to justify another threshold change.
+- CURRENT_DECISION=keep
+- NOTE=keeps the experiment in observation mode and separates ongoing operational issues from blockers.

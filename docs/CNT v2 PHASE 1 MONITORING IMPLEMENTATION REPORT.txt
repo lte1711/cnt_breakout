@@ -6,8 +6,8 @@ PROJECT       = CNT
 VERSION       = 2.0
 DATE          = 2026-04-19
 STATUS        = IMPLEMENTED_AND_REVIEWED
-REFERENCE_1   = CNT v2 — OPERATIONAL ANALYSIS REPORT
-REFERENCE_2   = CNT v2 — PHASE 1 OPERATION MONITORING INSTRUCTION
+REFERENCE_1   = CNT v2 OPERATIONAL ANALYSIS REPORT
+REFERENCE_2   = CNT v2 PHASE 1 OPERATION MONITORING INSTRUCTION
 ```
 
 ---
@@ -18,15 +18,15 @@ Two newly added CNT v2 documents were reviewed against the current repository an
 
 Conclusion:
 
-* `CNT v2 — OPERATIONAL ANALYSIS REPORT.txt` is directionally valid, but parts of it are now stale
-* `CNT v2 — PHASE 1 OPERATION MONITORING INSTRUCTION.txt` is project-compatible and actionable
+* `CNT v2 OPERATIONAL ANALYSIS REPORT.txt` is directionally valid, but parts of it are now stale
+* `CNT v2 PHASE 1 OPERATION MONITORING INSTRUCTION.txt` is project-compatible and actionable
 * based on the monitoring instruction, `scripts/monitor_runtime.py` was implemented
 
 ---
 
 # 2. DOCUMENT FIT ASSESSMENT
 
-## 2.1 CNT v2 — OPERATIONAL ANALYSIS REPORT
+## 2.1 CNT v2 OPERATIONAL ANALYSIS REPORT
 
 Fit:
 
@@ -41,7 +41,7 @@ Required correction:
 * the report frames the system as broadly healthy, but the runtime log still contains a historical stuck-exit case
 * therefore this report is usable as a reference narrative, not as the latest strict status source
 
-## 2.2 CNT v2 — PHASE 1 OPERATION MONITORING INSTRUCTION
+## 2.2 CNT v2 PHASE 1 OPERATION MONITORING INSTRUCTION
 
 Fit:
 

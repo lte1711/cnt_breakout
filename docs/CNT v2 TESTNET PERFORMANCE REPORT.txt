@@ -5,7 +5,7 @@ DOCUMENT_NAME = cnt_v2_testnet_performance_report
 PROJECT       = CNT
 VERSION       = 2.0
 DATE          = 2026-04-19
-STATUS        = INITIAL_OBSERVATION_RECORDED
+STATUS        = DATA_COLLECTION_IN_PROGRESS
 ```
 
 ---

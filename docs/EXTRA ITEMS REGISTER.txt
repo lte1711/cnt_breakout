@@ -381,3 +381,18 @@ CHANGE LOG
 - REASON=current testnet evidence was reviewed against the checklist and formally classified as insufficient sample.
 - CURRENT_DECISION=keep
 - NOTE=Use this report to prevent premature tuning decisions before minimum observation thresholds are met.
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 TESTNET DATA COLLECTION STATUS REPORT.txt
+- SUMMARY=testnet data collection stage status report added
+- REASON=data collection instruction was executed and current state had to be fixed as in-progress rather than concluded.
+- CURRENT_DECISION=keep
+- NOTE=Documents that tuning and deployment decisions remain blocked by sample size.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 LIVE READINESS REPORT.txt
+- SUMMARY=live readiness gate report added
+- REASON=live gate was evaluated and formally concluded as not ready under current evidence.
+- CURRENT_DECISION=keep
+- NOTE=Use this to prevent premature live deployment.

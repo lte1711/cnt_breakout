@@ -540,3 +540,19 @@ CHANGE LOG
 - REASON=runtime issue and protective override patch needed a formal validation record.
 - CURRENT_DECISION=keep
 - NOTE=Documents the target-limit stuck scenario and the pending-cancel plus protective-exit override fix.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 EXIT FAILSAFE OPERATION CHECKLIST.txt
+- SUMMARY=short operational checklist for exit failsafe runtime confirmation
+- REASON=patched code now needs real runtime evidence, so a minimal pass/fail checklist was required.
+- CURRENT_DECISION=keep
+- NOTE=Use this when the next pending target exit reverses into stop or trailing-stop territory.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 EXIT FAILSAFE OPERATION REPORT.txt
+- SUMMARY=operational observation report for exit failsafe follow-up added
+- REASON=the patch was synthetically validated, but runtime proof still needs a dedicated report stage.
+- CURRENT_DECISION=keep
+- NOTE=Tracks the move from patch-applied status to operationally observed proof.

@@ -17,7 +17,7 @@ def _build_error_signal(symbol: str, strategy_name: str, message: str) -> Strate
         strategy_name=strategy_name,
         symbol=symbol,
         signal_timestamp=time.time(),
-        signal_age_limit_sec=0,
+        signal_age_limit_sec=-1,
         entry_allowed=False,
         side="NONE",
         trigger="ERROR",

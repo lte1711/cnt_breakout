@@ -232,6 +232,8 @@ partial_exit_progress
 - cash_balance
 - daily_loss_count
 - consecutive_losses
+- last_update_time
+- source
 
 ### ExitSignal
 - should_exit
@@ -258,6 +260,15 @@ schema_version
 total_exposure
 open_positions
 cash_balance
+daily_loss_count
+consecutive_losses
+last_update_time
+source
+
+SIGNAL_AGE_POLICY=
+-1 = skip age check
+>0 = valid signal window in seconds
+0 = forbidden
 daily_loss_count
 consecutive_losses
 

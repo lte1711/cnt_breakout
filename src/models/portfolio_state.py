@@ -13,3 +13,5 @@ class PortfolioState:
     cash_balance: float = 0.0
     daily_loss_count: int = 0
     consecutive_losses: int = 0
+    last_update_time: str | None = None
+    source: str = "rebuild_from_runtime"

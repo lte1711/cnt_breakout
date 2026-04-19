@@ -20,6 +20,8 @@ class MeanReversionV1Strategy(BaseStrategy):
             raise ValueError("target_pct must be positive")
         if float(params["stop_loss_pct"]) <= 0:
             raise ValueError("stop_loss_pct must be positive")
+        if float(params["signal_age_limit_sec"]) == 0:
+            raise ValueError("signal_age_limit_sec must be -1 or > 0")
         if float(params["signal_age_limit_sec"]) < -1:
             raise ValueError("signal_age_limit_sec must be >= -1")
 

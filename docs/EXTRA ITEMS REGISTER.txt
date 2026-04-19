@@ -313,3 +313,10 @@ CHANGE LOG
 - REASON=initial report overstated routing and operating-readiness versus actual runtime connection and policy enforcement state.
 - CURRENT_DECISION=keep
 - NOTE=Treat this as structural baseline evidence until the patch validation pass is completed.
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 POST-OPERATIONAL PATCH VALIDATION REPORT.txt
+- SUMMARY=v2 post-operational patch validation report added
+- REASON=post-operational consistency patch was validated and recorded as a separate report for traceability.
+- CURRENT_DECISION=keep
+- NOTE=Captures P3-level cleanup and consistency verification after the operational patch baseline.

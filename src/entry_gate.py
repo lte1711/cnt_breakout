@@ -21,7 +21,7 @@ def evaluate_entry_gate_from_signal(signal: StrategySignal) -> tuple[str, str]:
     if signal.side.upper() != "BUY":
         return "NO_ENTRY_SIGNAL", signal.reason
 
-    if signal.signal_age_limit_sec >= 0:
+    if signal.signal_age_limit_sec > 0:
         signal_age = time.time() - signal.signal_timestamp
         if signal_age > signal.signal_age_limit_sec:
             return "NO_ENTRY_SIGNAL", "stale_signal"

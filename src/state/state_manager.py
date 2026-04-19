@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import asdict
+from datetime import datetime
 from pathlib import Path
 
 from config import PORTFOLIO_STATE_SCHEMA_VERSION
@@ -26,6 +27,8 @@ def load_portfolio_state(state_file: Path) -> PortfolioState:
         cash_balance=float(loaded.get("cash_balance", 0.0) or 0.0),
         daily_loss_count=int(loaded.get("daily_loss_count", 0) or 0),
         consecutive_losses=int(loaded.get("consecutive_losses", 0) or 0),
+        last_update_time=loaded.get("last_update_time"),
+        source=str(loaded.get("source", "rebuild_from_runtime") or "rebuild_from_runtime"),
     )
 
 
@@ -35,6 +38,7 @@ def save_portfolio_state(state_file: Path, portfolio_state: PortfolioState) -> N
 
 
 def build_portfolio_state(runtime_state: dict, cash_balance: float = 0.0) -> PortfolioState:
+    last_update_time = str(runtime_state.get("last_run_time") or datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     open_trade = runtime_state.get("open_trade")
     if not isinstance(open_trade, dict):
         return PortfolioState(
@@ -42,6 +46,8 @@ def build_portfolio_state(runtime_state: dict, cash_balance: float = 0.0) -> Por
             total_exposure=0.0,
             open_positions=[],
             cash_balance=cash_balance,
+            last_update_time=last_update_time,
+            source="rebuild_from_runtime",
         )
 
     position = PositionState(
@@ -61,4 +67,6 @@ def build_portfolio_state(runtime_state: dict, cash_balance: float = 0.0) -> Por
         total_exposure=position.entry_price * position.entry_qty,
         open_positions=[position],
         cash_balance=cash_balance,
+        last_update_time=last_update_time,
+        source="rebuild_from_runtime",
     )

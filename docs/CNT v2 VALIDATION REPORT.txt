@@ -97,7 +97,7 @@ one_per_symbol= (False, 'ONE_PER_SYMBOL_POLICY')
 Patch note:
 
 * initial v2 build used a surrogate exposure quantity in the first implementation
-* this section must not be read as “portfolio risk policy fully accurate in runtime” until patch validation is completed
+* this section must not be read as portfolio risk policy fully accurate in runtime until patch validation is completed
 
 ---
 
@@ -146,7 +146,7 @@ Patch note:
 
 * `order_router` exists as prepared routing structure
 * initial v2 engine runtime path still used direct order submission functions
-* therefore runtime routing must be described as “prepared but not yet connected”, not “normal” or “active”
+* therefore runtime routing must be described as `prepared but not yet connected`, not `normal` or `active`
 
 ---
 

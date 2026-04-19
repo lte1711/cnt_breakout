@@ -205,6 +205,12 @@ class BreakoutV1Strategy(BaseStrategy):
         if params["stop_loss_pct"] <= 0:
             raise ValueError("stop_loss_pct must be positive")
 
+        if float(params["signal_age_limit_sec"]) == 0:
+            raise ValueError("signal_age_limit_sec must be -1 or > 0")
+
+        if float(params["signal_age_limit_sec"]) < -1:
+            raise ValueError("signal_age_limit_sec must be >= -1")
+
     def evaluate(self, context: MarketContext) -> StrategySignal:
         market_state = _classify_market(context, self.params)
         entry_state = _build_entry_signal(context, self.params, market_state)

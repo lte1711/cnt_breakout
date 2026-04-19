@@ -5,7 +5,7 @@ DOCUMENT_NAME = cnt_v2_engineering_phase_plan
 PROJECT       = CNT
 VERSION       = 2.0
 DATE          = 2026-04-19
-STATUS        = SAVED_AS_NEXT_EXECUTION_PLAN
+STATUS        = ACTIVE_ENGINEERING_SEQUENCE
 ROLE          = ENGINEERING_PHASE_GUIDANCE
 ```
 
@@ -23,7 +23,7 @@ Practical interpretation:
 Current high-priority risk order:
 
 1. strategy validation insufficiency
-2. missing automated tests
+2. missing fine-grained observability
 3. oversized `src/engine.py`
 
 ---
@@ -52,7 +52,7 @@ Fast path of immediate engine decomposition is explicitly treated as higher-risk
 
 # 3. IMMEDIATE STEP
 
-The immediate step approved from this plan is:
+The completed first step from this plan is:
 
 ```text
 TEST HARNESS ADDITION
@@ -81,12 +81,21 @@ After the first test harness lands:
 * run controlled `breakout_v1` activation experiments on testnet only
 * start extraction work against the engine decomposition design
 
+Confirmed next execution order:
+
+```text
+NEXT_1 = OBSERVABILITY
+NEXT_2 = BREAKOUT_EXPERIMENT
+NEXT_3 = STATUS_SEMANTIC_CLEANUP
+NEXT_4 = ENGINE_DECOMPOSITION
+```
+
 ---
 
 # 5. CURRENT DECISION
 
 ```text
 ENGINEERING_PHASE = STARTED
-CURRENT_STEP      = TEST_HARNESS
+CURRENT_STEP      = OBSERVABILITY
 REFACTOR          = DEFERRED_UNTIL_BASELINE_IS_TESTED
 ```

@@ -636,3 +636,19 @@ CHANGE LOG
 - REASON=engine semantics must be frozen before decomposition begins.
 - CURRENT_DECISION=keep
 - NOTE=Uses mocked side effects to lock current cycle-state and save orchestration behavior.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 OBSERVABILITY PRIORITY PLAN.txt
+- SUMMARY=observability-first priority plan added
+- REASON=after the test harness landed, the next-step question shifted to choosing the highest-leverage engineering move.
+- CURRENT_DECISION=keep
+- NOTE=Records observability as the confirmed next implementation step.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 PRIORITY DECISION REPORT.txt
+- SUMMARY=priority decision report added
+- REASON=the project needed a formal record of why observability was chosen ahead of breakout tuning and engine decomposition.
+- CURRENT_DECISION=keep
+- NOTE=Use this as the decision bridge into the next engineering task.

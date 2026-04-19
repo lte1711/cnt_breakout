@@ -63,6 +63,8 @@ LOG_FILE = "logs/runtime.log"
 STATE_FILE = "data/state.json"
 SIGNAL_LOG_FILE = "logs/signal.log"
 STRATEGY_METRICS_FILE = "data/strategy_metrics.json"
+PERFORMANCE_SNAPSHOT_FILE = "data/performance_snapshot.json"
+LIVE_GATE_DECISION_FILE = "data/live_gate_decision.json"
 
 # =========================
 # STRATEGY ENABLE SWITCH
@@ -160,3 +162,4 @@ STRATEGY_STATIC_BASE_SCORES = {
     "pullback_v1": 0.95,
     "mean_reversion_v1": 0.9,
 }
+AUTO_VALIDATION_MINUTES = 5

@@ -6,74 +6,32 @@ PROJECT       = CNT
 VERSION       = 2.0
 DATE          = 2026-04-19
 STATUS        = DATA_COLLECTION_IN_PROGRESS
+LAST_UPDATED  = 2026-04-19 11:05:48
 ```
 
 ---
 
-# REQUIRED METRICS
-
-* total signals generated
-* total signals selected
-* total executed trades
-* trades closed
-* wins
-* losses
-* win rate
-* average win
-* average loss
-* expectancy
-* profit factor
-* maximum consecutive losses
-* maximum daily loss count
-* strategy-by-strategy comparison
-* blocked reason distribution
-
----
-
-# REPORT TEMPLATE
+# AUTO SNAPSHOT
 
 ```text
-OBSERVATION_WINDOW:
-TOTAL_SIGNALS:
-TOTAL_SELECTED_SIGNALS:
-TOTAL_EXECUTED_TRADES:
-TOTAL_CLOSED_TRADES:
-WINS:
-LOSSES:
-WIN_RATE:
-AVG_WIN:
-AVG_LOSS:
-EXPECTANCY:
-PROFIT_FACTOR:
-MAX_CONSECUTIVE_LOSSES:
-MAX_DAILY_LOSS_COUNT:
-TOP_STRATEGY:
-WORST_STRATEGY:
-BLOCKED_REASON_DISTRIBUTION:
-NOTES:
-```
-
----
-
-# INITIAL OBSERVATION
-
-```text
-OBSERVATION_WINDOW: 2026-04-19 single safe runtime validation
+OBSERVATION_WINDOW: up to 2026-04-19 11:05:48
 TOTAL_SIGNALS: 2
 TOTAL_SELECTED_SIGNALS: 0
 TOTAL_EXECUTED_TRADES: 0
 TOTAL_CLOSED_TRADES: 0
 WINS: 0
 LOSSES: 0
-WIN_RATE: n/a
-AVG_WIN: n/a
-AVG_LOSS: n/a
-EXPECTANCY: n/a
-PROFIT_FACTOR: n/a
+WIN_RATE: 0.0000
+AVG_WIN: 0.000000
+AVG_LOSS: 0.000000
+EXPECTANCY: 0.000000
+PROFIT_FACTOR: 0.000000
+NET_PNL: 0.000000
 MAX_CONSECUTIVE_LOSSES: 0
-MAX_DAILY_LOSS_COUNT: 0
-TOP_STRATEGY: none
-WORST_STRATEGY: none
+TOP_STRATEGY: pullback_v1
+WORST_STRATEGY: breakout_v1
 BLOCKED_REASON_DISTRIBUTION: no_ranked_signal=1
-NOTES: initial observation only; insufficient sample for tuning decisions
+RISK_TRIGGER_STATS: none
+STRATEGY_BREAKDOWN: breakout_v1: trades_closed=0, wins=0, losses=0, win_rate=0.0000, expectancy=0.000000, profit_factor=0.000000 | pullback_v1: trades_closed=0, wins=0, losses=0, win_rate=0.0000, expectancy=0.000000, profit_factor=0.000000
+NOTES: auto-generated from performance snapshot
 ```

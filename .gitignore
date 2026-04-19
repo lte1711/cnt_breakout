@@ -17,3 +17,5 @@ state.json
 data/state.json
 data/portfolio_state.json
 data/strategy_metrics.json
+data/performance_snapshot.json
+data/live_gate_decision.json

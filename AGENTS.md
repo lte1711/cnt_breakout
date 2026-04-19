@@ -65,6 +65,8 @@ SIGNAL_LOG_FILE=logs/signal.log
 PORTFOLIO_STATE_FILE=data/portfolio_state.json
 PORTFOLIO_LOG_FILE=logs/portfolio.log
 STRATEGY_METRICS_FILE=data/strategy_metrics.json
+PERFORMANCE_SNAPSHOT_FILE=data/performance_snapshot.json
+LIVE_GATE_DECISION_FILE=data/live_gate_decision.json
 RECV_WINDOW=5000
 REQUEST_TIMEOUT=5
 
@@ -273,6 +275,25 @@ partial_exit_progress
 - confidence_multiplier
 - last_updated
 
+### LiveGateDecision
+- status
+- reason
+- metrics
+- signals_generated
+- signals_selected
+- trades_closed
+- wins
+- losses
+- gross_profit
+- gross_loss
+- avg_win
+- avg_loss
+- win_rate
+- expectancy
+- profit_factor
+- confidence_multiplier
+- last_updated
+
 V2_PORTFOLIO_STATE_KEYS=
 schema_version
 total_exposure
@@ -292,6 +313,12 @@ STRATEGY_METRICS_RULE=
 - strategy metrics are updated only on closed trade confirmation
 - closed trade metrics use entry strategy_name attribution
 - expectancy-based ranking must fallback to static ranking when sample size is insufficient
+
+AUTO_VALIDATION_RULE=
+- performance snapshot is generated from strategy metrics and portfolio log
+- performance report is generated from snapshot data
+- live gate decision is evaluated from snapshot data
+- incomplete data must default to conservative NOT_READY or FAIL
 daily_loss_count
 consecutive_losses
 
@@ -462,6 +489,8 @@ src/signal_logger.py=signal_log_write_only
 src/portfolio/strategy_orchestrator.py=multi_strategy_signal_selection_only
 src/portfolio/signal_ranker.py=signal_ranking_only
 src/analytics/strategy_metrics.py=strategy_metrics_load_save_and_calculation_only
+src/analytics/performance_snapshot.py=performance_snapshot_generation_only
+src/analytics/performance_report.py=performance_report_generation_only
 src/state/state_manager.py=portfolio_state_load_save_only
 src/risk/exit_models.py=exit_model_dataclass_only
 src/risk/risk_guard.py=state_based_risk_guard_only
@@ -480,6 +509,7 @@ src/order_executor.py=order_submission_only
 src/order_payload_builder.py=limit_payload_build_only_until_extended
 src/order_query.py=exchange_query_only_using_shared_signing
 src/order_validator.py=filter_validation_and_adjustment_only
+src/validation/live_gate_evaluator.py=live_gate_decision_only
 src/state_writer.py=state_write_only
 src/target_exit.py=target_exit_calculation_only
 # --------------------------------------------------

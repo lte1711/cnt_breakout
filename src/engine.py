@@ -19,7 +19,9 @@ from config import (
     BINANCE_BASE_URL,
     ENABLE_PARTIAL_EXIT,
     ENABLE_TEST_ORDER_VALIDATION,
+    LIVE_GATE_DECISION_FILE,
     LOG_FILE,
+    PERFORMANCE_SNAPSHOT_FILE,
     PORTFOLIO_LOG_FILE,
     PORTFOLIO_STATE_FILE,
     STATE_FILE,
@@ -29,6 +31,8 @@ from config import (
     TIME_EXIT_MINUTES,
     TRAILING_STOP_PCT,
 )
+from src.analytics.performance_report import generate_performance_report
+from src.analytics.performance_snapshot import generate_and_save_performance_snapshot
 from src.analytics.strategy_metrics import (
     build_expectancy_snapshot,
     increment_signals_selected,
@@ -55,6 +59,7 @@ from src.portfolio.strategy_orchestrator import get_ranked_signal_selection
 from src.risk.enhanced_exit_manager import evaluate_exit
 from src.state.state_manager import build_portfolio_state, load_portfolio_state, save_portfolio_state
 from src.state_writer import write_state
+from src.validation.live_gate_evaluator import evaluate_live_gate, save_live_gate_decision
 
 
 SCHEMA_VERSION = "1.0"
@@ -347,6 +352,24 @@ def _save_and_finish(
             f"open_trade={open_trade} strategy_name={next_state['strategy_name']} reason={reason}"
         ),
     )
+
+    try:
+        project_root = state_file.parent.parent
+        snapshot = generate_and_save_performance_snapshot(
+            metrics_file=project_root / STRATEGY_METRICS_FILE,
+            portfolio_log_file=project_root / PORTFOLIO_LOG_FILE,
+            snapshot_file=project_root / PERFORMANCE_SNAPSHOT_FILE,
+        )
+        generate_performance_report(
+            project_root / "docs/CNT v2 TESTNET PERFORMANCE REPORT.txt",
+            snapshot,
+        )
+        save_live_gate_decision(
+            project_root / LIVE_GATE_DECISION_FILE,
+            evaluate_live_gate(snapshot),
+        )
+    except Exception:
+        pass
 
 
 def _estimate_close_pnl(open_trade: dict | None, fill_price: float) -> float:

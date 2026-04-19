@@ -1,0 +1,47 @@
+# CNT v2 AUTO VALIDATION & DECISION SYSTEM WORK INSTRUCTION
+
+Document purpose:
+CNT v2 automatically generates:
+
+* performance snapshots
+* performance reports
+* live gate decisions
+
+while testnet data continues to accumulate.
+
+Document status:
+Automation Phase / Mandatory for Scaling
+
+---
+
+# 1. Stage Goal
+
+```text
+DATA -> SNAPSHOT -> ANALYSIS -> DECISION
+```
+
+---
+
+# 2. Required Outputs
+
+* `data/performance_snapshot.json`
+* `docs/CNT v2 TESTNET PERFORMANCE REPORT.txt`
+* `data/live_gate_decision.json`
+
+---
+
+# 3. Required Components
+
+* `src/analytics/performance_snapshot.py`
+* `scripts/generate_performance_report.py`
+* `src/validation/live_gate_evaluator.py`
+* engine hook for best-effort automatic refresh
+
+---
+
+# 4. Validation Targets
+
+* snapshot creation
+* report generation
+* gate decision generation
+* conservative fallback on insufficient data

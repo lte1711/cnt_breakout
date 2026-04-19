@@ -420,3 +420,67 @@ CHANGE LOG
 - REASON=the proposed next-phase plan was accepted and needed a formal report mirroring earlier validation-report style.
 - CURRENT_DECISION=keep
 - NOTE=Use this as the official bridge from validation hold state into automation-prep execution.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/analytics/performance_snapshot.py
+- SUMMARY=performance snapshot generator added
+- REASON=automation phase requires normalized snapshot data before report and gate evaluation.
+- CURRENT_DECISION=keep
+- NOTE=Builds conservative snapshot values from metrics and portfolio log.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/analytics/performance_report.py
+- SUMMARY=performance report generator added
+- REASON=automation phase requires report regeneration directly from snapshot data.
+- CURRENT_DECISION=keep
+- NOTE=Used by script and engine hook.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/validation/live_gate_evaluator.py
+- SUMMARY=live gate evaluator added
+- REASON=automation phase requires machine-readable GO/NO-GO output.
+- CURRENT_DECISION=keep
+- NOTE=Defaults to conservative NOT_READY or FAIL when evidence is insufficient.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=scripts/generate_performance_report.py
+- SUMMARY=automation wrapper script added
+- REASON=manual or scheduled regeneration path is required for scaling.
+- CURRENT_DECISION=keep
+- NOTE=Runs snapshot, report, and gate decision generation together.
+
+- DATE=2026-04-19
+- TYPE=runtime
+- PATH=data/performance_snapshot.json
+- SUMMARY=auto-generated performance snapshot
+- REASON=automation phase persists normalized analysis data here.
+- CURRENT_DECISION=keep
+- NOTE=Runtime artifact, not Git-synced.
+
+- DATE=2026-04-19
+- TYPE=runtime
+- PATH=data/live_gate_decision.json
+- SUMMARY=auto-generated live gate decision
+- REASON=automation phase persists machine-readable gate output here.
+- CURRENT_DECISION=keep
+- NOTE=Runtime artifact, not Git-synced.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 AUTO VALIDATION & DECISION SYSTEM WORK INSTRUCTION.txt
+- SUMMARY=automation phase work instruction added
+- REASON=the automatic decision phase needed a formal instruction document in repository.
+- CURRENT_DECISION=keep
+- NOTE=Defines the snapshot-report-gate pipeline.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 AUTO VALIDATION & DECISION SYSTEM PROGRESS REPORT.txt
+- SUMMARY=automation phase progress report added
+- REASON=implementation progress for the auto decision layer needed a formal report.
+- CURRENT_DECISION=keep
+- NOTE=Companion report for implementation and validation status.

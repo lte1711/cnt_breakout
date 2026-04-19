@@ -202,3 +202,25 @@ def get_signed(endpoint: str, params: dict) -> dict | list:
         _raise_binance_error(response)
 
     return response.json()
+
+
+def delete_signed(endpoint: str, params: dict) -> dict:
+    signed_params = build_signed_params(params)
+    headers = get_signed_headers()
+
+    url = f"{BINANCE_BASE_URL}{endpoint}"
+
+    response = requests.delete(
+        url,
+        headers=headers,
+        params=signed_params,
+        timeout=REQUEST_TIMEOUT,
+    )
+
+    if not response.ok:
+        _raise_binance_error(response)
+
+    if response.text:
+        return response.json()
+
+    return {}

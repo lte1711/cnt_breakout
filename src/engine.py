@@ -47,6 +47,7 @@ from src.entry_gate import evaluate_entry_gate_from_signal
 from src.logging.portfolio_logger import append_portfolio_log
 from src.log_writer import append_log
 from src.models.exit_signal import ExitSignal
+from src.order_cancel import cancel_order
 from src.order_executor import send_live_testnet_order, send_test_order
 from src.order_payload_builder import build_limit_order_payload
 from src.order_query import get_open_orders, get_order
@@ -507,6 +508,134 @@ def _build_pending_order_from_response(
     return pending
 
 
+def _is_pending_limit_exit(pending: dict | None) -> bool:
+    normalized_pending = _normalize_pending_order(pending)
+    if normalized_pending is None:
+        return False
+
+    if normalized_pending.get("side") != "SELL":
+        return False
+
+    return str(normalized_pending.get("exit_type") or "").upper() in {"TARGET", "TIME_EXIT", "PARTIAL"}
+
+
+def _cancel_pending_exit_order(symbol: str, pending: dict) -> tuple[bool, str]:
+    normalized_pending = _normalize_pending_order(pending)
+    if normalized_pending is None:
+        return False, "invalid_pending_exit_state"
+
+    order_id = int(normalized_pending["orderId"])
+
+    try:
+        cancel_response = cancel_order(symbol, order_id)
+    except HTTPError as exc:
+        detail = str(exc)
+        if "code=-2011" in detail:
+            return True, "pending_exit_missing_assumed_cleared"
+        return False, f"pending_exit_cancel_failed:{detail}"
+
+    cancel_status = str(cancel_response.get("status", "")).upper()
+    if cancel_status in {"CANCELED", "CANCELLED", "EXPIRED", "PENDING_CANCEL"}:
+        return True, "pending_exit_canceled_for_protective_override"
+
+    if int(cancel_response.get("orderId", 0) or 0) == order_id:
+        return True, "pending_exit_cancel_acknowledged"
+
+    return False, "pending_exit_cancel_not_confirmed"
+
+
+def _execute_protective_exit(
+    *,
+    symbol: str,
+    price: float,
+    timestamp: str,
+    open_trade: dict,
+    exit_signal: ExitSignal,
+    filters: dict,
+    risk_metrics: dict,
+    strategy_metrics: dict,
+    strategy_metrics_file: Path,
+    portfolio_log_file: Path,
+) -> tuple[str, dict | None, dict | None, str, dict]:
+    entry_qty = float(open_trade["entry_qty"])
+    aligned_stop_qty = _align_quantity_to_step(entry_qty, filters)
+
+    if aligned_stop_qty <= 0:
+        return (
+            "STOP_REJECTED_INVALID_QTY",
+            None,
+            open_trade,
+            "stop_market_qty_not_valid",
+            risk_metrics,
+        )
+
+    payload = {
+        "symbol": symbol,
+        "side": "SELL",
+        "type": "MARKET",
+        "quantity": str(aligned_stop_qty),
+    }
+
+    order_response = send_live_testnet_order(payload)
+    order_status = str(order_response.get("status", "")).upper()
+
+    if order_status == "FILLED":
+        fill_price = _extract_fill_price(order_response) or price
+        filled_action = (
+            "TRAILING_STOP_FILLED"
+            if exit_signal.exit_type == "TRAILING_STOP"
+            else "STOP_MARKET_FILLED"
+        )
+        strategy_name = str((open_trade or {}).get("strategy_name") or ACTIVE_STRATEGY)
+        close_pnl_estimate = _estimate_close_pnl(open_trade, fill_price)
+        record_closed_trade(strategy_metrics, strategy_name, close_pnl_estimate)
+        save_strategy_metrics(strategy_metrics_file, strategy_metrics)
+        append_portfolio_log(
+            portfolio_log_file,
+            (
+                f"symbol={symbol} selected_strategy={strategy_name} close_action={filled_action} "
+                f"close_pnl_estimate={close_pnl_estimate} "
+                f"strategy_expectancy_snapshot={build_expectancy_snapshot(strategy_metrics, strategy_name)}"
+            ),
+        )
+        updated_risk_metrics = _update_risk_metrics_for_close(
+            action=filled_action,
+            open_trade=open_trade,
+            fill_price=fill_price,
+            risk_metrics=risk_metrics,
+            timestamp=timestamp,
+        )
+        return (
+            filled_action,
+            None,
+            None,
+            (
+                "trailing_stop_market_filled"
+                if exit_signal.exit_type == "TRAILING_STOP"
+                else "protective_stop_market_filled"
+            ),
+            updated_risk_metrics,
+        )
+
+    pending = _build_pending_order_from_response(
+        order_response,
+        "SELL",
+        exit_type=exit_signal.exit_type,
+    )
+
+    return (
+        "TRAILING_STOP_SUBMITTED" if exit_signal.exit_type == "TRAILING_STOP" else "STOP_MARKET_SUBMITTED",
+        pending,
+        open_trade,
+        (
+            "trailing_stop_market_submitted"
+            if exit_signal.exit_type == "TRAILING_STOP"
+            else "protective_stop_market_submitted"
+        ),
+        risk_metrics,
+    )
+
+
 def _build_open_trade_from_order(order_info: dict, pending: dict | None = None) -> dict:
     entry_price = _extract_fill_price(order_info)
     strategy_name = ACTIVE_STRATEGY
@@ -803,6 +932,67 @@ def start_engine() -> None:
                 )
                 return
 
+            if (
+                open_trade
+                and pending_after
+                and _is_pending_limit_exit(pending_after)
+            ):
+                monitored_open_trade = _update_open_trade_runtime_fields(open_trade, price)
+                protective_exit_signal = evaluate_exit(monitored_open_trade, price, state, filters)
+
+                if protective_exit_signal.should_exit and protective_exit_signal.exit_type in {"STOP", "TRAILING_STOP"}:
+                    cancel_ok, cancel_reason = _cancel_pending_exit_order(SYMBOL, pending_after)
+                    if not cancel_ok:
+                        _save_and_finish(
+                            state_file=state_file,
+                            log_file=log_file,
+                            state=state,
+                            timestamp=timestamp,
+                            action="PROTECTIVE_EXIT_CANCEL_FAILED",
+                            price=price,
+                            pending=pending_after,
+                            open_trade=monitored_open_trade,
+                            reason=cancel_reason,
+                            risk_metrics=risk_metrics,
+                            portfolio_state_file=portfolio_state_file,
+                            cash_balance=cash_balance,
+                        )
+                        return
+
+                    (
+                        protective_action,
+                        protective_pending,
+                        protective_open_trade,
+                        protective_reason,
+                        risk_metrics,
+                    ) = _execute_protective_exit(
+                        symbol=SYMBOL,
+                        price=price,
+                        timestamp=timestamp,
+                        open_trade=monitored_open_trade,
+                        exit_signal=protective_exit_signal,
+                        filters=filters,
+                        risk_metrics=risk_metrics,
+                        strategy_metrics=strategy_metrics,
+                        strategy_metrics_file=strategy_metrics_file,
+                        portfolio_log_file=portfolio_log_file,
+                    )
+                    _save_and_finish(
+                        state_file=state_file,
+                        log_file=log_file,
+                        state=state,
+                        timestamp=timestamp,
+                        action=protective_action,
+                        price=price,
+                        pending=protective_pending,
+                        open_trade=protective_open_trade,
+                        reason=f"{cancel_reason}|{protective_reason}",
+                        risk_metrics=risk_metrics,
+                        portfolio_state_file=portfolio_state_file,
+                        cash_balance=cash_balance,
+                    )
+                    return
+
             _save_and_finish(
                 state_file=state_file,
                 log_file=log_file,
@@ -995,105 +1185,28 @@ def start_engine() -> None:
                 return
 
             if exit_signal.exit_type in {"STOP", "TRAILING_STOP"}:
-                aligned_stop_qty = _align_quantity_to_step(entry_qty, filters)
-
-                if aligned_stop_qty <= 0:
-                    _save_and_finish(
-                        state_file=state_file,
-                        log_file=log_file,
-                        state=state,
-                        timestamp=timestamp,
-                        action="STOP_REJECTED_INVALID_QTY",
-                        price=price,
-                        pending=None,
-                        open_trade=open_trade,
-                        reason="stop_market_qty_not_valid",
-                        risk_metrics=risk_metrics,
-                        portfolio_state_file=portfolio_state_file,
-                        cash_balance=cash_balance,
-                    )
-                    return
-
-                payload = {
-                    "symbol": SYMBOL,
-                    "side": "SELL",
-                    "type": "MARKET",
-                    "quantity": str(aligned_stop_qty),
-                }
-
-                order_response = send_live_testnet_order(payload)
-                order_status = str(order_response.get("status", "")).upper()
-
-                if order_status == "FILLED":
-                    fill_price = _extract_fill_price(order_response) or price
-                    filled_action = (
-                        "TRAILING_STOP_FILLED"
-                        if exit_signal.exit_type == "TRAILING_STOP"
-                        else "STOP_MARKET_FILLED"
-                    )
-                    strategy_name = str((open_trade or {}).get("strategy_name") or ACTIVE_STRATEGY)
-                    close_pnl_estimate = _estimate_close_pnl(open_trade, fill_price)
-                    record_closed_trade(strategy_metrics, strategy_name, close_pnl_estimate)
-                    save_strategy_metrics(strategy_metrics_file, strategy_metrics)
-                    append_portfolio_log(
-                        portfolio_log_file,
-                        (
-                            f"symbol={SYMBOL} selected_strategy={strategy_name} close_action={filled_action} "
-                            f"close_pnl_estimate={close_pnl_estimate} "
-                            f"strategy_expectancy_snapshot={build_expectancy_snapshot(strategy_metrics, strategy_name)}"
-                        ),
-                    )
-                    risk_metrics = _update_risk_metrics_for_close(
-                        action=filled_action,
-                        open_trade=open_trade,
-                        fill_price=fill_price,
-                        risk_metrics=risk_metrics,
-                        timestamp=timestamp,
-                    )
-                    _save_and_finish(
-                        state_file=state_file,
-                        log_file=log_file,
-                        state=state,
-                        timestamp=timestamp,
-                        action=filled_action,
-                        price=price,
-                        pending=None,
-                        open_trade=None,
-                        reason=(
-                            "trailing_stop_market_filled"
-                            if exit_signal.exit_type == "TRAILING_STOP"
-                            else "protective_stop_market_filled"
-                        ),
-                        risk_metrics=risk_metrics,
-                        portfolio_state_file=portfolio_state_file,
-                        cash_balance=cash_balance,
-                    )
-                    return
-
-                pending = _build_pending_order_from_response(
-                    order_response,
-                    "SELL",
-                    exit_type=exit_signal.exit_type,
+                action, pending, open_trade_after, reason, risk_metrics = _execute_protective_exit(
+                    symbol=SYMBOL,
+                    price=price,
+                    timestamp=timestamp,
+                    open_trade=open_trade,
+                    exit_signal=exit_signal,
+                    filters=filters,
+                    risk_metrics=risk_metrics,
+                    strategy_metrics=strategy_metrics,
+                    strategy_metrics_file=strategy_metrics_file,
+                    portfolio_log_file=portfolio_log_file,
                 )
-
                 _save_and_finish(
                     state_file=state_file,
                     log_file=log_file,
                     state=state,
                     timestamp=timestamp,
-                    action=(
-                        "TRAILING_STOP_SUBMITTED"
-                        if exit_signal.exit_type == "TRAILING_STOP"
-                        else "STOP_MARKET_SUBMITTED"
-                    ),
+                    action=action,
                     price=price,
                     pending=pending,
-                    open_trade=open_trade,
-                    reason=(
-                        "trailing_stop_market_submitted"
-                        if exit_signal.exit_type == "TRAILING_STOP"
-                        else "protective_stop_market_submitted"
-                    ),
+                    open_trade=open_trade_after,
+                    reason=reason,
                     risk_metrics=risk_metrics,
                     portfolio_state_file=portfolio_state_file,
                     cash_balance=cash_balance,

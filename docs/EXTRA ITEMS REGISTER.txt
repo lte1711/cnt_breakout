@@ -524,3 +524,19 @@ CHANGE LOG
 - REASON=scheduler phase requires separate exception visibility for unattended runs.
 - CURRENT_DECISION=keep
 - NOTE=Runtime artifact under ignored logs path.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/order_cancel.py
+- SUMMARY=explicit signed cancel-order helper added
+- REASON=exit failsafe patch requires canceling pending target/time-exit orders before protective override.
+- CURRENT_DECISION=keep
+- NOTE=Used only through shared signing path; added to prevent stuck exit orders from blocking stop protection.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 EXIT FAILSAFE PATCH REPORT.txt
+- SUMMARY=exit failsafe patch report added
+- REASON=runtime issue and protective override patch needed a formal validation record.
+- CURRENT_DECISION=keep
+- NOTE=Documents the target-limit stuck scenario and the pending-cancel plus protective-exit override fix.

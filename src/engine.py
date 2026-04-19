@@ -1221,7 +1221,10 @@ def start_engine() -> None:
                 portfolio_log_file,
                 (
                     f"symbol={SYMBOL} selected_strategy=NONE reason=no_ranked_signal "
-                    f"rank_score=0.0 rank_score_components={{}} blocked_by_policy=no_ranked_signal"
+                    f"rank_score=0.0 rank_score_components={{}} blocked_by_policy=no_ranked_signal "
+                    f"blocked_detail={ranked_selection.no_ranked_signal_detail} "
+                    f"total_signals={ranked_selection.total_signals} candidate_count={ranked_selection.candidate_count} "
+                    f"rejected_reasons={ranked_selection.rejected_reasons}"
                 ),
             )
             _save_and_finish(
@@ -1246,14 +1249,25 @@ def start_engine() -> None:
             portfolio_log_file,
             (
                 f"symbol={SYMBOL} selected_strategy={signal.strategy_name} confidence={signal.confidence} "
+                f"selection_reason=highest_score total_signals={ranked_selection.total_signals} "
+                f"candidate_count={ranked_selection.candidate_count} rejected_reasons={ranked_selection.rejected_reasons} "
                 f"reason={signal.reason} rank_score={ranked_selection.rank_score} "
                 f"rank_score_components={ranked_selection.rank_score_components} "
-                f"strategy_expectancy_snapshot={ranked_selection.strategy_expectancy_snapshot}"
+                f"strategy_expectancy_snapshot={ranked_selection.strategy_expectancy_snapshot} "
+                f"rank_candidates={ranked_selection.candidate_details}"
             ),
         )
         entry_action, entry_reason = evaluate_entry_gate_from_signal(signal)
 
         if entry_action != "ENTRY_ALLOWED":
+            append_portfolio_log(
+                portfolio_log_file,
+                (
+                    f"symbol={SYMBOL} selected_strategy={signal.strategy_name} blocked_by_policy=entry_gate "
+                    f"blocked_detail={entry_reason} total_signals={ranked_selection.total_signals} "
+                    f"candidate_count={ranked_selection.candidate_count} rejected_reasons={ranked_selection.rejected_reasons}"
+                ),
+            )
             _save_and_finish(
                 state_file=state_file,
                 log_file=log_file,

@@ -652,3 +652,11 @@ CHANGE LOG
 - REASON=the project needed a formal record of why observability was chosen ahead of breakout tuning and engine decomposition.
 - CURRENT_DECISION=keep
 - NOTE=Use this as the decision bridge into the next engineering task.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 OBSERVABILITY IMPLEMENTATION REPORT.txt
+- SUMMARY=observability implementation report added
+- REASON=the observability-first priority was implemented and needed a formal completion record.
+- CURRENT_DECISION=keep
+- NOTE=Captures ranking metadata, richer log fields, and validation results for the observability step.

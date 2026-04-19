@@ -79,6 +79,12 @@ def rank_signals(
     signals: list[StrategySignal],
     strategy_metrics: dict[str, StrategyPerformance] | None = None,
 ) -> RankedSignalSelection:
+    rejected_reasons: dict[str, int] = {}
+    for signal in signals:
+        if signal.entry_allowed:
+            continue
+        rejected_reasons[signal.reason] = rejected_reasons.get(signal.reason, 0) + 1
+
     valid = [signal for signal in signals if signal.entry_allowed]
 
     if not valid:
@@ -87,6 +93,11 @@ def rank_signals(
             rank_score=0.0,
             rank_score_components={},
             strategy_expectancy_snapshot={},
+            total_signals=len(signals),
+            candidate_count=0,
+            rejected_reasons=rejected_reasons,
+            candidate_details=[],
+            no_ranked_signal_detail="no_candidate" if not signals else "all_filtered",
         )
 
     scored: list[tuple[float, StrategySignal, dict]] = []
@@ -97,6 +108,16 @@ def rank_signals(
 
     ranked = sorted(scored, key=lambda item: item[0], reverse=True)
     top_score, top_signal, top_components = ranked[0]
+    candidate_details = [
+        {
+            "strategy": signal.strategy_name,
+            "score": float(score),
+            "components": {
+                key: value for key, value in components.items() if key != "expectancy_snapshot"
+            },
+        }
+        for score, signal, components in ranked
+    ]
     return RankedSignalSelection(
         selected_signal=top_signal,
         rank_score=top_score,
@@ -104,4 +125,9 @@ def rank_signals(
             key: value for key, value in top_components.items() if key != "expectancy_snapshot"
         },
         strategy_expectancy_snapshot=dict(top_components["expectancy_snapshot"]),
+        total_signals=len(signals),
+        candidate_count=len(valid),
+        rejected_reasons=rejected_reasons,
+        candidate_details=candidate_details,
+        no_ranked_signal_detail="none",
     )

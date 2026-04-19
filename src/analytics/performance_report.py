@@ -30,7 +30,14 @@ def _format_strategy_breakdown(strategy_breakdown: dict) -> str:
 def _format_stats(stats: dict) -> str:
     if not stats:
         return "none"
-    return ", ".join(f"{key}={value}" for key, value in sorted(stats.items()))
+    parts: list[str] = []
+    for key, value in sorted(stats.items()):
+        if isinstance(value, dict):
+            nested = ", ".join(f"{nested_key}={nested_value}" for nested_key, nested_value in sorted(value.items()))
+            parts.append(f"{key}{{{nested}}}")
+        else:
+            parts.append(f"{key}={value}")
+    return ", ".join(parts)
 
 
 def _top_and_worst_strategy(strategy_breakdown: dict) -> tuple[str, str]:

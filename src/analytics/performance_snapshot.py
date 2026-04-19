@@ -42,6 +42,7 @@ def _load_strategy_metrics(metrics_file: Path) -> dict:
 
 def _parse_portfolio_log(log_file: Path) -> dict:
     blocked_stats: Counter = Counter()
+    no_ranked_signal_details: Counter = Counter()
     risk_trigger_stats: Counter = Counter()
     selected_strategy_counts: Counter = Counter()
     close_pnls: list[float] = []
@@ -70,7 +71,13 @@ def _parse_portfolio_log(log_file: Path) -> dict:
 
         if "blocked_by_policy=" in line:
             blocked_reason = line.split("blocked_by_policy=", 1)[1].split()[0]
-            blocked_stats[blocked_reason] += 1
+            blocked_detail = None
+            if "blocked_detail=" in line:
+                blocked_detail = line.split("blocked_detail=", 1)[1].split()[0]
+            if blocked_reason == "no_ranked_signal" and blocked_detail:
+                no_ranked_signal_details[blocked_detail] += 1
+            else:
+                blocked_stats[blocked_reason] += 1
             if blocked_reason in RISK_TRIGGER_KEYS:
                 risk_trigger_stats[blocked_reason] += 1
 
@@ -103,8 +110,12 @@ def _parse_portfolio_log(log_file: Path) -> dict:
         else:
             current_consecutive_losses = 0
 
+    blocked_signal_stats = dict(blocked_stats)
+    if no_ranked_signal_details:
+        blocked_signal_stats["no_ranked_signal"] = dict(no_ranked_signal_details)
+
     return {
-        "blocked_signal_stats": dict(blocked_stats),
+        "blocked_signal_stats": blocked_signal_stats,
         "risk_trigger_stats": dict(risk_trigger_stats),
         "selected_strategy_counts": dict(selected_strategy_counts),
         "close_pnls": close_pnls,

@@ -48,6 +48,8 @@ class SignalRankerTests(unittest.TestCase):
         self.assertIsNotNone(selection.selected_signal)
         self.assertEqual(selection.selected_signal.strategy_name, "breakout_v1")
         self.assertTrue(selection.rank_score_components.get("fallback_static_only"))
+        self.assertEqual(selection.total_signals, 2)
+        self.assertEqual(selection.candidate_count, 2)
 
     def test_ranker_prefers_expectancy_adjusted_signal_when_sample_is_sufficient(self) -> None:
         breakout = _signal("breakout_v1", 0.60)
@@ -79,6 +81,30 @@ class SignalRankerTests(unittest.TestCase):
         self.assertEqual(selection.selected_signal.strategy_name, "pullback_v1")
         self.assertFalse(selection.rank_score_components.get("fallback_static_only"))
         self.assertGreater(selection.rank_score_components.get("expectancy_weighted_score", 0.0), 0.0)
+        self.assertEqual(len(selection.candidate_details), 2)
+
+    def test_ranker_records_rejected_reasons_when_no_candidate_exists(self) -> None:
+        blocked_signal = StrategySignal(
+            strategy_name="breakout_v1",
+            symbol="ETHUSDT",
+            signal_timestamp=0.0,
+            signal_age_limit_sec=15.0,
+            entry_allowed=False,
+            side="NONE",
+            trigger="NONE",
+            reason="atr_not_expanded",
+            confidence=0.0,
+            market_state="RANGE",
+            volatility_state="LOW",
+            entry_price_hint=None,
+            exit_model=None,
+        )
+
+        selection = rank_signals([blocked_signal], {})
+
+        self.assertIsNone(selection.selected_signal)
+        self.assertEqual(selection.no_ranked_signal_detail, "all_filtered")
+        self.assertEqual(selection.rejected_reasons, {"atr_not_expanded": 1})
 
 
 if __name__ == "__main__":

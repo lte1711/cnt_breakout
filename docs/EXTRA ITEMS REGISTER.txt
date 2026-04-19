@@ -556,3 +556,19 @@ CHANGE LOG
 - REASON=the patch was synthetically validated, but runtime proof still needs a dedicated report stage.
 - CURRENT_DECISION=keep
 - NOTE=Tracks the move from patch-applied status to operationally observed proof.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=scripts/monitor_runtime.py
+- SUMMARY=phase 1 runtime monitoring script added
+- REASON=phase 1 monitoring instruction was accepted and implemented as a conservative monitoring layer.
+- CURRENT_DECISION=keep
+- NOTE=Produces runtime monitor output from snapshot, gate, portfolio log, and runtime log evidence.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 PHASE 1 MONITORING IMPLEMENTATION REPORT.txt
+- SUMMARY=phase 1 monitoring implementation and suitability review report added
+- REASON=two new CNT v2 documents were reviewed and the accepted monitoring instruction needed a formal implementation report.
+- CURRENT_DECISION=keep
+- NOTE=Records that the operational analysis report is partially stale while the monitoring instruction was implemented.

@@ -374,3 +374,10 @@ CHANGE LOG
 - REASON=performance stage implementation needs a formal evidence record before broader tuning and testnet observation.
 - CURRENT_DECISION=keep
 - NOTE=Captures metrics persistence, ranking fallback, and expectancy-based selection validation.
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 PERFORMANCE VALIDATION REPORT.txt
+- SUMMARY=performance validation checklist result documented
+- REASON=current testnet evidence was reviewed against the checklist and formally classified as insufficient sample.
+- CURRENT_DECISION=keep
+- NOTE=Use this report to prevent premature tuning decisions before minimum observation thresholds are met.

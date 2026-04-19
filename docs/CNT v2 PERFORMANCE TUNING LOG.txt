@@ -45,3 +45,14 @@ RATIONALE: establish measurable baseline before any strategy or risk parameter t
 EXPECTED_EFFECT: future tuning can compare before/after using persistent metrics and runtime evidence
 POST_CHANGE_VALIDATION: synthetic validation pass, safe runtime log pass
 ```
+
+```text
+DATE: 2026-04-19
+CHANGE_SCOPE: performance validation checklist review
+BASELINE_SAMPLE_SIZE: 0 closed trades
+OBSERVED_METRICS: insufficient sample for tuning; only initial no-rank runtime evidence available
+PARAMETER_CHANGE: none
+RATIONALE: checklist minimum sample not met, so tuning was intentionally deferred
+EXPECTED_EFFECT: preserve baseline until meaningful data accumulates
+POST_CHANGE_VALIDATION: performance validation report written
+```

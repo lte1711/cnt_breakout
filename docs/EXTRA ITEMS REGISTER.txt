@@ -404,3 +404,19 @@ CHANGE LOG
 - REASON=the two sequential gate documents were reviewed together and finalized as a single formal decision record.
 - CURRENT_DECISION=keep
 - NOTE=Use this as the top-level decision summary for the current testnet phase.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 NEXT PHASE PLAN.txt
+- SUMMARY=next phase data-accumulation and automation plan added
+- REASON=after validation hold state, the project needed an explicit execution plan for what to automate while waiting for sufficient data.
+- CURRENT_DECISION=keep
+- NOTE=Defines Track A/B/C and the milestone sequence up to live gate re-evaluation.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 NEXT PHASE PLANNING REPORT.txt
+- SUMMARY=next phase planning decision report added
+- REASON=the proposed next-phase plan was accepted and needed a formal report mirroring earlier validation-report style.
+- CURRENT_DECISION=keep
+- NOTE=Use this as the official bridge from validation hold state into automation-prep execution.

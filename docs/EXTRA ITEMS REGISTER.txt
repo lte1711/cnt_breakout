@@ -588,3 +588,51 @@ CHANGE LOG
 - REASON=the next requested step after the strategic analysis was a concrete engine split design.
 - CURRENT_DECISION=keep
 - NOTE=Defines proposed service boundaries and migration order without changing runtime behavior yet.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 ENGINEERING PHASE PLAN.txt
+- SUMMARY=engineering-phase priority plan added
+- REASON=the project moved from structure-definition mode into engineering execution mode and needed an explicit safe-path plan.
+- CURRENT_DECISION=keep
+- NOTE=Sets tests-first as the approved execution order before deeper refactoring.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 TEST HARNESS IMPLEMENTATION REPORT.txt
+- SUMMARY=test harness implementation report added
+- REASON=the first engineering-phase step needed a formal implementation record.
+- CURRENT_DECISION=keep
+- NOTE=Documents the minimum regression barrier added before engine decomposition work.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=tests/test_signal_ranker.py
+- SUMMARY=signal ranker unit tests added
+- REASON=ranker behavior must be fixed before tuning and refactoring proceed.
+- CURRENT_DECISION=keep
+- NOTE=Locks fallback and expectancy-weighted selection behavior.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=tests/test_live_gate.py
+- SUMMARY=live gate evaluator tests added
+- REASON=automatic live/no-live decision logic must be regression-protected.
+- CURRENT_DECISION=keep
+- NOTE=Locks insufficient-sample, fail, and pass branches.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=tests/test_exit_manager.py
+- SUMMARY=exit manager tests added
+- REASON=exit behavior is a core safety area and must be anchored before more changes.
+- CURRENT_DECISION=keep
+- NOTE=Locks stop and partial-exit path expectations.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=tests/test_engine_cycle_smoke.py
+- SUMMARY=engine cycle smoke tests added
+- REASON=engine semantics must be frozen before decomposition begins.
+- CURRENT_DECISION=keep
+- NOTE=Uses mocked side effects to lock current cycle-state and save orchestration behavior.

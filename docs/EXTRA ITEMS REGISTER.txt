@@ -691,3 +691,19 @@ CHANGE LOG
 - REASON=the previous gate hold was cleared only after live runtime evidence was captured and reflected in snapshot output.
 - CURRENT_DECISION=keep
 - NOTE=confirms breakout experiment gate is now open.
+
+- DATE=2026-04-20
+- TYPE=doc
+- PATH=docs/CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT PLAN.txt
+- SUMMARY=documents the first controlled breakout_v1 threshold relaxation on testnet
+- REASON=after observability validation passed, breakout activation testing required a formal experiment plan and fixed parameter scope.
+- CURRENT_DECISION=keep
+- NOTE=limits the first experiment to atr_expansion_multiplier and rsi_threshold only.
+
+- DATE=2026-04-20
+- TYPE=doc
+- PATH=docs/CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT REPORT.txt
+- SUMMARY=tracks initial breakout relaxation evidence, selected_strategy_counts note, and scheduler log collision note
+- REASON=the experiment start required a report that preserves both the initial post-change evidence and the parallel operational issues being tracked.
+- CURRENT_DECISION=keep
+- NOTE=currently in progress with initial evidence recorded and continued observation required.

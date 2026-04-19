@@ -484,3 +484,43 @@ CHANGE LOG
 - REASON=implementation progress for the auto decision layer needed a formal report.
 - CURRENT_DECISION=keep
 - NOTE=Companion report for implementation and validation status.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 SCHEDULED DATA COLLECTION SETUP.txt
+- SUMMARY=scheduler setup instruction added
+- REASON=the project now needs operational scheduling rather than only code-side readiness.
+- CURRENT_DECISION=keep
+- NOTE=Defines the task scheduler target, arguments, and operating rules.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 SCHEDULED DATA COLLECTION SETUP REPORT.txt
+- SUMMARY=scheduler setup progress report added
+- REASON=scheduler attachment phase required its own formal progress record.
+- CURRENT_DECISION=keep
+- NOTE=Tracks manual validation, registration, and follow-up checks.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 TASK SCHEDULER REGISTRATION CHECKLIST.txt
+- SUMMARY=task scheduler registration checklist added
+- REASON=scheduler phase needs an execution checklist that can be verified operationally.
+- CURRENT_DECISION=keep
+- NOTE=Use this before and after task registration.
+
+- DATE=2026-04-19
+- TYPE=runtime
+- PATH=logs/scheduler_stdout.log
+- SUMMARY=scheduler stdout runtime log
+- REASON=scheduler phase separates execution telemetry from portfolio log.
+- CURRENT_DECISION=keep
+- NOTE=Runtime artifact under ignored logs path.
+
+- DATE=2026-04-19
+- TYPE=runtime
+- PATH=logs/scheduler_stderr.log
+- SUMMARY=scheduler stderr runtime log
+- REASON=scheduler phase requires separate exception visibility for unattended runs.
+- CURRENT_DECISION=keep
+- NOTE=Runtime artifact under ignored logs path.

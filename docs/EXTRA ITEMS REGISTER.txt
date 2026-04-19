@@ -396,3 +396,11 @@ CHANGE LOG
 - REASON=live gate was evaluated and formally concluded as not ready under current evidence.
 - CURRENT_DECISION=keep
 - NOTE=Use this to prevent premature live deployment.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 DATA COLLECTION AND LIVE GATE VALIDATION REPORT.txt
+- SUMMARY=combined data collection and live gate validation report added
+- REASON=the two sequential gate documents were reviewed together and finalized as a single formal decision record.
+- CURRENT_DECISION=keep
+- NOTE=Use this as the top-level decision summary for the current testnet phase.

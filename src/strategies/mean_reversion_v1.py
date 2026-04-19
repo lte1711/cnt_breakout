@@ -16,6 +16,12 @@ class MeanReversionV1Strategy(BaseStrategy):
     def validate_params(self, params: dict) -> None:
         if not 0 < params["rsi_oversold"] < 100:
             raise ValueError("rsi_oversold out of range")
+        if float(params["target_pct"]) <= 0:
+            raise ValueError("target_pct must be positive")
+        if float(params["stop_loss_pct"]) <= 0:
+            raise ValueError("stop_loss_pct must be positive")
+        if float(params["signal_age_limit_sec"]) < -1:
+            raise ValueError("signal_age_limit_sec must be >= -1")
 
     def evaluate(self, context: MarketContext) -> StrategySignal:
         closes = extract_closes(context.klines_entry)

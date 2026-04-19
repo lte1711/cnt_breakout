@@ -79,6 +79,58 @@ def _normalize_risk_metrics(risk_metrics: dict | None) -> dict:
     }
 
 
+def _reset_daily_loss_count_if_needed(risk_metrics: dict | None, timestamp: str) -> dict:
+    normalized = _normalize_risk_metrics(risk_metrics)
+    last_loss_time = normalized.get("last_loss_time")
+    if not isinstance(last_loss_time, str):
+        return normalized
+
+    try:
+        current_day = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S").date()
+        last_loss_day = datetime.strptime(last_loss_time, "%Y-%m-%d %H:%M:%S").date()
+    except ValueError:
+        return normalized
+
+    if current_day != last_loss_day:
+        normalized["daily_loss_count"] = 0
+
+    return normalized
+
+
+def _mark_loss(risk_metrics: dict | None, timestamp: str) -> dict:
+    updated = _reset_daily_loss_count_if_needed(risk_metrics, timestamp)
+    updated["daily_loss_count"] += 1
+    updated["consecutive_losses"] += 1
+    updated["last_loss_time"] = timestamp
+    return updated
+
+
+def _mark_profit(risk_metrics: dict | None, timestamp: str) -> dict:
+    updated = _reset_daily_loss_count_if_needed(risk_metrics, timestamp)
+    updated["consecutive_losses"] = 0
+    return updated
+
+
+def _update_risk_metrics_for_close(
+    *,
+    action: str,
+    open_trade: dict | None,
+    fill_price: float,
+    risk_metrics: dict | None,
+    timestamp: str,
+) -> dict:
+    if action in {"STOP_MARKET_FILLED", "TRAILING_STOP_FILLED"}:
+        return _mark_loss(risk_metrics, timestamp)
+
+    if action == "SELL_FILLED" and isinstance(open_trade, dict):
+        entry_price = float(open_trade.get("entry_price", 0.0) or 0.0)
+        if entry_price > 0 and fill_price > 0 and fill_price < entry_price:
+            return _mark_loss(risk_metrics, timestamp)
+        return _mark_profit(risk_metrics, timestamp)
+
+    return _reset_daily_loss_count_if_needed(risk_metrics, timestamp)
+
+
 def _load_state(path: Path) -> dict:
     if not path.exists():
         return {}
@@ -543,7 +595,10 @@ def _reconcile_pending_order(
                 if updated_open_trade is None:
                     return "SELL_FILLED", None, None
                 return "PARTIAL_EXIT_FILLED", None, updated_open_trade
-
+            if normalized_pending.get("exit_type") == "TRAILING_STOP":
+                return "TRAILING_STOP_FILLED", None, None
+            if normalized_pending.get("exit_type") == "STOP":
+                return "STOP_MARKET_FILLED", None, None
             return "SELL_FILLED", None, None
 
         if status in {"NEW", "PARTIALLY_FILLED", "PENDING_NEW"}:
@@ -596,7 +651,7 @@ def start_engine() -> None:
 
     try:
         state = _load_state(state_file)
-        risk_metrics = _normalize_risk_metrics(state.get("risk_metrics"))
+        risk_metrics = _reset_daily_loss_count_if_needed(state.get("risk_metrics"), timestamp)
         portfolio_state = load_portfolio_state(portfolio_state_file)
 
         ping()
@@ -639,15 +694,15 @@ def start_engine() -> None:
                     state=state,
                     timestamp=timestamp,
                     action=action,
-                price=price,
-                pending=None,
-                open_trade=open_trade_after,
-                reason="pending_buy_filled_promoted_to_open_trade",
-                risk_metrics=risk_metrics,
-                portfolio_state_file=portfolio_state_file,
-                cash_balance=cash_balance,
-            )
-            return
+                    price=price,
+                    pending=None,
+                    open_trade=open_trade_after,
+                    reason="pending_buy_filled_promoted_to_open_trade",
+                    risk_metrics=risk_metrics,
+                    portfolio_state_file=portfolio_state_file,
+                    cash_balance=cash_balance,
+                )
+                return
 
             if action == "PARTIAL_EXIT_FILLED":
                 _save_and_finish(
@@ -661,6 +716,32 @@ def start_engine() -> None:
                     open_trade=open_trade_after,
                     reason="partial_exit_filled",
                     risk_metrics=risk_metrics,
+                    portfolio_state_file=portfolio_state_file,
+                    cash_balance=cash_balance,
+                )
+                return
+
+            if action in {"SELL_FILLED", "STOP_MARKET_FILLED", "TRAILING_STOP_FILLED"}:
+                risk_metrics = _update_risk_metrics_for_close(
+                    action=action,
+                    open_trade=open_trade,
+                    fill_price=price,
+                    risk_metrics=risk_metrics,
+                    timestamp=timestamp,
+                )
+                _save_and_finish(
+                    state_file=state_file,
+                    log_file=log_file,
+                    state=state,
+                    timestamp=timestamp,
+                    action=action,
+                    price=price,
+                    pending=None,
+                    open_trade=None,
+                    reason=action.lower(),
+                    risk_metrics=risk_metrics,
+                    portfolio_state_file=portfolio_state_file,
+                    cash_balance=cash_balance,
                 )
                 return
 
@@ -788,6 +869,14 @@ def start_engine() -> None:
                         )
                         return
 
+                    fill_price = _extract_fill_price(order_response) or price
+                    risk_metrics = _update_risk_metrics_for_close(
+                        action="SELL_FILLED",
+                        open_trade=open_trade,
+                        fill_price=fill_price,
+                        risk_metrics=risk_metrics,
+                        timestamp=timestamp,
+                    )
                     _save_and_finish(
                         state_file=state_file,
                         log_file=log_file,
@@ -866,12 +955,25 @@ def start_engine() -> None:
                 order_status = str(order_response.get("status", "")).upper()
 
                 if order_status == "FILLED":
+                    fill_price = _extract_fill_price(order_response) or price
+                    filled_action = (
+                        "TRAILING_STOP_FILLED"
+                        if exit_signal.exit_type == "TRAILING_STOP"
+                        else "STOP_MARKET_FILLED"
+                    )
+                    risk_metrics = _update_risk_metrics_for_close(
+                        action=filled_action,
+                        open_trade=open_trade,
+                        fill_price=fill_price,
+                        risk_metrics=risk_metrics,
+                        timestamp=timestamp,
+                    )
                     _save_and_finish(
                         state_file=state_file,
                         log_file=log_file,
                         state=state,
                         timestamp=timestamp,
-                        action="TRAILING_STOP_FILLED" if exit_signal.exit_type == "TRAILING_STOP" else "STOP_MARKET_FILLED",
+                        action=filled_action,
                         price=price,
                         pending=None,
                         open_trade=None,

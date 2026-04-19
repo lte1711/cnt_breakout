@@ -73,6 +73,8 @@ ACTIVE_STRATEGIES = [
     "breakout_v1",
     "pullback_v1",
 ]
+# mean_reversion_v1 is registered and parameterized, but remains inactive by default
+# until separate activation validation is completed.
 
 STRATEGY_PARAMS = {
     "breakout_v1": {

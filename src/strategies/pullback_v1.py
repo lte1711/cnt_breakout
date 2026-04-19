@@ -16,6 +16,18 @@ class PullbackV1Strategy(BaseStrategy):
     def validate_params(self, params: dict) -> None:
         if params["ema_fast_period"] >= params["ema_slow_period"]:
             raise ValueError("ema_fast_period must be smaller than ema_slow_period")
+        if not 0 < params["pullback_rsi_min"] < 100:
+            raise ValueError("pullback_rsi_min out of range")
+        if not 0 < params["pullback_rsi_max"] < 100:
+            raise ValueError("pullback_rsi_max out of range")
+        if params["pullback_rsi_min"] >= params["pullback_rsi_max"]:
+            raise ValueError("pullback_rsi_min must be smaller than pullback_rsi_max")
+        if float(params["target_pct"]) <= 0:
+            raise ValueError("target_pct must be positive")
+        if float(params["stop_loss_pct"]) <= 0:
+            raise ValueError("stop_loss_pct must be positive")
+        if float(params["signal_age_limit_sec"]) < -1:
+            raise ValueError("signal_age_limit_sec must be >= -1")
 
     def evaluate(self, context: MarketContext) -> StrategySignal:
         closes = extract_closes(context.klines_entry)

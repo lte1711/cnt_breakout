@@ -35,8 +35,37 @@ def decide_execution(
             slippage_rejection_reason=None,
         )
 
+    candidate_price = float(signal.entry_price_hint) if signal.entry_price_hint is not None else 0.0
+    if candidate_price <= 0:
+        return ExecutionDecision(
+            execute=False,
+            action="BUY_REJECTED_INVALID_ENTRY_HINT",
+            reason="invalid_entry_price_hint",
+            signal_reason=signal.reason,
+            strategy_name=signal.strategy_name,
+            symbol=signal.symbol,
+            validated_qty=None,
+            validated_price=None,
+            notional_value=None,
+            risk_check_passed=True,
+            risk_rejection_reason=None,
+            portfolio_rejection_reason=None,
+            selected_priority=1,
+            slippage_check_passed=False,
+            slippage_rejection_reason="invalid_entry_price_hint",
+        )
+
+    adjusted = auto_adjust_order_inputs(candidate_price, requested_qty, filters)
+    adjusted_price = float(adjusted["adjusted_price"])
+    adjusted_qty = float(adjusted["adjusted_qty"])
+    requested_notional = adjusted_price * adjusted_qty
+
     if portfolio_state is not None:
-        portfolio_passed, portfolio_reason = check_portfolio_risk(signal, portfolio_state)
+        portfolio_passed, portfolio_reason = check_portfolio_risk(
+            signal,
+            portfolio_state,
+            requested_notional,
+        )
         if not portfolio_passed:
             return ExecutionDecision(
                 execute=False,
@@ -45,9 +74,9 @@ def decide_execution(
                 signal_reason=signal.reason,
                 strategy_name=signal.strategy_name,
                 symbol=signal.symbol,
-                validated_qty=None,
-                validated_price=None,
-                notional_value=None,
+                validated_qty=adjusted_qty,
+                validated_price=adjusted_price,
+                notional_value=requested_notional,
                 risk_check_passed=True,
                 risk_rejection_reason=None,
                 portfolio_rejection_reason=portfolio_reason,
@@ -75,30 +104,6 @@ def decide_execution(
             slippage_check_passed=True,
             slippage_rejection_reason=None,
         )
-
-    candidate_price = float(signal.entry_price_hint) if signal.entry_price_hint is not None else 0.0
-    if candidate_price <= 0:
-        return ExecutionDecision(
-            execute=False,
-            action="BUY_REJECTED_INVALID_ENTRY_HINT",
-            reason="invalid_entry_price_hint",
-            signal_reason=signal.reason,
-            strategy_name=signal.strategy_name,
-            symbol=signal.symbol,
-            validated_qty=None,
-            validated_price=None,
-            notional_value=None,
-            risk_check_passed=True,
-            risk_rejection_reason=None,
-            portfolio_rejection_reason=None,
-            selected_priority=1,
-            slippage_check_passed=False,
-            slippage_rejection_reason="invalid_entry_price_hint",
-        )
-
-    adjusted = auto_adjust_order_inputs(candidate_price, requested_qty, filters)
-    adjusted_price = float(adjusted["adjusted_price"])
-    adjusted_qty = float(adjusted["adjusted_qty"])
     final_validation = adjusted.get("final_validation", {})
 
     if not final_validation.get("all_valid", False):

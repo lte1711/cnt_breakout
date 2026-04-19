@@ -5,7 +5,7 @@ DOCUMENT_NAME = cnt_v2_validation_report
 PROJECT       = CNT
 VERSION       = 2.0
 DATE          = 2026-04-19
-STATUS        = INITIAL_VALIDATION_FINALIZED
+STATUS        = PATCH_PENDING_VALIDATION_BASELINE
 BASELINE      = CNT v1.1 (CLOSED)
 REFERENCE_1   = cnt_v2_architecture_design
 REFERENCE_2   = cnt_v2_implementation_work_instruction
@@ -16,7 +16,8 @@ REFERENCE_3   = cnt_v2_validation_checklist
 
 # 1. EXECUTIVE SUMMARY
 
-CNT v2 initial implementation has been added on top of the closed CNT v1.1 baseline.
+CNT v2 initial implementation has been added on top of the closed CNT v1.1 baseline,
+but the first validation pass left patch-required gaps between structure and runtime behavior.
 
 Validated scope:
 
@@ -63,6 +64,11 @@ Confirmed:
 * `signal_ranker` chooses the highest-confidence valid signal
 * `strategy_orchestrator` returns a single selected signal
 
+Activation note:
+
+* default active strategies in runtime are `breakout_v1` and `pullback_v1`
+* `mean_reversion_v1` is registered and parameterized, but remains inactive by default in the current baseline
+
 Observed synthetic ranking result:
 
 ```text
@@ -73,7 +79,7 @@ selected= pullback_v1 0.8
 
 ## 2.3 Portfolio risk
 
-PASS
+PARTIAL
 
 Confirmed:
 
@@ -87,6 +93,11 @@ Observed synthetic results:
 exposure= (False, 'MAX_PORTFOLIO_EXPOSURE_EXCEEDED')
 one_per_symbol= (False, 'ONE_PER_SYMBOL_POLICY')
 ```
+
+Patch note:
+
+* initial v2 build used a surrogate exposure quantity in the first implementation
+* this section must not be read as “portfolio risk policy fully accurate in runtime” until patch validation is completed
 
 ---
 
@@ -116,13 +127,13 @@ Observed v2 sidecar state:
 
 ## 2.5 Market adapter
 
-PASS
+PARTIAL
 
 Confirmed:
 
 * `spot_adapter.submit_order(...)` exists
 * `futures_adapter.submit_order(...)` exists
-* `execution/order_router.py` routes by market type
+* `execution/order_router.py` routes by market type in dry validation scope
 
 Observed dry routing results:
 
@@ -131,11 +142,17 @@ Observed dry routing results:
 {'market': 'futures', 'dry_run': True, 'payload': {'symbol': 'ETHUSDT', 'side': 'BUY', 'leverage': 1, 'margin_mode': 'ISOLATED', 'reduce_only': False}}
 ```
 
+Patch note:
+
+* `order_router` exists as prepared routing structure
+* initial v2 engine runtime path still used direct order submission functions
+* therefore runtime routing must be described as “prepared but not yet connected”, not “normal” or “active”
+
 ---
 
 ## 2.6 Runtime validation
 
-PASS
+PARTIAL
 
 Completed checks:
 
@@ -163,6 +180,11 @@ Observed portfolio log result:
 [2026-04-19 08:47:43] symbol=ETHUSDT selected_strategy=NONE reason=no_ranked_signal
 ```
 
+Patch note:
+
+* this runtime check confirmed entry-chain continuity and safe no-entry behavior
+* it did not, by itself, prove operating readiness for pending reconciliation, routed execution, or loss-policy enforcement
+
 ---
 
 ## 2.7 Regression validation
@@ -183,28 +205,29 @@ Confirmed baseline preservation:
 ```text
 Document and structure: PASS
 Multi-strategy flow: PASS
-Portfolio risk: PASS
+Portfolio risk: PARTIAL
 State persistence: PASS
-Market adapter: PASS
-Runtime validation: PASS
+Market adapter: PARTIAL
+Runtime validation: PARTIAL
 Regression validation: PASS
 ```
 
 ```text
-CNT v2 initial implementation complete
-Approved
+CNT v2 initial implementation complete as a structural baseline
+Not approved for operating-readiness claims before mandatory patch completion
 ```
 
 ---
 
 # 4. FORMAL CONCLUSION
 
-CNT v2 initial implementation is approved as a working upper-layer extension over CNT v1.1.
+CNT v2 initial implementation is a working upper-layer extension over CNT v1.1,
+but it must be treated as patch-pending rather than operating-ready.
 
 The current result confirms:
 
 * multiple strategy candidates can be generated and ranked
-* portfolio-level risk rejection is separated from single-position risk logic
+* portfolio-level risk rejection is structurally separated from single-position risk logic
 * portfolio state is persisted independently from the v1.1 runtime state
-* spot/futures execution structure is adapter-based and dry-routable
+* spot/futures execution structure is adapter-based and dry-routable, but not yet the active runtime submission path
 * the closed v1.1 baseline remains intact inside the validated scope

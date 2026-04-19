@@ -306,3 +306,10 @@ CHANGE LOG
 - REASON=selected strategy 및 portfolio-level decision을 관측하기 위한 신규 로그 대상.
 - CURRENT_DECISION=keep
 - NOTE=no_ranked_signal 등 포트폴리오 관점 의사결정 기록용.
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 VALIDATION REPORT.txt
+- SUMMARY=v2 initial validation wording downgraded to patch-pending baseline
+- REASON=initial report overstated routing and operating-readiness versus actual runtime connection and policy enforcement state.
+- CURRENT_DECISION=keep
+- NOTE=Treat this as structural baseline evidence until the patch validation pass is completed.

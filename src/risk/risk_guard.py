@@ -30,13 +30,30 @@ def _normalize_risk_metrics(state: dict | None) -> dict:
     }
 
 
+def _reset_daily_loss_count_if_needed(risk_metrics: dict) -> dict:
+    normalized = dict(risk_metrics)
+    last_loss_time = normalized.get("last_loss_time")
+    if not isinstance(last_loss_time, str):
+        return normalized
+
+    try:
+        loss_time = datetime.strptime(last_loss_time, "%Y-%m-%d %H:%M:%S")
+    except ValueError:
+        return normalized
+
+    if datetime.now().date() != loss_time.date():
+        normalized["daily_loss_count"] = 0
+
+    return normalized
+
+
 def evaluate_risk(signal: StrategySignal, state: dict | None, balance: dict | None) -> RiskCheckResult:
     del balance
 
     if not signal.entry_allowed:
         return RiskCheckResult(passed=False, reason="signal_not_entry_allowed")
 
-    risk_metrics = _normalize_risk_metrics(state)
+    risk_metrics = _reset_daily_loss_count_if_needed(_normalize_risk_metrics(state))
 
     if risk_metrics["daily_loss_count"] >= MAX_DAILY_LOSS_COUNT:
         return RiskCheckResult(passed=False, reason="DAILY_LOSS_LIMIT")

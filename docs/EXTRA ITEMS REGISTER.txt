@@ -572,3 +572,19 @@ CHANGE LOG
 - REASON=two new CNT v2 documents were reviewed and the accepted monitoring instruction needed a formal implementation report.
 - CURRENT_DECISION=keep
 - NOTE=Records that the operational analysis report is partially stale while the monitoring instruction was implemented.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 STRATEGIC ANALYSIS PLAN.txt
+- SUMMARY=strategic analysis and user-referenced PDF plan saved as planning reference
+- REASON=the latest broad project analysis needed to be preserved without being mistaken for runtime truth.
+- CURRENT_DECISION=keep
+- NOTE=Treat this as planning guidance layered on top of repository and runtime facts.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 ENGINE DECOMPOSITION DESIGN.txt
+- SUMMARY=engine decomposition design added
+- REASON=the next requested step after the strategic analysis was a concrete engine split design.
+- CURRENT_DECISION=keep
+- NOTE=Defines proposed service boundaries and migration order without changing runtime behavior yet.

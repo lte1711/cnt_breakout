@@ -1,0 +1,99 @@
+# CNT v2 OBSERVABILITY VALIDATION GATE
+
+```text
+DOCUMENT_NAME = cnt_v2_observability_validation_gate
+PROJECT       = CNT
+VERSION       = 2.0
+DATE          = 2026-04-20
+STATUS        = ACTIVE
+PURPOSE       = lock observability interpretation before breakout experiment
+```
+
+---
+
+# 1. DECISION
+
+Breakout relaxation experiment is conditionally allowed.
+
+It is not allowed to change breakout parameters yet.
+
+Required order:
+
+```text
+observability implementation
+-> observability aggregation correction
+-> observability regression tests
+-> 1 to 3 fresh cycles with new-format evidence
+-> breakout_v1 relaxation experiment
+```
+
+---
+
+# 2. REQUIRED PRECONDITIONS
+
+The following items must be completed before breakout parameter changes:
+
+1. `performance_snapshot.py` must count `selected_strategy_counts` from selection logs only
+2. mixed old/new portfolio log parsing must remain stable
+3. observability regression tests must pass
+4. fresh runtime evidence must include at least one new-format log line
+
+Required fresh runtime evidence:
+
+* `blocked_detail=...`
+* `candidate_count=...`
+* `rejected_reasons=...`
+* `rank_candidates=...`
+* or `selection_reason=highest_score`
+
+---
+
+# 3. CURRENT FACTS
+
+Current confirmed facts:
+
+* observability code changes are present
+* observability tests pass
+* current runtime state is not yet suitable for entry-phase observability validation
+
+Current blocking runtime condition:
+
+* `data/state.json` contains active `open_trade`
+* `pending_order.side = SELL`
+* `pending_order.exit_type = TARGET`
+* current engine cycles are stopping at pending reconciliation
+
+Implication:
+
+* fresh runtime proof for entry-phase observability fields is not yet confirmed
+* breakout experiment remains gated until new-format evidence is recorded
+
+---
+
+# 4. BREAKOUT EXPERIMENT RULE
+
+Only after the gate is cleared may the first breakout relaxation experiment begin.
+
+Allowed first experiment values:
+
+* `atr_expansion_multiplier: 1.2 -> 1.05`
+* `rsi_threshold: 55 -> 53`
+
+Not allowed:
+
+* `atr_expansion_multiplier = 1.0`
+
+Reason:
+
+* current strategy validation requires `atr_expansion_multiplier > 1.0`
+
+---
+
+# 5. PASS / HOLD RULE
+
+```text
+STEP 1 = PASS when selection counting and blocked-detail parsing are corrected
+STEP 2 = PASS when regression tests pass
+STEP 3 = PASS when fresh runtime evidence is captured
+ONLY AFTER STEP 3 = breakout experiment allowed
+```

@@ -42,7 +42,9 @@ def _load_strategy_metrics(metrics_file: Path) -> dict:
 
 def _parse_portfolio_log(log_file: Path) -> dict:
     blocked_stats: Counter = Counter()
+    no_ranked_signal_legacy_count = 0
     no_ranked_signal_details: Counter = Counter()
+    entry_gate_details: Counter = Counter()
     risk_trigger_stats: Counter = Counter()
     selected_strategy_counts: Counter = Counter()
     close_pnls: list[float] = []
@@ -65,9 +67,10 @@ def _parse_portfolio_log(log_file: Path) -> dict:
         if not line:
             continue
 
-        if "selected_strategy=" in line:
+        if "selected_strategy=" in line and "selection_reason=highest_score" in line:
             strategy = line.split("selected_strategy=", 1)[1].split()[0]
-            selected_strategy_counts[strategy] += 1
+            if strategy != "NONE":
+                selected_strategy_counts[strategy] += 1
 
         if "blocked_by_policy=" in line:
             blocked_reason = line.split("blocked_by_policy=", 1)[1].split()[0]
@@ -76,6 +79,10 @@ def _parse_portfolio_log(log_file: Path) -> dict:
                 blocked_detail = line.split("blocked_detail=", 1)[1].split()[0]
             if blocked_reason == "no_ranked_signal" and blocked_detail:
                 no_ranked_signal_details[blocked_detail] += 1
+            elif blocked_reason == "no_ranked_signal":
+                no_ranked_signal_legacy_count += 1
+            elif blocked_reason == "entry_gate" and blocked_detail:
+                entry_gate_details[blocked_detail] += 1
             else:
                 blocked_stats[blocked_reason] += 1
             if blocked_reason in RISK_TRIGGER_KEYS:
@@ -111,8 +118,16 @@ def _parse_portfolio_log(log_file: Path) -> dict:
             current_consecutive_losses = 0
 
     blocked_signal_stats = dict(blocked_stats)
-    if no_ranked_signal_details:
-        blocked_signal_stats["no_ranked_signal"] = dict(no_ranked_signal_details)
+    if no_ranked_signal_details or no_ranked_signal_legacy_count:
+        if no_ranked_signal_details:
+            no_ranked_payload = dict(no_ranked_signal_details)
+            if no_ranked_signal_legacy_count:
+                no_ranked_payload["legacy"] = no_ranked_signal_legacy_count
+            blocked_signal_stats["no_ranked_signal"] = no_ranked_payload
+        else:
+            blocked_signal_stats["no_ranked_signal"] = no_ranked_signal_legacy_count
+    if entry_gate_details:
+        blocked_signal_stats["entry_gate"] = dict(entry_gate_details)
 
     return {
         "blocked_signal_stats": blocked_signal_stats,

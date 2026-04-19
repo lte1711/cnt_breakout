@@ -1,0 +1,129 @@
+# CNT v2 OBSERVABILITY AGGREGATION PATCH REPORT
+
+```text
+DOCUMENT_NAME = cnt_v2_observability_aggregation_patch_report
+PROJECT       = CNT
+VERSION       = 2.0
+DATE          = 2026-04-20
+STATUS        = PARTIALLY_COMPLETE
+REFERENCE_1   = CNT v2 OBSERVABILITY IMPLEMENTATION REPORT
+REFERENCE_2   = CNT v2 OBSERVABILITY VALIDATION GATE
+```
+
+---
+
+# 1. EXECUTIVE SUMMARY
+
+The required observability interpretation fixes were implemented.
+
+Completed in this stage:
+
+* `selected_strategy_counts` aggregation correction
+* mixed old/new blocked-signal parsing support
+* regression tests for snapshot parsing
+
+Not yet completed in this stage:
+
+* fresh runtime proof of new-format observability lines during a live cycle
+
+Current next step:
+
+```text
+wait for current pending SELL state to resolve
+then capture 1 to 3 fresh cycles
+then decide breakout experiment start
+```
+
+---
+
+# 2. IMPLEMENTED CODE FIXES
+
+Updated:
+
+* `src/analytics/performance_snapshot.py`
+
+Implemented:
+
+1. `selected_strategy_counts` now counts only lines containing `selection_reason=highest_score`
+2. legacy `reason=no_ranked_signal` lines remain supported
+3. new `blocked_detail` structures remain supported
+4. mixed old/new log streams do not break snapshot generation
+5. entry-gate blocked details can be aggregated separately
+
+Added tests:
+
+* `tests/test_performance_snapshot.py`
+
+Covered cases:
+
+1. legacy-only logs
+2. new-format logs
+3. mixed legacy + new logs
+4. `selection_reason=highest_score` selection counting
+5. entry-gate blocked-detail aggregation
+
+---
+
+# 3. VALIDATION
+
+Executed:
+
+```text
+python -m unittest discover -s tests -p "test_*.py"
+```
+
+Result:
+
+```text
+Ran 16 tests
+OK
+```
+
+Also confirmed from current files:
+
+* `data/state.json` shows active `open_trade`
+* `pending_order` is active and is a SELL TARGET order
+* `logs/runtime.log` shows repeated `PENDING_CONFIRMED`
+
+---
+
+# 4. OPERATIONAL INTERPRETATION
+
+Fresh-cycle observability proof is still pending.
+
+Reason:
+
+* current engine cycles are resolving `pending_order` first
+* while pending SELL remains active, the engine does not re-enter the new-entry ranking path
+* therefore new entry-phase observability fields are not yet proven in runtime logs
+
+This is not a code rollback issue.
+
+It is a runtime sequencing issue caused by the currently active trade state.
+
+---
+
+# 5. CURRENT STATUS
+
+```text
+OBSERVABILITY_CODE_FIX     = COMPLETE
+OBSERVABILITY_TEST_FIX     = COMPLETE
+FRESH_RUNTIME_PROOF        = PENDING
+BREAKOUT_EXPERIMENT_STATUS = HOLD
+```
+
+---
+
+# 6. REQUIRED NEXT STEP
+
+Required next action:
+
+1. capture 1 to 3 fresh cycles after current pending SELL state resolves
+2. confirm at least one of the following appears in `logs/portfolio.log`:
+   * `blocked_detail=...`
+   * `candidate_count=...`
+   * `rejected_reasons=...`
+   * `rank_candidates=...`
+   * `selection_reason=highest_score`
+3. regenerate snapshot and confirm new-format fields are reflected
+4. only then start breakout relaxation experiment

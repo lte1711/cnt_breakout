@@ -660,3 +660,18 @@ CHANGE LOG
 - REASON=the observability-first priority was implemented and needed a formal completion record.
 - CURRENT_DECISION=keep
 - NOTE=Captures ranking metadata, richer log fields, and validation results for the observability step.
+- DATE=2026-04-20
+- TYPE=doc
+- PATH=docs/CNT v2 OBSERVABILITY VALIDATION GATE.txt
+- SUMMARY=breakout experiment start gate after observability correction
+- REASON=observability implementation was complete, but runtime interpretation needed a formal hold gate before breakout parameter changes.
+- CURRENT_DECISION=keep
+- NOTE=documents that fresh-cycle runtime evidence is required before breakout relaxation begins.
+
+- DATE=2026-04-20
+- TYPE=doc
+- PATH=docs/CNT v2 OBSERVABILITY AGGREGATION PATCH REPORT.txt
+- SUMMARY=records selected-strategy aggregation fix and fresh-cycle validation hold state
+- REASON=selection counting and mixed-log parsing needed a formal patch record before moving into breakout experimentation.
+- CURRENT_DECISION=keep
+- NOTE=captures that code/tests are fixed while runtime proof remains pending due active pending SELL state.

@@ -320,3 +320,57 @@ CHANGE LOG
 - REASON=post-operational consistency patch was validated and recorded as a separate report for traceability.
 - CURRENT_DECISION=keep
 - NOTE=Captures P3-level cleanup and consistency verification after the operational patch baseline.
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/analytics/strategy_metrics.py
+- SUMMARY=v2 performance metrics analytics layer added
+- REASON=performance tuning stage requires persistent strategy-level statistics and expectancy calculation.
+- CURRENT_DECISION=keep
+- NOTE=Owns save/load/update helpers for strategy performance metrics.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/models/strategy_performance.py
+- SUMMARY=strategy performance dataclass added
+- REASON=performance tuning stage needs a typed metrics structure per strategy.
+- CURRENT_DECISION=keep
+- NOTE=Stores win/loss and expectancy-related aggregate fields.
+
+- DATE=2026-04-19
+- TYPE=code
+- PATH=src/models/ranked_signal_selection.py
+- SUMMARY=ranked signal selection dataclass added
+- REASON=performance-aware ranker now returns selected signal with score metadata.
+- CURRENT_DECISION=keep
+- NOTE=Used to log rank score and score component evidence.
+
+- DATE=2026-04-19
+- TYPE=runtime
+- PATH=data/strategy_metrics.json
+- SUMMARY=persistent strategy performance metrics snapshot
+- REASON=performance tuning stage requires strategy-level cumulative metrics across restarts.
+- CURRENT_DECISION=keep
+- NOTE=Runtime artifact, not Git-synced.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 PERFORMANCE TUNING LOG.txt
+- SUMMARY=performance tuning evidence log initialized
+- REASON=parameter changes must be recorded with sample-based rationale.
+- CURRENT_DECISION=keep
+- NOTE=Use for before/after tuning decisions.
+
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 TESTNET PERFORMANCE REPORT.txt
+- SUMMARY=testnet performance reporting template initialized
+- REASON=performance stage requires numeric operating evidence, not qualitative summaries.
+- CURRENT_DECISION=keep
+- NOTE=Initialized with a single safe runtime observation; still insufficient for tuning decisions.
+- DATE=2026-04-19
+- TYPE=doc
+- PATH=docs/CNT v2 PERFORMANCE TUNING VALIDATION REPORT.txt
+- SUMMARY=performance tuning foundation validation report added
+- REASON=performance stage implementation needs a formal evidence record before broader tuning and testnet observation.
+- CURRENT_DECISION=keep
+- NOTE=Captures metrics persistence, ranking fallback, and expectancy-based selection validation.

@@ -64,6 +64,7 @@ LOG_FILE=logs/runtime.log
 SIGNAL_LOG_FILE=logs/signal.log
 PORTFOLIO_STATE_FILE=data/portfolio_state.json
 PORTFOLIO_LOG_FILE=logs/portfolio.log
+STRATEGY_METRICS_FILE=data/strategy_metrics.json
 RECV_WINDOW=5000
 REQUEST_TIMEOUT=5
 
@@ -255,6 +256,23 @@ partial_exit_progress
 - long_short_ratio (optional, reserved)
 - orderbook_imbalance (optional, reserved)
 
+### StrategyPerformance
+- strategy_name
+- signals_generated
+- signals_selected
+- trades_closed
+- wins
+- losses
+- gross_profit
+- gross_loss
+- avg_win
+- avg_loss
+- win_rate
+- expectancy
+- profit_factor
+- confidence_multiplier
+- last_updated
+
 V2_PORTFOLIO_STATE_KEYS=
 schema_version
 total_exposure
@@ -269,6 +287,11 @@ SIGNAL_AGE_POLICY=
 -1 = skip age check
 >0 = valid signal window in seconds
 0 = forbidden
+
+STRATEGY_METRICS_RULE=
+- strategy metrics are updated only on closed trade confirmation
+- closed trade metrics use entry strategy_name attribution
+- expectancy-based ranking must fallback to static ranking when sample size is insufficient
 daily_loss_count
 consecutive_losses
 
@@ -432,10 +455,13 @@ src/models/risk_result.py=risk_check_result_dataclass_only
 src/models/exit_signal.py=exit_signal_dataclass_only
 src/models/position_state.py=position_state_dataclass_only
 src/models/portfolio_state.py=portfolio_state_dataclass_only
+src/models/strategy_performance.py=strategy_performance_dataclass_only
+src/models/ranked_signal_selection.py=ranked_signal_selection_dataclass_only
 src/execution_decider.py=execution_decision_only
 src/signal_logger.py=signal_log_write_only
 src/portfolio/strategy_orchestrator.py=multi_strategy_signal_selection_only
 src/portfolio/signal_ranker.py=signal_ranking_only
+src/analytics/strategy_metrics.py=strategy_metrics_load_save_and_calculation_only
 src/state/state_manager.py=portfolio_state_load_save_only
 src/risk/exit_models.py=exit_model_dataclass_only
 src/risk/risk_guard.py=state_based_risk_guard_only

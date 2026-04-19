@@ -62,6 +62,7 @@ ENABLE_TEST_ORDER_VALIDATION = True
 LOG_FILE = "logs/runtime.log"
 STATE_FILE = "data/state.json"
 SIGNAL_LOG_FILE = "logs/signal.log"
+STRATEGY_METRICS_FILE = "data/strategy_metrics.json"
 
 # =========================
 # STRATEGY ENABLE SWITCH
@@ -144,3 +145,18 @@ PORTFOLIO_LOG_FILE = "logs/portfolio.log"
 PORTFOLIO_STATE_SCHEMA_VERSION = "2.0"
 MAX_PORTFOLIO_EXPOSURE = 1000.0
 ONE_PER_SYMBOL_POLICY = True
+
+# =========================
+# PERFORMANCE TUNING CONFIG
+# =========================
+
+RANKER_MINIMUM_SAMPLE = 5
+RANKER_EXPECTANCY_WEIGHT = 1.5
+RANKER_TREND_ALIGNMENT_BONUS = 0.08
+RANKER_VOLATILITY_PENALTY = 0.05
+RANKER_RECENT_LOSS_PENALTY = 0.12
+STRATEGY_STATIC_BASE_SCORES = {
+    "breakout_v1": 1.0,
+    "pullback_v1": 0.95,
+    "mean_reversion_v1": 0.9,
+}

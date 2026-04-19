@@ -23,10 +23,18 @@ from config import (
     PORTFOLIO_LOG_FILE,
     PORTFOLIO_STATE_FILE,
     STATE_FILE,
+    STRATEGY_METRICS_FILE,
     STRATEGY_PARAMS,
     SYMBOL,
     TIME_EXIT_MINUTES,
     TRAILING_STOP_PCT,
+)
+from src.analytics.strategy_metrics import (
+    build_expectancy_snapshot,
+    increment_signals_selected,
+    load_strategy_metrics,
+    record_closed_trade,
+    save_strategy_metrics,
 )
 from src.account_reader import get_account_info
 from src.balance_reader import extract_asset_balance
@@ -43,7 +51,7 @@ from src.order_validator import (
     validate_order,
     validate_quantity,
 )
-from src.portfolio.strategy_orchestrator import get_selected_signal
+from src.portfolio.strategy_orchestrator import get_ranked_signal_selection
 from src.risk.enhanced_exit_manager import evaluate_exit
 from src.state.state_manager import build_portfolio_state, load_portfolio_state, save_portfolio_state
 from src.state_writer import write_state
@@ -341,6 +349,18 @@ def _save_and_finish(
     )
 
 
+def _estimate_close_pnl(open_trade: dict | None, fill_price: float) -> float:
+    if not isinstance(open_trade, dict):
+        return 0.0
+
+    entry_price = float(open_trade.get("entry_price", 0.0) or 0.0)
+    entry_qty = float(open_trade.get("entry_qty", 0.0) or 0.0)
+    if entry_price <= 0 or entry_qty <= 0 or fill_price <= 0:
+        return 0.0
+
+    return (fill_price - entry_price) * entry_qty
+
+
 def _find_open_order_by_id(open_orders: list, order_id: int) -> dict | None:
     for item in open_orders:
         if int(item.get("orderId", 0)) == int(order_id):
@@ -572,10 +592,10 @@ def _reconcile_pending_order(
     symbol: str,
     pending: dict,
     open_trade: dict | None,
-) -> tuple[str, dict | None, dict | None]:
+) -> tuple[str, dict | None, dict | None, dict | None]:
     normalized_pending = _normalize_pending_order(pending)
     if normalized_pending is None:
-        return "STALE_PENDING_ORDER_CLEARED", None, None
+        return "STALE_PENDING_ORDER_CLEARED", None, None, None
 
     order_id = int(normalized_pending["orderId"])
 
@@ -586,26 +606,26 @@ def _reconcile_pending_order(
         if status == "FILLED":
             if normalized_pending.get("side") == "BUY":
                 open_trade = _build_open_trade_from_order(order_info, normalized_pending)
-                return "PROMOTE_TO_OPEN_TRADE", None, open_trade
+                return "PROMOTE_TO_OPEN_TRADE", None, open_trade, None
             if normalized_pending.get("exit_type") == "PARTIAL" and isinstance(open_trade, dict):
                 updated_open_trade = _apply_partial_exit_fill(
                     open_trade,
                     float(normalized_pending.get("partial_qty", 0.0) or 0.0),
                 )
                 if updated_open_trade is None:
-                    return "SELL_FILLED", None, None
-                return "PARTIAL_EXIT_FILLED", None, updated_open_trade
+                    return "SELL_FILLED", None, None, order_info
+                return "PARTIAL_EXIT_FILLED", None, updated_open_trade, order_info
             if normalized_pending.get("exit_type") == "TRAILING_STOP":
-                return "TRAILING_STOP_FILLED", None, None
+                return "TRAILING_STOP_FILLED", None, None, order_info
             if normalized_pending.get("exit_type") == "STOP":
-                return "STOP_MARKET_FILLED", None, None
-            return "SELL_FILLED", None, None
+                return "STOP_MARKET_FILLED", None, None, order_info
+            return "SELL_FILLED", None, None, order_info
 
         if status in {"NEW", "PARTIALLY_FILLED", "PENDING_NEW"}:
             normalized_pending["status"] = status
-            return "PENDING_CONFIRMED", normalized_pending, None
+            return "PENDING_CONFIRMED", normalized_pending, None, None
 
-        return "PENDING_CLEARED", None, None
+        return "PENDING_CLEARED", None, None, None
 
     except HTTPError as error:
         if _is_missing_order_error(error):
@@ -616,13 +636,13 @@ def _reconcile_pending_order(
                 normalized_pending["status"] = str(
                     matched_order.get("status", normalized_pending.get("status"))
                 ).upper()
-                return "PENDING_CONFIRMED_FROM_OPEN_ORDERS", normalized_pending, None
+                return "PENDING_CONFIRMED_FROM_OPEN_ORDERS", normalized_pending, None, None
 
-            return "STALE_PENDING_ORDER_CLEARED", None, None
+            return "STALE_PENDING_ORDER_CLEARED", None, None, None
 
-        return "PENDING_RECONCILE_ERROR_KEEP", normalized_pending, None
+        return "PENDING_RECONCILE_ERROR_KEEP", normalized_pending, None, None
     except Exception:
-        return "PENDING_RECONCILE_ERROR_KEEP", normalized_pending, None
+        return "PENDING_RECONCILE_ERROR_KEEP", normalized_pending, None, None
 
 
 def _validate_limit_order_before_live(payload: dict) -> None:
@@ -638,6 +658,7 @@ def start_engine() -> None:
     state_file = project_root / STATE_FILE
     portfolio_state_file = project_root / PORTFOLIO_STATE_FILE
     portfolio_log_file = project_root / PORTFOLIO_LOG_FILE
+    strategy_metrics_file = project_root / STRATEGY_METRICS_FILE
 
     print("engine strategy v1 started")
 
@@ -653,6 +674,7 @@ def start_engine() -> None:
         state = _load_state(state_file)
         risk_metrics = _reset_daily_loss_count_if_needed(state.get("risk_metrics"), timestamp)
         portfolio_state = load_portfolio_state(portfolio_state_file)
+        strategy_metrics = load_strategy_metrics(strategy_metrics_file)
 
         ping()
         get_server_time()
@@ -681,7 +703,7 @@ def start_engine() -> None:
         open_trade = state.get("open_trade")
 
         if pending:
-            action, pending_after, open_trade_after = _reconcile_pending_order(
+            action, pending_after, open_trade_after, pending_fill_order = _reconcile_pending_order(
                 symbol=SYMBOL,
                 pending=pending,
                 open_trade=open_trade,
@@ -722,10 +744,23 @@ def start_engine() -> None:
                 return
 
             if action in {"SELL_FILLED", "STOP_MARKET_FILLED", "TRAILING_STOP_FILLED"}:
+                fill_price = _extract_fill_price(pending_fill_order or {}) or price
+                strategy_name = str((open_trade or {}).get("strategy_name") or ACTIVE_STRATEGY)
+                close_pnl_estimate = _estimate_close_pnl(open_trade, fill_price)
+                record_closed_trade(strategy_metrics, strategy_name, close_pnl_estimate)
+                save_strategy_metrics(strategy_metrics_file, strategy_metrics)
+                append_portfolio_log(
+                    portfolio_log_file,
+                    (
+                        f"symbol={SYMBOL} selected_strategy={strategy_name} close_action={action} "
+                        f"close_pnl_estimate={close_pnl_estimate} "
+                        f"strategy_expectancy_snapshot={build_expectancy_snapshot(strategy_metrics, strategy_name)}"
+                    ),
+                )
                 risk_metrics = _update_risk_metrics_for_close(
                     action=action,
                     open_trade=open_trade,
-                    fill_price=price,
+                    fill_price=fill_price,
                     risk_metrics=risk_metrics,
                     timestamp=timestamp,
                 )
@@ -870,6 +905,18 @@ def start_engine() -> None:
                         return
 
                     fill_price = _extract_fill_price(order_response) or price
+                    strategy_name = str((open_trade or {}).get("strategy_name") or ACTIVE_STRATEGY)
+                    close_pnl_estimate = _estimate_close_pnl(open_trade, fill_price)
+                    record_closed_trade(strategy_metrics, strategy_name, close_pnl_estimate)
+                    save_strategy_metrics(strategy_metrics_file, strategy_metrics)
+                    append_portfolio_log(
+                        portfolio_log_file,
+                        (
+                            f"symbol={SYMBOL} selected_strategy={strategy_name} close_action=SELL_FILLED "
+                            f"close_pnl_estimate={close_pnl_estimate} "
+                            f"strategy_expectancy_snapshot={build_expectancy_snapshot(strategy_metrics, strategy_name)}"
+                        ),
+                    )
                     risk_metrics = _update_risk_metrics_for_close(
                         action="SELL_FILLED",
                         open_trade=open_trade,
@@ -961,6 +1008,18 @@ def start_engine() -> None:
                         if exit_signal.exit_type == "TRAILING_STOP"
                         else "STOP_MARKET_FILLED"
                     )
+                    strategy_name = str((open_trade or {}).get("strategy_name") or ACTIVE_STRATEGY)
+                    close_pnl_estimate = _estimate_close_pnl(open_trade, fill_price)
+                    record_closed_trade(strategy_metrics, strategy_name, close_pnl_estimate)
+                    save_strategy_metrics(strategy_metrics_file, strategy_metrics)
+                    append_portfolio_log(
+                        portfolio_log_file,
+                        (
+                            f"symbol={SYMBOL} selected_strategy={strategy_name} close_action={filled_action} "
+                            f"close_pnl_estimate={close_pnl_estimate} "
+                            f"strategy_expectancy_snapshot={build_expectancy_snapshot(strategy_metrics, strategy_name)}"
+                        ),
+                    )
                     risk_metrics = _update_risk_metrics_for_close(
                         action=filled_action,
                         open_trade=open_trade,
@@ -1018,9 +1077,17 @@ def start_engine() -> None:
                 )
                 return
 
-        signal = get_selected_signal(SYMBOL)
+        ranked_selection = get_ranked_signal_selection(SYMBOL, strategy_metrics=strategy_metrics)
+        save_strategy_metrics(strategy_metrics_file, strategy_metrics)
+        signal = ranked_selection.selected_signal
         if signal is None:
-            append_portfolio_log(portfolio_log_file, f"symbol={SYMBOL} selected_strategy=NONE reason=no_ranked_signal")
+            append_portfolio_log(
+                portfolio_log_file,
+                (
+                    f"symbol={SYMBOL} selected_strategy=NONE reason=no_ranked_signal "
+                    f"rank_score=0.0 rank_score_components={{}} blocked_by_policy=no_ranked_signal"
+                ),
+            )
             _save_and_finish(
                 state_file=state_file,
                 log_file=log_file,
@@ -1037,9 +1104,16 @@ def start_engine() -> None:
             )
             return
 
+        increment_signals_selected(strategy_metrics, signal.strategy_name)
+        save_strategy_metrics(strategy_metrics_file, strategy_metrics)
         append_portfolio_log(
             portfolio_log_file,
-            f"symbol={SYMBOL} selected_strategy={signal.strategy_name} confidence={signal.confidence} reason={signal.reason}",
+            (
+                f"symbol={SYMBOL} selected_strategy={signal.strategy_name} confidence={signal.confidence} "
+                f"reason={signal.reason} rank_score={ranked_selection.rank_score} "
+                f"rank_score_components={ranked_selection.rank_score_components} "
+                f"strategy_expectancy_snapshot={ranked_selection.strategy_expectancy_snapshot}"
+            ),
         )
         entry_action, entry_reason = evaluate_entry_gate_from_signal(signal)
 
@@ -1091,6 +1165,14 @@ def start_engine() -> None:
         )
 
         if not decision.execute:
+            append_portfolio_log(
+                portfolio_log_file,
+                (
+                    f"symbol={SYMBOL} selected_strategy={signal.strategy_name} blocked_by_policy={decision.reason} "
+                    f"requested_notional={decision.notional_value} rank_score={ranked_selection.rank_score} "
+                    f"rank_score_components={ranked_selection.rank_score_components}"
+                ),
+            )
             _save_and_finish(
                 state_file=state_file,
                 log_file=log_file,

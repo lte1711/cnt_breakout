@@ -16,3 +16,4 @@ runtime.log
 state.json
 data/state.json
 data/portfolio_state.json
+data/strategy_metrics.json

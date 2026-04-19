@@ -1,0 +1,79 @@
+# CNT v2 TESTNET PERFORMANCE REPORT
+
+```text
+DOCUMENT_NAME = cnt_v2_testnet_performance_report
+PROJECT       = CNT
+VERSION       = 2.0
+DATE          = 2026-04-19
+STATUS        = TEMPLATE_INITIALIZED
+```
+
+---
+
+# REQUIRED METRICS
+
+* total signals generated
+* total signals selected
+* total executed trades
+* trades closed
+* wins
+* losses
+* win rate
+* average win
+* average loss
+* expectancy
+* profit factor
+* maximum consecutive losses
+* maximum daily loss count
+* strategy-by-strategy comparison
+* blocked reason distribution
+
+---
+
+# REPORT TEMPLATE
+
+```text
+OBSERVATION_WINDOW:
+TOTAL_SIGNALS:
+TOTAL_SELECTED_SIGNALS:
+TOTAL_EXECUTED_TRADES:
+TOTAL_CLOSED_TRADES:
+WINS:
+LOSSES:
+WIN_RATE:
+AVG_WIN:
+AVG_LOSS:
+EXPECTANCY:
+PROFIT_FACTOR:
+MAX_CONSECUTIVE_LOSSES:
+MAX_DAILY_LOSS_COUNT:
+TOP_STRATEGY:
+WORST_STRATEGY:
+BLOCKED_REASON_DISTRIBUTION:
+NOTES:
+```
+
+---
+
+# INITIAL OBSERVATION
+
+```text
+OBSERVATION_WINDOW: 2026-04-19 single safe runtime validation
+TOTAL_SIGNALS: 2
+TOTAL_SELECTED_SIGNALS: 0
+TOTAL_EXECUTED_TRADES: 0
+TOTAL_CLOSED_TRADES: 0
+WINS: 0
+LOSSES: 0
+WIN_RATE: n/a
+AVG_WIN: n/a
+AVG_LOSS: n/a
+EXPECTANCY: n/a
+PROFIT_FACTOR: n/a
+MAX_CONSECUTIVE_LOSSES: 0
+MAX_DAILY_LOSS_COUNT: 0
+TOP_STRATEGY: none
+WORST_STRATEGY: none
+BLOCKED_REASON_DISTRIBUTION: no_ranked_signal=1
+NOTES: initial observation only; insufficient sample for tuning decisions
+```

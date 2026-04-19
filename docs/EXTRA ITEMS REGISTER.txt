@@ -675,3 +675,19 @@ CHANGE LOG
 - REASON=selection counting and mixed-log parsing needed a formal patch record before moving into breakout experimentation.
 - CURRENT_DECISION=keep
 - NOTE=captures that code/tests are fixed while runtime proof remains pending due active pending SELL state.
+
+- DATE=2026-04-20
+- TYPE=doc
+- PATH=docs/CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION PLAN.txt
+- SUMMARY=formal runtime validation plan for new observability fields before breakout experiment
+- REASON=after aggregation/test fixes, a fresh-cycle proof step was required before breakout parameter relaxation.
+- CURRENT_DECISION=keep
+- NOTE=documents execution order and PASS rule for runtime observability validation.
+
+- DATE=2026-04-20
+- TYPE=doc
+- PATH=docs/CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION REPORT.txt
+- SUMMARY=records successful fresh-cycle runtime proof for new observability format
+- REASON=the previous gate hold was cleared only after live runtime evidence was captured and reflected in snapshot output.
+- CURRENT_DECISION=keep
+- NOTE=confirms breakout experiment gate is now open.

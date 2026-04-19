@@ -5,7 +5,7 @@ DOCUMENT_NAME = cnt_v2_observability_validation_gate
 PROJECT       = CNT
 VERSION       = 2.0
 DATE          = 2026-04-20
-STATUS        = ACTIVE
+STATUS        = PASS
 PURPOSE       = lock observability interpretation before breakout experiment
 ```
 
@@ -54,19 +54,21 @@ Current confirmed facts:
 
 * observability code changes are present
 * observability tests pass
-* current runtime state is not yet suitable for entry-phase observability validation
+* the previous pending SELL state has already been resolved
+* fresh runtime evidence has now been captured
 
-Current blocking runtime condition:
+Current runtime facts:
 
-* `data/state.json` contains active `open_trade`
-* `pending_order.side = SELL`
-* `pending_order.exit_type = TARGET`
-* current engine cycles are stopping at pending reconciliation
+* `data/state.json` currently shows `pending_order = null`
+* `data/state.json` currently shows `open_trade = null`
+* latest stored cycle before validation had closed with `SELL_FILLED`
+* fresh validation cycle recorded new observability fields in `logs/portfolio.log`
 
 Implication:
 
-* fresh runtime proof for entry-phase observability fields is not yet confirmed
-* breakout experiment remains gated until new-format evidence is recorded
+* the previous blocking explanation is no longer current
+* STEP 3 fresh runtime proof is now confirmed
+* breakout experiment gate is cleared
 
 ---
 
@@ -89,11 +91,12 @@ Reason:
 
 ---
 
-# 5. PASS / HOLD RULE
+# 5. PASS / RESULT
 
 ```text
 STEP 1 = PASS when selection counting and blocked-detail parsing are corrected
 STEP 2 = PASS when regression tests pass
 STEP 3 = PASS when fresh runtime evidence is captured
-ONLY AFTER STEP 3 = breakout experiment allowed
+CURRENT_RESULT = STEP 1 PASS / STEP 2 PASS / STEP 3 PASS
+BREAKOUT_EXPERIMENT = ALLOWED
 ```

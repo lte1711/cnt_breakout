@@ -58,5 +58,5 @@ These are not blockers for continued observation.
 CURRENT_CONFIG = KEEP
 CURRENT_MODE   = TESTNET_ONLY
 CURRENT_ACTION = ACCUMULATE_MORE_CYCLES
-NEXT_DECISION  = after 20 to 50 cycle window review
+NEXT_DECISION  = 2026-04-20 09:10:34 review point
 ```

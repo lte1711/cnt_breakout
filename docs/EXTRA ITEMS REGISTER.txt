@@ -715,3 +715,27 @@ CHANGE LOG
 - REASON=the latest review confirmed there is no new blocker, but also no evidence yet to justify another threshold change.
 - CURRENT_DECISION=keep
 - NOTE=keeps the experiment in observation mode and separates ongoing operational issues from blockers.
+
+- DATE=2026-04-20
+- TYPE=doc
+- PATH=docs/CNT v2 BREAKOUT REVIEW TIMER PLAN.txt
+- SUMMARY=fixes the next breakout judgment point at +8 hours
+- REASON=the user requested a timer-based next review point instead of an open-ended wait.
+- CURRENT_DECISION=keep
+- NOTE=documents exact review time and required judgment outputs.
+
+- DATE=2026-04-20
+- TYPE=doc
+- PATH=docs/CNT v2 BREAKOUT REVIEW TIMER REPORT.txt
+- SUMMARY=records timer application and next review time for breakout experiment
+- REASON=the 8-hour timer needed a formal implementation report tied to the current breakout observation phase.
+- CURRENT_DECISION=keep
+- NOTE=references the one-time scheduled task and repo-local timer script.
+
+- DATE=2026-04-20
+- TYPE=code
+- PATH=scripts/breakout_review_timer.ps1
+- SUMMARY=one-time review marker script for breakout experiment next judgment
+- REASON=required to leave a repo-local timestamped signal when the 8-hour review point is reached.
+- CURRENT_DECISION=keep
+- NOTE=writes a due marker to data and logs without changing runtime strategy state.

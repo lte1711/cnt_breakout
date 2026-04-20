@@ -5,7 +5,7 @@ DOCUMENT_NAME = cnt_v2_breakout_v1_relaxation_experiment_report
 PROJECT       = CNT
 VERSION       = 2.0
 DATE          = 2026-04-20
-STATUS        = IN_PROGRESS_CONTINUED_OBSERVATION
+STATUS        = REVIEW_COMPLETE
 REFERENCE_1   = CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT PLAN
 REFERENCE_2   = CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION REPORT
 ```
@@ -148,17 +148,85 @@ Required ongoing tracking:
 
 ---
 
-# 7. REQUIRED FINAL FIELDS
+# 7. TIMER REVIEW RESULT
+
+Timer-triggered review time:
+
+```text
+REVIEW_TIME = 2026-04-20 09:10:34
+REVIEW_STATUS = EXECUTED
+```
+
+Observed experiment-window facts after the first relaxation change:
+
+* `performance_snapshot.closed_trades = 8`
+* `performance_snapshot.selected_strategy_counts = {'pullback_v1': 3}`
+* breakout remained:
+  * `signals_generated = 82`
+  * `signals_selected = 0`
+  * `trades_closed = 0`
+
+Breakout rejection distribution from experiment-start window:
+
+```text
+market_not_trend_up = 45
+volatility_not_high = 3
+total_breakout_rejections = 48
+market_not_trend_up_share = 93.75%
+```
+
+Candidate / selection review:
+
+```text
+breakout_candidate_count = 0
+breakout_selected_count = 0
+selection_reason_highest_score_occurrences = 3
+selection_reason_highest_score_for_breakout = 0
+```
+
+Interpretation:
+
+* fresh selection-path evidence now exists in the system
+* `selected_strategy_counts` is no longer empty
+* however, the fresh selection-path evidence belongs to `pullback_v1`, not `breakout_v1`
+* breakout still failed to enter the candidate path through the review window
+* the dominant blocker is decisively the trend-alignment layer, not ATR / RSI threshold scarcity
+
+Decision branch:
+
+```text
+CASE = A
+candidate 0 retained for breakout
+market_not_trend_up share > 70%
+NEXT_RECOMMENDATION = REVIEW_TREND_FILTER
+```
+
+---
+
+# 8. FINAL JUDGMENT
+
+```text
+BREAKOUT_RELAXATION_1_RESULT = NO_BREAKOUT_CANDIDATE_PROGRESS
+OBSERVABILITY_SELECTION_PATH = CONFIRMED
+SELECTED_STRATEGY_COUNTS     = CONFIRMED_WORKING
+PRIMARY_BLOCKER              = market_not_trend_up
+NEXT_ACTION                  = REVIEW_TREND_FILTER
+```
+
+Recommended next step:
+
+* do not continue lowering ATR / RSI thresholds first
+* inspect and redesign the breakout trend qualification layer before a second relaxation pass
+
+---
+
+# 9. REQUIRED FINAL FIELDS
 
 The completed report must later include:
 
-* execution cycle count
-* breakout rejection distribution before/after
-* breakout candidate count
-* breakout selected count
-* `selection_reason=highest_score` occurrence
-* `selected_strategy_counts` reflection result
-* next recommendation:
-  * keep
-  * further relaxation
-  * trend filter review
+* archived execution cycle count
+* archived breakout rejection distribution before/after
+* archived breakout candidate count
+* archived breakout selected count
+* archived `selection_reason=highest_score` occurrence
+* archived `selected_strategy_counts` reflection result

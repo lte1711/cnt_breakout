@@ -5,7 +5,7 @@ DOCUMENT_NAME = cnt_v2_breakout_review_timer_report
 PROJECT       = CNT
 VERSION       = 2.0
 DATE          = 2026-04-20
-STATUS        = TIMER_APPLIED
+STATUS        = TIMER_APPLIED_AND_REVIEWED
 REFERENCE_1   = CNT v2 BREAKOUT V1 RELAXATION CONTINUATION NOTE
 REFERENCE_2   = CNT v2 BREAKOUT REVIEW TIMER PLAN
 ```
@@ -75,3 +75,17 @@ At or after the timer due point, the next review should determine:
 * keep current values
 * further relax ATR / RSI thresholds
 * review the trend filter instead of thresholds
+
+---
+
+# 6. REVIEW RESULT
+
+The timer has now been consumed and the linked review has been completed.
+
+Result:
+
+```text
+TIMER_STATUS  = CONSUMED
+REVIEW_RESULT = REVIEW_TREND_FILTER
+FOLLOW_UP_DOC = CNT v2 BREAKOUT TIMER JUDGMENT REPORT
+```

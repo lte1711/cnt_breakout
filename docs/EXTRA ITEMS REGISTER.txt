@@ -739,3 +739,11 @@ CHANGE LOG
 - REASON=required to leave a repo-local timestamped signal when the 8-hour review point is reached.
 - CURRENT_DECISION=keep
 - NOTE=writes a due marker to data and logs without changing runtime strategy state.
+
+- DATE=2026-04-20
+- TYPE=doc
+- PATH=docs/CNT v2 BREAKOUT TIMER JUDGMENT REPORT.txt
+- SUMMARY=records the timer-triggered breakout experiment judgment and next recommendation
+- REASON=the 8-hour review window needed a final decision document that translates accumulated data into the next action.
+- CURRENT_DECISION=keep
+- NOTE=concludes that the next move is trend-filter review rather than further ATR/RSI relaxation.

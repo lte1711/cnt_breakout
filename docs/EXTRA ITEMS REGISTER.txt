@@ -779,3 +779,19 @@ CHANGE LOG
 - REASON=the actual move from review to implementation needed a separate execution record.
 - CURRENT_DECISION=keep
 - NOTE=states that runtime effect is not yet fully judged after only one fresh cycle.
+
+- DATE=2026-04-20
+- TYPE=doc
+- PATH=docs/CNT v2 BREAKOUT COMPLETION ALERT REPORT.txt
+- SUMMARY=documents the alert rule and implementation for breakout observation completion
+- REASON=the user requested a completion alarm so the end of the observation window is not missed.
+- CURRENT_DECISION=keep
+- NOTE=uses a 30-cycle post-change threshold as the default completion condition.
+
+- DATE=2026-04-20
+- TYPE=code
+- PATH=scripts/breakout_completion_alert.ps1
+- SUMMARY=one-shot repeating checker for breakout post-change completion threshold
+- REASON=needed to emit a local alert and marker when the configured observation window completes.
+- CURRENT_DECISION=keep
+- NOTE=counts breakout post-change cycles from signal.log and sends the alert only once.

@@ -20,5 +20,6 @@ data/strategy_metrics.json
 data/performance_snapshot.json
 data/live_gate_decision.json
 data/breakout_review_due.json
+data/breakout_completion_alert.json
 data/runtime_monitor_report.json
 data/engine.lock

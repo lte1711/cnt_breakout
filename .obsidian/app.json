@@ -1,0 +1,10 @@
+{
+  "attachmentFolderPath": "assets",
+  "newFileLocation": "folder",
+  "newFileFolderPath": "docs",
+  "alwaysUpdateLinks": true,
+  "showLineNumber": true,
+  "showInlineTitle": true,
+  "useMarkdownLinks": false,
+  "userIgnoreFilters": null
+}

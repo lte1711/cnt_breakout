@@ -1,0 +1,82 @@
+This is CNT v2 - Python Binance Spot Testnet automated trading system.
+
+## Constitution Priority
+- AGENTS.md is the highest-priority rule file for this repository.
+- All coding, analysis, proposals, and runtime decisions must follow AGENTS.md first.
+- If any note in this file conflicts with AGENTS.md, AGENTS.md wins.
+
+## Project Identity
+- Exchange: Binance
+- Market: Spot
+- Environment: Testnet
+- Entry chain: run.ps1 -> main.py -> src.engine.start_engine
+- Engine mode: one-shot scheduler execution, not persistent loop
+
+## Core Structure
+- src/engine.py: execution orchestration only
+- src/entry_gate.py: new entry gate evaluation only
+- src/portfolio/strategy_orchestrator.py: multi-strategy collection and selection
+- src/strategy_manager.py: strategy evaluation and isolation
+- src/portfolio/signal_ranker.py: signal ranking only
+- src/risk/enhanced_exit_manager.py: exit evaluation only
+- src/execution_decider.py: execution/no-execution decision only
+- config.py: runtime config only
+- binance_client.py: shared exchange client and signing only
+
+## Non-Negotiable Trading Rules
+- Exchange state is primary; local state is always secondary.
+- New entry is forbidden if pending_order exists.
+- New entry is forbidden if open_trade exists.
+- Entry is BUY LIMIT only.
+- Every order path must pass validation and reconciliation rules.
+- No direct engine run outside the entry chain.
+- No assumption-based exit logic.
+
+## Data Truth And Runtime Files
+- Runtime state files:
+  - data/state.json
+  - data/portfolio_state.json
+  - data/strategy_metrics.json
+  - data/performance_snapshot.json
+  - data/live_gate_decision.json
+- Runtime logs:
+  - logs/runtime.log
+  - logs/portfolio.log
+  - logs/signal.log
+- These files are observational outputs, not architecture authority.
+- Their meaning must always be interpreted against AGENTS.md and current code.
+
+## gemma4 Role
+- gemma4 is assigned to project data management and observation support.
+- Allowed focus for gemma4:
+  - state/log/snapshot review
+  - metrics aggregation
+  - report drafting
+  - runtime evidence tracking
+  - rejection distribution analysis
+  - portfolio and live-gate status interpretation
+- gemma4 should primarily work with:
+  - data/
+  - logs/
+  - docs/
+- gemma4 must not redefine trading truth away from exchange reconciliation.
+- gemma4 must not bypass file responsibility boundaries defined in AGENTS.md.
+- gemma4 must not introduce direct runtime order behavior changes without explicit instruction.
+
+## Data Management Best Practices
+- Keep reports evidence-based.
+- Separate facts, inferences, assumptions, and unknowns when summarizing runtime data.
+- Treat old logs and new logs as mixed-format unless proven otherwise.
+- Preserve scheduler-based accumulation history.
+- Track selection-path evidence separately from no-ranked-signal evidence.
+- Record blocker distributions before proposing strategy changes.
+
+## Current Working Focus
+- breakout_v1 observability and trend-filter review
+- strategy performance tracking
+- testnet-only experiment control
+- document-first decision records
+
+## Language Rule
+- Code and identifiers: English only
+- Project reports and discussion notes: Korean allowed

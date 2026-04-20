@@ -1,4 +1,4 @@
-좋다. 아래는 **문서화 가능한 형식의 CNT v1.1 구현 작업지시서**다.
+﻿좋다. 아래는 **문서화 가능한 형식의 CNT v1.1 구현 작업지시서**다.
 그대로 `docs/`에 넣을 수 있는 수준으로 정리했다.
 
 ---
@@ -121,7 +121,7 @@ src/entry_gate.py          (필요 시 최소 조정만)
 src/models/strategy_signal.py   (필드 유지, 의미만 재확인)
 config.py
 AGENTS.md
-docs/EXTRA ITEMS REGISTER.txt   (신규 파일 등록)
+docs/EXTRA ITEMS REGISTER.md   (신규 파일 등록)
 ```
 
 ---
@@ -515,7 +515,7 @@ SIGNAL_LOG_FILE = "logs/signal.log"
 
 ```text
 AGENTS.md
-docs/EXTRA ITEMS REGISTER.txt
+docs/EXTRA ITEMS REGISTER.md
 ```
 
 ### 추가 내용
@@ -724,3 +724,4 @@ CNT v1.1 구현은 구조 재작성 작업이 아니다.
 > **CNT v1.1 구현 작업은 v1의 안정된 기준선 위에 실행 판단, 리스크 제어, 관측성 레이어를 얹는 작업이다.**
 
 ---
+

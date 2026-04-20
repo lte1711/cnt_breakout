@@ -1,4 +1,4 @@
-아래는 바로 적용 가능한 **`CNT v2 PATCH WORK INSTRUCTION.txt`** 문안이다.
+﻿아래는 바로 적용 가능한 **`CNT v2 PATCH WORK INSTRUCTION.md`** 문안이다.
 
 ---
 
@@ -315,14 +315,14 @@ ACTIVE_STRATEGIES = [
 
 대상 파일:
 
-* `docs/CNT v2 VALIDATION REPORT.txt`
+* `docs/CNT v2 VALIDATION REPORT.md`
 * 필요 시
 
-  * `docs/CNT v2 ARCHITECTURE DESIGN DOCUMENT.txt`
-  * `docs/CNT v2 IMPLEMENTATION WORK INSTRUCTION.txt`
-  * `docs/CNT v2 VALIDATION CHECKLIST.txt`
+  * `docs/CNT v2 ARCHITECTURE DESIGN DOCUMENT.md`
+  * `docs/CNT v2 IMPLEMENTATION WORK INSTRUCTION.md`
+  * `docs/CNT v2 VALIDATION CHECKLIST.md`
   * `AGENTS.md`
-  * `docs/EXTRA ITEMS REGISTER.txt`
+  * `docs/EXTRA ITEMS REGISTER.md`
 
 수정 요구:
 다음 표현은 코드 수정 완료 전 사용 금지 또는 수정한다.
@@ -458,3 +458,4 @@ synthetic 또는 stub 환경에서 아래를 각각 재현한다.
 이 두 항목이 완료되기 전까지는 v2를 운영 기준으로 간주하지 않는다.
 
 ---
+

@@ -1,4 +1,4 @@
-# CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT PLAN
+﻿# CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT PLAN
 
 ```text
 DOCUMENT_NAME = cnt_v2_breakout_v1_relaxation_experiment_plan
@@ -108,4 +108,5 @@ Still meaningful even without selection:
 
 Experiment result must be stored in:
 
-* `docs/CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT REPORT.txt`
+* `docs/CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT REPORT.md`
+

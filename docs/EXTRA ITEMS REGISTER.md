@@ -1,4 +1,4 @@
-CNT EXTRA ITEMS REGISTER
+﻿CNT EXTRA ITEMS REGISTER
 
 목적:
 - 구현 작업지시서 범위를 벗어나지만 현재 저장소에 존재하는 항목을 기록한다.
@@ -47,7 +47,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/engine_runtime_validation_checklist_v1.txt
+- PATH=docs/engine_runtime_validation_checklist_v1.md
 - SUMMARY=읽기 전용 및 1회 실행 검증 체크리스트
 - REASON=검증 절차 표준화를 위해 추가됨. 구현 작업지시서 v1의 직접 구현 요구는 아님.
 - CURRENT_DECISION=review_later
@@ -71,7 +71,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/DESIGN SUMMARY.txt
+- PATH=docs/DESIGN SUMMARY.md
 - SUMMARY=작업 설계 요약 문서
 - REASON=작업 기록 목적. 구현 작업지시서 v1의 직접 구현 범위는 아님.
 - CURRENT_DECISION=review_later
@@ -79,7 +79,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/RECORD TEXT.txt
+- PATH=docs/RECORD TEXT.md
 - SUMMARY=작업 결과 기록 문서
 - REASON=작업 기록 목적. 구현 작업지시서 v1의 직접 구현 범위는 아님.
 - CURRENT_DECISION=review_later
@@ -87,7 +87,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/VALIDATION RESULT.txt
+- PATH=docs/VALIDATION RESULT.md
 - SUMMARY=검증 결과 기록 문서
 - REASON=검증 기록 목적. 구현 작업지시서 v1의 직접 구현 범위는 아님.
 - CURRENT_DECISION=review_later
@@ -103,7 +103,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/SHARING CHECKLIST.txt
+- PATH=docs/SHARING CHECKLIST.md
 - SUMMARY=외부 공유 전 점검 체크리스트
 - REASON=배포 위생(T16) 정리를 위해 추가됨. 구현 작업지시서 v1의 직접 구현 항목은 아님.
 - CURRENT_DECISION=review_later
@@ -118,7 +118,7 @@ CHANGE LOG
 - NOTE=외부 제출용 산출물 생성 보조 스크립트.
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/cnt_v1_closure_validation_report.txt
+- PATH=docs/cnt_v1_closure_validation_report.md
 - SUMMARY=v1 마감 검증 최종 보고서
 - REASON=v1 마감 판정을 재검토 가능하게 남기기 위한 독립 산출물. 구현 작업지시서 v1의 직접 코드 요구사항은 아니며 검증/인수 목적의 추가 문서.
 - CURRENT_DECISION=review_later
@@ -173,7 +173,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v1.1 IMPLEMENTATION VALIDATION REPORT.txt
+- PATH=docs/CNT v1.1 IMPLEMENTATION VALIDATION REPORT.md
 - SUMMARY=v1.1 Stage 1 구현 검증 보고서
 - REASON=Stage 1 구현 결과를 체크리스트 기준으로 재검토 가능하게 남기기 위한 문서.
 - CURRENT_DECISION=keep
@@ -205,7 +205,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION REPORT.txt
+- PATH=docs/CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION REPORT.md
 - SUMMARY=Stage 2 구현 검증 보고서
 - REASON=Stage 2 구현 결과를 체크리스트 기준으로 재검토 가능하게 남기기 위한 문서.
 - CURRENT_DECISION=keep
@@ -308,14 +308,14 @@ CHANGE LOG
 - NOTE=no_ranked_signal 등 포트폴리오 관점 의사결정 기록용.
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 VALIDATION REPORT.txt
+- PATH=docs/CNT v2 VALIDATION REPORT.md
 - SUMMARY=v2 initial validation wording downgraded to patch-pending baseline
 - REASON=initial report overstated routing and operating-readiness versus actual runtime connection and policy enforcement state.
 - CURRENT_DECISION=keep
 - NOTE=Treat this as structural baseline evidence until the patch validation pass is completed.
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 POST-OPERATIONAL PATCH VALIDATION REPORT.txt
+- PATH=docs/CNT v2 POST-OPERATIONAL PATCH VALIDATION REPORT.md
 - SUMMARY=v2 post-operational patch validation report added
 - REASON=post-operational consistency patch was validated and recorded as a separate report for traceability.
 - CURRENT_DECISION=keep
@@ -354,7 +354,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 PERFORMANCE TUNING LOG.txt
+- PATH=docs/CNT v2 PERFORMANCE TUNING LOG.md
 - SUMMARY=performance tuning evidence log initialized
 - REASON=parameter changes must be recorded with sample-based rationale.
 - CURRENT_DECISION=keep
@@ -362,28 +362,28 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 TESTNET PERFORMANCE REPORT.txt
+- PATH=docs/CNT v2 TESTNET PERFORMANCE REPORT.md
 - SUMMARY=testnet performance reporting template initialized
 - REASON=performance stage requires numeric operating evidence, not qualitative summaries.
 - CURRENT_DECISION=keep
 - NOTE=Initialized with a single safe runtime observation; still insufficient for tuning decisions.
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 PERFORMANCE TUNING VALIDATION REPORT.txt
+- PATH=docs/CNT v2 PERFORMANCE TUNING VALIDATION REPORT.md
 - SUMMARY=performance tuning foundation validation report added
 - REASON=performance stage implementation needs a formal evidence record before broader tuning and testnet observation.
 - CURRENT_DECISION=keep
 - NOTE=Captures metrics persistence, ranking fallback, and expectancy-based selection validation.
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 PERFORMANCE VALIDATION REPORT.txt
+- PATH=docs/CNT v2 PERFORMANCE VALIDATION REPORT.md
 - SUMMARY=performance validation checklist result documented
 - REASON=current testnet evidence was reviewed against the checklist and formally classified as insufficient sample.
 - CURRENT_DECISION=keep
 - NOTE=Use this report to prevent premature tuning decisions before minimum observation thresholds are met.
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 TESTNET DATA COLLECTION STATUS REPORT.txt
+- PATH=docs/CNT v2 TESTNET DATA COLLECTION STATUS REPORT.md
 - SUMMARY=testnet data collection stage status report added
 - REASON=data collection instruction was executed and current state had to be fixed as in-progress rather than concluded.
 - CURRENT_DECISION=keep
@@ -391,7 +391,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 LIVE READINESS REPORT.txt
+- PATH=docs/CNT v2 LIVE READINESS REPORT.md
 - SUMMARY=live readiness gate report added
 - REASON=live gate was evaluated and formally concluded as not ready under current evidence.
 - CURRENT_DECISION=keep
@@ -399,7 +399,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 DATA COLLECTION AND LIVE GATE VALIDATION REPORT.txt
+- PATH=docs/CNT v2 DATA COLLECTION AND LIVE GATE VALIDATION REPORT.md
 - SUMMARY=combined data collection and live gate validation report added
 - REASON=the two sequential gate documents were reviewed together and finalized as a single formal decision record.
 - CURRENT_DECISION=keep
@@ -407,7 +407,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 NEXT PHASE PLAN.txt
+- PATH=docs/CNT v2 NEXT PHASE PLAN.md
 - SUMMARY=next phase data-accumulation and automation plan added
 - REASON=after validation hold state, the project needed an explicit execution plan for what to automate while waiting for sufficient data.
 - CURRENT_DECISION=keep
@@ -415,7 +415,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 NEXT PHASE PLANNING REPORT.txt
+- PATH=docs/CNT v2 NEXT PHASE PLANNING REPORT.md
 - SUMMARY=next phase planning decision report added
 - REASON=the proposed next-phase plan was accepted and needed a formal report mirroring earlier validation-report style.
 - CURRENT_DECISION=keep
@@ -471,7 +471,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 AUTO VALIDATION & DECISION SYSTEM WORK INSTRUCTION.txt
+- PATH=docs/CNT v2 AUTO VALIDATION & DECISION SYSTEM WORK INSTRUCTION.md
 - SUMMARY=automation phase work instruction added
 - REASON=the automatic decision phase needed a formal instruction document in repository.
 - CURRENT_DECISION=keep
@@ -479,7 +479,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 AUTO VALIDATION & DECISION SYSTEM PROGRESS REPORT.txt
+- PATH=docs/CNT v2 AUTO VALIDATION & DECISION SYSTEM PROGRESS REPORT.md
 - SUMMARY=automation phase progress report added
 - REASON=implementation progress for the auto decision layer needed a formal report.
 - CURRENT_DECISION=keep
@@ -487,7 +487,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 SCHEDULED DATA COLLECTION SETUP.txt
+- PATH=docs/CNT v2 SCHEDULED DATA COLLECTION SETUP.md
 - SUMMARY=scheduler setup instruction added
 - REASON=the project now needs operational scheduling rather than only code-side readiness.
 - CURRENT_DECISION=keep
@@ -495,7 +495,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 SCHEDULED DATA COLLECTION SETUP REPORT.txt
+- PATH=docs/CNT v2 SCHEDULED DATA COLLECTION SETUP REPORT.md
 - SUMMARY=scheduler setup progress report added
 - REASON=scheduler attachment phase required its own formal progress record.
 - CURRENT_DECISION=keep
@@ -503,7 +503,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 TASK SCHEDULER REGISTRATION CHECKLIST.txt
+- PATH=docs/CNT v2 TASK SCHEDULER REGISTRATION CHECKLIST.md
 - SUMMARY=task scheduler registration checklist added
 - REASON=scheduler phase needs an execution checklist that can be verified operationally.
 - CURRENT_DECISION=keep
@@ -535,7 +535,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 EXIT FAILSAFE PATCH REPORT.txt
+- PATH=docs/CNT v2 EXIT FAILSAFE PATCH REPORT.md
 - SUMMARY=exit failsafe patch report added
 - REASON=runtime issue and protective override patch needed a formal validation record.
 - CURRENT_DECISION=keep
@@ -543,7 +543,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 EXIT FAILSAFE OPERATION CHECKLIST.txt
+- PATH=docs/CNT v2 EXIT FAILSAFE OPERATION CHECKLIST.md
 - SUMMARY=short operational checklist for exit failsafe runtime confirmation
 - REASON=patched code now needs real runtime evidence, so a minimal pass/fail checklist was required.
 - CURRENT_DECISION=keep
@@ -551,7 +551,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 EXIT FAILSAFE OPERATION REPORT.txt
+- PATH=docs/CNT v2 EXIT FAILSAFE OPERATION REPORT.md
 - SUMMARY=operational observation report for exit failsafe follow-up added
 - REASON=the patch was synthetically validated, but runtime proof still needs a dedicated report stage.
 - CURRENT_DECISION=keep
@@ -567,7 +567,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 PHASE 1 MONITORING IMPLEMENTATION REPORT.txt
+- PATH=docs/CNT v2 PHASE 1 MONITORING IMPLEMENTATION REPORT.md
 - SUMMARY=phase 1 monitoring implementation and suitability review report added
 - REASON=two new CNT v2 documents were reviewed and the accepted monitoring instruction needed a formal implementation report.
 - CURRENT_DECISION=keep
@@ -575,7 +575,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 STRATEGIC ANALYSIS PLAN.txt
+- PATH=docs/CNT v2 STRATEGIC ANALYSIS PLAN.md
 - SUMMARY=strategic analysis and user-referenced PDF plan saved as planning reference
 - REASON=the latest broad project analysis needed to be preserved without being mistaken for runtime truth.
 - CURRENT_DECISION=keep
@@ -583,7 +583,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 ENGINE DECOMPOSITION DESIGN.txt
+- PATH=docs/CNT v2 ENGINE DECOMPOSITION DESIGN.md
 - SUMMARY=engine decomposition design added
 - REASON=the next requested step after the strategic analysis was a concrete engine split design.
 - CURRENT_DECISION=keep
@@ -591,7 +591,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 ENGINEERING PHASE PLAN.txt
+- PATH=docs/CNT v2 ENGINEERING PHASE PLAN.md
 - SUMMARY=engineering-phase priority plan added
 - REASON=the project moved from structure-definition mode into engineering execution mode and needed an explicit safe-path plan.
 - CURRENT_DECISION=keep
@@ -599,7 +599,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 TEST HARNESS IMPLEMENTATION REPORT.txt
+- PATH=docs/CNT v2 TEST HARNESS IMPLEMENTATION REPORT.md
 - SUMMARY=test harness implementation report added
 - REASON=the first engineering-phase step needed a formal implementation record.
 - CURRENT_DECISION=keep
@@ -639,7 +639,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 OBSERVABILITY PRIORITY PLAN.txt
+- PATH=docs/CNT v2 OBSERVABILITY PRIORITY PLAN.md
 - SUMMARY=observability-first priority plan added
 - REASON=after the test harness landed, the next-step question shifted to choosing the highest-leverage engineering move.
 - CURRENT_DECISION=keep
@@ -647,7 +647,7 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 PRIORITY DECISION REPORT.txt
+- PATH=docs/CNT v2 PRIORITY DECISION REPORT.md
 - SUMMARY=priority decision report added
 - REASON=the project needed a formal record of why observability was chosen ahead of breakout tuning and engine decomposition.
 - CURRENT_DECISION=keep
@@ -655,14 +655,14 @@ CHANGE LOG
 
 - DATE=2026-04-19
 - TYPE=doc
-- PATH=docs/CNT v2 OBSERVABILITY IMPLEMENTATION REPORT.txt
+- PATH=docs/CNT v2 OBSERVABILITY IMPLEMENTATION REPORT.md
 - SUMMARY=observability implementation report added
 - REASON=the observability-first priority was implemented and needed a formal completion record.
 - CURRENT_DECISION=keep
 - NOTE=Captures ranking metadata, richer log fields, and validation results for the observability step.
 - DATE=2026-04-20
 - TYPE=doc
-- PATH=docs/CNT v2 OBSERVABILITY VALIDATION GATE.txt
+- PATH=docs/CNT v2 OBSERVABILITY VALIDATION GATE.md
 - SUMMARY=breakout experiment start gate after observability correction
 - REASON=observability implementation was complete, but runtime interpretation needed a formal hold gate before breakout parameter changes.
 - CURRENT_DECISION=keep
@@ -670,7 +670,7 @@ CHANGE LOG
 
 - DATE=2026-04-20
 - TYPE=doc
-- PATH=docs/CNT v2 OBSERVABILITY AGGREGATION PATCH REPORT.txt
+- PATH=docs/CNT v2 OBSERVABILITY AGGREGATION PATCH REPORT.md
 - SUMMARY=records selected-strategy aggregation fix and fresh-cycle validation hold state
 - REASON=selection counting and mixed-log parsing needed a formal patch record before moving into breakout experimentation.
 - CURRENT_DECISION=keep
@@ -678,7 +678,7 @@ CHANGE LOG
 
 - DATE=2026-04-20
 - TYPE=doc
-- PATH=docs/CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION PLAN.txt
+- PATH=docs/CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION PLAN.md
 - SUMMARY=formal runtime validation plan for new observability fields before breakout experiment
 - REASON=after aggregation/test fixes, a fresh-cycle proof step was required before breakout parameter relaxation.
 - CURRENT_DECISION=keep
@@ -686,7 +686,7 @@ CHANGE LOG
 
 - DATE=2026-04-20
 - TYPE=doc
-- PATH=docs/CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION REPORT.txt
+- PATH=docs/CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION REPORT.md
 - SUMMARY=records successful fresh-cycle runtime proof for new observability format
 - REASON=the previous gate hold was cleared only after live runtime evidence was captured and reflected in snapshot output.
 - CURRENT_DECISION=keep
@@ -694,7 +694,7 @@ CHANGE LOG
 
 - DATE=2026-04-20
 - TYPE=doc
-- PATH=docs/CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT PLAN.txt
+- PATH=docs/CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT PLAN.md
 - SUMMARY=documents the first controlled breakout_v1 threshold relaxation on testnet
 - REASON=after observability validation passed, breakout activation testing required a formal experiment plan and fixed parameter scope.
 - CURRENT_DECISION=keep
@@ -702,7 +702,7 @@ CHANGE LOG
 
 - DATE=2026-04-20
 - TYPE=doc
-- PATH=docs/CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT REPORT.txt
+- PATH=docs/CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT REPORT.md
 - SUMMARY=tracks initial breakout relaxation evidence, selected_strategy_counts note, and scheduler log collision note
 - REASON=the experiment start required a report that preserves both the initial post-change evidence and the parallel operational issues being tracked.
 - CURRENT_DECISION=keep
@@ -710,7 +710,7 @@ CHANGE LOG
 
 - DATE=2026-04-20
 - TYPE=doc
-- PATH=docs/CNT v2 BREAKOUT V1 RELAXATION CONTINUATION NOTE.txt
+- PATH=docs/CNT v2 BREAKOUT V1 RELAXATION CONTINUATION NOTE.md
 - SUMMARY=records that the current breakout experiment should continue without further parameter changes yet
 - REASON=the latest review confirmed there is no new blocker, but also no evidence yet to justify another threshold change.
 - CURRENT_DECISION=keep
@@ -718,7 +718,7 @@ CHANGE LOG
 
 - DATE=2026-04-20
 - TYPE=doc
-- PATH=docs/CNT v2 BREAKOUT REVIEW TIMER PLAN.txt
+- PATH=docs/CNT v2 BREAKOUT REVIEW TIMER PLAN.md
 - SUMMARY=fixes the next breakout judgment point at +8 hours
 - REASON=the user requested a timer-based next review point instead of an open-ended wait.
 - CURRENT_DECISION=keep
@@ -726,7 +726,7 @@ CHANGE LOG
 
 - DATE=2026-04-20
 - TYPE=doc
-- PATH=docs/CNT v2 BREAKOUT REVIEW TIMER REPORT.txt
+- PATH=docs/CNT v2 BREAKOUT REVIEW TIMER REPORT.md
 - SUMMARY=records timer application and next review time for breakout experiment
 - REASON=the 8-hour timer needed a formal implementation report tied to the current breakout observation phase.
 - CURRENT_DECISION=keep
@@ -742,7 +742,7 @@ CHANGE LOG
 
 - DATE=2026-04-20
 - TYPE=doc
-- PATH=docs/CNT v2 BREAKOUT TIMER JUDGMENT REPORT.txt
+- PATH=docs/CNT v2 BREAKOUT TIMER JUDGMENT REPORT.md
 - SUMMARY=records the timer-triggered breakout experiment judgment and next recommendation
 - REASON=the 8-hour review window needed a final decision document that translates accumulated data into the next action.
 - CURRENT_DECISION=keep
@@ -750,7 +750,7 @@ CHANGE LOG
 
 - DATE=2026-04-20
 - TYPE=doc
-- PATH=docs/CNT v2 BREAKOUT TREND FILTER REVIEW INSTRUCTION.txt
+- PATH=docs/CNT v2 BREAKOUT TREND FILTER REVIEW INSTRUCTION.md
 - SUMMARY=formal instruction for diagnosing breakout upper filter structure before any further threshold changes
 - REASON=the timer judgment concluded that the next action should be trend-filter review, so the review scope needed to be fixed in writing.
 - CURRENT_DECISION=keep
@@ -758,7 +758,7 @@ CHANGE LOG
 
 - DATE=2026-04-20
 - TYPE=doc
-- PATH=docs/CNT v2 BREAKOUT TREND FILTER REVIEW REPORT.txt
+- PATH=docs/CNT v2 BREAKOUT TREND FILTER REVIEW REPORT.md
 - SUMMARY=documents breakout filter chain, log-based blocker analysis, and two bounded design options
 - REASON=the project needed a design-review artifact that explains why trend-filter review is next and selects one recommendation.
 - CURRENT_DECISION=keep
@@ -766,7 +766,7 @@ CHANGE LOG
 
 - DATE=2026-04-20
 - TYPE=doc
-- PATH=docs/CNT v2 BREAKOUT TREND FILTER CHANGE PLAN.txt
+- PATH=docs/CNT v2 BREAKOUT TREND FILTER CHANGE PLAN.md
 - SUMMARY=records the actual implementation scope for the recommended trend-filter relaxation
 - REASON=after the review selected option A, the implementation scope needed to be fixed before code change.
 - CURRENT_DECISION=keep
@@ -774,7 +774,7 @@ CHANGE LOG
 
 - DATE=2026-04-20
 - TYPE=doc
-- PATH=docs/CNT v2 BREAKOUT TREND FILTER CHANGE REPORT.txt
+- PATH=docs/CNT v2 BREAKOUT TREND FILTER CHANGE REPORT.md
 - SUMMARY=records the code change, new tests, and initial runtime check for the breakout trend-filter change
 - REASON=the actual move from review to implementation needed a separate execution record.
 - CURRENT_DECISION=keep
@@ -782,7 +782,7 @@ CHANGE LOG
 
 - DATE=2026-04-20
 - TYPE=doc
-- PATH=docs/CNT v2 BREAKOUT COMPLETION ALERT REPORT.txt
+- PATH=docs/CNT v2 BREAKOUT COMPLETION ALERT REPORT.md
 - SUMMARY=documents the alert rule and implementation for breakout observation completion
 - REASON=the user requested a completion alarm so the end of the observation window is not missed.
 - CURRENT_DECISION=keep
@@ -795,3 +795,4 @@ CHANGE LOG
 - REASON=needed to emit a local alert and marker when the configured observation window completes.
 - CURRENT_DECISION=keep
 - NOTE=counts breakout post-change cycles from signal.log and sends the alert only once.
+

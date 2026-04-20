@@ -1,4 +1,4 @@
-# CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION REPORT
+﻿# CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION REPORT
 
 ```text
 DOCUMENT_NAME = cnt_v1.1_stage2_implementation_validation_report
@@ -41,11 +41,11 @@ PASS
 
 Confirmed:
 
-* `docs/CNT v1.1 STAGE 2 ARCHITECTURE DESIGN DOCUMENT.txt`
-* `docs/CNT v1.1 STAGE 2 IMPLEMENTATION WORK INSTRUCTION.txt`
-* `docs/CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION CHECKLIST.txt`
+* `docs/CNT v1.1 STAGE 2 ARCHITECTURE DESIGN DOCUMENT.md`
+* `docs/CNT v1.1 STAGE 2 IMPLEMENTATION WORK INSTRUCTION.md`
+* `docs/CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION CHECKLIST.md`
 * `AGENTS.md` updated with Stage 2 components and open_trade state extensions
-* `docs/EXTRA ITEMS REGISTER.txt` updated with Stage 2 files
+* `docs/EXTRA ITEMS REGISTER.md` updated with Stage 2 files
 
 ---
 
@@ -271,3 +271,4 @@ The current result confirms:
 * CNT v1 and CNT v1.1 Stage 1 baseline behavior remain intact inside the validated scope
 
 This report closes the Stage 2 implementation validation cycle.
+

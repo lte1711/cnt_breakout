@@ -1,4 +1,4 @@
-# CNT v2 AUTO VALIDATION & DECISION SYSTEM PROGRESS REPORT
+﻿# CNT v2 AUTO VALIDATION & DECISION SYSTEM PROGRESS REPORT
 
 ```text
 DOCUMENT_NAME = cnt_v2_auto_validation_and_decision_system_progress_report
@@ -55,7 +55,7 @@ Current runtime-generated outputs:
 
 * `data/performance_snapshot.json`
 * `data/live_gate_decision.json`
-* auto-updated `docs/CNT v2 TESTNET PERFORMANCE REPORT.txt`
+* auto-updated `docs/CNT v2 TESTNET PERFORMANCE REPORT.md`
 
 ---
 
@@ -65,3 +65,4 @@ Current runtime-generated outputs:
 STATUS = AUTO_DECISION_LAYER_READY
 NEXT   = CONTINUE_DATA_COLLECTION_WITH_AUTOMATIC_EVALUATION
 ```
+

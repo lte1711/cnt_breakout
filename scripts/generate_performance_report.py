@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from pathlib import Path
 import sys
@@ -22,7 +22,7 @@ def main() -> None:
         snapshot_file=project_root / PERFORMANCE_SNAPSHOT_FILE,
     )
     generate_performance_report(
-        project_root / "docs/CNT v2 TESTNET PERFORMANCE REPORT.txt",
+        project_root / "docs/CNT v2 TESTNET PERFORMANCE REPORT.md",
         snapshot,
     )
     save_live_gate_decision(
@@ -33,3 +33,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

@@ -1,4 +1,4 @@
-# CNT v2 PERFORMANCE TUNING WORK INSTRUCTION
+﻿# CNT v2 PERFORMANCE TUNING WORK INSTRUCTION
 
 문서 목적:
 CNT v2가 구조/운영 정합성 패치를 완료한 상태에서,
@@ -269,7 +269,7 @@ confidence_multiplier = min(1.0, trades_closed / N)
 
 권장 문서:
 
-* `docs/CNT v2 PERFORMANCE TUNING LOG.txt`
+* `docs/CNT v2 PERFORMANCE TUNING LOG.md`
 
 완료 조건:
 
@@ -316,7 +316,7 @@ confidence_multiplier = min(1.0, trades_closed / N)
 
 권장:
 
-* `docs/CNT v2 TESTNET PERFORMANCE REPORT.txt`
+* `docs/CNT v2 TESTNET PERFORMANCE REPORT.md`
 
 완료 조건:
 
@@ -439,3 +439,4 @@ confidence_multiplier = min(1.0, trades_closed / N)
 > P4가 끝나면
 > **전략별 수익성 비교 → 자본 배분 → 실전 전환 기준 정의**
 > 단계로 넘어간다.
+

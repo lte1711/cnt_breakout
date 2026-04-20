@@ -1,4 +1,4 @@
-# CNT v2 BREAKOUT REVIEW TIMER REPORT
+﻿# CNT v2 BREAKOUT REVIEW TIMER REPORT
 
 ```text
 DOCUMENT_NAME = cnt_v2_breakout_review_timer_report
@@ -37,7 +37,7 @@ Applied items:
 * repository review timer script:
   * `scripts/breakout_review_timer.ps1`
 * review plan document:
-  * `docs/CNT v2 BREAKOUT REVIEW TIMER PLAN.txt`
+  * `docs/CNT v2 BREAKOUT REVIEW TIMER PLAN.md`
 * one-time Windows scheduled task:
   * `CNT v2 Breakout Review Timer`
 
@@ -89,3 +89,4 @@ TIMER_STATUS  = CONSUMED
 REVIEW_RESULT = REVIEW_TREND_FILTER
 FOLLOW_UP_DOC = CNT v2 BREAKOUT TIMER JUDGMENT REPORT
 ```
+

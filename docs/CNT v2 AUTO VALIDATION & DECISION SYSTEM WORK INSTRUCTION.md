@@ -1,4 +1,4 @@
-# CNT v2 AUTO VALIDATION & DECISION SYSTEM WORK INSTRUCTION
+﻿# CNT v2 AUTO VALIDATION & DECISION SYSTEM WORK INSTRUCTION
 
 Document purpose:
 CNT v2 automatically generates:
@@ -25,7 +25,7 @@ DATA -> SNAPSHOT -> ANALYSIS -> DECISION
 # 2. Required Outputs
 
 * `data/performance_snapshot.json`
-* `docs/CNT v2 TESTNET PERFORMANCE REPORT.txt`
+* `docs/CNT v2 TESTNET PERFORMANCE REPORT.md`
 * `data/live_gate_decision.json`
 
 ---
@@ -45,3 +45,4 @@ DATA -> SNAPSHOT -> ANALYSIS -> DECISION
 * report generation
 * gate decision generation
 * conservative fallback on insufficient data
+

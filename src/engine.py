@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 from datetime import datetime
@@ -362,7 +362,7 @@ def _save_and_finish(
             snapshot_file=project_root / PERFORMANCE_SNAPSHOT_FILE,
         )
         generate_performance_report(
-            project_root / "docs/CNT v2 TESTNET PERFORMANCE REPORT.txt",
+            project_root / "docs/CNT v2 TESTNET PERFORMANCE REPORT.md",
             snapshot,
         )
         save_live_gate_decision(
@@ -1438,3 +1438,4 @@ def start_engine() -> None:
         except Exception:
             pass
         print(f"ERROR: {error}")
+

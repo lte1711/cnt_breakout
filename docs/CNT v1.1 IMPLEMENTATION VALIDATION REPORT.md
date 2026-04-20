@@ -1,4 +1,4 @@
-# CNT v1.1 IMPLEMENTATION VALIDATION REPORT
+﻿# CNT v1.1 IMPLEMENTATION VALIDATION REPORT
 
 ```text
 DOCUMENT_NAME = cnt_v1.1_implementation_validation_report
@@ -43,11 +43,11 @@ PASS
 
 Confirmed:
 
-* `docs/CNT v1.1 ARCHITECTURE DESIGN DOCUMENT.txt`
-* `docs/CNT v1.1 IMPLEMENTATION WORK INSTRUCTION.txt`
-* `docs/CNT v1.1 IMPLEMENTATION VALIDATION CHECKLIST.txt`
+* `docs/CNT v1.1 ARCHITECTURE DESIGN DOCUMENT.md`
+* `docs/CNT v1.1 IMPLEMENTATION WORK INSTRUCTION.md`
+* `docs/CNT v1.1 IMPLEMENTATION VALIDATION CHECKLIST.md`
 * `AGENTS.md` updated to current v1.1 Stage 1 structure
-* `docs/EXTRA ITEMS REGISTER.txt` updated with new Stage 1 items
+* `docs/EXTRA ITEMS REGISTER.md` updated with new Stage 1 items
 
 ---
 
@@ -242,3 +242,4 @@ This report closes the Stage 1 implementation validation cycle.
 * Validation was performed without forced BUY execution.
 * Stage 1 was verified as an extension layer on top of closed CNT v1 baseline.
 * Current result supports moving to Stage 2 when requested.
+

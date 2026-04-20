@@ -1,4 +1,4 @@
-# CNT v2 PERFORMANCE TUNING VALIDATION REPORT
+﻿# CNT v2 PERFORMANCE TUNING VALIDATION REPORT
 
 ```text
 DOCUMENT_NAME = cnt_v2_performance_tuning_validation_report
@@ -82,8 +82,8 @@ PASS
 
 Confirmed:
 
-* `CNT v2 PERFORMANCE TUNING LOG.txt` initialized
-* `CNT v2 TESTNET PERFORMANCE REPORT.txt` initialized
+* `CNT v2 PERFORMANCE TUNING LOG.md` initialized
+* `CNT v2 TESTNET PERFORMANCE REPORT.md` initialized
 
 ---
 
@@ -121,3 +121,4 @@ Reporting scaffolding: PASS
 CNT v2 performance tuning foundation complete
 Ready for multi-day testnet observation and evidence-based parameter tuning
 ```
+

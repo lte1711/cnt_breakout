@@ -1,4 +1,4 @@
-# CNT v2 PHASE 1 MONITORING IMPLEMENTATION REPORT
+﻿# CNT v2 PHASE 1 MONITORING IMPLEMENTATION REPORT
 
 ```text
 DOCUMENT_NAME = cnt_v2_phase_1_monitoring_implementation_report
@@ -18,8 +18,8 @@ Two newly added CNT v2 documents were reviewed against the current repository an
 
 Conclusion:
 
-* `CNT v2 OPERATIONAL ANALYSIS REPORT.txt` is directionally valid, but parts of it are now stale
-* `CNT v2 PHASE 1 OPERATION MONITORING INSTRUCTION.txt` is project-compatible and actionable
+* `CNT v2 OPERATIONAL ANALYSIS REPORT.md` is directionally valid, but parts of it are now stale
+* `CNT v2 PHASE 1 OPERATION MONITORING INSTRUCTION.md` is project-compatible and actionable
 * based on the monitoring instruction, `scripts/monitor_runtime.py` was implemented
 
 ---
@@ -108,3 +108,4 @@ SOURCE_DOC_1     = PARTIALLY_VALID_BUT_STALE
 SOURCE_DOC_2     = VALID_AND_IMPLEMENTED
 NEXT             = CONTINUE PHASE 1 OBSERVATION WITH MONITOR OUTPUT
 ```
+

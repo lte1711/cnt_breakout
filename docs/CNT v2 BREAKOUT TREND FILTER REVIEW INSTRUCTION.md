@@ -1,4 +1,4 @@
-# CNT v2 BREAKOUT TREND FILTER REVIEW INSTRUCTION
+﻿# CNT v2 BREAKOUT TREND FILTER REVIEW INSTRUCTION
 
 ```text
 DOCUMENT_NAME = cnt_v2_breakout_trend_filter_review_instruction
@@ -81,7 +81,7 @@ STEP 4
 STEP 5
 
 * save review report to:
-  * `docs/CNT v2 BREAKOUT TREND FILTER REVIEW REPORT.txt`
+  * `docs/CNT v2 BREAKOUT TREND FILTER REVIEW REPORT.md`
 
 ---
 
@@ -106,3 +106,4 @@ This stage is complete only when:
 * at most two change options are proposed
 * one recommendation is selected
 * no code is changed
+

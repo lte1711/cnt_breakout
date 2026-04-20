@@ -1,4 +1,4 @@
-# CNT v1.1 STAGE 2 IMPLEMENTATION WORK INSTRUCTION
+﻿# CNT v1.1 STAGE 2 IMPLEMENTATION WORK INSTRUCTION
 
 ```text
 DOCUMENT_NAME = cnt_v1.1_stage2_implementation_work_instruction
@@ -122,7 +122,7 @@ src/state_writer.py
 src/order_validator.py (partial qty 검증)
 config.py
 AGENTS.md
-docs/EXTRA ITEMS REGISTER.txt
+docs/EXTRA ITEMS REGISTER.md
 ```
 
 ---

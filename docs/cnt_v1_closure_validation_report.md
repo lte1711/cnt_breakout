@@ -1,4 +1,4 @@
-CNT V1 CLOSURE VALIDATION REPORT
+﻿CNT V1 CLOSURE VALIDATION REPORT
 
 DATE=2026-04-19
 PROJECT=CNT
@@ -34,9 +34,9 @@ A. DOCUMENT AND STRUCTURE
   VERSION=1.2
   UPDATED=2026-04-19
 - A2 PASS: AGENTS.md body includes current strategy flow, StrategySignal, ExitModel, MarketContext, legacy wrapper note, and expanded state keys.
-- A3 PASS: docs/EXTRA ITEMS REGISTER.txt contains:
+- A3 PASS: docs/EXTRA ITEMS REGISTER.md contains:
   archive/legacy_root_files
-  docs/SHARING CHECKLIST.txt
+  docs/SHARING CHECKLIST.md
   scripts/export_shareable_zip.ps1
 
 B. CONFIG AND SOURCE STRUCTURE
@@ -101,3 +101,4 @@ FINAL DECISION
 
 NEXT STEP
 - If needed, prepare a separate cnt v1 closure handoff note or begin v1.1 planning items.
+

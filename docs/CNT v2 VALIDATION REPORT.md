@@ -1,4 +1,4 @@
-# CNT v2 VALIDATION REPORT
+﻿# CNT v2 VALIDATION REPORT
 
 ```text
 DOCUMENT_NAME = cnt_v2_validation_report
@@ -42,11 +42,11 @@ PASS
 
 Confirmed:
 
-* `docs/CNT v2 ARCHITECTURE DESIGN DOCUMENT.txt`
-* `docs/CNT v2 IMPLEMENTATION WORK INSTRUCTION.txt`
-* `docs/CNT v2 VALIDATION CHECKLIST.txt`
+* `docs/CNT v2 ARCHITECTURE DESIGN DOCUMENT.md`
+* `docs/CNT v2 IMPLEMENTATION WORK INSTRUCTION.md`
+* `docs/CNT v2 VALIDATION CHECKLIST.md`
 * `AGENTS.md` updated with v2 portfolio and market adapter components
-* `docs/EXTRA ITEMS REGISTER.txt` updated with v2-added files
+* `docs/EXTRA ITEMS REGISTER.md` updated with v2-added files
 
 ---
 
@@ -231,3 +231,4 @@ The current result confirms:
 * portfolio state is persisted independently from the v1.1 runtime state
 * spot/futures execution structure is adapter-based and dry-routable, but not yet the active runtime submission path
 * the closed v1.1 baseline remains intact inside the validated scope
+

@@ -298,13 +298,18 @@ def _build_state(
     pending: dict | None,
     open_trade: dict | None,
     risk_metrics: dict | None = None,
+    strategy_name_override: str | None = None,
 ) -> dict:
     normalized_pending = _normalize_pending_order(pending)
     normalized_open_trade = _normalize_open_trade(open_trade)
 
     return {
         "schema_version": SCHEMA_VERSION,
-        "strategy_name": _resolve_strategy_name(normalized_pending, normalized_open_trade),
+        "strategy_name": (
+            str(strategy_name_override)
+            if strategy_name_override
+            else _resolve_strategy_name(normalized_pending, normalized_open_trade)
+        ),
         "last_run_time": timestamp,
         "status": "stopped",
         "symbol": SYMBOL,
@@ -330,6 +335,7 @@ def _save_and_finish(
     risk_metrics: dict | None = None,
     portfolio_state_file: Path | None = None,
     cash_balance: float = 0.0,
+    strategy_name_override: str | None = None,
 ) -> None:
     next_state = _build_state(
         timestamp=timestamp,
@@ -338,6 +344,7 @@ def _save_and_finish(
         pending=pending,
         open_trade=open_trade,
         risk_metrics=risk_metrics,
+        strategy_name_override=strategy_name_override,
     )
     state.clear()
     state.update(next_state)
@@ -360,6 +367,7 @@ def _save_and_finish(
             metrics_file=project_root / STRATEGY_METRICS_FILE,
             portfolio_log_file=project_root / PORTFOLIO_LOG_FILE,
             snapshot_file=project_root / PERFORMANCE_SNAPSHOT_FILE,
+            runtime_log_file=project_root / LOG_FILE,
         )
         generate_performance_report(
             project_root / "docs/CNT v2 TESTNET PERFORMANCE REPORT.md",
@@ -875,6 +883,7 @@ def start_engine() -> None:
                     risk_metrics=risk_metrics,
                     portfolio_state_file=portfolio_state_file,
                     cash_balance=cash_balance,
+                    strategy_name_override=str((open_trade_after or {}).get("strategy_name") or ACTIVE_STRATEGY),
                 )
                 return
 
@@ -892,6 +901,7 @@ def start_engine() -> None:
                     risk_metrics=risk_metrics,
                     portfolio_state_file=portfolio_state_file,
                     cash_balance=cash_balance,
+                    strategy_name_override=str((open_trade_after or {}).get("strategy_name") or ACTIVE_STRATEGY),
                 )
                 return
 
@@ -929,6 +939,7 @@ def start_engine() -> None:
                     risk_metrics=risk_metrics,
                     portfolio_state_file=portfolio_state_file,
                     cash_balance=cash_balance,
+                    strategy_name_override=strategy_name,
                 )
                 return
 
@@ -956,6 +967,7 @@ def start_engine() -> None:
                             risk_metrics=risk_metrics,
                             portfolio_state_file=portfolio_state_file,
                             cash_balance=cash_balance,
+                            strategy_name_override=str((monitored_open_trade or {}).get("strategy_name") or ACTIVE_STRATEGY),
                         )
                         return
 
@@ -990,6 +1002,7 @@ def start_engine() -> None:
                         risk_metrics=risk_metrics,
                         portfolio_state_file=portfolio_state_file,
                         cash_balance=cash_balance,
+                        strategy_name_override=str((monitored_open_trade or {}).get("strategy_name") or ACTIVE_STRATEGY),
                     )
                     return
 
@@ -1006,6 +1019,7 @@ def start_engine() -> None:
                 risk_metrics=risk_metrics,
                 portfolio_state_file=portfolio_state_file,
                 cash_balance=cash_balance,
+                strategy_name_override=str((open_trade or {}).get("strategy_name") or (pending_after or {}).get("strategy_name") or ACTIVE_STRATEGY),
             )
             return
 
@@ -1150,6 +1164,7 @@ def start_engine() -> None:
                         risk_metrics=risk_metrics,
                         portfolio_state_file=portfolio_state_file,
                         cash_balance=cash_balance,
+                        strategy_name_override=strategy_name,
                     )
                     return
 
@@ -1181,6 +1196,7 @@ def start_engine() -> None:
                     risk_metrics=risk_metrics,
                     portfolio_state_file=portfolio_state_file,
                     cash_balance=cash_balance,
+                    strategy_name_override=str((open_trade or {}).get("strategy_name") or ACTIVE_STRATEGY),
                 )
                 return
 
@@ -1210,6 +1226,7 @@ def start_engine() -> None:
                     risk_metrics=risk_metrics,
                     portfolio_state_file=portfolio_state_file,
                     cash_balance=cash_balance,
+                    strategy_name_override=str((open_trade or {}).get("strategy_name") or ACTIVE_STRATEGY),
                 )
                 return
 
@@ -1417,6 +1434,7 @@ def start_engine() -> None:
             risk_metrics=risk_metrics,
             portfolio_state_file=portfolio_state_file,
             cash_balance=cash_balance,
+            strategy_name_override=signal.strategy_name,
         )
 
     except Exception as error:

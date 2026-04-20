@@ -40,9 +40,13 @@ class PullbackV1Strategy(BaseStrategy):
         ema_fast = ema_fast_series[-1]
         ema_slow = ema_slow_series[-1]
         rsi_value = rsi_series[-1]
+        trend_bias = None
         reason = "pullback_not_ready"
         entry_allowed = False
         confidence = 0.0
+
+        if ema_fast is not None and ema_slow is not None:
+            trend_bias = "UP" if ema_fast > ema_slow else "DOWN"
 
         if ema_fast is not None and ema_slow is not None and rsi_value is not None:
             if ema_fast > ema_slow and self.params["pullback_rsi_min"] <= rsi_value <= self.params["pullback_rsi_max"]:
@@ -76,6 +80,7 @@ class PullbackV1Strategy(BaseStrategy):
             reason=reason,
             confidence=confidence,
             market_state="TREND_UP" if ema_fast and ema_slow and ema_fast > ema_slow else "RANGE",
+            trend_bias=trend_bias,
             volatility_state="MEDIUM",
             entry_price_hint=entry_price_hint,
             exit_model=exit_model,

@@ -17,12 +17,13 @@ class EngineCycleSmokeTests(unittest.TestCase):
             pending=None,
             open_trade=None,
             risk_metrics={"daily_loss_count": 1, "consecutive_losses": 0, "last_loss_time": None},
+            strategy_name_override="pullback_v1",
         )
 
         self.assertEqual(state["schema_version"], "1.0")
         self.assertEqual(state["status"], "stopped")
         self.assertEqual(state["action"], "NO_ENTRY_SIGNAL")
-        self.assertEqual(state["strategy_name"], engine.ACTIVE_STRATEGY)
+        self.assertEqual(state["strategy_name"], "pullback_v1")
         self.assertIn("risk_metrics", state)
 
     def test_save_and_finish_updates_state_and_calls_side_effect_layers(self) -> None:
@@ -56,6 +57,7 @@ class EngineCycleSmokeTests(unittest.TestCase):
                     risk_metrics={"daily_loss_count": 0, "consecutive_losses": 0, "last_loss_time": None},
                     portfolio_state_file=portfolio_state_file,
                     cash_balance=12.5,
+                    strategy_name_override="pullback_v1",
                 )
 
             self.assertEqual(state["action"], "NO_ENTRY_SIGNAL")
@@ -68,6 +70,7 @@ class EngineCycleSmokeTests(unittest.TestCase):
             perf_report.assert_called_once()
             live_gate.assert_called_once()
             save_gate.assert_called_once()
+            self.assertEqual(state["strategy_name"], "pullback_v1")
 
 
 if __name__ == "__main__":

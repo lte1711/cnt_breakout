@@ -135,6 +135,31 @@ class PerformanceSnapshotTests(unittest.TestCase):
 
             self.assertEqual(snapshot["blocked_signal_stats"]["entry_gate"], {"stale_signal": 1})
 
+    def test_executed_trades_only_counts_runtime_entry_fills(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            metrics_file = root / "strategy_metrics.json"
+            portfolio_log = root / "portfolio.log"
+            runtime_log = root / "runtime.log"
+            _write(metrics_file, json.dumps(self._metrics_payload()))
+            _write(portfolio_log, "")
+            _write(
+                runtime_log,
+                "\n".join(
+                    [
+                        "[2026-04-20 00:00:00] action=BUY_SUBMITTED price=2300.0 pending=None open_trade=None strategy_name=pullback_v1 reason=buy_submitted",
+                        "[2026-04-20 00:10:00] action=PROMOTE_TO_OPEN_TRADE price=2301.0 pending=None open_trade={'status': 'OPEN'} strategy_name=pullback_v1 reason=pending_buy_filled",
+                        "[2026-04-20 00:20:00] action=SELL_FILLED price=2305.0 pending=None open_trade=None strategy_name=pullback_v1 reason=target_exit_filled",
+                    ]
+                )
+                + "\n",
+            )
+
+            snapshot = build_performance_snapshot(metrics_file, portfolio_log, runtime_log)
+
+            self.assertEqual(snapshot["selected_signals"], 2)
+            self.assertEqual(snapshot["executed_trades"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()

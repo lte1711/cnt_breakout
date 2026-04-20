@@ -33,9 +33,13 @@ class MeanReversionV1Strategy(BaseStrategy):
         ema_value = ema_series[-1]
         rsi_value = rsi_series[-1]
         last_price = context.last_price
+        trend_bias = None
         entry_allowed = False
         confidence = 0.0
         reason = "mean_reversion_not_ready"
+
+        if ema_value is not None:
+            trend_bias = "DOWN" if last_price < ema_value else "UP"
 
         if ema_value is not None and rsi_value is not None:
             if last_price < ema_value and rsi_value <= self.params["rsi_oversold"]:
@@ -69,6 +73,7 @@ class MeanReversionV1Strategy(BaseStrategy):
             reason=reason,
             confidence=confidence,
             market_state="MEAN_REVERSION",
+            trend_bias=trend_bias,
             volatility_state="MEDIUM",
             entry_price_hint=entry_price_hint,
             exit_model=exit_model,

@@ -140,9 +140,32 @@ def _parse_portfolio_log(log_file: Path) -> dict:
     }
 
 
-def build_performance_snapshot(metrics_file: Path, portfolio_log_file: Path) -> dict:
+def _parse_runtime_log(log_file: Path) -> dict:
+    executed_trades = 0
+
+    if not log_file.exists():
+        return {"executed_trades": 0}
+
+    for raw_line in log_file.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or "action=" not in line:
+            continue
+
+        action = line.split("action=", 1)[1].split()[0]
+        if action in {"BUY_FILLED", "PROMOTE_TO_OPEN_TRADE"}:
+            executed_trades += 1
+
+    return {"executed_trades": executed_trades}
+
+
+def build_performance_snapshot(
+    metrics_file: Path,
+    portfolio_log_file: Path,
+    runtime_log_file: Path | None = None,
+) -> dict:
     strategy_metrics = _load_strategy_metrics(metrics_file)
     log_stats = _parse_portfolio_log(portfolio_log_file)
+    runtime_stats = _parse_runtime_log(runtime_log_file) if runtime_log_file is not None else {"executed_trades": 0}
 
     total_signals = 0
     selected_signals = 0
@@ -185,7 +208,7 @@ def build_performance_snapshot(metrics_file: Path, portfolio_log_file: Path) -> 
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "total_signals": total_signals,
         "selected_signals": selected_signals,
-        "executed_trades": selected_signals,
+        "executed_trades": int(runtime_stats["executed_trades"]),
         "closed_trades": closed_trades,
         "wins": wins,
         "losses": losses,
@@ -215,7 +238,8 @@ def generate_and_save_performance_snapshot(
     metrics_file: Path,
     portfolio_log_file: Path,
     snapshot_file: Path,
+    runtime_log_file: Path | None = None,
 ) -> dict:
-    snapshot = build_performance_snapshot(metrics_file, portfolio_log_file)
+    snapshot = build_performance_snapshot(metrics_file, portfolio_log_file, runtime_log_file)
     save_performance_snapshot(snapshot_file, snapshot)
     return snapshot

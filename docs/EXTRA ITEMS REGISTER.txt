@@ -763,3 +763,19 @@ CHANGE LOG
 - REASON=the project needed a design-review artifact that explains why trend-filter review is next and selects one recommendation.
 - CURRENT_DECISION=keep
 - NOTE=recommends option A, trend-filter relaxation, as the next controlled change design.
+
+- DATE=2026-04-20
+- TYPE=doc
+- PATH=docs/CNT v2 BREAKOUT TREND FILTER CHANGE PLAN.txt
+- SUMMARY=records the actual implementation scope for the recommended trend-filter relaxation
+- REASON=after the review selected option A, the implementation scope needed to be fixed before code change.
+- CURRENT_DECISION=keep
+- NOTE=keeps the change narrowly limited to the upper trend gate.
+
+- DATE=2026-04-20
+- TYPE=doc
+- PATH=docs/CNT v2 BREAKOUT TREND FILTER CHANGE REPORT.txt
+- SUMMARY=records the code change, new tests, and initial runtime check for the breakout trend-filter change
+- REASON=the actual move from review to implementation needed a separate execution record.
+- CURRENT_DECISION=keep
+- NOTE=states that runtime effect is not yet fully judged after only one fresh cycle.

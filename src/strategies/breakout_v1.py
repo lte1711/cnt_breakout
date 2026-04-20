@@ -53,6 +53,7 @@ def _classify_market(context: MarketContext, params: dict) -> dict:
 
     close_price = closes[-1]
     ema_gap_ratio = abs(ema_fast - ema_slow) / close_price
+    trend_bias = "UP" if ema_fast > ema_slow else "DOWN"
 
     if ema_gap_ratio < params["ema_gap_threshold"]:
         market_state = "RANGE"
@@ -73,6 +74,8 @@ def _classify_market(context: MarketContext, params: dict) -> dict:
         "reason": "ok",
         "ema_fast": ema_fast,
         "ema_slow": ema_slow,
+        "ema_gap_ratio": ema_gap_ratio,
+        "trend_bias": trend_bias,
         "rsi": rsi_value,
     }
 
@@ -98,7 +101,14 @@ def _build_entry_signal(context: MarketContext, params: dict, market_state: dict
             "confidence": 0.0,
         }
 
-    if market_state["market_state"] != "TREND_UP":
+    trend_gate_pass = market_state["market_state"] == "TREND_UP"
+    range_up_bias_pass = (
+        market_state["market_state"] == "RANGE"
+        and market_state.get("trend_bias") == "UP"
+        and ema_fast > ema_slow
+    )
+
+    if not trend_gate_pass and not range_up_bias_pass:
         return {
             "entry_allowed": False,
             "side": "NONE",

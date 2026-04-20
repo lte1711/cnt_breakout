@@ -1,3 +1,11 @@
+---
+tags:
+  - cnt
+  - docs
+aliases:
+  - RECORD TEXT
+---
+
 전략-엔진 통합 1차 검증 완료.
 
 실행으로 확인된 상태 전이는 다음과 같다.
@@ -13,3 +21,13 @@
 
 또한 테스트용 강제 분기 제거 후 운영본 상태에서 다시 실행하여
 NO_ENTRY_SIGNAL 동작을 확인했으므로, 운영 기준 복귀도 완료되었다.
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - performance
+  - v2
+aliases:
+  - CNT v2 PERFORMANCE TUNING LOG
+---
+
 # CNT v2 PERFORMANCE TUNING LOG
 
 ```text
@@ -56,3 +66,13 @@ RATIONALE: checklist minimum sample not met, so tuning was intentionally deferre
 EXPECTED_EFFECT: preserve baseline until meaningful data accumulates
 POST_CHANGE_VALIDATION: performance validation report written
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

@@ -35,3 +35,10 @@ tags:
 - [[docs/CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT REPORT]]
 - [[docs/CNT v2 TEST HARNESS IMPLEMENTATION REPORT]]
 
+---
+
+## Obsidian Links
+
+- [[00 Docs Index|Docs Index]]
+- [[AGENTS]]
+- [[docs/CNT v2 TESTNET PERFORMANCE REPORT|Current Performance Report]]

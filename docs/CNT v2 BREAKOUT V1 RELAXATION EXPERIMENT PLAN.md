@@ -1,3 +1,15 @@
+---
+tags:
+  - cnt
+  - docs
+  - breakout
+  - plan
+  - v1
+  - v2
+aliases:
+  - CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT PLAN
+---
+
 ﻿# CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT PLAN
 
 ```text
@@ -110,3 +122,12 @@ Experiment result must be stored in:
 
 * `docs/CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT REPORT.md`
 
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

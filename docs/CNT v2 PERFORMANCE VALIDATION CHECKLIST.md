@@ -1,3 +1,15 @@
+---
+tags:
+  - cnt
+  - docs
+  - performance
+  - validation
+  - instruction
+  - v2
+aliases:
+  - CNT v2 PERFORMANCE VALIDATION CHECKLIST
+---
+
 # CNT v2 PERFORMANCE VALIDATION CHECKLIST
 
 문서 목적:
@@ -287,3 +299,13 @@ NEXT   = CAPITAL_ALLOCATION / LIVE_PREP
 > ❗ **“숫자가 맞다”를 증명해야 한다**
 
 ---
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

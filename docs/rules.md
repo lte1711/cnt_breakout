@@ -1,3 +1,11 @@
+---
+tags:
+  - cnt
+  - docs
+aliases:
+  - rules
+---
+
 # CNT v0.1 공식 운영 규칙
 
 ## 문서 정보
@@ -498,3 +506,13 @@ CHANGE_LOG:
 ```text
 cnt/docs/rules.md
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

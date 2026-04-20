@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - validation
+  - instruction
+  - v1
+aliases:
+  - CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION CHECKLIST
+---
+
 # CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION CHECKLIST
 
 ```text
@@ -720,3 +731,14 @@ FINAL DECISION
 # 결론
 
 > **CNT v1.1 Stage 2 검증은 trailing stop, time exit, partial exit가 기존 안정 구조를 깨지 않고 연결됐는지를 확인하는 절차다.**
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[cnt_v1.1_stage2_architecture_design]]
+- [[cnt_v1.1_stage2_implementation_work_instruction]]

@@ -1,3 +1,12 @@
+---
+tags:
+  - cnt
+  - docs
+  - v2
+aliases:
+  - CNT v2 SCHEDULED DATA COLLECTION SETUP
+---
+
 # CNT v2 SCHEDULED DATA COLLECTION SETUP
 
 ## 1. `run.ps1` Final Form
@@ -112,3 +121,13 @@ Do not:
 * remove strategies
 
 Only obvious bug fixes are allowed.
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

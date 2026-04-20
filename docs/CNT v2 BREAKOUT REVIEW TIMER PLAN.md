@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - breakout
+  - plan
+  - v2
+aliases:
+  - CNT v2 BREAKOUT REVIEW TIMER PLAN
+---
+
 # CNT v2 BREAKOUT REVIEW TIMER PLAN
 
 ```text
@@ -55,3 +66,13 @@ The next review must conclude with one of:
 * `KEEP_CURRENT_VALUES`
 * `FURTHER_RELAXATION`
 * `REVIEW_TREND_FILTER`
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

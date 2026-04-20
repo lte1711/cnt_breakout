@@ -1,3 +1,15 @@
+---
+tags:
+  - cnt
+  - docs
+  - performance
+  - validation
+  - report
+  - v2
+aliases:
+  - CNT v2 PERFORMANCE VALIDATION REPORT
+---
+
 # CNT v2 PERFORMANCE VALIDATION REPORT
 
 ```text
@@ -150,3 +162,15 @@ NEXT   = CONTINUE_DATA_COLLECTION
 ```
 
 Do not tune live parameters yet beyond documented baseline unless one of the checklist minimum sample rules is met.
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[CNT v2 PERFORMANCE VALIDATION CHECKLIST]]
+- [[CNT v2 TESTNET PERFORMANCE REPORT]]
+- [[CNT v2 PERFORMANCE TUNING LOG]]

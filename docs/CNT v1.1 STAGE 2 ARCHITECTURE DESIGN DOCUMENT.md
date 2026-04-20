@@ -1,3 +1,12 @@
+---
+tags:
+  - cnt
+  - docs
+  - v1
+aliases:
+  - CNT v1.1 STAGE 2 ARCHITECTURE DESIGN DOCUMENT
+---
+
 # CNT v1.1 STAGE 2 ARCHITECTURE DESIGN DOCUMENT
 
 ```text
@@ -482,3 +491,15 @@ CNT v1.1 Stage 2는 전략 자체를 바꾸는 작업이 아니다.
 > **CNT v1.1 Stage 2는 기존 안정된 구조 위에 “지능형 청산 레이어”를 추가하는 확장 단계다.**
 
 ---
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[cnt_v1.1_architecture_design]]
+- [[cnt_v1.1_implementation_work_instruction]]
+- [[cnt_v1.1_implementation_validation_checklist]]

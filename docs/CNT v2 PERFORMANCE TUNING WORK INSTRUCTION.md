@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - performance
+  - instruction
+  - v2
+aliases:
+  - CNT v2 PERFORMANCE TUNING WORK INSTRUCTION
+---
+
 ﻿# CNT v2 PERFORMANCE TUNING WORK INSTRUCTION
 
 문서 목적:
@@ -440,3 +451,12 @@ confidence_multiplier = min(1.0, trades_closed / N)
 > **전략별 수익성 비교 → 자본 배분 → 실전 전환 기준 정의**
 > 단계로 넘어간다.
 
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

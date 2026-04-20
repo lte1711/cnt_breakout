@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - validation
+  - report
+  - v2
+aliases:
+  - CNT v2 VALIDATION REPORT
+---
+
 ﻿# CNT v2 VALIDATION REPORT
 
 ```text
@@ -232,3 +243,14 @@ The current result confirms:
 * spot/futures execution structure is adapter-based and dry-routable, but not yet the active runtime submission path
 * the closed v1.1 baseline remains intact inside the validated scope
 
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[cnt_v2_architecture_design]]
+- [[cnt_v2_implementation_work_instruction]]
+- [[cnt_v2_validation_checklist]]

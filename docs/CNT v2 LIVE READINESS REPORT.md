@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - report
+  - v2
+aliases:
+  - CNT v2 LIVE READINESS REPORT
+---
+
 # CNT v2 LIVE READINESS REPORT
 
 ```text
@@ -119,3 +129,15 @@ REASON   = PRECONDITIONS_NOT_MET
 ```
 
 Do not move CNT v2 to live trading while the minimum sample and gate evidence remain unmet.
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[CNT v2 LIVE READINESS GATE]]
+- [[CNT v2 PERFORMANCE VALIDATION REPORT]]
+- [[CNT v2 TESTNET DATA COLLECTION STATUS REPORT]]

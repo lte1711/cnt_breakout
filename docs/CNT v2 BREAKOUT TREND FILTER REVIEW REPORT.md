@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - breakout
+  - report
+  - v2
+aliases:
+  - CNT v2 BREAKOUT TREND FILTER REVIEW REPORT
+---
+
 # CNT v2 BREAKOUT TREND FILTER REVIEW REPORT
 
 ```text
@@ -220,3 +231,14 @@ ATR_RSI_SECOND_RELAXATION    = NOT_RECOMMENDED_YET
 RECOMMENDED_OPTION           = A
 NEXT_STAGE                   = ACTUAL_TREND_FILTER_CHANGE_DESIGN
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[CNT v2 BREAKOUT TREND FILTER REVIEW INSTRUCTION]]
+- [[CNT v2 BREAKOUT TIMER JUDGMENT REPORT]]

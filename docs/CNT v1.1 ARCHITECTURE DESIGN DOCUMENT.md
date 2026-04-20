@@ -1,3 +1,12 @@
+---
+tags:
+  - cnt
+  - docs
+  - v1
+aliases:
+  - CNT v1.1 ARCHITECTURE DESIGN DOCUMENT
+---
+
 # CNT v1.1 ARCHITECTURE DESIGN DOCUMENT
 
 ```
@@ -415,3 +424,12 @@ CNT v1.1은 구조 변경이 아니라 확장이다.
 
 ---
 
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

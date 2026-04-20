@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - instruction
+  - v2
+aliases:
+  - CNT v2 EXIT FAILSAFE OPERATION CHECKLIST
+---
+
 # CNT v2 EXIT FAILSAFE OPERATION CHECKLIST
 
 ```text
@@ -81,3 +91,13 @@ Any one of the following is a fail:
 ```text
 pending 있어도 stop이 반드시 실행되면 PASS
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

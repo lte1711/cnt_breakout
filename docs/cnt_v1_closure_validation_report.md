@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - validation
+  - report
+  - v1
+aliases:
+  - cnt_v1_closure_validation_report
+---
+
 ﻿CNT V1 CLOSURE VALIDATION REPORT
 
 DATE=2026-04-19
@@ -102,3 +113,12 @@ FINAL DECISION
 NEXT STEP
 - If needed, prepare a separate cnt v1 closure handoff note or begin v1.1 planning items.
 
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

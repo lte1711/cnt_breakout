@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - observability
+  - report
+  - v2
+aliases:
+  - CNT v2 OBSERVABILITY AGGREGATION PATCH REPORT
+---
+
 # CNT v2 OBSERVABILITY AGGREGATION PATCH REPORT
 
 ```text
@@ -120,3 +131,14 @@ Required next action:
 1. start breakout_v1 first relaxation experiment
 2. keep observability fields active during the experiment
 3. store experiment result and rejection distribution in a dedicated report
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[CNT v2 OBSERVABILITY IMPLEMENTATION REPORT]]
+- [[CNT v2 OBSERVABILITY VALIDATION GATE]]

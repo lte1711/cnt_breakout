@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - report
+  - v2
+aliases:
+  - CNT v2 EXIT FAILSAFE OPERATION REPORT
+---
+
 # CNT v2 EXIT FAILSAFE OPERATION REPORT
 
 ```text
@@ -69,3 +79,14 @@ EXIT_FAILSAFE_PATCH        = PRESENT
 EXIT_FAILSAFE_RUNTIME_PROOF= PENDING
 NEXT                       = CONTINUE TESTNET OBSERVATION UNTIL FIRST QUALIFYING CASE
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[CNT v2 EXIT FAILSAFE PATCH REPORT]]
+- [[CNT v2 EXIT FAILSAFE OPERATION CHECKLIST]]

@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - observability
+  - plan
+  - v2
+aliases:
+  - CNT v2 OBSERVABILITY PRIORITY PLAN
+---
+
 # CNT v2 OBSERVABILITY PRIORITY PLAN
 
 ```text
@@ -73,3 +84,13 @@ NEXT_IMPLEMENTATION = OBSERVABILITY_LAYER
 BREAKOUT_TUNING     = DEFER_UNTIL_MORE_VISIBILITY_EXISTS
 ENGINE_SPLIT        = DEFER_UNTIL_MORE_VISIBILITY_EXISTS
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

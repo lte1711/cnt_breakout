@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - breakout
+  - report
+  - v2
+aliases:
+  - CNT v2 BREAKOUT COMPLETION ALERT REPORT
+---
+
 # CNT v2 BREAKOUT COMPLETION ALERT REPORT
 
 ```text
@@ -58,3 +69,13 @@ POST_CHANGE_BREAKOUT_CYCLES >= 30
 ```
 
 If a shorter review point is needed later, the threshold can be changed explicitly.
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

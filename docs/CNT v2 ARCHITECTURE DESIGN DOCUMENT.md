@@ -1,3 +1,12 @@
+---
+tags:
+  - cnt
+  - docs
+  - v2
+aliases:
+  - CNT v2 ARCHITECTURE DESIGN DOCUMENT
+---
+
 # CNT v2 ARCHITECTURE DESIGN DOCUMENT
 
 ```text
@@ -707,3 +716,13 @@ CNT v2는 더 이상 단순한 전략 봇이 아니다.
 # 결론
 
 > **CNT v2의 본질은 “좋은 전략 하나”가 아니라, “여러 전략과 여러 시장을 안전하게 운영하는 상위 시스템”을 만드는 것이다.**
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

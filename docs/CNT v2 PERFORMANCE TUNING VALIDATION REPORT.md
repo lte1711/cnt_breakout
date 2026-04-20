@@ -1,3 +1,15 @@
+---
+tags:
+  - cnt
+  - docs
+  - performance
+  - validation
+  - report
+  - v2
+aliases:
+  - CNT v2 PERFORMANCE TUNING VALIDATION REPORT
+---
+
 ﻿# CNT v2 PERFORMANCE TUNING VALIDATION REPORT
 
 ```text
@@ -122,3 +134,14 @@ CNT v2 performance tuning foundation complete
 Ready for multi-day testnet observation and evidence-based parameter tuning
 ```
 
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[CNT v2 PERFORMANCE TUNING WORK INSTRUCTION]]
+- [[CNT v2 PERFORMANCE TUNING LOG]]
+- [[CNT v2 TESTNET PERFORMANCE REPORT]]

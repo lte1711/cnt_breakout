@@ -1,3 +1,12 @@
+---
+tags:
+  - cnt
+  - docs
+  - validation
+aliases:
+  - VALIDATION RESULT
+---
+
 검증 완료 항목:
 
 1. 신규 진입 차단
@@ -23,3 +32,13 @@
 
 6. 운영본 복귀 확인
 - 테스트 우회 제거 후 action=NO_ENTRY_SIGNAL 확인
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

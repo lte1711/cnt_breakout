@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - breakout
+  - plan
+  - v2
+aliases:
+  - CNT v2 BREAKOUT TREND FILTER CHANGE PLAN
+---
+
 # CNT v2 BREAKOUT TREND FILTER CHANGE PLAN
 
 ```text
@@ -59,3 +70,13 @@ Validation requirements:
 2. breakout trend-bias behavior is covered by new tests
 3. one fresh runtime cycle is executed
 4. no claim of success is made unless runtime evidence exists
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

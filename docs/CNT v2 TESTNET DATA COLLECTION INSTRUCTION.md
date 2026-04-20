@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - instruction
+  - v2
+aliases:
+  - CNT v2 TESTNET DATA COLLECTION INSTRUCTION
+---
+
 ﻿맞다. 현재 판정은 **`PERFORMANCE_VALIDATION_IN_PROGRESS`**가 정확하다.
 
 # 현재 상태 정리
@@ -132,4 +142,12 @@ PERFORMANCE_VALIDATION_IN_PROGRESS
 
 > **“구현 완료”가 아니라 “표본 확보 완료”**
 
+---
 
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

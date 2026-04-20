@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - instruction
+  - v2
+aliases:
+  - CNT v2 TASK SCHEDULER REGISTRATION CHECKLIST
+---
+
 # CNT v2 TASK SCHEDULER REGISTRATION CHECKLIST
 
 Document purpose:
@@ -99,3 +109,13 @@ SCHEDULER_STATUS = ACTIVE
 DATA_COLLECTION  = STARTED
 CURRENT_GATE     = NOT_READY / INSUFFICIENT_SAMPLE
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

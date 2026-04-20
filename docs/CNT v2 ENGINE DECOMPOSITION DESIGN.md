@@ -1,3 +1,12 @@
+---
+tags:
+  - cnt
+  - docs
+  - v2
+aliases:
+  - CNT v2 ENGINE DECOMPOSITION DESIGN
+---
+
 # CNT v2 ENGINE DECOMPOSITION DESIGN
 
 ```text
@@ -236,3 +245,13 @@ DECOMPOSITION = DESIGN_READY
 IMPLEMENTATION = NOT_STARTED
 PREREQUISITE  = KEEP COLLECTING TESTNET EVIDENCE WHILE REFACTORING CAREFULLY
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

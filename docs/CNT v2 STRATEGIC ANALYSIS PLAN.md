@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - plan
+  - v2
+aliases:
+  - CNT v2 STRATEGIC ANALYSIS PLAN
+---
+
 # CNT v2 STRATEGIC ANALYSIS PLAN
 
 ```text
@@ -94,3 +104,13 @@ The next concrete follow-up from this planning document is:
 ```text
 CNT v2 ENGINE DECOMPOSITION DESIGN
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

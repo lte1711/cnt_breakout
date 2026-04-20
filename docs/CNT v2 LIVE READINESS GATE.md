@@ -1,3 +1,12 @@
+---
+tags:
+  - cnt
+  - docs
+  - v2
+aliases:
+  - CNT v2 LIVE READINESS GATE
+---
+
 # CNT v2 LIVE READINESS GATE
 
 문서 목적:
@@ -254,3 +263,13 @@ RETURN TO TUNING
 > **실제로 돈을 벌 수 있는 시스템인지 검증하는 단계다**
 
 ---
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

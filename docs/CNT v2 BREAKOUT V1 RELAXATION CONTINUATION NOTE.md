@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - breakout
+  - v1
+  - v2
+aliases:
+  - CNT v2 BREAKOUT V1 RELAXATION CONTINUATION NOTE
+---
+
 # CNT v2 BREAKOUT V1 RELAXATION CONTINUATION NOTE
 
 ```text
@@ -60,3 +71,13 @@ CURRENT_MODE   = TESTNET_ONLY
 CURRENT_ACTION = ACCUMULATE_MORE_CYCLES
 NEXT_DECISION  = 2026-04-20 09:10:34 review point
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

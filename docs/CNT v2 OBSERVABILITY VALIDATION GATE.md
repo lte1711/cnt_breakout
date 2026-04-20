@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - observability
+  - validation
+  - v2
+aliases:
+  - CNT v2 OBSERVABILITY VALIDATION GATE
+---
+
 # CNT v2 OBSERVABILITY VALIDATION GATE
 
 ```text
@@ -100,3 +111,13 @@ STEP 3 = PASS when fresh runtime evidence is captured
 CURRENT_RESULT = STEP 1 PASS / STEP 2 PASS / STEP 3 PASS
 BREAKOUT_EXPERIMENT = ALLOWED
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

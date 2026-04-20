@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - plan
+  - v2
+aliases:
+  - CNT v2 ENGINEERING PHASE PLAN
+---
+
 # CNT v2 ENGINEERING PHASE PLAN
 
 ```text
@@ -99,3 +109,13 @@ ENGINEERING_PHASE = STARTED
 CURRENT_STEP      = OBSERVABILITY
 REFACTOR          = DEFERRED_UNTIL_BASELINE_IS_TESTED
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

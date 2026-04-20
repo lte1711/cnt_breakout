@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - instruction
+  - v2
+aliases:
+  - CNT v2 PHASE 1 OPERATION MONITORING INSTRUCTION
+---
+
 좋다. 지금 상태에서는 **“수정”이 아니라 “운영 감시 체계 구축”**이 다음 단계다.
 즉, Phase 1의 핵심은 **데이터를 그냥 모으는 게 아니라 “문제 발생을 자동 감지”하는 것**이다.
 
@@ -233,3 +243,13 @@ closed_trades >= 20
 ```
 
 ---
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

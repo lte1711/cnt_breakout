@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - report
+  - v2
+aliases:
+  - CNT v2 EXIT FAILSAFE PATCH REPORT
+---
+
 # CNT v2 EXIT FAILSAFE PATCH REPORT
 
 ```text
@@ -57,3 +67,13 @@ EXIT_FAILSAFE = PATCHED
 LIVE_STATUS   = STILL_NOT_READY
 NEXT          = CONTINUE TESTNET OBSERVATION WITH PATCHED EXIT OVERRIDE
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

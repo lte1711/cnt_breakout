@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - validation
+  - report
+  - v2
+aliases:
+  - CNT v2 POST-OPERATIONAL PATCH VALIDATION REPORT
+---
+
 # CNT v2 POST-OPERATIONAL PATCH VALIDATION REPORT
 
 ```text
@@ -112,3 +123,14 @@ Routing wording consistency: PASS
 CNT v2 post-operational patch complete
 Ready for further performance-oriented improvements
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[CNT v2 POST-OPERATIONAL PATCH WORK INSTRUCTION]]
+- [[CNT v2 VALIDATION REPORT]]

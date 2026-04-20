@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - breakout
+  - report
+  - v2
+aliases:
+  - CNT v2 BREAKOUT TIMER JUDGMENT REPORT
+---
+
 # CNT v2 BREAKOUT TIMER JUDGMENT REPORT
 
 ```text
@@ -80,3 +91,14 @@ Still tracked, but not blocking this judgment:
 2. possible log write collision during overlapping manual runs
 
 These did not affect the experiment-window decision.
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[CNT v2 BREAKOUT REVIEW TIMER REPORT]]
+- [[CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT REPORT]]

@@ -1,3 +1,15 @@
+---
+tags:
+  - cnt
+  - docs
+  - observability
+  - validation
+  - plan
+  - v2
+aliases:
+  - CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION PLAN
+---
+
 # CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION PLAN
 
 ```text
@@ -74,3 +86,13 @@ test suite = still passing
 RESULT = PASS
 NEXT   = breakout_v1 first relaxation experiment
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

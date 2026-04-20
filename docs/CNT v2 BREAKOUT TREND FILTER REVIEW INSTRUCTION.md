@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - breakout
+  - instruction
+  - v2
+aliases:
+  - CNT v2 BREAKOUT TREND FILTER REVIEW INSTRUCTION
+---
+
 ﻿# CNT v2 BREAKOUT TREND FILTER REVIEW INSTRUCTION
 
 ```text
@@ -107,3 +118,12 @@ This stage is complete only when:
 * one recommendation is selected
 * no code is changed
 
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

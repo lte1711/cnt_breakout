@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - report
+  - v2
+aliases:
+  - CNT v2 OPERATIONAL ANALYSIS REPORT
+---
+
 # CNT v2 OPERATIONAL ANALYSIS REPORT (REVISED)
 
 시스템 버전: CNT v2.0
@@ -242,3 +252,13 @@ ACTION = NO_CHANGE
 * 리스크 정책 변경
 
 ---
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

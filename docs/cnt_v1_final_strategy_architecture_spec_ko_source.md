@@ -1,3 +1,12 @@
+---
+tags:
+  - cnt
+  - docs
+  - v1
+aliases:
+  - cnt_v1_final_strategy_architecture_spec_ko_source
+---
+
 좋다. 사용자 확정 결론을 반영해서 **cnt 프로젝트용 최종 전략 아키텍처 명세서 v1**로 바로 넘어간다.
 
 ---
@@ -636,4 +645,12 @@ strategy=breakout_v1 symbol=ETHUSDT entry_allowed=True side=BUY trigger=BREAKOUT
 * **전략 로직을 manager + strategy 클래스로 승격한다**
 * **청산 규칙을 엔진이 아니라 전략이 소유하게 만든다**
 
+---
 
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

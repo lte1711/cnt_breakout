@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - observability
+  - report
+  - v2
+aliases:
+  - CNT v2 OBSERVABILITY IMPLEMENTATION REPORT
+---
+
 # CNT v2 OBSERVABILITY IMPLEMENTATION REPORT
 
 ```text
@@ -114,3 +125,14 @@ Important note:
 ```text
 NEXT = CONTROLLED BREAKOUT ACTIVATION EXPERIMENT
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[CNT v2 OBSERVABILITY PRIORITY PLAN]]
+- [[CNT v2 PRIORITY DECISION REPORT]]

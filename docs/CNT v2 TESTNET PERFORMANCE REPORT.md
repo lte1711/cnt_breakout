@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - performance
+  - report
+  - v2
+aliases:
+  - CNT v2 TESTNET PERFORMANCE REPORT
+---
+
 # CNT v2 TESTNET PERFORMANCE REPORT
 
 ```text
@@ -35,3 +46,13 @@ RISK_TRIGGER_STATS: none
 STRATEGY_BREAKDOWN: breakout_v1: trades_closed=0, wins=0, losses=0, win_rate=0.0000, expectancy=0.000000, profit_factor=0.000000 | pullback_v1: trades_closed=9, wins=6, losses=3, win_rate=0.6667, expectancy=0.004487, profit_factor=2.088725
 NOTES: auto-generated from performance snapshot
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

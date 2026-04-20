@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - report
+  - plan
+  - v2
+aliases:
+  - CNT v2 NEXT PHASE PLANNING REPORT
+---
+
 # CNT v2 NEXT PHASE PLANNING REPORT
 
 ```text
@@ -93,3 +104,15 @@ TUNING_NOW = NO
 ```
 
 The project remains in a hold-judgment state, but the next phase is now explicitly defined and ready for execution.
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[CNT v2 NEXT PHASE PLAN]]
+- [[CNT v2 DATA COLLECTION AND LIVE GATE VALIDATION REPORT]]
+- [[CNT v2 PERFORMANCE VALIDATION REPORT]]

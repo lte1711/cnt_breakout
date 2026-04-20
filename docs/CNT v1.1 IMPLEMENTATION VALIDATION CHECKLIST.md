@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - validation
+  - instruction
+  - v1
+aliases:
+  - CNT v1.1 IMPLEMENTATION VALIDATION CHECKLIST
+---
+
 # CNT v1.1 IMPLEMENTATION VALIDATION CHECKLIST
 
 ```text
@@ -808,3 +819,14 @@ FINAL DECISION
 > **CNT v1.1 구현 검증은 신호, 실행, 리스크, 관측성, 청산 확장이 서로 충돌 없이 연결됐는지를 확인하는 절차다.**
 
 ---
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[cnt_v1.1_architecture_design]]
+- [[cnt_v1.1_implementation_work_instruction]]

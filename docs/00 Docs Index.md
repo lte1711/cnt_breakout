@@ -2,7 +2,8 @@
 tags:
   - cnt
   - docs
-  - index
+aliases:
+  - 00 Docs Index
 ---
 
 # CNT Docs Index
@@ -48,3 +49,12 @@ tags:
 - [[CNT v2 DATA COLLECTION AND LIVE GATE VALIDATION REPORT]]
 - [[CNT v2 EXIT FAILSAFE OPERATION REPORT]]
 
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - instruction
+  - v1
+aliases:
+  - CNT v1.1 IMPLEMENTATION WORK INSTRUCTION
+---
+
 ﻿좋다. 아래는 **문서화 가능한 형식의 CNT v1.1 구현 작업지시서**다.
 그대로 `docs/`에 넣을 수 있는 수준으로 정리했다.
 
@@ -725,3 +735,12 @@ CNT v1.1 구현은 구조 재작성 작업이 아니다.
 
 ---
 
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

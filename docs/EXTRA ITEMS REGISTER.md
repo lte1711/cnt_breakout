@@ -1,3 +1,11 @@
+---
+tags:
+  - cnt
+  - docs
+aliases:
+  - EXTRA ITEMS REGISTER
+---
+
 ﻿CNT EXTRA ITEMS REGISTER
 
 목적:
@@ -796,3 +804,12 @@ CHANGE LOG
 - CURRENT_DECISION=keep
 - NOTE=counts breakout post-change cycles from signal.log and sends the alert only once.
 
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

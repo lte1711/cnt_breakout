@@ -1,3 +1,15 @@
+---
+tags:
+  - cnt
+  - docs
+  - breakout
+  - report
+  - v1
+  - v2
+aliases:
+  - CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT REPORT
+---
+
 # CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT REPORT
 
 ```text
@@ -230,3 +242,14 @@ The completed report must later include:
 * archived breakout selected count
 * archived `selection_reason=highest_score` occurrence
 * archived `selected_strategy_counts` reflection result
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT PLAN]]
+- [[CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION REPORT]]

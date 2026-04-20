@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - validation
+  - instruction
+  - v1
+aliases:
+  - engine_runtime_validation_checklist_v1
+---
+
 CNT engine runtime validation checklist v1
 
 1. Pre-check
@@ -29,3 +40,13 @@ CNT engine runtime validation checklist v1
 
 7. Safety rule
 - If current open_trade target_price or stop_price is close to current market price, do not run the engine for validation.
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

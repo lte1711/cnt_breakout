@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - breakout
+  - report
+  - v2
+aliases:
+  - CNT v2 BREAKOUT TREND FILTER CHANGE REPORT
+---
+
 # CNT v2 BREAKOUT TREND FILTER CHANGE REPORT
 
 ```text
@@ -114,3 +125,14 @@ Continue observing:
 * breakout selection appearance
 
 The next meaningful judgment should be based on accumulated post-change cycles, not on a single immediate runtime line.
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[CNT v2 BREAKOUT TREND FILTER REVIEW REPORT]]
+- [[CNT v2 BREAKOUT TREND FILTER CHANGE PLAN]]

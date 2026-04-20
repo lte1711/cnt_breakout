@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - instruction
+  - v1
+aliases:
+  - cnt_v1_implementation_work_instruction_ko_source
+---
+
 좋다. 아래는 **cnt 프로젝트용 구현 작업지시서 v1**이다.
 목표는 앞서 확정한 **최종 전략 아키텍처 명세서 v1**를 실제 코드 변경 단위로 쪼개서, 바로 구현 가능한 형태로 만드는 것이다.
 
@@ -631,3 +641,13 @@ v1 완료 뒤 다음 후보는 아래다.
 다음 실제 구현은 아래 한 줄로 시작한다.
 
 > **T1부터 T8까지 순서대로 반영하고, 각 단계마다 py_compile 및 런타임 import 검증을 수행한다.**
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

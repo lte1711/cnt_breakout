@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - instruction
+  - v2
+aliases:
+  - CNT v2 IMPLEMENTATION WORK INSTRUCTION
+---
+
 # CNT v2 IMPLEMENTATION WORK INSTRUCTION
 
 ```text
@@ -399,3 +409,13 @@ CNT v2 구현의 핵심은 이것 하나다:
 > **CNT v2는 “전략을 잘 만드는 프로젝트”에서 “전략을 운영하는 시스템”으로의 전환이다.**
 
 ---
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

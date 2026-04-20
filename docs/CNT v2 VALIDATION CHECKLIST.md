@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - validation
+  - instruction
+  - v2
+aliases:
+  - CNT v2 VALIDATION CHECKLIST
+---
+
 좋다. 아래는 **문서화 가능한 형식의 CNT v2 검증 체크리스트 (Validation Checklist)**다.
 앞서 만든 v2 아키텍처 설계서와 구현 작업지시서에 맞춰, **바로 문서로 저장 가능한 형태**로 정리했다.
 
@@ -722,3 +733,14 @@ FINAL DECISION
 # 결론
 
 > **CNT v2 검증은 전략, 포트폴리오, 시장 어댑터, 상태, 리스크가 서로 충돌 없이 통합되는지를 확인하는 절차다.**
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[cnt_v2_architecture_design]]
+- [[cnt_v2_implementation_work_instruction]]

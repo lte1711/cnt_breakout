@@ -1,3 +1,15 @@
+---
+tags:
+  - cnt
+  - docs
+  - observability
+  - validation
+  - report
+  - v2
+aliases:
+  - CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION REPORT
+---
+
 # CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION REPORT
 
 ```text
@@ -98,3 +110,14 @@ SNAPSHOT_REFLECTION         = PASS
 TEST_STATUS                 = PASS
 BREAKOUT_EXPERIMENT_GATE    = OPEN
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[CNT v2 OBSERVABILITY VALIDATION GATE]]
+- [[CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION PLAN]]

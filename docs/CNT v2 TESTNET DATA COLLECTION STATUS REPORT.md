@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - report
+  - v2
+aliases:
+  - CNT v2 TESTNET DATA COLLECTION STATUS REPORT
+---
+
 # CNT v2 TESTNET DATA COLLECTION STATUS REPORT
 
 ```text
@@ -102,3 +112,15 @@ DECISION = CONTINUE_DATA_COLLECTION
 REASON   = INSUFFICIENT_SAMPLE
 NEXT     = WAIT_FOR_20_CLOSED_TRADES_OR_3_DAYS
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[CNT v2 TESTNET DATA COLLECTION INSTRUCTION]]
+- [[CNT v2 PERFORMANCE VALIDATION REPORT]]
+- [[CNT v2 TESTNET PERFORMANCE REPORT]]

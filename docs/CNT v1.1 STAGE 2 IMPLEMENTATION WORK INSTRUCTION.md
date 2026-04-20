@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - instruction
+  - v1
+aliases:
+  - CNT v1.1 STAGE 2 IMPLEMENTATION WORK INSTRUCTION
+---
+
 ﻿# CNT v1.1 STAGE 2 IMPLEMENTATION WORK INSTRUCTION
 
 ```text
@@ -494,3 +504,14 @@ Stage 2는 엔진을 바꾸는 작업이 아니다.
 > **CNT v1.1 Stage 2 구현은 “지능형 청산 레이어”를 추가하는 작업이며, 기존 안정된 구조 위에서 안전하게 확장해야 한다.**
 
 ---
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[cnt_v1.1_stage2_architecture_design]]
+- [[cnt_v1.1_implementation_validation_checklist]]

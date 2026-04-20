@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - plan
+  - v2
+aliases:
+  - CNT v2 NEXT PHASE PLAN
+---
+
 # CNT v2 NEXT PHASE PLAN
 
 ## (Post-Validation Data Accumulation Phase)
@@ -279,3 +289,13 @@ It is:
 wait in a measurable way
 build automatic judgment on top of accumulating evidence
 ```
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

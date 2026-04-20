@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - docs
+  - breakout
+  - report
+  - v2
+aliases:
+  - CNT v2 BREAKOUT REVIEW TIMER REPORT
+---
+
 ﻿# CNT v2 BREAKOUT REVIEW TIMER REPORT
 
 ```text
@@ -90,3 +101,13 @@ REVIEW_RESULT = REVIEW_TREND_FILTER
 FOLLOW_UP_DOC = CNT v2 BREAKOUT TIMER JUDGMENT REPORT
 ```
 
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[CNT v2 BREAKOUT V1 RELAXATION CONTINUATION NOTE]]
+- [[CNT v2 BREAKOUT REVIEW TIMER PLAN]]

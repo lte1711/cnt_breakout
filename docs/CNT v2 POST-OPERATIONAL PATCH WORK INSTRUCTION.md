@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - docs
+  - instruction
+  - v2
+aliases:
+  - CNT v2 POST-OPERATIONAL PATCH WORK INSTRUCTION
+---
+
 좋다. 지금 상태는 “운영 가능”까지 올라왔고, 남은 건 **정밀도/관측 품질/아키텍처 일관성 보완 단계**다.
 
 아래는 바로 적용 가능한 **후속 보완 패치 지시서 (Post-Operational Patch)**다.
@@ -351,3 +361,13 @@ order_router is prepared but not connected to runtime execution path
 > ❗ **이제 문제는 구조가 아니라 성능이다**
 
 ---
+
+---
+
+## Obsidian Links
+
+- [[00 CNT Vault Home|Vault Home]]
+- [[00 Docs Index|Docs Index]]
+
+### Related
+- [[00 Docs Index|Docs Index]]

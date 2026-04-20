@@ -43,8 +43,8 @@ The goal is to answer three questions:
 
 Verified from the latest snapshot:
 
-- `snapshot timestamp = 2026-04-21 00:59:08`
-- `breakout_v1.signals_generated = 148`
+- `snapshot timestamp = 2026-04-21 01:04:04`
+- `breakout_v1.signals_generated = 149`
 - `breakout_v1.signals_selected = 1`
 - `breakout_v1.trades_closed = 1`
 - `breakout_v1.wins = 0`
@@ -68,6 +68,7 @@ Interpretation:
 - `breakout_v1` is no longer a dead branch
 - lower-gate rejection is now visible in real runtime evidence
 - however, the largest aggregate bottleneck is still `market_not_trend_up`
+- the most recent additional cycle still did not produce a second breakout selection
 
 ---
 
@@ -123,6 +124,7 @@ Recommended operation from this point:
 3. accumulate more breakout samples
 4. continue tracking the share of `market_not_trend_up`
 5. do not perform additional ATR/RSI loosening yet
+6. continue checking whether `volatility_not_high` keeps growing in the post-activation window
 
 ## 3.5 Final Judgment
 

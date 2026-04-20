@@ -101,14 +101,32 @@ def _build_entry_signal(context: MarketContext, params: dict, market_state: dict
             "confidence": 0.0,
         }
 
-    trend_gate_pass = market_state["market_state"] == "TREND_UP"
-    range_up_bias_pass = (
-        market_state["market_state"] == "RANGE"
-        and market_state.get("trend_bias") == "UP"
-        and ema_fast > ema_slow
-    )
+    if market_state["market_state"] == "TREND_UP":
+        trend_gate_pass = True
+    elif market_state["market_state"] == "RANGE":
+        if market_state.get("trend_bias") != "UP":
+            return {
+                "entry_allowed": False,
+                "side": "NONE",
+                "trigger": "FILTERED",
+                "reason": "range_without_upward_bias",
+                "confidence": 0.0,
+            }
 
-    if not trend_gate_pass and not range_up_bias_pass:
+        if ema_fast <= ema_slow:
+            return {
+                "entry_allowed": False,
+                "side": "NONE",
+                "trigger": "FILTERED",
+                "reason": "range_bias_up_but_entry_trend_not_up",
+                "confidence": 0.0,
+            }
+
+        trend_gate_pass = True
+    else:
+        trend_gate_pass = False
+
+    if not trend_gate_pass:
         return {
             "entry_allowed": False,
             "side": "NONE",
@@ -246,6 +264,7 @@ class BreakoutV1Strategy(BaseStrategy):
             reason=entry_state["reason"],
             confidence=entry_state["confidence"],
             market_state=market_state["market_state"],
+            trend_bias=market_state.get("trend_bias"),
             volatility_state=market_state["volatility_state"],
             entry_price_hint=entry_price_hint,
             exit_model=exit_model,

@@ -100,7 +100,134 @@ class BreakoutTrendFilterTests(unittest.TestCase):
             result = breakout_v1._build_entry_signal(context, params, market_state)
 
         self.assertFalse(result["entry_allowed"])
+        self.assertEqual(result["reason"], "range_without_upward_bias")
+
+    def test_range_with_upward_bias_but_entry_trend_not_up_stays_blocked(self) -> None:
+        context = _context()
+        params = {
+            "ema_fast_period": 9,
+            "ema_slow_period": 20,
+            "rsi_period": 14,
+            "rsi_threshold": 53,
+            "rsi_overheat": 75,
+            "breakout_lookback": 3,
+        }
+        market_state = {
+            "market_state": "RANGE",
+            "volatility_state": "HIGH",
+            "trend_bias": "UP",
+        }
+
+        with (
+            patch("src.strategies.breakout_v1.ema", side_effect=[[99.0] * 6, [100.0] * 6]),
+            patch("src.strategies.breakout_v1.rsi", return_value=[60.0] * 6),
+        ):
+            result = breakout_v1._build_entry_signal(context, params, market_state)
+
+        self.assertFalse(result["entry_allowed"])
+        self.assertEqual(result["reason"], "range_bias_up_but_entry_trend_not_up")
+
+    def test_trend_down_stays_blocked(self) -> None:
+        context = _context()
+        params = {
+            "ema_fast_period": 9,
+            "ema_slow_period": 20,
+            "rsi_period": 14,
+            "rsi_threshold": 53,
+            "rsi_overheat": 75,
+            "breakout_lookback": 3,
+        }
+        market_state = {
+            "market_state": "TREND_DOWN",
+            "volatility_state": "HIGH",
+            "trend_bias": "DOWN",
+        }
+
+        with (
+            patch("src.strategies.breakout_v1.ema", side_effect=[[100.0] * 6, [99.0] * 6]),
+            patch("src.strategies.breakout_v1.rsi", return_value=[60.0] * 6),
+        ):
+            result = breakout_v1._build_entry_signal(context, params, market_state)
+
+        self.assertFalse(result["entry_allowed"])
         self.assertEqual(result["reason"], "market_not_trend_up")
+
+    def test_trend_up_can_fall_through_to_volatility_reason(self) -> None:
+        context = _context()
+        params = {
+            "ema_fast_period": 9,
+            "ema_slow_period": 20,
+            "rsi_period": 14,
+            "rsi_threshold": 53,
+            "rsi_overheat": 75,
+            "breakout_lookback": 3,
+        }
+        market_state = {
+            "market_state": "TREND_UP",
+            "volatility_state": "LOW",
+            "trend_bias": "UP",
+        }
+
+        with (
+            patch("src.strategies.breakout_v1.ema", side_effect=[[100.0] * 6, [99.0] * 6]),
+            patch("src.strategies.breakout_v1.rsi", return_value=[60.0] * 6),
+        ):
+            result = breakout_v1._build_entry_signal(context, params, market_state)
+
+        self.assertFalse(result["entry_allowed"])
+        self.assertEqual(result["reason"], "volatility_not_high")
+
+    def test_trend_up_can_fall_through_to_rsi_threshold_reason(self) -> None:
+        context = _context()
+        params = {
+            "ema_fast_period": 9,
+            "ema_slow_period": 20,
+            "rsi_period": 14,
+            "rsi_threshold": 53,
+            "rsi_overheat": 75,
+            "breakout_lookback": 3,
+        }
+        market_state = {
+            "market_state": "TREND_UP",
+            "volatility_state": "HIGH",
+            "trend_bias": "UP",
+        }
+
+        with (
+            patch("src.strategies.breakout_v1.ema", side_effect=[[100.0] * 6, [99.0] * 6]),
+            patch("src.strategies.breakout_v1.rsi", return_value=[52.0] * 6),
+        ):
+            result = breakout_v1._build_entry_signal(context, params, market_state)
+
+        self.assertFalse(result["entry_allowed"])
+        self.assertEqual(result["reason"], "rsi_below_entry_threshold")
+
+    def test_trend_up_can_fall_through_to_breakout_confirmation_reason(self) -> None:
+        context = _context()
+        context.klines_entry[-1]["close"] = 103.0
+        context.last_price = 103.0
+        params = {
+            "ema_fast_period": 9,
+            "ema_slow_period": 20,
+            "rsi_period": 14,
+            "rsi_threshold": 53,
+            "rsi_overheat": 75,
+            "breakout_lookback": 3,
+        }
+        market_state = {
+            "market_state": "TREND_UP",
+            "volatility_state": "HIGH",
+            "trend_bias": "UP",
+        }
+
+        with (
+            patch("src.strategies.breakout_v1.ema", side_effect=[[100.0] * 6, [99.0] * 6]),
+            patch("src.strategies.breakout_v1.rsi", return_value=[60.0] * 6),
+        ):
+            result = breakout_v1._build_entry_signal(context, params, market_state)
+
+        self.assertFalse(result["entry_allowed"])
+        self.assertEqual(result["reason"], "breakout_not_confirmed")
 
 
 if __name__ == "__main__":

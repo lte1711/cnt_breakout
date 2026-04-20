@@ -185,6 +185,7 @@ partial_exit_progress
 - reason
 - confidence
 - market_state
+- trend_bias
 - volatility_state
 - entry_price_hint
 - exit_model

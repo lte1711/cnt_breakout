@@ -20,3 +20,4 @@ class StrategySignal:
     volatility_state: str
     entry_price_hint: float | None
     exit_model: ExitModel | None
+    trend_bias: str | None = None

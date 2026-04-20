@@ -16,7 +16,7 @@ DOCUMENT_NAME = cnt_v2_current_status_assessment
 PROJECT       = CNT
 VERSION       = 2.0
 DATE          = 2026-04-20
-STATUS        = ACTIVE_ASSESSMENT_SAVED
+STATUS        = ACTIVE_ASSESSMENT_REFINED
 REFERENCE_1   = CNT v2 TESTNET PERFORMANCE REPORT
 REFERENCE_2   = CNT v2 BREAKOUT TREND FILTER CHANGE REPORT
 REFERENCE_3   = CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT REPORT
@@ -28,7 +28,7 @@ REFERENCE_3   = CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT REPORT
 
 Verified from current repository state and runtime evidence:
 
-* latest code baseline = `85c778d`
+* latest code baseline at assessment time = `85c778d`
 * market mode = `BINANCE_SPOT_TESTNET`
 * engine mode = `ONE_SHOT`
 * scheduler rhythm = `10 minutes`
@@ -42,9 +42,9 @@ Verified from current repository state and runtime evidence:
 
 Current testnet performance snapshot:
 
-* total signals = `214`
-* selected signals = `10`
-* executed trades = `10`
+* total signals = `216`
+* selected signals = `11`
+* executed trades = `11`
 * closed trades = `10`
 * wins = `7`
 * losses = `3`
@@ -56,7 +56,7 @@ Current testnet performance snapshot:
 Interpretation:
 
 * `pullback_v1` is producing meaningful positive testnet results
-* live transition is still blocked because sample sufficiency criteria are not yet satisfied
+* strategy performance is positive, but live transition is still blocked because sample sufficiency criteria are not yet satisfied
 
 ---
 
@@ -64,14 +64,19 @@ Interpretation:
 
 ## pullback_v1
 
-* `signals_generated = 107`
-* `signals_selected = 10`
+* `signals_generated = 108`
+* `signals_selected = 11`
 * `trades_closed = 10`
 * current operating strategy in practice
+* positive testnet evidence now includes:
+  * `win_rate = 0.70`
+  * `profit_factor = 2.7931`
+  * `expectancy > 0`
+  * `net_pnl > 0`
 
 ## breakout_v1
 
-* `signals_generated = 107`
+* `signals_generated = 108`
 * `signals_selected = 0`
 * `trades_closed = 0`
 * still failing to enter candidate or selection path
@@ -81,6 +86,7 @@ Interpretation:
 * strategy selection path is working
 * ranker is not the primary bottleneck
 * breakout remains blocked by upstream strategy gating
+* `selected_strategy_counts` must be interpreted carefully because it reflects only new-format selection-path logs, not total historical selected signals
 
 ---
 
@@ -91,6 +97,10 @@ Current breakout behavior should be interpreted as:
 * previous trend-filter change was valid
 * bottleneck movement from `market_not_trend_up` to lower filters was partially observed
 * breakout has still not entered candidate path
+* recent signal evidence makes the current bottleneck clearer:
+  * repeated `market_not_trend_up`
+  * market state mostly `RANGE` or `TREND_DOWN`
+  * occasional lower-level movement such as `rsi_below_entry_threshold`
 
 Current most important unresolved question:
 
@@ -104,7 +114,7 @@ The correct current order of work is:
 
 1. continue accumulating testnet samples with `pullback_v1`
 2. continue treating `breakout_v1` as an experimental strategy
-3. continue collecting breakout rejection evidence
+3. continue collecting breakout rejection evidence, especially `market_not_trend_up` share
 4. document and review breakout market regime gate before any further breakout parameter loosening
 
 The following are not recommended at this moment:
@@ -124,13 +134,13 @@ It is now:
 
 * a functioning Binance Spot Testnet operating system
 * with active runtime evidence
-* with positive pullback strategy evidence
+* with meaningful positive pullback strategy evidence
 * with live readiness still on hold
 * and with breakout trend-gate analysis still pending
 
 One-line conclusion:
 
-**CNT is already operating meaningfully on testnet, `pullback_v1` is showing positive evidence, and the main remaining task is sample expansion plus breakout trend-gate redesign analysis before any further breakout tuning.**
+**CNT is already operating meaningfully on testnet, `pullback_v1` is showing real positive testnet performance, and the main remaining task is sample expansion plus breakout market-regime gate analysis before any further breakout tuning.**
 
 ---
 

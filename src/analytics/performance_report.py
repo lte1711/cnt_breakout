@@ -58,6 +58,7 @@ def _top_and_worst_strategy(strategy_breakdown: dict) -> tuple[str, str]:
 
 def build_performance_report_text(snapshot: dict) -> str:
     top_strategy, worst_strategy = _top_and_worst_strategy(snapshot.get("strategy_breakdown", {}))
+    selection_basis = snapshot.get("selected_strategy_counts_basis", "new-format selection-path logs only")
     return f"""# CNT v2 TESTNET PERFORMANCE REPORT
 
 ```text
@@ -79,6 +80,7 @@ TOTAL_SIGNALS: {snapshot.get('total_signals', 0)}
 TOTAL_SELECTED_SIGNALS: {snapshot.get('selected_signals', 0)}
 TOTAL_EXECUTED_TRADES: {snapshot.get('executed_trades', 0)}
 TOTAL_CLOSED_TRADES: {snapshot.get('closed_trades', 0)}
+CURRENT_OPEN_POSITIONS: {snapshot.get('open_positions_count', 0)}
 WINS: {snapshot.get('wins', 0)}
 LOSSES: {snapshot.get('losses', 0)}
 WIN_RATE: {_fmt_ratio(float(snapshot.get('win_rate', 0.0) or 0.0))}
@@ -93,6 +95,8 @@ WORST_STRATEGY: {worst_strategy}
 BLOCKED_REASON_DISTRIBUTION: {_format_stats(snapshot.get('blocked_signal_stats', {}))}
 RISK_TRIGGER_STATS: {_format_stats(snapshot.get('risk_trigger_stats', {}))}
 STRATEGY_BREAKDOWN: {_format_strategy_breakdown(snapshot.get('strategy_breakdown', {}))}
+SELECTION_LOG_COUNTS: {_format_stats(snapshot.get('selected_strategy_counts', {}))}
+SELECTION_LOG_BASIS: {selection_basis}
 NOTES: auto-generated from performance snapshot
 ```
 """

@@ -368,6 +368,7 @@ def _save_and_finish(
             portfolio_log_file=project_root / PORTFOLIO_LOG_FILE,
             snapshot_file=project_root / PERFORMANCE_SNAPSHOT_FILE,
             runtime_log_file=project_root / LOG_FILE,
+            portfolio_state_file=project_root / PORTFOLIO_STATE_FILE,
         )
         generate_performance_report(
             project_root / "docs/CNT v2 TESTNET PERFORMANCE REPORT.md",

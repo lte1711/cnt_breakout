@@ -158,14 +158,35 @@ def _parse_runtime_log(log_file: Path) -> dict:
     return {"executed_trades": executed_trades}
 
 
+def _parse_portfolio_state(portfolio_state_file: Path | None) -> dict:
+    if portfolio_state_file is None or not portfolio_state_file.exists():
+        return {"open_positions_count": 0}
+
+    try:
+        loaded = json.loads(portfolio_state_file.read_text(encoding="utf-8"))
+    except Exception:
+        return {"open_positions_count": 0}
+
+    if not isinstance(loaded, dict):
+        return {"open_positions_count": 0}
+
+    open_positions = loaded.get("open_positions")
+    if not isinstance(open_positions, list):
+        return {"open_positions_count": 0}
+
+    return {"open_positions_count": len(open_positions)}
+
+
 def build_performance_snapshot(
     metrics_file: Path,
     portfolio_log_file: Path,
     runtime_log_file: Path | None = None,
+    portfolio_state_file: Path | None = None,
 ) -> dict:
     strategy_metrics = _load_strategy_metrics(metrics_file)
     log_stats = _parse_portfolio_log(portfolio_log_file)
     runtime_stats = _parse_runtime_log(runtime_log_file) if runtime_log_file is not None else {"executed_trades": 0}
+    portfolio_state_stats = _parse_portfolio_state(portfolio_state_file)
 
     total_signals = 0
     selected_signals = 0
@@ -203,13 +224,18 @@ def build_performance_snapshot(
     win_rate = wins / closed_trades if closed_trades > 0 else 0.0
     expectancy = (win_rate * avg_win) - ((1 - win_rate) * avg_loss) if closed_trades > 0 else 0.0
     profit_factor = gross_profit / gross_loss if gross_loss > 0 else 0.0
+    open_positions_count = int(portfolio_state_stats["open_positions_count"])
+    executed_trades = closed_trades + open_positions_count
+    if executed_trades <= 0 and runtime_log_file is not None:
+        executed_trades = int(runtime_stats["executed_trades"])
 
     return {
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "total_signals": total_signals,
         "selected_signals": selected_signals,
-        "executed_trades": int(runtime_stats["executed_trades"]),
+        "executed_trades": executed_trades,
         "closed_trades": closed_trades,
+        "open_positions_count": open_positions_count,
         "wins": wins,
         "losses": losses,
         "win_rate": win_rate,
@@ -223,6 +249,7 @@ def build_performance_snapshot(
         "risk_trigger_stats": dict(log_stats["risk_trigger_stats"]),
         "blocked_signal_stats": dict(log_stats["blocked_signal_stats"]),
         "selected_strategy_counts": dict(log_stats["selected_strategy_counts"]),
+        "selected_strategy_counts_basis": "new-format selection-path logs only",
         "rank_score_samples": list(log_stats["rank_scores"]),
         "rank_score_components_samples": list(log_stats["rank_score_components_samples"]),
     }
@@ -239,7 +266,13 @@ def generate_and_save_performance_snapshot(
     portfolio_log_file: Path,
     snapshot_file: Path,
     runtime_log_file: Path | None = None,
+    portfolio_state_file: Path | None = None,
 ) -> dict:
-    snapshot = build_performance_snapshot(metrics_file, portfolio_log_file, runtime_log_file)
+    snapshot = build_performance_snapshot(
+        metrics_file,
+        portfolio_log_file,
+        runtime_log_file,
+        portfolio_state_file,
+    )
     save_performance_snapshot(snapshot_file, snapshot)
     return snapshot

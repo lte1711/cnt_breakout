@@ -160,6 +160,32 @@ class PerformanceSnapshotTests(unittest.TestCase):
             self.assertEqual(snapshot["selected_signals"], 2)
             self.assertEqual(snapshot["executed_trades"], 1)
 
+    def test_executed_trades_prefers_closed_trades_plus_open_positions(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            metrics_file = root / "strategy_metrics.json"
+            portfolio_log = root / "portfolio.log"
+            runtime_log = root / "runtime.log"
+            portfolio_state_file = root / "portfolio_state.json"
+            _write(metrics_file, json.dumps(self._metrics_payload()))
+            _write(portfolio_log, "")
+            _write(runtime_log, "[2026-04-20 00:00:00] action=PROMOTE_TO_OPEN_TRADE price=2301.0\n")
+            _write(
+                portfolio_state_file,
+                json.dumps(
+                    {
+                        "schema_version": "2.0",
+                        "open_positions": [],
+                    }
+                ),
+            )
+
+            snapshot = build_performance_snapshot(metrics_file, portfolio_log, runtime_log, portfolio_state_file)
+
+            self.assertEqual(snapshot["closed_trades"], 1)
+            self.assertEqual(snapshot["open_positions_count"], 0)
+            self.assertEqual(snapshot["executed_trades"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()

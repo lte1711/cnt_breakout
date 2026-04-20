@@ -1,6 +1,6 @@
 STATUS=ACTIVE
-VERSION=2.0
-UPDATED=2026-04-19
+VERSION=2.1
+UPDATED=2026-04-20
 PROJECT_NAME=CNT
 MODE=BINANCE_SPOT_TESTNET
 
@@ -520,6 +520,34 @@ EVERY_MEANINGFUL_STEP_MUST_HAVE=
 1. design summary
 2. validation result
 3. record text
+
+# --------------------------------------------------
+# DOCUMENT RULE
+# --------------------------------------------------
+
+DOCUMENT_ROOT=docs/
+DOCUMENT_FORMAT=MARKDOWN_ONLY
+DOCUMENT_EXTENSION=.md
+DOCUMENT_ENCODING=UTF-8
+DOCUMENT_STYLE=OBSIDIAN_VAULT_COMPATIBLE
+UNICODE_FILENAME=FORBIDDEN
+
+DOCUMENT_STORAGE_POLICY=
+1. every new report, plan, checklist, instruction, and review must be stored under docs/
+2. every new document must use .md extension only
+3. every new document must be Obsidian-compatible markdown
+4. every new document should include YAML frontmatter when appropriate
+5. every new document should include internal wiki-links to related CNT documents when appropriate
+6. plain text .txt document creation is forbidden
+7. if a document is renamed or migrated, all related references must be updated
+8. document saving rules must be checked before commit and before final reporting
+
+OBSIDIAN_MINIMUM_RULE=
+1. provide readable markdown headings
+2. preserve repo-relative document placement
+3. keep a vault entry path through 00 CNT Vault Home.md or docs/00 Docs Index.md
+4. prefer [[wiki links]] for internal document navigation
+5. do not break existing markdown readability outside Obsidian
 
 # --------------------------------------------------
 # PROHIBITED

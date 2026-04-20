@@ -747,3 +747,19 @@ CHANGE LOG
 - REASON=the 8-hour review window needed a final decision document that translates accumulated data into the next action.
 - CURRENT_DECISION=keep
 - NOTE=concludes that the next move is trend-filter review rather than further ATR/RSI relaxation.
+
+- DATE=2026-04-20
+- TYPE=doc
+- PATH=docs/CNT v2 BREAKOUT TREND FILTER REVIEW INSTRUCTION.txt
+- SUMMARY=formal instruction for diagnosing breakout upper filter structure before any further threshold changes
+- REASON=the timer judgment concluded that the next action should be trend-filter review, so the review scope needed to be fixed in writing.
+- CURRENT_DECISION=keep
+- NOTE=explicitly keeps ATR/RSI second relaxation out of scope for this phase.
+
+- DATE=2026-04-20
+- TYPE=doc
+- PATH=docs/CNT v2 BREAKOUT TREND FILTER REVIEW REPORT.txt
+- SUMMARY=documents breakout filter chain, log-based blocker analysis, and two bounded design options
+- REASON=the project needed a design-review artifact that explains why trend-filter review is next and selects one recommendation.
+- CURRENT_DECISION=keep
+- NOTE=recommends option A, trend-filter relaxation, as the next controlled change design.

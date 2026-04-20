@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "00 CNT Vault Home.md",
-                "mode": "preview",
+                "file": "docs/CNT v2 LIVE READINESS GATE.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "00 CNT Vault Home"
+              "title": "CNT v2 LIVE READINESS GATE"
             }
           }
         ]
@@ -44,7 +44,7 @@
                 "autoReveal": true
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "파일 탐색기"
             }
           },
           {
@@ -62,6 +62,16 @@
               },
               "icon": "lucide-search",
               "title": "Search"
+            }
+          },
+          {
+            "id": "cc2a240fb0701ef7",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "북마크"
             }
           }
         ]
@@ -83,9 +93,14 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {},
+              "state": {
+                "file": "docs/CNT v2 LIVE READINESS GATE.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "CNT v2 LIVE READINESS GATE 의 개요"
             }
           },
           {
@@ -106,6 +121,49 @@
               "icon": "lucide-links-incoming",
               "title": "Backlinks"
             }
+          },
+          {
+            "id": "c090bc75874eceee",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "docs/CNT v2 LIVE READINESS GATE.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "CNT v2 LIVE READINESS GATE 의 나가는 링크"
+            }
+          },
+          {
+            "id": "3bf8fff77202d615",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "태그"
+            }
+          },
+          {
+            "id": "3772b9ff4e00863a",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "모든 속성"
+            }
           }
         ]
       }
@@ -113,11 +171,24 @@
     "direction": "horizontal",
     "width": 320
   },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false
+    }
+  },
   "active": "home-note",
   "lastOpenFiles": [
-    "00 CNT Vault Home.md",
-    "docs/00 Docs Index.md",
+    "docs/CNT v2 VALIDATION CHECKLIST.md",
+    "data/engine.lock",
     "AGENTS.md",
+    "docs/00 Docs Index.md",
+    "00 CNT Vault Home.md",
     "docs/CNT v2 TESTNET PERFORMANCE REPORT.md",
     "docs/EXTRA ITEMS REGISTER.md"
   ]

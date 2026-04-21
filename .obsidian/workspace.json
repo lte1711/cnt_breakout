@@ -11,10 +11,14 @@
             "id": "home-note",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "그래프 뷰"
+              "type": "markdown",
+              "state": {
+                "file": "docs/CNT v2 LIVE READINESS GATE.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CNT v2 LIVE READINESS GATE"
             }
           }
         ]
@@ -90,12 +94,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "docs/CNT v2 LIVE READINESS GATE.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "개요"
+              "title": "CNT v2 LIVE READINESS GATE 의 개요"
             }
           },
           {
@@ -179,24 +184,12 @@
   },
   "active": "home-note",
   "lastOpenFiles": [
-    "docs/CNT V2 EOL NORMALIZATION AND REPORT HARDENING REPORT.md",
-    "docs/CNT V2 EOL NORMALIZATION AND REPORT HARDENING WORK INSTRUCTION.md",
-    "data/engine.lock",
-    "docs/CNT OBSIDIAN PLUGIN POLICY.md",
-    "docs/CNT TOOLCHAIN INTEGRATION REPORT.md",
-    "docs/CNT DATA DASHBOARD.md",
-    "docs/gemma4_system_prompt.md",
-    "docs/CNT v2 STAGE 3 RUNTIME OBSERVATION REPORT.md",
-    "docs/CNT v2 OBSERVABILITY PRIORITY PLAN.md",
-    "docs/00 Docs Index.md",
-    "docs/VALIDATION RESULT.md",
-    "docs/CNT v2 TESTNET DATA COLLECTION STATUS REPORT.md",
-    "AGENTS.md",
-    "docs/CNT v2 EXIT FAILSAFE PATCH REPORT.md",
-    "docs/CNT v2 TESTNET PERFORMANCE REPORT.md",
-    "docs/CNT v2 LIVE READINESS GATE.md",
     "docs/CNT v2 VALIDATION CHECKLIST.md",
+    "data/engine.lock",
+    "AGENTS.md",
+    "docs/00 Docs Index.md",
     "00 CNT Vault Home.md",
+    "docs/CNT v2 TESTNET PERFORMANCE REPORT.md",
     "docs/EXTRA ITEMS REGISTER.md"
   ]
 }

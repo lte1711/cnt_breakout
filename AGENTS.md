@@ -551,6 +551,18 @@ OBSIDIAN_MINIMUM_RULE=
 5. do not break existing markdown readability outside Obsidian
 
 # --------------------------------------------------
+# AI TOOLING INTEGRATION RULE
+# --------------------------------------------------
+
+AI_CONTEXT_BASELINE=
+1. VSCode / Continue context should include AGENTS.md first
+2. .continuerules may extend behavior but must never override AGENTS.md
+3. workspace rule references may include .windsurf/rules.md as secondary context
+4. gemma4 system prompt must be stored under docs/gemma4_system_prompt.md
+5. Obsidian runtime dashboard notes must remain markdown files under docs/
+6. runtime interpretation must always prefer data/*.json, logs/*.log, and exchange reconciliation facts over note summaries
+
+# --------------------------------------------------
 # PROHIBITED
 # --------------------------------------------------
 

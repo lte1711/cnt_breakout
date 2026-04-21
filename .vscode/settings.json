@@ -1,3 +1,23 @@
 {
-  "python.terminal.useEnvFile": true
+  "python.terminal.useEnvFile": true,
+  "continue.contextProviders": [
+    {
+      "name": "file",
+      "params": {
+        "filepath": "AGENTS.md"
+      }
+    },
+    {
+      "name": "file",
+      "params": {
+        "filepath": ".continuerules"
+      }
+    },
+    {
+      "name": "file",
+      "params": {
+        "filepath": ".windsurf/rules.md"
+      }
+    }
+  ]
 }

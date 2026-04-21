@@ -77,6 +77,24 @@
 - testnet-only experiment control
 - document-first decision records
 
+## gemma4 Activation
+- Context files:
+  - AGENTS.md
+  - .continuerules
+  - data/performance_snapshot.json
+  - data/strategy_metrics.json
+  - data/live_gate_decision.json
+  - logs/portfolio.log (recent)
+  - logs/signal.log (tail 200 lines)
+- System prompt file:
+  - docs/gemma4_system_prompt.md
+- Trigger:
+  - manual `@gemma4` mention in Continue chat
+- Expected output:
+  - Korean report drafts allowed
+  - facts / inferences / assumptions / unknowns must be separated
+  - exchange truth and AGENTS.md rules must always override local interpretation
+
 ## Language Rule
 - Code and identifiers: English only
 - Project reports and discussion notes: Korean allowed

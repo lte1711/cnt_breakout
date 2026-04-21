@@ -33,46 +33,74 @@ def _signal(
 
 
 class SignalRankerTests(unittest.TestCase):
-    def test_ranker_uses_static_fallback_when_sample_is_insufficient(self) -> None:
+    def test_ranker_applies_soft_sample_confidence_before_full_confidence(self) -> None:
         breakout = _signal("breakout_v1", 0.60)
         pullback = _signal("pullback_v1", 0.60)
 
         selection = rank_signals(
             [pullback, breakout],
             {
-                "breakout_v1": StrategyPerformance(strategy_name="breakout_v1", trades_closed=1, expectancy=0.5),
-                "pullback_v1": StrategyPerformance(strategy_name="pullback_v1", trades_closed=1, expectancy=2.0),
+                "breakout_v1": StrategyPerformance(
+                    strategy_name="breakout_v1",
+                    trades_closed=2,
+                    wins=1,
+                    losses=1,
+                    avg_win=0.015,
+                    avg_loss=0.010,
+                    win_rate=0.5,
+                    expectancy=0.002,
+                    profit_factor=1.5,
+                ),
+                "pullback_v1": StrategyPerformance(
+                    strategy_name="pullback_v1",
+                    trades_closed=2,
+                    wins=1,
+                    losses=1,
+                    avg_win=0.012,
+                    avg_loss=0.012,
+                    win_rate=0.5,
+                    expectancy=0.0,
+                    profit_factor=1.0,
+                ),
             },
         )
 
         self.assertIsNotNone(selection.selected_signal)
         self.assertEqual(selection.selected_signal.strategy_name, "breakout_v1")
         self.assertTrue(selection.rank_score_components.get("fallback_static_only"))
+        self.assertGreater(selection.rank_score_components.get("sample_confidence", 0.0), 0.0)
+        self.assertGreater(selection.rank_score_components.get("expectancy_weighted_score", 0.0), 0.0)
         self.assertEqual(selection.total_signals, 2)
         self.assertEqual(selection.candidate_count, 2)
 
-    def test_ranker_prefers_expectancy_adjusted_signal_when_sample_is_sufficient(self) -> None:
-        breakout = _signal("breakout_v1", 0.60)
-        pullback = _signal("pullback_v1", 0.60)
+    def test_ranker_prefers_better_real_performance_signal_even_with_lower_static_score(self) -> None:
+        breakout = _signal("breakout_v1", 0.82)
+        pullback = _signal("pullback_v1", 0.74)
 
         selection = rank_signals(
             [breakout, pullback],
             {
                 "breakout_v1": StrategyPerformance(
                     strategy_name="breakout_v1",
-                    trades_closed=6,
-                    wins=2,
-                    losses=4,
-                    expectancy=0.01,
-                    confidence_multiplier=1.0,
+                    trades_closed=2,
+                    wins=1,
+                    losses=1,
+                    avg_win=0.01392600000000084,
+                    avg_loss=0.01104399999999996,
+                    win_rate=0.5,
+                    expectancy=0.0014410000000004402,
+                    profit_factor=1.2609561752988854,
                 ),
                 "pullback_v1": StrategyPerformance(
                     strategy_name="pullback_v1",
-                    trades_closed=6,
-                    wins=5,
-                    losses=1,
-                    expectancy=0.20,
-                    confidence_multiplier=1.0,
+                    trades_closed=17,
+                    wins=10,
+                    losses=7,
+                    avg_win=0.013807699999999997,
+                    avg_loss=0.014513714285714806,
+                    win_rate=0.5882352941176471,
+                    expectancy=0.0021459411764703723,
+                    profit_factor=1.359079097602219,
                 ),
             },
         )
@@ -81,6 +109,8 @@ class SignalRankerTests(unittest.TestCase):
         self.assertEqual(selection.selected_signal.strategy_name, "pullback_v1")
         self.assertFalse(selection.rank_score_components.get("fallback_static_only"))
         self.assertGreater(selection.rank_score_components.get("expectancy_weighted_score", 0.0), 0.0)
+        self.assertGreater(selection.rank_score_components.get("win_rate_weighted_score", 0.0), 0.0)
+        self.assertGreater(selection.rank_score_components.get("profit_factor_weighted_score", 0.0), 0.0)
         self.assertEqual(len(selection.candidate_details), 2)
 
     def test_ranker_records_rejected_reasons_when_no_candidate_exists(self) -> None:

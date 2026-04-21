@@ -2,10 +2,13 @@ from __future__ import annotations
 
 from config import (
     RANKER_EXPECTANCY_WEIGHT,
+    RANKER_FULL_CONFIDENCE_SAMPLE,
     RANKER_MINIMUM_SAMPLE,
+    RANKER_PROFIT_FACTOR_WEIGHT,
     RANKER_RECENT_LOSS_PENALTY,
     RANKER_TREND_ALIGNMENT_BONUS,
     RANKER_VOLATILITY_PENALTY,
+    RANKER_WIN_RATE_WEIGHT,
     STRATEGY_STATIC_BASE_SCORES,
 )
 from src.models.ranked_signal_selection import RankedSignalSelection
@@ -13,8 +16,33 @@ from src.models.strategy_performance import StrategyPerformance
 from src.models.strategy_signal import StrategySignal
 
 
-def _normalize_expectancy(expectancy: float, confidence_multiplier: float) -> float:
-    return expectancy * confidence_multiplier
+def _clamp(value: float, low: float, high: float) -> float:
+    return max(low, min(high, value))
+
+
+def _sample_confidence(performance: StrategyPerformance | None) -> float:
+    if performance is None or performance.trades_closed <= 0:
+        return 0.0
+    return min(1.0, float(performance.trades_closed) / float(RANKER_FULL_CONFIDENCE_SAMPLE))
+
+
+def _normalize_expectancy_edge(performance: StrategyPerformance) -> float:
+    denominator = (
+        float(performance.avg_loss)
+        if float(performance.avg_loss) > 0
+        else float(performance.avg_win)
+    )
+    if denominator <= 0:
+        return 0.0
+    return float(performance.expectancy) / denominator
+
+
+def _normalize_win_rate_edge(performance: StrategyPerformance) -> float:
+    return (float(performance.win_rate) - 0.5) * 2.0
+
+
+def _normalize_profit_factor_edge(performance: StrategyPerformance) -> float:
+    return _clamp(float(performance.profit_factor) - 1.0, -1.0, 1.0)
 
 
 def _build_score_components(
@@ -30,34 +58,51 @@ def _build_score_components(
     )
     volatility_penalty = RANKER_VOLATILITY_PENALTY if signal.volatility_state == "LOW" else 0.0
 
-    if performance is None or performance.trades_closed < RANKER_MINIMUM_SAMPLE:
+    if performance is None or performance.trades_closed <= 0:
+        sample_confidence = 0.0
+        expectancy_edge = 0.0
+        win_rate_edge = 0.0
+        profit_factor_edge = 0.0
         expectancy_weighted_score = 0.0
+        win_rate_weighted_score = 0.0
+        profit_factor_weighted_score = 0.0
         recent_loss_penalty = 0.0
         fallback_static_only = True
         expectancy_snapshot = {
             "trades_closed": 0 if performance is None else performance.trades_closed,
             "expectancy": 0.0 if performance is None else performance.expectancy,
             "confidence_multiplier": 0.0 if performance is None else performance.confidence_multiplier,
+            "sample_confidence": 0.0,
+            "win_rate": 0.0 if performance is None else performance.win_rate,
+            "profit_factor": 0.0 if performance is None else performance.profit_factor,
         }
     else:
-        expectancy_weighted_score = (
-            _normalize_expectancy(performance.expectancy, performance.confidence_multiplier)
-            * RANKER_EXPECTANCY_WEIGHT
-        )
+        sample_confidence = _sample_confidence(performance)
+        expectancy_edge = _normalize_expectancy_edge(performance)
+        win_rate_edge = _normalize_win_rate_edge(performance)
+        profit_factor_edge = _normalize_profit_factor_edge(performance)
+        expectancy_weighted_score = expectancy_edge * sample_confidence * RANKER_EXPECTANCY_WEIGHT
+        win_rate_weighted_score = win_rate_edge * sample_confidence * RANKER_WIN_RATE_WEIGHT
+        profit_factor_weighted_score = profit_factor_edge * sample_confidence * RANKER_PROFIT_FACTOR_WEIGHT
         recent_loss_penalty = (
             RANKER_RECENT_LOSS_PENALTY if performance.losses > 0 and performance.losses >= performance.wins else 0.0
         )
-        fallback_static_only = False
+        fallback_static_only = performance.trades_closed < RANKER_MINIMUM_SAMPLE
         expectancy_snapshot = {
             "trades_closed": performance.trades_closed,
             "expectancy": performance.expectancy,
             "confidence_multiplier": performance.confidence_multiplier,
+            "sample_confidence": sample_confidence,
+            "win_rate": performance.win_rate,
+            "profit_factor": performance.profit_factor,
         }
 
     score = (
-        static_priority_score
-        + base_signal_score
+        base_signal_score
+        + static_priority_score
         + expectancy_weighted_score
+        + win_rate_weighted_score
+        + profit_factor_weighted_score
         + trend_alignment_bonus
         - volatility_penalty
         - recent_loss_penalty
@@ -65,7 +110,13 @@ def _build_score_components(
     return {
         "static_priority_score": static_priority_score,
         "base_signal_score": base_signal_score,
+        "sample_confidence": sample_confidence,
+        "expectancy_edge": expectancy_edge,
+        "win_rate_edge": win_rate_edge,
+        "profit_factor_edge": profit_factor_edge,
         "expectancy_weighted_score": expectancy_weighted_score,
+        "win_rate_weighted_score": win_rate_weighted_score,
+        "profit_factor_weighted_score": profit_factor_weighted_score,
         "trend_alignment_bonus": trend_alignment_bonus,
         "volatility_penalty": volatility_penalty,
         "recent_loss_penalty": recent_loss_penalty,

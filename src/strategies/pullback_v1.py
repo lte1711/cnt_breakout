@@ -22,6 +22,24 @@ class PullbackV1Strategy(BaseStrategy):
             raise ValueError("pullback_rsi_max out of range")
         if params["pullback_rsi_min"] >= params["pullback_rsi_max"]:
             raise ValueError("pullback_rsi_min must be smaller than pullback_rsi_max")
+        if not 0 < params["relaxed_pullback_rsi_min"] < 100:
+            raise ValueError("relaxed_pullback_rsi_min out of range")
+        if not 0 < params["relaxed_pullback_rsi_max"] < 100:
+            raise ValueError("relaxed_pullback_rsi_max out of range")
+        if params["relaxed_pullback_rsi_min"] >= params["relaxed_pullback_rsi_max"]:
+            raise ValueError(
+                "relaxed_pullback_rsi_min must be smaller than relaxed_pullback_rsi_max"
+            )
+        if params["relaxed_pullback_rsi_min"] > params["pullback_rsi_min"]:
+            raise ValueError("relaxed_pullback_rsi_min must not exceed pullback_rsi_min")
+        if params["relaxed_pullback_rsi_max"] < params["pullback_rsi_max"]:
+            raise ValueError("relaxed_pullback_rsi_max must not be below pullback_rsi_max")
+        if float(params["ema_near_trend_tolerance"]) < 0:
+            raise ValueError("ema_near_trend_tolerance must be >= 0")
+        if not 0 < float(params["relaxed_pullback_confidence"]) <= 1:
+            raise ValueError("relaxed_pullback_confidence must be in (0, 1]")
+        if not 0 < float(params["near_trend_pullback_confidence"]) <= 1:
+            raise ValueError("near_trend_pullback_confidence must be in (0, 1]")
         if float(params["target_pct"]) <= 0:
             raise ValueError("target_pct must be positive")
         if float(params["stop_loss_pct"]) <= 0:
@@ -49,10 +67,28 @@ class PullbackV1Strategy(BaseStrategy):
             trend_bias = "UP" if ema_fast > ema_slow else "DOWN"
 
         if ema_fast is not None and ema_slow is not None and rsi_value is not None:
-            if ema_fast > ema_slow and self.params["pullback_rsi_min"] <= rsi_value <= self.params["pullback_rsi_max"]:
+            core_rsi_match = (
+                self.params["pullback_rsi_min"] <= rsi_value <= self.params["pullback_rsi_max"]
+            )
+            relaxed_rsi_match = (
+                self.params["relaxed_pullback_rsi_min"]
+                <= rsi_value
+                <= self.params["relaxed_pullback_rsi_max"]
+            )
+            near_trend_gap_ratio = max(0.0, ema_slow - ema_fast) / ema_slow if ema_slow else 0.0
+
+            if ema_fast > ema_slow and core_rsi_match:
                 entry_allowed = True
                 confidence = 0.74
                 reason = "trend_pullback_reentry"
+            elif ema_fast > ema_slow and relaxed_rsi_match:
+                entry_allowed = True
+                confidence = float(self.params["relaxed_pullback_confidence"])
+                reason = "trend_pullback_reentry_relaxed_rsi"
+            elif near_trend_gap_ratio <= float(self.params["ema_near_trend_tolerance"]) and core_rsi_match:
+                entry_allowed = True
+                confidence = float(self.params["near_trend_pullback_confidence"])
+                reason = "near_trend_pullback_reentry"
             elif ema_fast <= ema_slow:
                 reason = "trend_not_up"
             else:

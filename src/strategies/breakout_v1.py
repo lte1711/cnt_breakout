@@ -135,15 +135,6 @@ def _build_entry_signal(context: MarketContext, params: dict, market_state: dict
             "confidence": 0.0,
         }
 
-    if market_state["volatility_state"] != "HIGH":
-        return {
-            "entry_allowed": False,
-            "side": "NONE",
-            "trigger": "FILTERED",
-            "reason": "volatility_not_high",
-            "confidence": 0.0,
-        }
-
     if rsi_value >= params["rsi_overheat"]:
         return {
             "entry_allowed": False,
@@ -152,6 +143,22 @@ def _build_entry_signal(context: MarketContext, params: dict, market_state: dict
             "reason": "rsi_overheat",
             "confidence": 0.0,
         }
+
+    relaxed_low_volatility = False
+    if market_state["volatility_state"] != "HIGH":
+        relaxed_threshold = (
+            params["rsi_threshold"] + params["relaxed_volatility_rsi_buffer"]
+        )
+        if market_state["market_state"] == "TREND_UP" and rsi_value >= relaxed_threshold:
+            relaxed_low_volatility = True
+        else:
+            return {
+                "entry_allowed": False,
+                "side": "NONE",
+                "trigger": "FILTERED",
+                "reason": "volatility_not_high",
+                "confidence": 0.0,
+            }
 
     if ema_fast <= ema_slow:
         return {
@@ -199,8 +206,14 @@ def _build_entry_signal(context: MarketContext, params: dict, market_state: dict
         "entry_allowed": True,
         "side": "BUY",
         "trigger": "BREAKOUT",
-        "reason": "trend_up_high_volatility_breakout",
-        "confidence": 0.82,
+        "reason": (
+            "trend_up_relaxed_volatility_breakout"
+            if relaxed_low_volatility
+            else "trend_up_high_volatility_breakout"
+        ),
+        "confidence": (
+            params["relaxed_breakout_confidence"] if relaxed_low_volatility else 0.82
+        ),
     }
 
 
@@ -223,6 +236,12 @@ class BreakoutV1Strategy(BaseStrategy):
 
         if params["atr_expansion_multiplier"] <= 1.0:
             raise ValueError("atr_expansion_multiplier must be greater than 1.0")
+
+        if params["relaxed_volatility_rsi_buffer"] < 0:
+            raise ValueError("relaxed_volatility_rsi_buffer must be >= 0")
+
+        if not 0 < params["relaxed_breakout_confidence"] <= 1:
+            raise ValueError("relaxed_breakout_confidence must be in (0, 1]")
 
         if params["breakout_lookback"] < 1:
             raise ValueError("breakout_lookback must be at least 1")

@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CNT Operations Dashboard</title>
+<style>
+  :root {
+    --bg: #0c1117;
+    --bg2: #111827;
+    --bg3: #172130;
+    --line: #263244;
+    --text: #d7dee8;
+    --muted: #8fa0b7;
+    --green: #2dd4a0;
+    --green-bg: #0d2e26;
+    --amber: #f5a623;
+    --amber-bg: #312108;
+    --red: #e05c5c;
+    --red-bg: #311111;
+    --blue: #63a4ff;
+    --blue-bg: #102035;
+    --cyan: #4fd1c5;
+    --mono: "Cascadia Code", "IBM Plex Mono", Consolas, monospace;
+    --sans: "Segoe UI", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(circle at top right, rgba(79, 209, 197, 0.08), transparent 25%),
+      linear-gradient(180deg, #0b1016 0%, #0c1117 100%);
+    color: var(--text);
+    font-family: var(--sans);
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(12, 17, 23, 0.94);
+    backdrop-filter: blur(10px);
+  }
+
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .brand-title {
+    font-family: var(--mono);
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 0.04em;
+  }
+
+  .brand-title span { color: var(--green); }
+
+  .brand-sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .header-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .badge {
+    border-radius: 999px;
+    padding: 5px 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    border: 1px solid var(--line);
+  }
+
+  .ok { color: var(--green); background: var(--green-bg); }
+  .warn { color: var(--amber); background: var(--amber-bg); }
+  .bad { color: var(--red); background: var(--red-bg); }
+  .info { color: var(--blue); background: var(--blue-bg); }
+
+  button {
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--text);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    cursor: pointer;
+  }
+
+  button:hover { background: var(--bg3); }
+
+  main {
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .card {
+    background: linear-gradient(180deg, rgba(23, 33, 48, 0.75), rgba(17, 24, 39, 0.95));
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.16);
+  }
+
+  .card h2,
+  .card h3 {
+    margin: 0 0 10px;
+    font-size: 13px;
+    font-family: var(--mono);
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .gate-title {
+    margin: 0 0 6px;
+    font-size: 20px;
+    color: #fff;
+  }
+
+  .gate-sub {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .big-number {
+    font-family: var(--mono);
+    font-size: 32px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .big-number.small {
+    font-size: 24px;
+  }
+
+  .progress {
+    width: 100%;
+    height: 8px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: #1a2331;
+    margin-top: 8px;
+  }
+
+  .progress > div {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--green), var(--cyan));
+    transition: width 0.5s ease;
+  }
+
+  .metric-label {
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  .metric-value {
+    font-family: var(--mono);
+    font-size: 28px;
+    color: #fff;
+    line-height: 1.1;
+  }
+
+  .metric-sub {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .positive { color: var(--green); }
+  .negative { color: var(--red); }
+  .neutral { color: #fff; }
+
+  .pipeline {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .pipe {
+    background: rgba(8, 13, 22, 0.35);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+  }
+
+  .pipe .label {
+    font-family: var(--mono);
+    color: var(--muted);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 6px;
+  }
+
+  .pipe .value {
+    font-family: var(--mono);
+    font-size: 24px;
+    color: #fff;
+  }
+
+  .pipe .sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .alert-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .alert-item {
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .alert-item strong {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    margin-bottom: 5px;
+  }
+
+  .alert-item.bad {
+    color: #ffd9d9;
+    background: rgba(224, 92, 92, 0.12);
+  }
+
+  .alert-item.warn {
+    color: #ffe7be;
+    background: rgba(245, 166, 35, 0.12);
+  }
+
+  .alert-item.ok {
+    color: #dafbef;
+    background: rgba(45, 212, 160, 0.12);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  th:first-child, td:first-child { text-align: left; }
+  th { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+  tr:last-child td { border-bottom: 0; }
+
+  .pf-track {
+    width: 72px;
+    height: 5px;
+    background: #1a2331;
+    border-radius: 999px;
+    overflow: hidden;
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  .pf-fill {
+    height: 100%;
+    border-radius: 999px;
+  }
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .kv-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  .kv-row:last-child { border-bottom: 0; }
+
+  .kv-key { color: var(--muted); }
+  .kv-val { color: #fff; text-align: right; }
+
+  .mono { font-family: var(--mono); }
+
+  .footer {
+    margin-top: 16px;
+    text-align: center;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+
+  .help {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px dashed var(--line);
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  @media (max-width: 980px) {
+    .hero, .grid-4, .grid-3, .grid-2, .pipeline {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="brand-title">CNT<span>/</span>ops</div>
+      <div class="brand-sub">Operational Decision Console</div>
+    </div>
+    <div class="header-meta">
+      <span id="health-badge" class="badge info">LOADING</span>
+      <span id="gate-badge" class="badge warn">NOT_READY</span>
+      <span class="badge info">SPOT TESTNET</span>
+      <span id="last-update" class="badge">--</span>
+      <button id="refresh-btn" type="button">REFRESH</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="card">
+        <h2>Live Gate</h2>
+        <div class="gate-title" id="gate-title">NOT_READY</div>
+        <div class="gate-sub" id="gate-reason">loading</div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-top:16px;">
+          <div>
+            <div class="metric-label">Closed Trades</div>
+            <div class="big-number" id="gate-count">0 / 20</div>
+          </div>
+          <div style="text-align:right;">
+            <div class="metric-label">Gate Rule</div>
+            <div class="mono" id="gate-rule">closed>=20 && PF>=1.1 && expectancy>0</div>
+          </div>
+        </div>
+        <div class="progress"><div id="gate-progress"></div></div>
+        <div class="help" id="gate-explain">
+          샘플 수, Profit Factor, expectancy 기준을 함께 보며 READY / NOT_READY를 해석합니다.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>System Health</h2>
+        <div class="big-number small" id="health-title">LOADING</div>
+        <div class="metric-sub" id="health-summary">판단 중...</div>
+        <div class="alert-list" id="alerts" style="margin-top:12px;"></div>
+      </div>
+    </section>
+
+    <section class="grid-4" style="margin-bottom:12px;">
+      <div class="card">
+        <div class="metric-label">Win Rate</div>
+        <div id="m-winrate" class="metric-value">--</div>
+        <div id="m-winloss" class="metric-sub">--</div>
+      </div>
+      <div class="card">
+        <div class="metric-label">Profit Factor</div>
+        <div id="m-pf" class="metric-value">--</div>
+        <div id="m-pf-delta" class="metric-sub">delta --</div>
+      </div>
+      <div class="card">
+        <div class="metric-label">Expectancy</div>
+        <div id="m-exp" class="metric-value">--</div>
+        <div id="m-exp-delta" class="metric-sub">delta --</div>
+      </div>
+      <div class="card">
+        <div class="metric-label">Net PnL</div>
+        <div id="m-pnl" class="metric-value">--</div>
+        <div id="m-pnl-sub" class="metric-sub">--</div>
+      </div>
+    </section>
+
+    <section class="grid-2" style="margin-bottom:12px;">
+      <div class="card">
+        <h2>Signal Pipeline</h2>
+        <div class="pipeline">
+          <div class="pipe">
+            <div class="value" id="p-total">0</div>
+            <div class="label">Total</div>
+          </div>
+          <div class="pipe">
+            <div class="value" id="p-selected">0</div>
+            <div class="label">Selected</div>
+            <div class="sub" id="p-selected-rate">0%</div>
+          </div>
+          <div class="pipe">
+            <div class="value" id="p-executed">0</div>
+            <div class="label">Executed</div>
+            <div class="sub" id="p-executed-rate">0%</div>
+          </div>
+          <div class="pipe">
+            <div class="value" id="p-closed">0</div>
+            <div class="label">Closed</div>
+            <div class="sub" id="p-open-count">open 0</div>
+          </div>
+        </div>
+        <div class="stack" style="margin-top:12px;" id="pipeline-breakdown"></div>
+      </div>
+
+      <div class="card">
+        <h2>Engine State</h2>
+        <div class="stack">
+          <div class="kv-row"><span class="kv-key">Mode</span><span class="kv-val">ONE_SHOT / 10m</span></div>
+          <div class="kv-row"><span class="kv-key">Symbol</span><span id="e-symbol" class="kv-val">--</span></div>
+          <div class="kv-row"><span class="kv-key">Status</span><span id="e-status" class="kv-val">--</span></div>
+          <div class="kv-row"><span class="kv-key">Action</span><span id="e-action" class="kv-val">--</span></div>
+          <div class="kv-row"><span class="kv-key">Pending</span><span id="e-pending" class="kv-val">null</span></div>
+          <div class="kv-row"><span class="kv-key">Open Trade</span><span id="e-open" class="kv-val">null</span></div>
+          <div class="kv-row"><span class="kv-key">Price</span><span id="e-price" class="kv-val">--</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-2" style="margin-bottom:12px;">
+      <div class="card">
+        <h2>Strategy Quality</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Strategy</th>
+              <th>Closed</th>
+              <th>Win Rate</th>
+              <th>Expectancy</th>
+              <th>PF</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="strategy-body">
+            <tr><td colspan="6" style="text-align:center;color:var(--muted);">loading</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>Risk And Blockers</h2>
+        <div class="grid-3" style="margin-bottom:12px;">
+          <div class="card" style="padding:12px;">
+            <div class="metric-label">Daily Loss Hits</div>
+            <div id="r-daily" class="metric-value" style="font-size:22px;">0</div>
+          </div>
+          <div class="card" style="padding:12px;">
+            <div class="metric-label">Consecutive Losses</div>
+            <div id="r-consec" class="metric-value" style="font-size:22px;">0</div>
+          </div>
+          <div class="card" style="padding:12px;">
+            <div class="metric-label">Last Price</div>
+            <div id="r-price" class="metric-value" style="font-size:22px;">0</div>
+          </div>
+        </div>
+        <div class="stack" id="blocked-body"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Usage Note</h2>
+      <div class="help">
+        이 대시보드는 저장소 루트(`C:\cnt`)를 HTTP로 서빙할 때 사용합니다.
+        `python scripts/serve_dashboard.py` 실행 후
+        <span class="mono">http://127.0.0.1:8000/docs/cnt_operations_dashboard.html</span>
+        로 접속하면 `data/*.json`과 `logs/*.log`를 repo-relative 경로로 읽습니다.
+      </div>
+    </section>
+
+    <div class="footer" id="footer-note">
+      CNT runtime sources: ../data/performance_snapshot.json · ../data/strategy_metrics.json · ../data/state.json · ../data/live_gate_decision.json
+    </div>
+  </main>
+
+<script>
+const DATA_FILES = {
+  snapshot: "../data/performance_snapshot.json",
+  metrics: "../data/strategy_metrics.json",
+  state: "../data/state.json",
+  gate: "../data/live_gate_decision.json",
+};
+
+const GATE_THRESHOLD = 20;
+const STORAGE_KEY = "cnt_dashboard_previous_snapshot_v1";
+
+function fmt(value, digits = 4) {
+  if (value == null || Number.isNaN(Number(value))) return "--";
+  return Number(value).toFixed(digits);
+}
+
+function pct(value) {
+  if (value == null || Number.isNaN(Number(value))) return "--";
+  return (Number(value) * 100).toFixed(1) + "%";
+}
+
+function signedDelta(current, previous, digits = 4) {
+  if (previous == null || Number.isNaN(Number(previous))) return "delta --";
+  const delta = Number(current) - Number(previous);
+  const sign = delta > 0 ? "+" : "";
+  return `delta ${sign}${delta.toFixed(digits)}`;
+}
+
+function strategyStatusLabel(pf) {
+  const value = Number(pf || 0);
+  if (value < 1) return { text: "LOSING", color: "var(--red)" };
+  if (value < 1.2) return { text: "WEAK EDGE", color: "var(--amber)" };
+  return { text: "VALID EDGE", color: "var(--green)" };
+}
+
+function computeSystemHealth(snapshot) {
+  const selected = snapshot.selected_signals ?? 0;
+  const executed = snapshot.executed_trades ?? 0;
+  const pf = Number(snapshot.profit_factor ?? 0);
+  if (selected === 0) return "CRITICAL";
+  if (executed === 0) return "DEGRADED";
+  if (pf < 1) return "WEAK";
+  return "HEALTHY";
+}
+
+function gateReady(snapshot) {
+  return (
+    (snapshot.closed_trades ?? 0) >= GATE_THRESHOLD &&
+    Number(snapshot.profit_factor ?? 0) >= 1.1 &&
+    Number(snapshot.expectancy ?? 0) > 0
+  );
+}
+
+function gateReasons(snapshot) {
+  const reasons = [];
+  if ((snapshot.closed_trades ?? 0) < GATE_THRESHOLD) {
+    reasons.push(`sample ${snapshot.closed_trades ?? 0}/${GATE_THRESHOLD}`);
+  }
+  if (Number(snapshot.profit_factor ?? 0) < 1.1) {
+    reasons.push(`PF ${fmt(snapshot.profit_factor, 3)} < 1.1`);
+  }
+  if (Number(snapshot.expectancy ?? 0) <= 0) {
+    reasons.push(`expectancy ${fmt(snapshot.expectancy, 6)} <= 0`);
+  }
+  return reasons.length ? reasons.join(" | ") : "all gate conditions passed";
+}
+
+function buildAlerts(snapshot, state) {
+  const alerts = [];
+  const total = snapshot.total_signals ?? 0;
+  const selected = snapshot.selected_signals ?? 0;
+  const selectedRate = total > 0 ? selected / total : 0;
+  const noRanked = snapshot.blocked_signal_stats?.no_ranked_signal?.all_filtered ?? 0;
+  const dailyLossLimit = snapshot.risk_trigger_stats?.DAILY_LOSS_LIMIT ?? 0;
+  const pf = Number(snapshot.profit_factor ?? 0);
+  const consec = Number(state?.risk_metrics?.consecutive_losses ?? snapshot.max_consecutive_losses ?? 0);
+
+  if (selectedRate < 0.05) {
+    alerts.push({
+      level: "bad",
+      title: "RANKER FAILURE",
+      text: `selected/total ratio is ${pct(selectedRate)} and remains below 5%.`,
+    });
+  }
+
+  if (total < 50 || noRanked > selected * 5) {
+    alerts.push({
+      level: "warn",
+      title: "CANDIDATE STARVATION",
+      text: `candidate starvation proxy triggered: total=${total}, no_ranked_signal.filtered=${noRanked}.`,
+    });
+  }
+
+  if (dailyLossLimit > 0) {
+    alerts.push({
+      level: "warn",
+      title: "DAILY LOSS LIMIT ACTIVE",
+      text: `DAILY_LOSS_LIMIT has triggered ${dailyLossLimit} times in runtime evidence.`,
+    });
+  }
+
+  if (pf < 1) {
+    alerts.push({
+      level: "bad",
+      title: "WEAK PROFIT FACTOR",
+      text: `system PF is ${fmt(pf, 3)} and is below profitable baseline.`,
+    });
+  }
+
+  if (consec >= 3) {
+    alerts.push({
+      level: "warn",
+      title: "CONSECUTIVE LOSS PRESSURE",
+      text: `consecutive losses reached ${consec}.`,
+    });
+  }
+
+  if (!alerts.length) {
+    alerts.push({
+      level: "ok",
+      title: "NO CRITICAL ALERT",
+      text: "No immediate operational alert is active under current dashboard rules.",
+    });
+  }
+
+  return alerts;
+}
+
+function classificationText(snapshot) {
+  const health = computeSystemHealth(snapshot);
+  const gate = gateReady(snapshot);
+  const lines = [];
+
+  if (!gate) {
+    lines.push(`Live gate is not ready because ${gateReasons(snapshot)}.`);
+  } else {
+    lines.push("Live gate rule is satisfied under dashboard criteria.");
+  }
+
+  if (health === "CRITICAL") {
+    lines.push("System health is critical because no signals are being selected.");
+  } else if (health === "DEGRADED") {
+    lines.push("Signals are selected but no trades are executing.");
+  } else if (health === "WEAK") {
+    lines.push("Trades are executing but system edge remains weak.");
+  } else {
+    lines.push("Selection, execution, and performance layers are all active.");
+  }
+
+  return lines.join(" ");
+}
+
+async function readJSON(path) {
+  const response = await fetch(path, { cache: "no-store" });
+  if (!response.ok) {
+    throw new Error(`${path} returned ${response.status}`);
+  }
+  const text = await response.text();
+  return JSON.parse(text.replace(/^\uFEFF/, ""));
+}
+
+function render(snapshot, metrics, state, gate) {
+  const previous = (() => {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+    } catch {
+      return null;
+    }
+  })();
+
+  const health = computeSystemHealth(snapshot);
+  const healthBadge = document.getElementById("health-badge");
+  healthBadge.textContent = health;
+  healthBadge.className = `badge ${health === "HEALTHY" ? "ok" : health === "WEAK" ? "warn" : "bad"}`;
+
+  document.getElementById("last-update").textContent = snapshot.timestamp ?? "--";
+
+  const gateIsReady = gateReady(snapshot);
+  const gateBadge = document.getElementById("gate-badge");
+  gateBadge.textContent = gateIsReady ? "READY" : "NOT_READY";
+  gateBadge.className = `badge ${gateIsReady ? "ok" : "warn"}`;
+  document.getElementById("gate-title").textContent = gateIsReady ? "READY" : "NOT_READY";
+  document.getElementById("gate-reason").textContent = gateReasons(snapshot);
+  document.getElementById("gate-count").textContent = `${snapshot.closed_trades ?? 0} / ${GATE_THRESHOLD}`;
+  document.getElementById("gate-progress").style.width = `${Math.min(100, ((snapshot.closed_trades ?? 0) / GATE_THRESHOLD) * 100)}%`;
+  document.getElementById("gate-explain").textContent = classificationText(snapshot);
+
+  document.getElementById("health-title").textContent = health;
+  document.getElementById("health-summary").textContent = `selected=${snapshot.selected_signals ?? 0}, executed=${snapshot.executed_trades ?? 0}, PF=${fmt(snapshot.profit_factor, 3)}`;
+
+  const alerts = buildAlerts(snapshot, state);
+  document.getElementById("alerts").innerHTML = alerts.map(alert => `
+    <div class="alert-item ${alert.level}">
+      <strong>${alert.title}</strong>
+      <span>${alert.text}</span>
+    </div>
+  `).join("");
+
+  document.getElementById("m-winrate").textContent = pct(snapshot.win_rate ?? 0);
+  document.getElementById("m-winloss").textContent = `${snapshot.wins ?? 0} wins / ${snapshot.losses ?? 0} losses`;
+  document.getElementById("m-pf").textContent = fmt(snapshot.profit_factor, 3);
+  document.getElementById("m-pf").className = `metric-value ${Number(snapshot.profit_factor ?? 0) >= 1 ? "positive" : "negative"}`;
+  document.getElementById("m-pf-delta").textContent = signedDelta(snapshot.profit_factor, previous?.profit_factor, 3);
+  document.getElementById("m-exp").textContent = fmt(snapshot.expectancy, 6);
+  document.getElementById("m-exp").className = `metric-value ${Number(snapshot.expectancy ?? 0) > 0 ? "positive" : "negative"}`;
+  document.getElementById("m-exp-delta").textContent = signedDelta(snapshot.expectancy, previous?.expectancy, 6);
+  document.getElementById("m-pnl").textContent = `${Number(snapshot.net_pnl ?? 0) >= 0 ? "+" : ""}${fmt(snapshot.net_pnl, 6)}`;
+  document.getElementById("m-pnl").className = `metric-value ${Number(snapshot.net_pnl ?? 0) >= 0 ? "positive" : "negative"}`;
+  document.getElementById("m-pnl-sub").textContent = `avg win ${fmt(snapshot.avg_win, 5)} / avg loss ${fmt(snapshot.avg_loss, 5)}`;
+
+  const total = snapshot.total_signals ?? 0;
+  const selected = snapshot.selected_signals ?? 0;
+  const executed = snapshot.executed_trades ?? 0;
+  const closed = snapshot.closed_trades ?? 0;
+  const openCount = snapshot.open_positions_count ?? 0;
+  document.getElementById("p-total").textContent = total;
+  document.getElementById("p-selected").textContent = selected;
+  document.getElementById("p-selected-rate").textContent = total ? pct(selected / total) : "--";
+  document.getElementById("p-executed").textContent = executed;
+  document.getElementById("p-executed-rate").textContent = selected ? pct(executed / selected) : "--";
+  document.getElementById("p-closed").textContent = closed;
+  document.getElementById("p-open-count").textContent = `open ${openCount}`;
+
+  const blocked = snapshot.blocked_signal_stats ?? {};
+  const filtered = blocked.no_ranked_signal?.all_filtered ?? 0;
+  const legacy = blocked.no_ranked_signal?.legacy ?? 0;
+  document.getElementById("pipeline-breakdown").innerHTML = `
+    <div class="kv-row"><span class="kv-key">Filtered Out</span><span class="kv-val">${filtered}</span></div>
+    <div class="kv-row"><span class="kv-key">No Ranked Signal (legacy)</span><span class="kv-val">${legacy}</span></div>
+    <div class="kv-row"><span class="kv-key">Selected / Total</span><span class="kv-val">${total ? pct(selected / total) : "--"}</span></div>
+    <div class="kv-row"><span class="kv-key">Executed / Selected</span><span class="kv-val">${selected ? pct(executed / selected) : "--"}</span></div>
+  `;
+
+  document.getElementById("e-symbol").textContent = state.symbol ?? "--";
+  document.getElementById("e-status").textContent = state.status ?? "--";
+  document.getElementById("e-action").textContent = state.action ?? "--";
+  document.getElementById("e-pending").textContent = state.pending_order ? JSON.stringify(state.pending_order) : "null";
+  document.getElementById("e-open").textContent = state.open_trade ? JSON.stringify(state.open_trade) : "null";
+  document.getElementById("e-price").textContent = state.price != null ? fmt(state.price, 2) : "--";
+
+  const metricValues = Object.values(metrics);
+  metricValues.sort((a, b) => (b.signals_selected ?? 0) - (a.signals_selected ?? 0));
+  document.getElementById("strategy-body").innerHTML = metricValues.map(strategy => {
+    const pf = Number(strategy.profit_factor ?? 0);
+    const pfColor = pf < 1 ? "var(--red)" : pf < 1.2 ? "var(--amber)" : "var(--green)";
+    const pfWidth = Math.min(100, Math.max(8, Math.round(pf * 40)));
+    const label = strategyStatusLabel(pf);
+    return `
+      <tr>
+        <td>${strategy.strategy_name}</td>
+        <td>${strategy.trades_closed ?? 0}</td>
+        <td>${pct(strategy.win_rate ?? 0)}</td>
+        <td>${fmt(strategy.expectancy, 6)}</td>
+        <td>
+          <span class="pf-track"><span class="pf-fill" style="width:${pfWidth}%;background:${pfColor};display:block;"></span></span>
+          <span style="color:${pfColor}">${fmt(pf, 3)}</span>
+        </td>
+        <td style="color:${label.color}">${label.text}</td>
+      </tr>
+    `;
+  }).join("");
+
+  const riskMetrics = state.risk_metrics ?? {};
+  document.getElementById("r-daily").textContent = snapshot.risk_trigger_stats?.DAILY_LOSS_LIMIT ?? 0;
+  document.getElementById("r-consec").textContent = riskMetrics.consecutive_losses ?? snapshot.max_consecutive_losses ?? 0;
+  document.getElementById("r-price").textContent = state.price != null ? fmt(state.price, 2) : "--";
+
+  const blockedRows = [];
+  Object.entries(blocked).forEach(([key, value]) => {
+    if (typeof value === "object" && value !== null) {
+      Object.entries(value).forEach(([nestedKey, nestedValue]) => {
+        blockedRows.push(`<div class="kv-row"><span class="kv-key">${key}.${nestedKey}</span><span class="kv-val">${nestedValue}</span></div>`);
+      });
+    } else {
+      blockedRows.push(`<div class="kv-row"><span class="kv-key">${key}</span><span class="kv-val">${value}</span></div>`);
+    }
+  });
+  document.getElementById("blocked-body").innerHTML = blockedRows.join("") || `<div class="kv-row"><span class="kv-key">blocked</span><span class="kv-val">none</span></div>`;
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({
+    timestamp: snapshot.timestamp,
+    profit_factor: snapshot.profit_factor,
+    expectancy: snapshot.expectancy,
+    selected_signals: snapshot.selected_signals,
+    total_signals: snapshot.total_signals,
+  }));
+}
+
+async function loadData() {
+  const button = document.getElementById("refresh-btn");
+  button.disabled = true;
+  button.textContent = "LOADING";
+  try {
+    const [snapshot, metrics, state, gate] = await Promise.all([
+      readJSON(DATA_FILES.snapshot),
+      readJSON(DATA_FILES.metrics),
+      readJSON(DATA_FILES.state),
+      readJSON(DATA_FILES.gate),
+    ]);
+    render(snapshot, metrics, state, gate);
+  } catch (error) {
+    document.getElementById("alerts").innerHTML = `
+      <div class="alert-item bad">
+        <strong>DASHBOARD LOAD FAILURE</strong>
+        <span>${error.message}. 저장소 루트에서 HTTP 서버로 열었는지 확인하세요.</span>
+      </div>
+    `;
+  } finally {
+    button.disabled = false;
+    button.textContent = "REFRESH";
+  }
+}
+
+document.getElementById("refresh-btn").addEventListener("click", loadData);
+window.addEventListener("load", () => {
+  loadData();
+  setInterval(loadData, 60000);
+});
+</script>
+</body>
+</html>

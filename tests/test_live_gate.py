@@ -48,6 +48,34 @@ class LiveGateEvaluatorTests(unittest.TestCase):
         self.assertEqual(decision["status"], "LIVE_READY")
         self.assertEqual(decision["reason"], "ALL_GATES_PASSED")
 
+    def test_returns_live_ready_when_daily_loss_limit_was_observed(self) -> None:
+        decision = evaluate_live_gate(
+            {
+                "closed_trades": 20,
+                "expectancy": 0.01,
+                "net_pnl": 0.5,
+                "max_consecutive_losses": 2,
+                "risk_trigger_stats": {"DAILY_LOSS_LIMIT": 4},
+            }
+        )
+
+        self.assertEqual(decision["status"], "LIVE_READY")
+        self.assertEqual(decision["reason"], "ALL_GATES_PASSED")
+
+    def test_returns_fail_when_no_risk_guard_trigger_was_observed(self) -> None:
+        decision = evaluate_live_gate(
+            {
+                "closed_trades": 20,
+                "expectancy": 0.01,
+                "net_pnl": 0.5,
+                "max_consecutive_losses": 2,
+                "risk_trigger_stats": {},
+            }
+        )
+
+        self.assertEqual(decision["status"], "FAIL")
+        self.assertEqual(decision["reason"], "RISK_GUARD_NOT_OBSERVED")
+
 
 if __name__ == "__main__":
     unittest.main()

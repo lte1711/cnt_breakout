@@ -4,9 +4,9 @@
 DOCUMENT_NAME = cnt_v2_testnet_performance_report
 PROJECT       = CNT
 VERSION       = 2.0
-DATE          = 2026-04-21
+DATE          = 2026-04-22
 STATUS        = DATA_COLLECTION_IN_PROGRESS
-LAST_UPDATED  = 2026-04-21 15:44:03
+LAST_UPDATED  = 2026-04-22 01:45:17
 ```
 
 ---
@@ -14,27 +14,27 @@ LAST_UPDATED  = 2026-04-21 15:44:03
 # AUTO SNAPSHOT
 
 ```text
-OBSERVATION_WINDOW: up to 2026-04-21 15:44:03
-TOTAL_SIGNALS: 448
-TOTAL_SELECTED_SIGNALS: 29
-TOTAL_EXECUTED_TRADES: 19
-TOTAL_CLOSED_TRADES: 19
+OBSERVATION_WINDOW: up to 2026-04-22 01:45:17
+TOTAL_SIGNALS: 554
+TOTAL_SELECTED_SIGNALS: 61
+TOTAL_EXECUTED_TRADES: 20
+TOTAL_CLOSED_TRADES: 20
 CURRENT_OPEN_POSITIONS: 0
-WINS: 11
+WINS: 12
 LOSSES: 8
-WIN_RATE: 0.5789
-AVG_WIN: 0.013818
+WIN_RATE: 0.6000
+AVG_WIN: 0.014031
 AVG_LOSS: 0.014080
-EXPECTANCY: 0.002072
-PROFIT_FACTOR: 1.349458
-NET_PNL: 0.039363
+EXPECTANCY: 0.002787
+PROFIT_FACTOR: 1.494771
+NET_PNL: 0.055731
 MAX_CONSECUTIVE_LOSSES: 2
 TOP_STRATEGY: pullback_v1
 WORST_STRATEGY: breakout_v1
-BLOCKED_REASON_DISTRIBUTION: DAILY_LOSS_LIMIT=10, no_ranked_signal{all_filtered=170, legacy=25}
-RISK_TRIGGER_STATS: DAILY_LOSS_LIMIT=20
-STRATEGY_BREAKDOWN: breakout_v1: trades_closed=2, wins=1, losses=1, win_rate=0.5000, expectancy=0.001441, profit_factor=1.260956 | pullback_v1: trades_closed=17, wins=10, losses=7, win_rate=0.5882, expectancy=0.002146, profit_factor=1.359079
-SELECTION_LOG_COUNTS: breakout_v1=2, pullback_v1=22
+BLOCKED_REASON_DISTRIBUTION: DAILY_LOSS_LIMIT=40, no_ranked_signal{all_filtered=191, legacy=25}
+RISK_TRIGGER_STATS: DAILY_LOSS_LIMIT=80
+STRATEGY_BREAKDOWN: breakout_v1: trades_closed=2, wins=1, losses=1, win_rate=0.5000, expectancy=0.001441, profit_factor=1.260956 | pullback_v1: trades_closed=18, wins=11, losses=7, win_rate=0.6111, expectancy=0.002936, profit_factor=1.520188
+SELECTION_LOG_COUNTS: breakout_v1=5, pullback_v1=51
 SELECTION_LOG_BASIS: new-format selection-path logs only
 NOTES: auto-generated from performance snapshot
 ```

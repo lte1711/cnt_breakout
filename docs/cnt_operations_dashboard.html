@@ -220,7 +220,6 @@
 
   .positive { color: var(--green); }
   .negative { color: var(--red); }
-  .neutral { color: #fff; }
 
   .pipeline {
     display: grid;
@@ -345,7 +344,6 @@
   }
 
   .kv-row:last-child { border-bottom: 0; }
-
   .kv-key { color: var(--muted); }
   .kv-val { color: #fff; text-align: right; }
 
@@ -403,12 +401,12 @@
           </div>
           <div style="text-align:right;">
             <div class="metric-label">Gate Rule</div>
-            <div class="mono" id="gate-rule">closed>=20 && PF>=1.1 && expectancy>0</div>
+            <div class="mono" id="gate-rule">종료 거래 20건 이상 · PF 1.1 이상 · 기대값 양수</div>
           </div>
         </div>
         <div class="progress"><div id="gate-progress"></div></div>
         <div class="help" id="gate-explain">
-          샘플 수, Profit Factor, expectancy 기준을 함께 보며 READY / NOT_READY를 해석합니다.
+          샘플 수, Profit Factor, expectancy 기준으로 READY / NOT_READY를 해석합니다.
         </div>
       </div>
 
@@ -429,12 +427,12 @@
       <div class="card">
         <div class="metric-label">Profit Factor</div>
         <div id="m-pf" class="metric-value">--</div>
-        <div id="m-pf-delta" class="metric-sub">delta --</div>
+        <div id="m-pf-delta" class="metric-sub">이전 대비 --</div>
       </div>
       <div class="card">
         <div class="metric-label">Expectancy</div>
         <div id="m-exp" class="metric-value">--</div>
-        <div id="m-exp-delta" class="metric-sub">delta --</div>
+        <div id="m-exp-delta" class="metric-sub">이전 대비 --</div>
       </div>
       <div class="card">
         <div class="metric-label">Net PnL</div>
@@ -477,8 +475,8 @@
           <div class="kv-row"><span class="kv-key">Symbol</span><span id="e-symbol" class="kv-val">--</span></div>
           <div class="kv-row"><span class="kv-key">Status</span><span id="e-status" class="kv-val">--</span></div>
           <div class="kv-row"><span class="kv-key">Action</span><span id="e-action" class="kv-val">--</span></div>
-          <div class="kv-row"><span class="kv-key">Pending</span><span id="e-pending" class="kv-val">null</span></div>
-          <div class="kv-row"><span class="kv-key">Open Trade</span><span id="e-open" class="kv-val">null</span></div>
+          <div class="kv-row"><span class="kv-key">Pending</span><span id="e-pending" class="kv-val">없음</span></div>
+          <div class="kv-row"><span class="kv-key">Open Trade</span><span id="e-open" class="kv-val">없음</span></div>
           <div class="kv-row"><span class="kv-key">Price</span><span id="e-price" class="kv-val">--</span></div>
         </div>
       </div>
@@ -561,27 +559,27 @@ function pct(value) {
 }
 
 function signedDelta(current, previous, digits = 4) {
-  if (previous == null || Number.isNaN(Number(previous))) return "delta --";
+  if (previous == null || Number.isNaN(Number(previous))) return "이전 대비 --";
   const delta = Number(current) - Number(previous);
   const sign = delta > 0 ? "+" : "";
-  return `delta ${sign}${delta.toFixed(digits)}`;
+  return `이전 대비 ${sign}${delta.toFixed(digits)}`;
 }
 
 function strategyStatusLabel(pf) {
   const value = Number(pf || 0);
-  if (value < 1) return { text: "LOSING", color: "var(--red)" };
-  if (value < 1.2) return { text: "WEAK EDGE", color: "var(--amber)" };
-  return { text: "VALID EDGE", color: "var(--green)" };
+  if (value < 1) return { text: "손실 구간", color: "var(--red)" };
+  if (value < 1.2) return { text: "약한 엣지", color: "var(--amber)" };
+  return { text: "유효 엣지", color: "var(--green)" };
 }
 
 function computeSystemHealth(snapshot) {
   const selected = snapshot.selected_signals ?? 0;
   const executed = snapshot.executed_trades ?? 0;
   const pf = Number(snapshot.profit_factor ?? 0);
-  if (selected === 0) return "CRITICAL";
-  if (executed === 0) return "DEGRADED";
-  if (pf < 1) return "WEAK";
-  return "HEALTHY";
+  if (selected === 0) return "치명";
+  if (executed === 0) return "저하";
+  if (pf < 1) return "취약";
+  return "정상";
 }
 
 function gateReady(snapshot) {
@@ -595,15 +593,15 @@ function gateReady(snapshot) {
 function gateReasons(snapshot) {
   const reasons = [];
   if ((snapshot.closed_trades ?? 0) < GATE_THRESHOLD) {
-    reasons.push(`sample ${snapshot.closed_trades ?? 0}/${GATE_THRESHOLD}`);
+    reasons.push(`샘플 부족 ${snapshot.closed_trades ?? 0}/${GATE_THRESHOLD}`);
   }
   if (Number(snapshot.profit_factor ?? 0) < 1.1) {
     reasons.push(`PF ${fmt(snapshot.profit_factor, 3)} < 1.1`);
   }
   if (Number(snapshot.expectancy ?? 0) <= 0) {
-    reasons.push(`expectancy ${fmt(snapshot.expectancy, 6)} <= 0`);
+    reasons.push(`기대값 ${fmt(snapshot.expectancy, 6)} <= 0`);
   }
-  return reasons.length ? reasons.join(" | ") : "all gate conditions passed";
+  return reasons.length ? reasons.join(" | ") : "게이트 조건 충족";
 }
 
 function buildAlerts(snapshot, state) {
@@ -619,48 +617,48 @@ function buildAlerts(snapshot, state) {
   if (selectedRate < 0.05) {
     alerts.push({
       level: "bad",
-      title: "RANKER FAILURE",
-      text: `selected/total ratio is ${pct(selectedRate)} and remains below 5%.`,
+      title: "랭커 경고",
+      text: `선택률이 ${pct(selectedRate)}로 5% 미만입니다.`,
     });
   }
 
   if (total < 50 || noRanked > selected * 5) {
     alerts.push({
       level: "warn",
-      title: "CANDIDATE STARVATION",
-      text: `candidate starvation proxy triggered: total=${total}, no_ranked_signal.filtered=${noRanked}.`,
+      title: "후보 부족",
+      text: `후보 부족 경고: 총 신호 ${total}, no_ranked_signal ${noRanked}.`,
     });
   }
 
   if (dailyLossLimit > 0) {
     alerts.push({
       level: "warn",
-      title: "DAILY LOSS LIMIT ACTIVE",
-      text: `DAILY_LOSS_LIMIT has triggered ${dailyLossLimit} times in runtime evidence.`,
+      title: "일일 손실 제한 활성",
+      text: `DAILY_LOSS_LIMIT가 ${dailyLossLimit}회 기록됐습니다.`,
     });
   }
 
   if (pf < 1) {
     alerts.push({
       level: "bad",
-      title: "WEAK PROFIT FACTOR",
-      text: `system PF is ${fmt(pf, 3)} and is below profitable baseline.`,
+      title: "약한 Profit Factor",
+      text: `시스템 PF ${fmt(pf, 3)}가 수익 기준 아래입니다.`,
     });
   }
 
   if (consec >= 3) {
     alerts.push({
       level: "warn",
-      title: "CONSECUTIVE LOSS PRESSURE",
-      text: `consecutive losses reached ${consec}.`,
+      title: "연속 손실 압력",
+      text: `연속 손실이 ${consec}회까지 누적됐습니다.`,
     });
   }
 
   if (!alerts.length) {
     alerts.push({
       level: "ok",
-      title: "NO CRITICAL ALERT",
-      text: "No immediate operational alert is active under current dashboard rules.",
+      title: "치명 경고 없음",
+      text: "현재 대시보드 기준 즉시 대응 경고는 없습니다.",
     });
   }
 
@@ -673,19 +671,19 @@ function classificationText(snapshot) {
   const lines = [];
 
   if (!gate) {
-    lines.push(`Live gate is not ready because ${gateReasons(snapshot)}.`);
+    lines.push(`라이브 게이트는 아직 준비되지 않았습니다. 사유: ${gateReasons(snapshot)}.`);
   } else {
-    lines.push("Live gate rule is satisfied under dashboard criteria.");
+    lines.push("대시보드 기준 라이브 게이트 조건은 충족됐습니다.");
   }
 
-  if (health === "CRITICAL") {
-    lines.push("System health is critical because no signals are being selected.");
-  } else if (health === "DEGRADED") {
-    lines.push("Signals are selected but no trades are executing.");
-  } else if (health === "WEAK") {
-    lines.push("Trades are executing but system edge remains weak.");
+  if (health === "치명") {
+    lines.push("선택 신호가 없어 시스템 상태가 치명 단계입니다.");
+  } else if (health === "저하") {
+    lines.push("선택은 있지만 실제 실행이 없어 시스템이 저하 상태입니다.");
+  } else if (health === "취약") {
+    lines.push("실행은 되고 있지만 시스템 엣지가 아직 취약합니다.");
   } else {
-    lines.push("Selection, execution, and performance layers are all active.");
+    lines.push("선택, 실행, 성과 계층이 모두 활성 상태입니다.");
   }
 
   return lines.join(" ");
@@ -700,7 +698,17 @@ async function readJSON(path) {
   return JSON.parse(text.replace(/^\uFEFF/, ""));
 }
 
-function render(snapshot, metrics, state, gate) {
+function describePending(pending) {
+  if (!pending) return "없음";
+  return `${pending.side} ${pending.status} #${pending.orderId ?? "--"}`;
+}
+
+function describeOpenTrade(openTrade) {
+  if (!openTrade) return "없음";
+  return `${openTrade.strategy_name ?? "--"} @ ${fmt(openTrade.entry_price, 2)} qty ${fmt(openTrade.entry_qty, 5)}`;
+}
+
+function render(snapshot, metrics, state) {
   const previous = (() => {
     try {
       return JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
@@ -712,7 +720,7 @@ function render(snapshot, metrics, state, gate) {
   const health = computeSystemHealth(snapshot);
   const healthBadge = document.getElementById("health-badge");
   healthBadge.textContent = health;
-  healthBadge.className = `badge ${health === "HEALTHY" ? "ok" : health === "WEAK" ? "warn" : "bad"}`;
+  healthBadge.className = `badge ${health === "정상" ? "ok" : health === "취약" ? "warn" : "bad"}`;
 
   document.getElementById("last-update").textContent = snapshot.timestamp ?? "--";
 
@@ -727,7 +735,7 @@ function render(snapshot, metrics, state, gate) {
   document.getElementById("gate-explain").textContent = classificationText(snapshot);
 
   document.getElementById("health-title").textContent = health;
-  document.getElementById("health-summary").textContent = `selected=${snapshot.selected_signals ?? 0}, executed=${snapshot.executed_trades ?? 0}, PF=${fmt(snapshot.profit_factor, 3)}`;
+  document.getElementById("health-summary").textContent = `선택 ${snapshot.selected_signals ?? 0} · 실행 ${snapshot.executed_trades ?? 0} · PF ${fmt(snapshot.profit_factor, 3)}`;
 
   const alerts = buildAlerts(snapshot, state);
   document.getElementById("alerts").innerHTML = alerts.map(alert => `
@@ -766,17 +774,17 @@ function render(snapshot, metrics, state, gate) {
   const filtered = blocked.no_ranked_signal?.all_filtered ?? 0;
   const legacy = blocked.no_ranked_signal?.legacy ?? 0;
   document.getElementById("pipeline-breakdown").innerHTML = `
-    <div class="kv-row"><span class="kv-key">Filtered Out</span><span class="kv-val">${filtered}</span></div>
-    <div class="kv-row"><span class="kv-key">No Ranked Signal (legacy)</span><span class="kv-val">${legacy}</span></div>
-    <div class="kv-row"><span class="kv-key">Selected / Total</span><span class="kv-val">${total ? pct(selected / total) : "--"}</span></div>
-    <div class="kv-row"><span class="kv-key">Executed / Selected</span><span class="kv-val">${selected ? pct(executed / selected) : "--"}</span></div>
+    <div class="kv-row"><span class="kv-key">필터 차단</span><span class="kv-val">${filtered}</span></div>
+    <div class="kv-row"><span class="kv-key">랭킹 탈락(legacy)</span><span class="kv-val">${legacy}</span></div>
+    <div class="kv-row"><span class="kv-key">선택률</span><span class="kv-val">${total ? pct(selected / total) : "--"}</span></div>
+    <div class="kv-row"><span class="kv-key">실행률</span><span class="kv-val">${selected ? pct(executed / selected) : "--"}</span></div>
   `;
 
   document.getElementById("e-symbol").textContent = state.symbol ?? "--";
   document.getElementById("e-status").textContent = state.status ?? "--";
   document.getElementById("e-action").textContent = state.action ?? "--";
-  document.getElementById("e-pending").textContent = state.pending_order ? JSON.stringify(state.pending_order) : "null";
-  document.getElementById("e-open").textContent = state.open_trade ? JSON.stringify(state.open_trade) : "null";
+  document.getElementById("e-pending").textContent = describePending(state.pending_order);
+  document.getElementById("e-open").textContent = describeOpenTrade(state.open_trade);
   document.getElementById("e-price").textContent = state.price != null ? fmt(state.price, 2) : "--";
 
   const metricValues = Object.values(metrics);
@@ -832,13 +840,13 @@ async function loadData() {
   button.disabled = true;
   button.textContent = "LOADING";
   try {
-    const [snapshot, metrics, state, gate] = await Promise.all([
+    const [snapshot, metrics, state] = await Promise.all([
       readJSON(DATA_FILES.snapshot),
       readJSON(DATA_FILES.metrics),
       readJSON(DATA_FILES.state),
       readJSON(DATA_FILES.gate),
     ]);
-    render(snapshot, metrics, state, gate);
+    render(snapshot, metrics, state);
   } catch (error) {
     document.getElementById("alerts").innerHTML = `
       <div class="alert-item bad">

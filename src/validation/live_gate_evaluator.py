@@ -11,6 +11,8 @@ def evaluate_live_gate(snapshot: dict) -> dict:
     max_consecutive_losses = int(snapshot.get("max_consecutive_losses", 0) or 0)
     risk_trigger_stats = snapshot.get("risk_trigger_stats", {}) or {}
     cooldown_trigger = int(risk_trigger_stats.get("LOSS_COOLDOWN", 0) or 0)
+    daily_loss_trigger = int(risk_trigger_stats.get("DAILY_LOSS_LIMIT", 0) or 0)
+    observed_risk_guard_trigger = cooldown_trigger + daily_loss_trigger
 
     if closed_trades < 20:
         return {
@@ -56,14 +58,18 @@ def evaluate_live_gate(snapshot: dict) -> dict:
             },
         }
 
-    if cooldown_trigger == 0:
+    if observed_risk_guard_trigger == 0:
         return {
             "status": "FAIL",
-            "reason": "COOLDOWN_NOT_OBSERVED",
+            "reason": "RISK_GUARD_NOT_OBSERVED",
             "metrics": {
                 "closed_trades": closed_trades,
                 "expectancy": expectancy,
                 "net_pnl": net_pnl,
+                "risk_trigger_stats": {
+                    "LOSS_COOLDOWN": cooldown_trigger,
+                    "DAILY_LOSS_LIMIT": daily_loss_trigger,
+                },
             },
         }
 
@@ -74,6 +80,10 @@ def evaluate_live_gate(snapshot: dict) -> dict:
             "closed_trades": closed_trades,
             "expectancy": expectancy,
             "net_pnl": net_pnl,
+            "risk_trigger_stats": {
+                "LOSS_COOLDOWN": cooldown_trigger,
+                "DAILY_LOSS_LIMIT": daily_loss_trigger,
+            },
         },
     }
 

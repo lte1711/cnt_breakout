@@ -6,7 +6,7 @@ PROJECT       = CNT
 VERSION       = 2.0
 DATE          = 2026-04-22
 STATUS        = DATA_COLLECTION_IN_PROGRESS
-LAST_UPDATED  = 2026-04-22 02:34:06
+LAST_UPDATED  = 2026-04-22 02:54:02
 ```
 
 ---
@@ -14,26 +14,26 @@ LAST_UPDATED  = 2026-04-22 02:34:06
 # AUTO SNAPSHOT
 
 ```text
-OBSERVATION_WINDOW: up to 2026-04-22 02:34:06
+OBSERVATION_WINDOW: up to 2026-04-22 02:54:02
 TOTAL_SIGNALS: 558
 TOTAL_SELECTED_SIGNALS: 62
 TOTAL_EXECUTED_TRADES: 22
-TOTAL_CLOSED_TRADES: 21
-CURRENT_OPEN_POSITIONS: 1
-WINS: 12
+TOTAL_CLOSED_TRADES: 22
+CURRENT_OPEN_POSITIONS: 0
+WINS: 13
 LOSSES: 9
-WIN_RATE: 0.5714
-AVG_WIN: 0.014031
+WIN_RATE: 0.5909
+AVG_WIN: 0.015691
 AVG_LOSS: 0.015630
-EXPECTANCY: 0.001319
-PROFIT_FACTOR: 1.196939
-NET_PNL: 0.027703
+EXPECTANCY: 0.002878
+PROFIT_FACTOR: 1.450145
+NET_PNL: 0.063321
 MAX_CONSECUTIVE_LOSSES: 2
-TOP_STRATEGY: breakout_v1
-WORST_STRATEGY: pullback_v1
+TOP_STRATEGY: pullback_v1
+WORST_STRATEGY: breakout_v1
 BLOCKED_REASON_DISTRIBUTION: DAILY_LOSS_LIMIT=40, no_ranked_signal{all_filtered=192, legacy=25}
 RISK_TRIGGER_STATS: DAILY_LOSS_LIMIT=80
-STRATEGY_BREAKDOWN: breakout_v1: trades_closed=2, wins=1, losses=1, win_rate=0.5000, expectancy=0.001441, profit_factor=1.260956 | pullback_v1: trades_closed=19, wins=11, losses=8, win_rate=0.5789, expectancy=0.001306, profit_factor=1.191485
+STRATEGY_BREAKDOWN: breakout_v1: trades_closed=2, wins=1, losses=1, win_rate=0.5000, expectancy=0.001441, profit_factor=1.260956 | pullback_v1: trades_closed=20, wins=12, losses=8, win_rate=0.6000, expectancy=0.003022, profit_factor=1.466264
 SELECTION_LOG_COUNTS: breakout_v1=5, pullback_v1=52
 SELECTION_LOG_BASIS: new-format selection-path logs only
 NOTES: auto-generated from performance snapshot

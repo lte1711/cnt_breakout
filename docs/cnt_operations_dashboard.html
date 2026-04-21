@@ -296,7 +296,7 @@
           </div>
           <div style="text-align:right;">
             <div class="metric-label">Gate Rule</div>
-            <div class="mono" id="gate-rule">closed trades >= 20 · PF >= 1.1 · expectancy > 0</div>
+            <div class="mono" id="gate-rule">closed trades &gt;= 20 · PF &gt;= 1.1 · expectancy &gt; 0</div>
           </div>
         </div>
         <div class="progress"><div id="gate-progress"></div></div>
@@ -377,6 +377,35 @@
       </div>
     </section>
 
+    <section class="card" style="margin-bottom:12px;">
+      <h2>Live-Ready Baseline</h2>
+      <div class="grid-4">
+        <div class="card" style="padding:12px;">
+          <div class="metric-label">Selection Rate</div>
+          <div id="b-selection-rate" class="metric-value" style="font-size:22px;">--</div>
+          <div id="b-selection-delta" class="metric-sub">baseline --</div>
+        </div>
+        <div class="card" style="padding:12px;">
+          <div class="metric-label">Execution Rate</div>
+          <div id="b-execution-rate" class="metric-value" style="font-size:22px;">--</div>
+          <div id="b-execution-delta" class="metric-sub">baseline --</div>
+        </div>
+        <div class="card" style="padding:12px;">
+          <div class="metric-label">No Ranked Signal</div>
+          <div id="b-no-ranked" class="metric-value" style="font-size:22px;">--</div>
+          <div id="b-no-ranked-delta" class="metric-sub">baseline --</div>
+        </div>
+        <div class="card" style="padding:12px;">
+          <div class="metric-label">Strategy Split</div>
+          <div id="b-strategy-split" class="metric-value" style="font-size:22px;">--</div>
+          <div id="b-strategy-delta" class="metric-sub">baseline --</div>
+        </div>
+      </div>
+      <div class="help" id="baseline-note" style="margin-top:12px;">
+        Baseline fixed at LIVE_READY snapshot 2026-04-22 02:44:03. Hold parameters steady and judge persistence first.
+      </div>
+    </section>
+
     <section class="grid-2" style="margin-bottom:12px;">
       <div class="card">
         <h2>Strategy Quality</h2>
@@ -427,7 +456,7 @@
     </section>
 
     <div class="footer" id="footer-note">
-      CNT runtime sources: ../data/performance_snapshot.json · ../data/strategy_metrics.json · ../data/state.json · ../data/live_gate_decision.json
+      CNT runtime sources: ../data/performance_snapshot.json 쨌 ../data/strategy_metrics.json 쨌 ../data/state.json 쨌 ../data/live_gate_decision.json
     </div>
   </main>
 
@@ -441,6 +470,20 @@ const DATA_FILES = {
 
 const GATE_THRESHOLD = 20;
 const STORAGE_KEY = "cnt_dashboard_previous_snapshot_v3";
+const LIVE_READY_BASELINE = {
+  timestamp: "2026-04-22 02:44:03",
+  total_signals: 558,
+  selected_signals: 62,
+  executed_trades: 22,
+  closed_trades: 21,
+  selection_rate: 62 / 558,
+  execution_rate: 22 / 62,
+  no_ranked_signal_total: 217,
+  pullback_selected: 57,
+  breakout_selected: 5,
+  profit_factor: 1.196938891574459,
+  expectancy: 0.0013191904761903238,
+};
 
 function fmt(value, digits = 4) {
   if (value == null || Number.isNaN(Number(value))) return "--";
@@ -457,6 +500,13 @@ function signedDelta(current, previous, digits = 4) {
   const delta = Number(current) - Number(previous);
   const sign = delta > 0 ? "+" : "";
   return `delta ${sign}${delta.toFixed(digits)}`;
+}
+
+function signedBaselineDelta(current, baseline, digits = 2) {
+  if (baseline == null || Number.isNaN(Number(baseline))) return "baseline --";
+  const delta = Number(current) - Number(baseline);
+  const sign = delta > 0 ? "+" : "";
+  return `${sign}${delta.toFixed(digits)}`;
 }
 
 function strategyStatusLabel(pf) {
@@ -643,6 +693,25 @@ function render(snapshot, metrics, state, gate) {
     <div class="kv-row"><span class="kv-key">Selected / Total</span><span class="kv-val">${total ? pct(selected / total) : "--"}</span></div>
     <div class="kv-row"><span class="kv-key">Executed / Selected</span><span class="kv-val">${selected ? pct(executed / selected) : "--"}</span></div>
   `;
+
+  const noRankedTotal = filtered + legacy;
+  const currentSelectionRate = total ? selected / total : 0;
+  const currentExecutionRate = selected ? executed / selected : 0;
+  const splitTotal = Object.values(snapshot.strategy_breakdown ?? {}).reduce((sum, item) => sum + Number(item?.signals_selected ?? 0), 0);
+  const pullbackSelected = Number(snapshot.strategy_breakdown?.pullback_v1?.signals_selected ?? 0);
+  const breakoutSelected = Number(snapshot.strategy_breakdown?.breakout_v1?.signals_selected ?? 0);
+  const breakoutShare = splitTotal ? breakoutSelected / splitTotal : 0;
+  const baselineSplitTotal = LIVE_READY_BASELINE.pullback_selected + LIVE_READY_BASELINE.breakout_selected;
+  const baselineBreakoutShare = baselineSplitTotal ? LIVE_READY_BASELINE.breakout_selected / baselineSplitTotal : 0;
+
+  document.getElementById("b-selection-rate").textContent = pct(currentSelectionRate);
+  document.getElementById("b-selection-delta").textContent = `vs baseline ${signedBaselineDelta(currentSelectionRate * 100, LIVE_READY_BASELINE.selection_rate * 100, 2)} pts`;
+  document.getElementById("b-execution-rate").textContent = pct(currentExecutionRate);
+  document.getElementById("b-execution-delta").textContent = `vs baseline ${signedBaselineDelta(currentExecutionRate * 100, LIVE_READY_BASELINE.execution_rate * 100, 2)} pts`;
+  document.getElementById("b-no-ranked").textContent = String(noRankedTotal);
+  document.getElementById("b-no-ranked-delta").textContent = `vs baseline ${signedBaselineDelta(noRankedTotal, LIVE_READY_BASELINE.no_ranked_signal_total, 0)}`;
+  document.getElementById("b-strategy-split").textContent = `pullback ${pullbackSelected} / breakout ${breakoutSelected}`;
+  document.getElementById("b-strategy-delta").textContent = `breakout share ${pct(breakoutShare)} vs baseline ${signedBaselineDelta(breakoutShare * 100, baselineBreakoutShare * 100, 2)} pts`;
 
   document.getElementById("e-symbol").textContent = state.symbol ?? "--";
   document.getElementById("e-status").textContent = state.status ?? "--";

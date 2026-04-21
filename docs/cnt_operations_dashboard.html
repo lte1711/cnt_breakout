@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,9 +24,7 @@
     --mono: "Cascadia Code", "IBM Plex Mono", Consolas, monospace;
     --sans: "Segoe UI", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
   }
-
   * { box-sizing: border-box; }
-
   body {
     margin: 0;
     background:
@@ -35,7 +33,6 @@
     color: var(--text);
     font-family: var(--sans);
   }
-
   header {
     position: sticky;
     top: 0;
@@ -49,22 +46,14 @@
     background: rgba(12, 17, 23, 0.94);
     backdrop-filter: blur(10px);
   }
-
-  .brand {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-  }
-
+  .brand { display: flex; align-items: baseline; gap: 10px; }
   .brand-title {
     font-family: var(--mono);
     font-size: 16px;
     color: #fff;
     letter-spacing: 0.04em;
   }
-
   .brand-title span { color: var(--green); }
-
   .brand-sub {
     font-family: var(--mono);
     font-size: 11px;
@@ -72,7 +61,6 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
-
   .header-meta {
     display: flex;
     align-items: center;
@@ -80,7 +68,6 @@
     flex-wrap: wrap;
     justify-content: flex-end;
   }
-
   .badge {
     border-radius: 999px;
     padding: 5px 10px;
@@ -89,12 +76,10 @@
     letter-spacing: 0.04em;
     border: 1px solid var(--line);
   }
-
   .ok { color: var(--green); background: var(--green-bg); }
   .warn { color: var(--amber); background: var(--amber-bg); }
   .bad { color: var(--red); background: var(--red-bg); }
   .info { color: var(--blue); background: var(--blue-bg); }
-
   button {
     border: 1px solid var(--line);
     background: transparent;
@@ -105,33 +90,16 @@
     font-size: 11px;
     cursor: pointer;
   }
-
   button:hover { background: var(--bg3); }
-
   main {
     max-width: 1260px;
     margin: 0 auto;
     padding: 24px;
   }
-
-  .grid-4 {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .grid-2 {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
-
+  .grid-4, .grid-3, .grid-2 { display: grid; gap: 12px; }
+  .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .card {
     background: linear-gradient(180deg, rgba(23, 33, 48, 0.75), rgba(17, 24, 39, 0.95));
     border: 1px solid var(--line);
@@ -139,9 +107,7 @@
     padding: 16px;
     box-shadow: 0 18px 30px rgba(0, 0, 0, 0.16);
   }
-
-  .card h2,
-  .card h3 {
+  .card h2 {
     margin: 0 0 10px;
     font-size: 13px;
     font-family: var(--mono);
@@ -149,37 +115,21 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
-
   .hero {
     display: grid;
     grid-template-columns: 1.4fr 1fr;
     gap: 12px;
     margin-bottom: 12px;
   }
-
-  .gate-title {
-    margin: 0 0 6px;
-    font-size: 20px;
-    color: #fff;
-  }
-
-  .gate-sub {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--muted);
-  }
-
+  .gate-title { margin: 0 0 6px; font-size: 20px; color: #fff; }
+  .gate-sub { font-family: var(--mono); font-size: 12px; color: var(--muted); }
   .big-number {
     font-family: var(--mono);
     font-size: 32px;
     font-weight: 600;
     color: #fff;
   }
-
-  .big-number.small {
-    font-size: 24px;
-  }
-
+  .big-number.small { font-size: 24px; }
   .progress {
     width: 100%;
     height: 8px;
@@ -188,14 +138,12 @@
     background: #1a2331;
     margin-top: 8px;
   }
-
   .progress > div {
     height: 100%;
     width: 0%;
     background: linear-gradient(90deg, var(--green), var(--cyan));
     transition: width 0.5s ease;
   }
-
   .metric-label {
     color: var(--muted);
     font-family: var(--mono);
@@ -204,29 +152,20 @@
     letter-spacing: 0.08em;
     margin-bottom: 8px;
   }
-
   .metric-value {
     font-family: var(--mono);
     font-size: 28px;
     color: #fff;
     line-height: 1.1;
   }
-
-  .metric-sub {
-    margin-top: 6px;
-    font-size: 12px;
-    color: var(--muted);
-  }
-
+  .metric-sub { margin-top: 6px; font-size: 12px; color: var(--muted); }
   .positive { color: var(--green); }
   .negative { color: var(--red); }
-
   .pipeline {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 8px;
   }
-
   .pipe {
     background: rgba(8, 13, 22, 0.35);
     border: 1px solid var(--line);
@@ -234,7 +173,6 @@
     padding: 12px;
     text-align: center;
   }
-
   .pipe .label {
     font-family: var(--mono);
     color: var(--muted);
@@ -243,33 +181,24 @@
     letter-spacing: 0.08em;
     margin-top: 6px;
   }
-
   .pipe .value {
     font-family: var(--mono);
     font-size: 24px;
     color: #fff;
   }
-
   .pipe .sub {
     font-family: var(--mono);
     font-size: 11px;
     color: var(--muted);
     margin-top: 4px;
   }
-
-  .alert-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
+  .alert-list { display: flex; flex-direction: column; gap: 8px; }
   .alert-item {
     border-radius: 10px;
     border: 1px solid var(--line);
     padding: 12px;
     font-size: 13px;
   }
-
   .alert-item strong {
     display: block;
     font-family: var(--mono);
@@ -277,27 +206,10 @@
     letter-spacing: 0.08em;
     margin-bottom: 5px;
   }
-
-  .alert-item.bad {
-    color: #ffd9d9;
-    background: rgba(224, 92, 92, 0.12);
-  }
-
-  .alert-item.warn {
-    color: #ffe7be;
-    background: rgba(245, 166, 35, 0.12);
-  }
-
-  .alert-item.ok {
-    color: #dafbef;
-    background: rgba(45, 212, 160, 0.12);
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
+  .alert-item.bad { color: #ffd9d9; background: rgba(224, 92, 92, 0.12); }
+  .alert-item.warn { color: #ffe7be; background: rgba(245, 166, 35, 0.12); }
+  .alert-item.ok { color: #dafbef; background: rgba(45, 212, 160, 0.12); }
+  table { width: 100%; border-collapse: collapse; }
   th, td {
     padding: 10px 0;
     border-bottom: 1px solid var(--line);
@@ -305,11 +217,9 @@
     font-family: var(--mono);
     font-size: 12px;
   }
-
   th:first-child, td:first-child { text-align: left; }
   th { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
   tr:last-child td { border-bottom: 0; }
-
   .pf-track {
     width: 72px;
     height: 5px;
@@ -320,18 +230,8 @@
     margin-right: 8px;
     vertical-align: middle;
   }
-
-  .pf-fill {
-    height: 100%;
-    border-radius: 999px;
-  }
-
-  .stack {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
+  .pf-fill { height: 100%; border-radius: 999px; }
+  .stack { display: flex; flex-direction: column; gap: 8px; }
   .kv-row {
     display: flex;
     align-items: center;
@@ -342,13 +242,10 @@
     font-family: var(--mono);
     font-size: 12px;
   }
-
   .kv-row:last-child { border-bottom: 0; }
   .kv-key { color: var(--muted); }
-  .kv-val { color: #fff; text-align: right; }
-
+  .kv-val { color: #fff; text-align: right; max-width: 70%; word-break: break-word; }
   .mono { font-family: var(--mono); }
-
   .footer {
     margin-top: 16px;
     text-align: center;
@@ -356,7 +253,6 @@
     font-family: var(--mono);
     font-size: 11px;
   }
-
   .help {
     margin-top: 12px;
     padding: 12px;
@@ -365,7 +261,6 @@
     color: var(--muted);
     font-size: 12px;
   }
-
   @media (max-width: 980px) {
     .hero, .grid-4, .grid-3, .grid-2, .pipeline {
       grid-template-columns: 1fr;
@@ -381,7 +276,7 @@
     </div>
     <div class="header-meta">
       <span id="health-badge" class="badge info">LOADING</span>
-      <span id="gate-badge" class="badge warn">NOT_READY</span>
+      <span id="gate-badge" class="badge warn">LOADING</span>
       <span class="badge info">SPOT TESTNET</span>
       <span id="last-update" class="badge">--</span>
       <button id="refresh-btn" type="button">REFRESH</button>
@@ -392,7 +287,7 @@
     <section class="hero">
       <div class="card">
         <h2>Live Gate</h2>
-        <div class="gate-title" id="gate-title">NOT_READY</div>
+        <div class="gate-title" id="gate-title">LOADING</div>
         <div class="gate-sub" id="gate-reason">loading</div>
         <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-top:16px;">
           <div>
@@ -401,19 +296,19 @@
           </div>
           <div style="text-align:right;">
             <div class="metric-label">Gate Rule</div>
-            <div class="mono" id="gate-rule">종료 거래 20건 이상 · PF 1.1 이상 · 기대값 양수</div>
+            <div class="mono" id="gate-rule">closed trades >= 20 · PF >= 1.1 · expectancy > 0</div>
           </div>
         </div>
         <div class="progress"><div id="gate-progress"></div></div>
         <div class="help" id="gate-explain">
-          샘플 수, Profit Factor, expectancy 기준으로 READY / NOT_READY를 해석합니다.
+          This panel interprets LIVE_READY using sample size, profit factor, and expectancy.
         </div>
       </div>
 
       <div class="card">
         <h2>System Health</h2>
         <div class="big-number small" id="health-title">LOADING</div>
-        <div class="metric-sub" id="health-summary">판단 중...</div>
+        <div class="metric-sub" id="health-summary">diagnosing...</div>
         <div class="alert-list" id="alerts" style="margin-top:12px;"></div>
       </div>
     </section>
@@ -427,12 +322,12 @@
       <div class="card">
         <div class="metric-label">Profit Factor</div>
         <div id="m-pf" class="metric-value">--</div>
-        <div id="m-pf-delta" class="metric-sub">이전 대비 --</div>
+        <div id="m-pf-delta" class="metric-sub">delta --</div>
       </div>
       <div class="card">
         <div class="metric-label">Expectancy</div>
         <div id="m-exp" class="metric-value">--</div>
-        <div id="m-exp-delta" class="metric-sub">이전 대비 --</div>
+        <div id="m-exp-delta" class="metric-sub">delta --</div>
       </div>
       <div class="card">
         <div class="metric-label">Net PnL</div>
@@ -475,8 +370,8 @@
           <div class="kv-row"><span class="kv-key">Symbol</span><span id="e-symbol" class="kv-val">--</span></div>
           <div class="kv-row"><span class="kv-key">Status</span><span id="e-status" class="kv-val">--</span></div>
           <div class="kv-row"><span class="kv-key">Action</span><span id="e-action" class="kv-val">--</span></div>
-          <div class="kv-row"><span class="kv-key">Pending</span><span id="e-pending" class="kv-val">없음</span></div>
-          <div class="kv-row"><span class="kv-key">Open Trade</span><span id="e-open" class="kv-val">없음</span></div>
+          <div class="kv-row"><span class="kv-key">Pending</span><span id="e-pending" class="kv-val">none</span></div>
+          <div class="kv-row"><span class="kv-key">Open Trade</span><span id="e-open" class="kv-val">none</span></div>
           <div class="kv-row"><span class="kv-key">Price</span><span id="e-price" class="kv-val">--</span></div>
         </div>
       </div>
@@ -525,10 +420,9 @@
     <section class="card">
       <h2>Usage Note</h2>
       <div class="help">
-        이 대시보드는 저장소 루트(`C:\cnt`)를 HTTP로 서빙할 때 사용합니다.
-        `python scripts/serve_dashboard.py` 실행 후
-        <span class="mono">http://127.0.0.1:8000/docs/cnt_operations_dashboard.html</span>
-        로 접속하면 `data/*.json`과 `logs/*.log`를 repo-relative 경로로 읽습니다.
+        This dashboard expects the CNT repository root to be served over HTTP.
+        Run <span class="mono">python scripts/serve_dashboard.py</span> and open
+        <span class="mono">http://127.0.0.1:8000/docs/cnt_operations_dashboard.html</span>.
       </div>
     </section>
 
@@ -546,7 +440,7 @@ const DATA_FILES = {
 };
 
 const GATE_THRESHOLD = 20;
-const STORAGE_KEY = "cnt_dashboard_previous_snapshot_v1";
+const STORAGE_KEY = "cnt_dashboard_previous_snapshot_v3";
 
 function fmt(value, digits = 4) {
   if (value == null || Number.isNaN(Number(value))) return "--";
@@ -559,27 +453,27 @@ function pct(value) {
 }
 
 function signedDelta(current, previous, digits = 4) {
-  if (previous == null || Number.isNaN(Number(previous))) return "이전 대비 --";
+  if (previous == null || Number.isNaN(Number(previous))) return "delta --";
   const delta = Number(current) - Number(previous);
   const sign = delta > 0 ? "+" : "";
-  return `이전 대비 ${sign}${delta.toFixed(digits)}`;
+  return `delta ${sign}${delta.toFixed(digits)}`;
 }
 
 function strategyStatusLabel(pf) {
   const value = Number(pf || 0);
-  if (value < 1) return { text: "손실 구간", color: "var(--red)" };
-  if (value < 1.2) return { text: "약한 엣지", color: "var(--amber)" };
-  return { text: "유효 엣지", color: "var(--green)" };
+  if (value < 1) return { text: "LOSING", color: "var(--red)" };
+  if (value < 1.2) return { text: "WEAK EDGE", color: "var(--amber)" };
+  return { text: "VALID EDGE", color: "var(--green)" };
 }
 
 function computeSystemHealth(snapshot) {
   const selected = snapshot.selected_signals ?? 0;
   const executed = snapshot.executed_trades ?? 0;
   const pf = Number(snapshot.profit_factor ?? 0);
-  if (selected === 0) return "치명";
-  if (executed === 0) return "저하";
-  if (pf < 1) return "취약";
-  return "정상";
+  if (selected === 0) return "CRITICAL";
+  if (executed === 0) return "DEGRADED";
+  if (pf < 1) return "WEAK";
+  return "HEALTHY";
 }
 
 function gateReady(snapshot) {
@@ -593,15 +487,15 @@ function gateReady(snapshot) {
 function gateReasons(snapshot) {
   const reasons = [];
   if ((snapshot.closed_trades ?? 0) < GATE_THRESHOLD) {
-    reasons.push(`샘플 부족 ${snapshot.closed_trades ?? 0}/${GATE_THRESHOLD}`);
+    reasons.push(`sample ${snapshot.closed_trades ?? 0}/${GATE_THRESHOLD}`);
   }
   if (Number(snapshot.profit_factor ?? 0) < 1.1) {
     reasons.push(`PF ${fmt(snapshot.profit_factor, 3)} < 1.1`);
   }
   if (Number(snapshot.expectancy ?? 0) <= 0) {
-    reasons.push(`기대값 ${fmt(snapshot.expectancy, 6)} <= 0`);
+    reasons.push(`expectancy ${fmt(snapshot.expectancy, 6)} <= 0`);
   }
-  return reasons.length ? reasons.join(" | ") : "게이트 조건 충족";
+  return reasons.length ? reasons.join(" | ") : "gate conditions satisfied";
 }
 
 function buildAlerts(snapshot, state) {
@@ -609,83 +503,50 @@ function buildAlerts(snapshot, state) {
   const total = snapshot.total_signals ?? 0;
   const selected = snapshot.selected_signals ?? 0;
   const selectedRate = total > 0 ? selected / total : 0;
-  const noRanked = snapshot.blocked_signal_stats?.no_ranked_signal?.all_filtered ?? 0;
+  const noRanked = (snapshot.blocked_signal_stats?.no_ranked_signal?.all_filtered ?? 0) +
+    (snapshot.blocked_signal_stats?.no_ranked_signal?.legacy ?? 0);
   const dailyLossLimit = snapshot.risk_trigger_stats?.DAILY_LOSS_LIMIT ?? 0;
   const pf = Number(snapshot.profit_factor ?? 0);
   const consec = Number(state?.risk_metrics?.consecutive_losses ?? snapshot.max_consecutive_losses ?? 0);
 
   if (selectedRate < 0.05) {
-    alerts.push({
-      level: "bad",
-      title: "랭커 경고",
-      text: `선택률이 ${pct(selectedRate)}로 5% 미만입니다.`,
-    });
+    alerts.push({ level: "bad", title: "RANKER WARNING", text: `selection rate is ${pct(selectedRate)}.` });
   }
-
   if (total < 50 || noRanked > selected * 5) {
-    alerts.push({
-      level: "warn",
-      title: "후보 부족",
-      text: `후보 부족 경고: 총 신호 ${total}, no_ranked_signal ${noRanked}.`,
-    });
+    alerts.push({ level: "warn", title: "CANDIDATE STARVATION", text: `total=${total}, no_ranked_signal=${noRanked}.` });
   }
-
   if (dailyLossLimit > 0) {
-    alerts.push({
-      level: "warn",
-      title: "일일 손실 제한 활성",
-      text: `DAILY_LOSS_LIMIT가 ${dailyLossLimit}회 기록됐습니다.`,
-    });
+    alerts.push({ level: "warn", title: "DAILY LOSS LIMIT ACTIVE", text: `triggered ${dailyLossLimit} times in runtime evidence.` });
   }
-
   if (pf < 1) {
-    alerts.push({
-      level: "bad",
-      title: "약한 Profit Factor",
-      text: `시스템 PF ${fmt(pf, 3)}가 수익 기준 아래입니다.`,
-    });
+    alerts.push({ level: "bad", title: "WEAK PROFIT FACTOR", text: `PF ${fmt(pf, 3)} is below profitability threshold.` });
   }
-
   if (consec >= 3) {
-    alerts.push({
-      level: "warn",
-      title: "연속 손실 압력",
-      text: `연속 손실이 ${consec}회까지 누적됐습니다.`,
-    });
+    alerts.push({ level: "warn", title: "CONSECUTIVE LOSS PRESSURE", text: `consecutive losses reached ${consec}.` });
   }
-
   if (!alerts.length) {
-    alerts.push({
-      level: "ok",
-      title: "치명 경고 없음",
-      text: "현재 대시보드 기준 즉시 대응 경고는 없습니다.",
-    });
+    alerts.push({ level: "ok", title: "NO CRITICAL ALERT", text: "No immediate alert is active on the dashboard." });
   }
-
   return alerts;
 }
 
-function classificationText(snapshot) {
+function classificationText(snapshot, gateStatus, gateReason) {
   const health = computeSystemHealth(snapshot);
-  const gate = gateReady(snapshot);
   const lines = [];
-
-  if (!gate) {
-    lines.push(`라이브 게이트는 아직 준비되지 않았습니다. 사유: ${gateReasons(snapshot)}.`);
+  if (gateStatus === "LIVE_READY" || gateStatus === "READY") {
+    lines.push("Live gate conditions are satisfied.");
   } else {
-    lines.push("대시보드 기준 라이브 게이트 조건은 충족됐습니다.");
+    lines.push(`Live gate is not ready. Reason: ${gateReason}.`);
   }
-
-  if (health === "치명") {
-    lines.push("선택 신호가 없어 시스템 상태가 치명 단계입니다.");
-  } else if (health === "저하") {
-    lines.push("선택은 있지만 실제 실행이 없어 시스템이 저하 상태입니다.");
-  } else if (health === "취약") {
-    lines.push("실행은 되고 있지만 시스템 엣지가 아직 취약합니다.");
+  if (health === "CRITICAL") {
+    lines.push("No strategy is being selected.");
+  } else if (health === "DEGRADED") {
+    lines.push("Selection exists but execution throughput is blocked.");
+  } else if (health === "WEAK") {
+    lines.push("Execution is active but edge quality is weak.");
   } else {
-    lines.push("선택, 실행, 성과 계층이 모두 활성 상태입니다.");
+    lines.push("Selection, execution, and performance layers are active.");
   }
-
   return lines.join(" ");
 }
 
@@ -699,16 +560,16 @@ async function readJSON(path) {
 }
 
 function describePending(pending) {
-  if (!pending) return "없음";
+  if (!pending) return "none";
   return `${pending.side} ${pending.status} #${pending.orderId ?? "--"}`;
 }
 
 function describeOpenTrade(openTrade) {
-  if (!openTrade) return "없음";
+  if (!openTrade) return "none";
   return `${openTrade.strategy_name ?? "--"} @ ${fmt(openTrade.entry_price, 2)} qty ${fmt(openTrade.entry_qty, 5)}`;
 }
 
-function render(snapshot, metrics, state) {
+function render(snapshot, metrics, state, gate) {
   const previous = (() => {
     try {
       return JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
@@ -720,22 +581,25 @@ function render(snapshot, metrics, state) {
   const health = computeSystemHealth(snapshot);
   const healthBadge = document.getElementById("health-badge");
   healthBadge.textContent = health;
-  healthBadge.className = `badge ${health === "정상" ? "ok" : health === "취약" ? "warn" : "bad"}`;
+  healthBadge.className = `badge ${health === "HEALTHY" ? "ok" : health === "WEAK" ? "warn" : "bad"}`;
 
   document.getElementById("last-update").textContent = snapshot.timestamp ?? "--";
 
-  const gateIsReady = gateReady(snapshot);
+  const gateStatus = gate?.status ?? (gateReady(snapshot) ? "READY" : "NOT_READY");
+  const gateReason = gate?.reason ?? gateReasons(snapshot);
+  const gateIsReady = gateStatus === "LIVE_READY" || gateStatus === "READY";
   const gateBadge = document.getElementById("gate-badge");
-  gateBadge.textContent = gateIsReady ? "READY" : "NOT_READY";
+  gateBadge.textContent = gateStatus;
   gateBadge.className = `badge ${gateIsReady ? "ok" : "warn"}`;
-  document.getElementById("gate-title").textContent = gateIsReady ? "READY" : "NOT_READY";
-  document.getElementById("gate-reason").textContent = gateReasons(snapshot);
+
+  document.getElementById("gate-title").textContent = gateStatus;
+  document.getElementById("gate-reason").textContent = gateReason;
   document.getElementById("gate-count").textContent = `${snapshot.closed_trades ?? 0} / ${GATE_THRESHOLD}`;
   document.getElementById("gate-progress").style.width = `${Math.min(100, ((snapshot.closed_trades ?? 0) / GATE_THRESHOLD) * 100)}%`;
-  document.getElementById("gate-explain").textContent = classificationText(snapshot);
+  document.getElementById("gate-explain").textContent = classificationText(snapshot, gateStatus, gateReason);
 
   document.getElementById("health-title").textContent = health;
-  document.getElementById("health-summary").textContent = `선택 ${snapshot.selected_signals ?? 0} · 실행 ${snapshot.executed_trades ?? 0} · PF ${fmt(snapshot.profit_factor, 3)}`;
+  document.getElementById("health-summary").textContent = `selected=${snapshot.selected_signals ?? 0}, executed=${snapshot.executed_trades ?? 0}, PF=${fmt(snapshot.profit_factor, 3)}`;
 
   const alerts = buildAlerts(snapshot, state);
   document.getElementById("alerts").innerHTML = alerts.map(alert => `
@@ -774,10 +638,10 @@ function render(snapshot, metrics, state) {
   const filtered = blocked.no_ranked_signal?.all_filtered ?? 0;
   const legacy = blocked.no_ranked_signal?.legacy ?? 0;
   document.getElementById("pipeline-breakdown").innerHTML = `
-    <div class="kv-row"><span class="kv-key">필터 차단</span><span class="kv-val">${filtered}</span></div>
-    <div class="kv-row"><span class="kv-key">랭킹 탈락(legacy)</span><span class="kv-val">${legacy}</span></div>
-    <div class="kv-row"><span class="kv-key">선택률</span><span class="kv-val">${total ? pct(selected / total) : "--"}</span></div>
-    <div class="kv-row"><span class="kv-key">실행률</span><span class="kv-val">${selected ? pct(executed / selected) : "--"}</span></div>
+    <div class="kv-row"><span class="kv-key">Filtered Out</span><span class="kv-val">${filtered}</span></div>
+    <div class="kv-row"><span class="kv-key">No Ranked Signal (legacy)</span><span class="kv-val">${legacy}</span></div>
+    <div class="kv-row"><span class="kv-key">Selected / Total</span><span class="kv-val">${total ? pct(selected / total) : "--"}</span></div>
+    <div class="kv-row"><span class="kv-key">Executed / Selected</span><span class="kv-val">${selected ? pct(executed / selected) : "--"}</span></div>
   `;
 
   document.getElementById("e-symbol").textContent = state.symbol ?? "--";
@@ -840,18 +704,18 @@ async function loadData() {
   button.disabled = true;
   button.textContent = "LOADING";
   try {
-    const [snapshot, metrics, state] = await Promise.all([
+    const [snapshot, metrics, state, gate] = await Promise.all([
       readJSON(DATA_FILES.snapshot),
       readJSON(DATA_FILES.metrics),
       readJSON(DATA_FILES.state),
       readJSON(DATA_FILES.gate),
     ]);
-    render(snapshot, metrics, state);
+    render(snapshot, metrics, state, gate);
   } catch (error) {
     document.getElementById("alerts").innerHTML = `
       <div class="alert-item bad">
         <strong>DASHBOARD LOAD FAILURE</strong>
-        <span>${error.message}. 저장소 루트에서 HTTP 서버로 열었는지 확인하세요.</span>
+        <span>${error.message}. Make sure the dashboard is opened through the local HTTP server.</span>
       </div>
     `;
   } finally {

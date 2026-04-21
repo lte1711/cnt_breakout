@@ -69,6 +69,7 @@ aliases:
 ## Long-Term Memos
 
 - [[CNT SYNTHETIC ARCHITECTURE RISK MEMO]]
+- [[CNT POST LIVE READY OPTIMIZATION MEMO]]
 
 ---
 

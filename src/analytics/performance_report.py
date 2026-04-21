@@ -104,4 +104,5 @@ NOTES: auto-generated from performance snapshot
 
 def generate_performance_report(report_file: Path, snapshot: dict) -> None:
     report_file.parent.mkdir(parents=True, exist_ok=True)
-    report_file.write_text(build_performance_report_text(snapshot), encoding="utf-8")
+    with report_file.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(build_performance_report_text(snapshot))

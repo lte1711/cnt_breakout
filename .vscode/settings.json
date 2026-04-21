@@ -12,12 +12,6 @@
       "params": {
         "filepath": ".continuerules"
       }
-    },
-    {
-      "name": "file",
-      "params": {
-        "filepath": ".windsurf/rules.md"
-      }
     }
   ]
 }

@@ -17,7 +17,7 @@ aliases:
 
 핵심 목표:
 
-1. VSCode/Continue가 항상 `AGENTS.md`와 `.continuerules`를 컨텍스트로 받게 한다.
+1. VSCode/Continue가 `AGENTS.md`와 `.continuerules`를 기본 컨텍스트로 받도록 저장소 설정을 등록한다.
 2. gemma4의 역할과 입력 채널을 명시한다.
 3. Obsidian에서 `data/*.json`을 직접 읽어 대시보드처럼 볼 수 있는 문서를 준비한다.
 4. 작업 흐름을 한 문서로 표준화한다.
@@ -31,7 +31,11 @@ aliases:
 - 기본 컨텍스트 파일:
   - `AGENTS.md`
   - `.continuerules`
-  - `.windsurf/rules.md`
+
+해석 주의:
+
+- 이번 변경은 **기본 컨텍스트 주입 규칙을 저장소에 등록한 것**이다.
+- Continue가 각 환경에서 이 설정을 실제로 소비하는지는 사용자 설치 환경에서 최종 확인돼야 한다.
 
 ### gemma4
 
@@ -64,6 +68,7 @@ aliases:
 - Dataview와 Templater는 설정 파일만으로 자동 설치되지는 않는다.
 - 현재 변경은 “즉시 설치 후 사용 가능한 저장소 구조”를 만드는 단계다.
 - 실제 Obsidian 플러그인 설치 자체는 사용자 환경에서 한 번 실행돼야 한다.
+- VSCode/Continue 연동도 저장소 설정은 준비됐지만, 최종 동작은 각 사용자 환경에서 확인돼야 한다.
 
 ## Final Assessment
 

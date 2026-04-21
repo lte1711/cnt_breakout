@@ -557,7 +557,7 @@ OBSIDIAN_MINIMUM_RULE=
 AI_CONTEXT_BASELINE=
 1. VSCode / Continue context should include AGENTS.md first
 2. .continuerules may extend behavior but must never override AGENTS.md
-3. workspace rule references may include .windsurf/rules.md as secondary context
+3. optional local workspace rule references may include .windsurf/rules.md as secondary context when present, but repository-default context must not depend on ignored files
 4. gemma4 system prompt must be stored under docs/gemma4_system_prompt.md
 5. Obsidian runtime dashboard notes must remain markdown files under docs/
 6. runtime interpretation must always prefer data/*.json, logs/*.log, and exchange reconciliation facts over note summaries

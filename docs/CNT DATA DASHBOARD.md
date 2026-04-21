@@ -11,6 +11,11 @@ aliases:
 
 이 문서는 Obsidian에서 `Dataview` 플러그인을 사용할 때 CNT 런타임 데이터를 빠르게 확인하기 위한 대시보드다.
 
+## Vault Assumption
+
+이 대시보드는 **vault root가 CNT repository root**일 때를 기준으로 작성됐다.
+즉, `C:\\cnt` 전체를 vault로 연 상태에서 `data/*.json`에 직접 접근하는 구성을 전제로 한다.
+
 ## Plugin Requirement
 
 - Community plugin: `dataview`
@@ -102,7 +107,7 @@ if (raw) {
 ## Usage Note
 
 - 이 문서는 Obsidian 내부 확인용 대시보드다.
-- 운영 판단은 항상 실제 `data/*.json`, `logs/*.log`, 그리고 [[../AGENTS|AGENTS.md]] 규칙과 함께 읽어야 한다.
+- 운영 판단은 항상 실제 `data/*.json`, `logs/*.log`, 그리고 [[AGENTS]] 규칙과 함께 읽어야 한다.
 
 ---
 

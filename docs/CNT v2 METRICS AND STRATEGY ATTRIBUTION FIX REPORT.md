@@ -22,14 +22,14 @@ aliases:
 
 적용한 변경은 아래와 같다.
 
-- [[../src/analytics/performance_snapshot.py|performance_snapshot]]
+- `src/analytics/performance_snapshot.py`
   - `runtime.log`를 파싱해 `BUY_FILLED`와 `PROMOTE_TO_OPEN_TRADE`만 `executed_trades`로 집계하도록 수정
-- [[../src/engine.py|engine]]
+- `src/engine.py`
   - `_build_state`, `_save_and_finish`에 `strategy_name_override`를 추가
   - pending fill, close fill, protective exit, entry save 핵심 경로에서 실제 전략명을 명시적으로 전달
-- [[../src/strategies/pullback_v1.py|pullback_v1]]
+- `src/strategies/pullback_v1.py`
   - `ema_fast/ema_slow` 기준 `trend_bias` 기록 추가
-- [[../src/strategies/mean_reversion_v1.py|mean_reversion_v1]]
+- `src/strategies/mean_reversion_v1.py`
   - `last_price`와 `ema_value` 기준 `trend_bias` 기록 추가
 
 ## Validation Result
@@ -81,4 +81,5 @@ OK
 - [[CNT v2 CURRENT STATUS ASSESSMENT]]
 - [[CNT v2 TESTNET PERFORMANCE REPORT]]
 - [[CNT v2 BREAKOUT FIRST TRADE REVIEW]]
+- [[CNT OBSIDIAN PLUGIN POLICY]]
 - [[00 Docs Index|Docs Index]]

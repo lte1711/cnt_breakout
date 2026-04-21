@@ -6,7 +6,7 @@ PROJECT       = CNT
 VERSION       = 2.0
 DATE          = 2026-04-21
 STATUS        = DATA_COLLECTION_IN_PROGRESS
-LAST_UPDATED  = 2026-04-21 14:34:03
+LAST_UPDATED  = 2026-04-21 15:00:49
 ```
 
 ---
@@ -14,9 +14,9 @@ LAST_UPDATED  = 2026-04-21 14:34:03
 # AUTO SNAPSHOT
 
 ```text
-OBSERVATION_WINDOW: up to 2026-04-21 14:34:03
-TOTAL_SIGNALS: 434
-TOTAL_SELECTED_SIGNALS: 27
+OBSERVATION_WINDOW: up to 2026-04-21 15:00:49
+TOTAL_SIGNALS: 438
+TOTAL_SELECTED_SIGNALS: 29
 TOTAL_EXECUTED_TRADES: 19
 TOTAL_CLOSED_TRADES: 19
 CURRENT_OPEN_POSITIONS: 0
@@ -31,10 +31,10 @@ NET_PNL: 0.039363
 MAX_CONSECUTIVE_LOSSES: 2
 TOP_STRATEGY: pullback_v1
 WORST_STRATEGY: breakout_v1
-BLOCKED_REASON_DISTRIBUTION: DAILY_LOSS_LIMIT=8, no_ranked_signal{all_filtered=165, legacy=25}
-RISK_TRIGGER_STATS: DAILY_LOSS_LIMIT=16
+BLOCKED_REASON_DISTRIBUTION: DAILY_LOSS_LIMIT=10, no_ranked_signal{all_filtered=165, legacy=25}
+RISK_TRIGGER_STATS: DAILY_LOSS_LIMIT=20
 STRATEGY_BREAKDOWN: breakout_v1: trades_closed=2, wins=1, losses=1, win_rate=0.5000, expectancy=0.001441, profit_factor=1.260956 | pullback_v1: trades_closed=17, wins=10, losses=7, win_rate=0.5882, expectancy=0.002146, profit_factor=1.359079
-SELECTION_LOG_COUNTS: breakout_v1=2, pullback_v1=20
+SELECTION_LOG_COUNTS: breakout_v1=2, pullback_v1=22
 SELECTION_LOG_BASIS: new-format selection-path logs only
 NOTES: auto-generated from performance snapshot
 ```

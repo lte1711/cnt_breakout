@@ -24,6 +24,8 @@ from config import (
     PERFORMANCE_SNAPSHOT_FILE,
     PORTFOLIO_LOG_FILE,
     PORTFOLIO_STATE_FILE,
+    SHADOW_BREAKOUT_V2_LOG_FILE,
+    SHADOW_BREAKOUT_V2_SNAPSHOT_FILE,
     STATE_FILE,
     STRATEGY_METRICS_FILE,
     STRATEGY_PARAMS,
@@ -58,6 +60,7 @@ from src.order_validator import (
 )
 from src.portfolio.strategy_orchestrator import get_ranked_signal_selection
 from src.risk.enhanced_exit_manager import evaluate_exit
+from src.shadow_eval import append_shadow_log, evaluate_breakout_v2_shadow, update_shadow_snapshot
 from src.state.state_manager import build_portfolio_state, load_portfolio_state, save_portfolio_state
 from src.state_writer import write_state
 from src.validation.live_gate_evaluator import evaluate_live_gate, save_live_gate_decision
@@ -378,6 +381,27 @@ def _save_and_finish(
             project_root / LIVE_GATE_DECISION_FILE,
             evaluate_live_gate(snapshot),
         )
+    except Exception:
+        pass
+
+
+def _run_breakout_v2_shadow(*, project_root: Path, symbol: str) -> None:
+    params = STRATEGY_PARAMS.get("breakout_v2")
+    if not isinstance(params, dict):
+        return
+
+    try:
+        event = evaluate_breakout_v2_shadow(symbol, params)
+    except Exception:
+        return
+
+    try:
+        append_shadow_log(project_root / SHADOW_BREAKOUT_V2_LOG_FILE, event)
+    except Exception:
+        pass
+
+    try:
+        update_shadow_snapshot(project_root / SHADOW_BREAKOUT_V2_SNAPSHOT_FILE, event)
     except Exception:
         pass
 
@@ -1233,6 +1257,10 @@ def start_engine() -> None:
 
         ranked_selection = get_ranked_signal_selection(SYMBOL, strategy_metrics=strategy_metrics)
         save_strategy_metrics(strategy_metrics_file, strategy_metrics)
+        _run_breakout_v2_shadow(
+            project_root=state_file.parent.parent,
+            symbol=SYMBOL,
+        )
         signal = ranked_selection.selected_signal
         if signal is None:
             append_portfolio_log(
@@ -1457,4 +1485,3 @@ def start_engine() -> None:
         except Exception:
             pass
         print(f"ERROR: {error}")
-

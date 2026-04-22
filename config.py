@@ -65,6 +65,8 @@ SIGNAL_LOG_FILE = "logs/signal.log"
 STRATEGY_METRICS_FILE = "data/strategy_metrics.json"
 PERFORMANCE_SNAPSHOT_FILE = "data/performance_snapshot.json"
 LIVE_GATE_DECISION_FILE = "data/live_gate_decision.json"
+SHADOW_BREAKOUT_V2_SNAPSHOT_FILE = "data/shadow_breakout_v2_snapshot.json"
+SHADOW_BREAKOUT_V2_LOG_FILE = "logs/shadow_breakout_v2.jsonl"
 
 # =========================
 # STRATEGY ENABLE SWITCH

@@ -72,6 +72,37 @@ class EngineCycleSmokeTests(unittest.TestCase):
             save_gate.assert_called_once()
             self.assertEqual(state["strategy_name"], "pullback_v1")
 
+    def test_run_breakout_v2_shadow_does_not_interrupt_on_log_failure(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            event = {
+                "ts": "2026-04-22T15:00:00+09:00",
+                "symbol": "ETHUSDT",
+                "strategy": "breakout_v2_shadow",
+                "signal_generated": True,
+                "entry_allowed": False,
+                "filter_reason": "volume_not_confirmed",
+                "confidence": 0.78,
+                "vwap": 2300.0,
+                "band_width_ratio": 0.01,
+                "band_expansion_ratio": 1.05,
+                "volume_ratio": 0.8,
+                "hypothetical_entry": False,
+            }
+            with (
+                patch("src.engine.evaluate_breakout_v2_shadow", return_value=event) as evaluate_shadow,
+                patch("src.engine.append_shadow_log", side_effect=OSError("log failed")) as append_shadow_log,
+                patch("src.engine.update_shadow_snapshot") as update_shadow_snapshot,
+            ):
+                engine._run_breakout_v2_shadow(
+                    project_root=root,
+                    symbol="ETHUSDT",
+                )
+
+            evaluate_shadow.assert_called_once()
+            append_shadow_log.assert_called_once()
+            update_shadow_snapshot.assert_called_once()
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -11,6 +11,7 @@ docs.zip
 src.zip
 
 logs/
+logs/shadow_breakout_v2.jsonl
 runtime.log
 
 state.json
@@ -19,6 +20,7 @@ data/portfolio_state.json
 data/strategy_metrics.json
 data/performance_snapshot.json
 data/live_gate_decision.json
+data/shadow_breakout_v2_snapshot.json
 data/breakout_review_due.json
 data/breakout_completion_alert.json
 data/runtime_monitor_report.json

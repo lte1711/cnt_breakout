@@ -17,9 +17,28 @@ The goal is to observe whether breakout remains a negative contributor under the
 
 ## Observation Start
 
+- Baseline commit: `be75061`
+- Isolation runtime start time: `2026-04-22 13:40:36`
 - Start label: `STRUCTURALLY_HEALTHY, PERFORMANCE_DEGRADED`
 - Start gate: `FAIL / NON_POSITIVE_EXPECTANCY`
 - Observation start snapshot: `2026-04-22 12:44:03`
+
+## Start Baseline Metrics
+
+- mixed portfolio observed
+  - `expectancy = -0.0007807916666668097`
+  - `profit_factor = 0.9158659890090017`
+  - `execution_rate = 24 / 86 = 27.91%`
+  - `execution_block_rate = 62 / 86 = 72.09%`
+  - `no_candidate_rate = 244 / 330 = 73.94%`
+- breakout observed baseline
+  - `trades_closed = 3`
+  - `expectancy = -0.022197999999999656`
+  - `profit_factor = 0.17295081967214201`
+- pullback inferred baseline
+  - `trades_closed = 21`
+  - `expectancy = 0.0022788095238093107`
+  - `profit_factor = 1.3365141201619735`
 
 ## Comparison Axes
 

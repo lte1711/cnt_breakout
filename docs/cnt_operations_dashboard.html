@@ -193,6 +193,39 @@
     margin-top: 4px;
   }
   .alert-list { display: flex; flex-direction: column; gap: 8px; }
+  .top-warning-strip {
+    display: none;
+    margin: 0 0 12px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(224, 92, 92, 0.35);
+    background: linear-gradient(180deg, rgba(49, 17, 17, 0.92), rgba(35, 12, 12, 0.96));
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.16);
+  }
+  .top-warning-strip.visible { display: block; }
+  .top-warning-title {
+    margin: 0 0 8px;
+    color: #ffd9d9;
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .top-warning-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .top-warning-pill {
+    border-radius: 999px;
+    border: 1px solid rgba(224, 92, 92, 0.28);
+    background: rgba(224, 92, 92, 0.1);
+    color: #ffe2e2;
+    padding: 6px 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
   .alert-item {
     border-radius: 10px;
     border: 1px solid var(--line);
@@ -296,12 +329,12 @@
           </div>
           <div style="text-align:right;">
             <div class="metric-label">Gate Rule</div>
-            <div class="mono" id="gate-rule">closed trades &gt;= 20 · PF &gt;= 1.1 · expectancy &gt; 0</div>
+            <div class="mono" id="gate-rule">closed_trades &gt;= 20 · expectancy &gt; 0 · net_pnl &gt; 0 · max_consecutive_losses &lt;= 5 · risk_guard_observed</div>
           </div>
         </div>
         <div class="progress"><div id="gate-progress"></div></div>
         <div class="help" id="gate-explain">
-          This panel interprets LIVE_READY using sample size, profit factor, and expectancy.
+          This panel follows the live gate evaluator exactly. The source of truth is closed trades, expectancy, net pnl, max consecutive losses, and observed risk guard evidence.
         </div>
       </div>
 
@@ -311,6 +344,11 @@
         <div class="metric-sub" id="health-summary">diagnosing...</div>
         <div class="alert-list" id="alerts" style="margin-top:12px;"></div>
       </div>
+    </section>
+
+    <section class="top-warning-strip" id="top-warning-strip">
+      <div class="top-warning-title">PERFORMANCE WARNING</div>
+      <div class="top-warning-items" id="top-warning-items"></div>
     </section>
 
     <section class="grid-4" style="margin-bottom:12px;">
@@ -456,7 +494,7 @@
     </section>
 
     <div class="footer" id="footer-note">
-      CNT runtime sources: ../data/performance_snapshot.json 쨌 ../data/strategy_metrics.json 쨌 ../data/state.json 쨌 ../data/live_gate_decision.json
+      CNT runtime sources: ../data/performance_snapshot.json | ../data/strategy_metrics.json | ../data/state.json | ../data/live_gate_decision.json
     </div>
   </main>
 
@@ -527,28 +565,65 @@ function computeSystemHealth(snapshot) {
 }
 
 function gateReady(snapshot) {
+  const riskStats = snapshot.risk_trigger_stats ?? {};
+  const observedRiskGuard = Number(riskStats.LOSS_COOLDOWN ?? 0) + Number(riskStats.DAILY_LOSS_LIMIT ?? 0);
   return (
     (snapshot.closed_trades ?? 0) >= GATE_THRESHOLD &&
-    Number(snapshot.profit_factor ?? 0) >= 1.1 &&
-    Number(snapshot.expectancy ?? 0) > 0
+    Number(snapshot.expectancy ?? 0) > 0 &&
+    Number(snapshot.net_pnl ?? 0) > 0 &&
+    Number(snapshot.max_consecutive_losses ?? 0) <= 5 &&
+    observedRiskGuard > 0
   );
 }
 
 function gateReasons(snapshot) {
   const reasons = [];
+  const riskStats = snapshot.risk_trigger_stats ?? {};
+  const observedRiskGuard = Number(riskStats.LOSS_COOLDOWN ?? 0) + Number(riskStats.DAILY_LOSS_LIMIT ?? 0);
   if ((snapshot.closed_trades ?? 0) < GATE_THRESHOLD) {
     reasons.push(`sample ${snapshot.closed_trades ?? 0}/${GATE_THRESHOLD}`);
-  }
-  if (Number(snapshot.profit_factor ?? 0) < 1.1) {
-    reasons.push(`PF ${fmt(snapshot.profit_factor, 3)} < 1.1`);
   }
   if (Number(snapshot.expectancy ?? 0) <= 0) {
     reasons.push(`expectancy ${fmt(snapshot.expectancy, 6)} <= 0`);
   }
-  return reasons.length ? reasons.join(" | ") : "gate conditions satisfied";
+  if (Number(snapshot.net_pnl ?? 0) <= 0) {
+    reasons.push(`net_pnl ${fmt(snapshot.net_pnl, 6)} <= 0`);
+  }
+  if (Number(snapshot.max_consecutive_losses ?? 0) > 5) {
+    reasons.push(`max_consecutive_losses ${snapshot.max_consecutive_losses ?? 0} > 5`);
+  }
+  if (observedRiskGuard <= 0) {
+    reasons.push("risk_guard_not_observed");
+  }
+  return reasons.length ? reasons.join(" | ") : "all evaluator conditions satisfied";
 }
 
-function buildAlerts(snapshot, state) {
+function buildTopWarnings(snapshot, metrics, state, gate) {
+  const warnings = [];
+  const breakout = metrics?.breakout_v1 ?? {};
+  if ((gate?.status ?? "") === "FAIL") {
+    warnings.push(`FAIL: ${gate?.reason ?? "UNKNOWN_REASON"}`);
+    warnings.push("⚠ PERFORMANCE DEGRADED");
+  }
+  if (Number(snapshot.expectancy ?? 0) < 0) {
+    warnings.push(`EXPECTANCY < 0 (${fmt(snapshot.expectancy, 6)})`);
+  }
+  if (Number(snapshot.net_pnl ?? 0) < 0) {
+    warnings.push(`NET PNL < 0 (${fmt(snapshot.net_pnl, 6)})`);
+  }
+  if (Number(snapshot.profit_factor ?? 0) < 1) {
+    warnings.push(`PF < 1 (${fmt(snapshot.profit_factor, 3)})`);
+  }
+  if (Number(state?.risk_metrics?.daily_loss_count ?? 0) >= 3) {
+    warnings.push(`DAILY LOSS COUNT = ${state?.risk_metrics?.daily_loss_count ?? 0}`);
+  }
+  if (Number(breakout.expectancy ?? 0) < 0) {
+    warnings.push(`BREAKOUT NEGATIVE (${fmt(breakout.expectancy, 6)})`);
+  }
+  return warnings;
+}
+
+function buildAlerts(snapshot, metrics, state, gate) {
   const alerts = [];
   const total = snapshot.total_signals ?? 0;
   const selected = snapshot.selected_signals ?? 0;
@@ -558,6 +633,17 @@ function buildAlerts(snapshot, state) {
   const dailyLossLimit = snapshot.risk_trigger_stats?.DAILY_LOSS_LIMIT ?? 0;
   const pf = Number(snapshot.profit_factor ?? 0);
   const consec = Number(state?.risk_metrics?.consecutive_losses ?? snapshot.max_consecutive_losses ?? 0);
+  const breakoutExp = Number(metrics?.breakout_v1?.expectancy ?? 0);
+
+  if ((gate?.status ?? "") === "FAIL") {
+    alerts.push({ level: "bad", title: "FAIL REASON", text: gate?.reason ?? "UNKNOWN_REASON" });
+  }
+  if (Number(snapshot.expectancy ?? 0) < 0) {
+    alerts.push({ level: "bad", title: "EXPECTANCY < 0", text: `current expectancy is ${fmt(snapshot.expectancy, 6)}.` });
+  }
+  if (Number(snapshot.net_pnl ?? 0) < 0) {
+    alerts.push({ level: "bad", title: "NET PNL < 0", text: `current net pnl is ${fmt(snapshot.net_pnl, 6)}.` });
+  }
 
   if (selectedRate < 0.05) {
     alerts.push({ level: "bad", title: "RANKER WARNING", text: `selection rate is ${pct(selectedRate)}.` });
@@ -570,6 +656,9 @@ function buildAlerts(snapshot, state) {
   }
   if (pf < 1) {
     alerts.push({ level: "bad", title: "WEAK PROFIT FACTOR", text: `PF ${fmt(pf, 3)} is below profitability threshold.` });
+  }
+  if (breakoutExp < 0) {
+    alerts.push({ level: "bad", title: "BREAKOUT NEGATIVE", text: `breakout expectancy is ${fmt(breakoutExp, 6)}.` });
   }
   if (consec >= 3) {
     alerts.push({ level: "warn", title: "CONSECUTIVE LOSS PRESSURE", text: `consecutive losses reached ${consec}.` });
@@ -584,7 +673,7 @@ function classificationText(snapshot, gateStatus, gateReason) {
   const health = computeSystemHealth(snapshot);
   const lines = [];
   if (gateStatus === "LIVE_READY" || gateStatus === "READY") {
-    lines.push("Live gate conditions are satisfied.");
+    lines.push("Live gate conditions are satisfied under the evaluator rules.");
   } else {
     lines.push(`Live gate is not ready. Reason: ${gateReason}.`);
   }
@@ -646,12 +735,19 @@ function render(snapshot, metrics, state, gate) {
   document.getElementById("gate-reason").textContent = gateReason;
   document.getElementById("gate-count").textContent = `${snapshot.closed_trades ?? 0} / ${GATE_THRESHOLD}`;
   document.getElementById("gate-progress").style.width = `${Math.min(100, ((snapshot.closed_trades ?? 0) / GATE_THRESHOLD) * 100)}%`;
+  document.getElementById("gate-rule").textContent = "closed_trades >= 20 | expectancy > 0 | net_pnl > 0 | max_consecutive_losses <= 5 | risk_guard_observed";
   document.getElementById("gate-explain").textContent = classificationText(snapshot, gateStatus, gateReason);
 
   document.getElementById("health-title").textContent = health;
   document.getElementById("health-summary").textContent = `selected=${snapshot.selected_signals ?? 0}, executed=${snapshot.executed_trades ?? 0}, PF=${fmt(snapshot.profit_factor, 3)}`;
 
-  const alerts = buildAlerts(snapshot, state);
+  const topWarnings = buildTopWarnings(snapshot, metrics, state, gate);
+  const topWarningStrip = document.getElementById("top-warning-strip");
+  const topWarningItems = document.getElementById("top-warning-items");
+  topWarningItems.innerHTML = topWarnings.map(text => `<span class="top-warning-pill">${text}</span>`).join("");
+  topWarningStrip.classList.toggle("visible", topWarnings.length > 0);
+
+  const alerts = buildAlerts(snapshot, metrics, state, gate);
   document.getElementById("alerts").innerHTML = alerts.map(alert => `
     <div class="alert-item ${alert.level}">
       <strong>${alert.title}</strong>

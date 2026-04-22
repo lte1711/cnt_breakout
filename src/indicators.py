@@ -13,6 +13,106 @@ def extract_lows(klines: list[dict]) -> list[float]:
     return [float(item["low"]) for item in klines]
 
 
+def extract_volumes(klines: list[dict]) -> list[float]:
+    return [float(item["volume"]) for item in klines]
+
+
+def sma(values: list[float], period: int) -> list[float | None]:
+    if period <= 0:
+        raise ValueError("period must be greater than 0")
+
+    if not values:
+        return []
+
+    result: list[float | None] = [None] * len(values)
+
+    if len(values) < period:
+        return result
+
+    for i in range(period - 1, len(values)):
+        window = values[i - period + 1 : i + 1]
+        result[i] = sum(window) / period
+
+    return result
+
+
+def stddev(values: list[float], period: int) -> list[float | None]:
+    if period <= 0:
+        raise ValueError("period must be greater than 0")
+
+    if not values:
+        return []
+
+    result: list[float | None] = [None] * len(values)
+
+    if len(values) < period:
+        return result
+
+    for i in range(period - 1, len(values)):
+        window = values[i - period + 1 : i + 1]
+        mean = sum(window) / period
+        variance = sum((value - mean) ** 2 for value in window) / period
+        result[i] = variance ** 0.5
+
+    return result
+
+
+def bollinger_bands(
+    closes: list[float],
+    period: int,
+    multiplier: float,
+) -> tuple[list[float | None], list[float | None], list[float | None]]:
+    middle = sma(closes, period)
+    deviation = stddev(closes, period)
+
+    upper: list[float | None] = [None] * len(closes)
+    lower: list[float | None] = [None] * len(closes)
+
+    for i in range(len(closes)):
+        if middle[i] is None or deviation[i] is None:
+            continue
+        upper[i] = middle[i] + deviation[i] * multiplier
+        lower[i] = middle[i] - deviation[i] * multiplier
+
+    return upper, middle, lower
+
+
+def rolling_vwap(klines: list[dict], period: int) -> list[float | None]:
+    if period <= 0:
+        raise ValueError("period must be greater than 0")
+
+    if not klines:
+        return []
+
+    result: list[float | None] = [None] * len(klines)
+
+    if len(klines) < period:
+        return result
+
+    typical_prices: list[float] = []
+    volumes: list[float] = []
+
+    for item in klines:
+        high = float(item["high"])
+        low = float(item["low"])
+        close = float(item["close"])
+        volume = float(item["volume"])
+        typical_prices.append((high + low + close) / 3.0)
+        volumes.append(volume)
+
+    for i in range(period - 1, len(klines)):
+        tp_window = typical_prices[i - period + 1 : i + 1]
+        volume_window = volumes[i - period + 1 : i + 1]
+        denominator = sum(volume_window)
+
+        if denominator <= 0:
+            continue
+
+        result[i] = sum(tp * volume for tp, volume in zip(tp_window, volume_window)) / denominator
+
+    return result
+
+
 def ema(values: list[float], period: int) -> list[float | None]:
     if period <= 0:
         raise ValueError("period must be greater than 0")

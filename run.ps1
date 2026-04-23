@@ -14,6 +14,19 @@ $PythonCandidates = @(
     "python.exe"
 )
 
+function Write-Utf8Log {
+    param(
+        [string]$Path,
+        [string]$Message
+    )
+
+    if ([string]::IsNullOrEmpty($Message)) {
+        return
+    }
+
+    Add-Content -Path $Path -Value $Message -Encoding utf8
+}
+
 if (-not (Test-Path $DataDir)) {
     New-Item -ItemType Directory -Path $DataDir | Out-Null
 }
@@ -24,7 +37,7 @@ if (-not (Test-Path $LogsDir)) {
 
 if (Test-Path $LockFile) {
     $now = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    Add-Content -Path $StdoutLog -Value "[$now] scheduler_skip reason=lock_exists"
+    Write-Utf8Log -Path $StdoutLog -Message "[$now] scheduler_skip reason=lock_exists"
     exit 0
 }
 
@@ -32,7 +45,7 @@ New-Item -ItemType File -Path $LockFile | Out-Null
 
 try {
     $now = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    Add-Content -Path $StdoutLog -Value "[$now] scheduler_start"
+    Write-Utf8Log -Path $StdoutLog -Message "[$now] scheduler_start"
 
     $PythonExe = $null
     foreach ($candidate in $PythonCandidates) {
@@ -46,16 +59,48 @@ try {
         $PythonExe = "python.exe"
     }
 
-    & $PythonExe .\main.py 1>> $StdoutLog 2>> $StderrLog
+    $ProcessStartInfo = New-Object System.Diagnostics.ProcessStartInfo
+    $ProcessStartInfo.FileName = $PythonExe
+    $ProcessStartInfo.Arguments = ".\\main.py"
+    $ProcessStartInfo.WorkingDirectory = $RepoRoot
+    $ProcessStartInfo.UseShellExecute = $false
+    $ProcessStartInfo.RedirectStandardOutput = $true
+    $ProcessStartInfo.RedirectStandardError = $true
+
+    try {
+        $Utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+        $ProcessStartInfo.StandardOutputEncoding = $Utf8NoBom
+        $ProcessStartInfo.StandardErrorEncoding = $Utf8NoBom
+    }
+    catch {
+    }
+
+    $Process = New-Object System.Diagnostics.Process
+    $Process.StartInfo = $ProcessStartInfo
+    $null = $Process.Start()
+
+    $CapturedStdout = $Process.StandardOutput.ReadToEnd()
+    $CapturedStderr = $Process.StandardError.ReadToEnd()
+    $Process.WaitForExit()
+
+    if (-not [string]::IsNullOrWhiteSpace($CapturedStdout)) {
+        Write-Utf8Log -Path $StdoutLog -Message ($CapturedStdout.TrimEnd("`r", "`n"))
+    }
+
+    if (-not [string]::IsNullOrWhiteSpace($CapturedStderr)) {
+        Write-Utf8Log -Path $StderrLog -Message ($CapturedStderr.TrimEnd("`r", "`n"))
+    }
+
+    $LASTEXITCODE = $Process.ExitCode
 
     $now = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    Add-Content -Path $StdoutLog -Value "[$now] scheduler_finish exit_code=$LASTEXITCODE"
+    Write-Utf8Log -Path $StdoutLog -Message "[$now] scheduler_finish exit_code=$LASTEXITCODE"
 
     exit $LASTEXITCODE
 }
 catch {
     $now = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    Add-Content -Path $StderrLog -Value "[$now] scheduler_exception $_"
+    Write-Utf8Log -Path $StderrLog -Message "[$now] scheduler_exception $_"
     exit 1
 }
 finally {

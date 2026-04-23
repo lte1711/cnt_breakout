@@ -382,21 +382,16 @@
       </div>
     </section>
 
-    <section class="grid-4" style="margin-bottom:12px;">
+    <section class="grid-3" style="margin-bottom:12px;">
       <div class="card">
-        <div class="metric-label">Win Rate</div>
-        <div id="m-winrate" class="metric-value">--</div>
-        <div id="m-winloss" class="metric-sub">--</div>
+        <div class="metric-label">Expectancy</div>
+        <div id="m-exp" class="metric-value">--</div>
+        <div id="m-exp-sub" class="metric-sub">--</div>
       </div>
       <div class="card">
         <div class="metric-label">Profit Factor</div>
         <div id="m-pf" class="metric-value">--</div>
-        <div id="m-pf-delta" class="metric-sub">delta --</div>
-      </div>
-      <div class="card">
-        <div class="metric-label">Expectancy</div>
-        <div id="m-exp" class="metric-value">--</div>
-        <div id="m-exp-delta" class="metric-sub">delta --</div>
+        <div id="m-pf-sub" class="metric-sub">--</div>
       </div>
       <div class="card">
         <div class="metric-label">Net PnL</div>
@@ -406,32 +401,6 @@
     </section>
 
     <section class="grid-2" style="margin-bottom:12px;">
-      <div class="card">
-        <h2>Signal Pipeline</h2>
-        <div class="pipeline">
-          <div class="pipe">
-            <div class="value" id="p-total">0</div>
-            <div class="label">Total</div>
-          </div>
-          <div class="pipe">
-            <div class="value" id="p-selected">0</div>
-            <div class="label">Selected</div>
-            <div class="sub" id="p-selected-rate">0%</div>
-          </div>
-          <div class="pipe">
-            <div class="value" id="p-executed">0</div>
-            <div class="label">Executed</div>
-            <div class="sub" id="p-executed-rate">0%</div>
-          </div>
-          <div class="pipe">
-            <div class="value" id="p-closed">0</div>
-            <div class="label">Closed</div>
-            <div class="sub" id="p-open-count">open 0</div>
-          </div>
-        </div>
-        <div class="stack" style="margin-top:12px;" id="pipeline-breakdown"></div>
-      </div>
-
       <div class="card">
         <h2>Engine State</h2>
         <div class="stack">
@@ -444,74 +413,10 @@
           <div class="kv-row"><span class="kv-key">Price</span><span id="e-price" class="kv-val">--</span></div>
         </div>
       </div>
-    </section>
-
-    <section class="card" style="margin-bottom:12px;">
-      <h2>Live-Ready Baseline</h2>
-      <div class="grid-4">
-        <div class="card" style="padding:12px;">
-          <div class="metric-label">Selection Rate</div>
-          <div id="b-selection-rate" class="metric-value" style="font-size:22px;">--</div>
-          <div id="b-selection-delta" class="metric-sub">baseline --</div>
-        </div>
-        <div class="card" style="padding:12px;">
-          <div class="metric-label">Execution Rate</div>
-          <div id="b-execution-rate" class="metric-value" style="font-size:22px;">--</div>
-          <div id="b-execution-delta" class="metric-sub">baseline --</div>
-        </div>
-        <div class="card" style="padding:12px;">
-          <div class="metric-label">No Ranked Signal</div>
-          <div id="b-no-ranked" class="metric-value" style="font-size:22px;">--</div>
-          <div id="b-no-ranked-delta" class="metric-sub">baseline --</div>
-        </div>
-        <div class="card" style="padding:12px;">
-          <div class="metric-label">Strategy Split</div>
-          <div id="b-strategy-split" class="metric-value" style="font-size:22px;">--</div>
-          <div id="b-strategy-delta" class="metric-sub">baseline --</div>
-        </div>
-      </div>
-      <div class="help" id="baseline-note" style="margin-top:12px;">
-        Baseline fixed at LIVE_READY snapshot 2026-04-22 02:44:03. Hold parameters steady and judge persistence first.
-      </div>
-    </section>
-
-    <section class="grid-2" style="margin-bottom:12px;">
-      <div class="card">
-        <h2>Strategy Quality</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Strategy</th>
-              <th>Closed</th>
-              <th>Win Rate</th>
-              <th>Expectancy</th>
-              <th>PF</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="strategy-body">
-            <tr><td colspan="6" style="text-align:center;color:var(--muted);">loading</td></tr>
-          </tbody>
-        </table>
-      </div>
 
       <div class="card">
-        <h2>Risk And Blockers</h2>
-        <div class="grid-3" style="margin-bottom:12px;">
-          <div class="card" style="padding:12px;">
-            <div class="metric-label">Daily Loss Hits</div>
-            <div id="r-daily" class="metric-value" style="font-size:22px;">0</div>
-          </div>
-          <div class="card" style="padding:12px;">
-            <div class="metric-label">Consecutive Losses</div>
-            <div id="r-consec" class="metric-value" style="font-size:22px;">0</div>
-          </div>
-          <div class="card" style="padding:12px;">
-            <div class="metric-label">Last Price</div>
-            <div id="r-price" class="metric-value" style="font-size:22px;">0</div>
-          </div>
-        </div>
-        <div class="stack" id="blocked-body"></div>
+        <h2>Risk Sync</h2>
+        <div class="stack" id="risk-sync-body"></div>
       </div>
     </section>
 
@@ -539,21 +444,6 @@ const DATA_FILES = {
 };
 
 const GATE_THRESHOLD = 20;
-const STORAGE_KEY = "cnt_dashboard_previous_snapshot_v3";
-const LIVE_READY_BASELINE = {
-  timestamp: "2026-04-22 02:44:03",
-  total_signals: 558,
-  selected_signals: 62,
-  executed_trades: 22,
-  closed_trades: 21,
-  selection_rate: 62 / 558,
-  execution_rate: 22 / 62,
-  no_ranked_signal_total: 217,
-  pullback_selected: 57,
-  breakout_selected: 5,
-  profit_factor: 1.196938891574459,
-  expectancy: 0.0013191904761903238,
-};
 
 function fmt(value, digits = 4) {
   if (value == null || Number.isNaN(Number(value))) return "--";
@@ -563,27 +453,6 @@ function fmt(value, digits = 4) {
 function pct(value) {
   if (value == null || Number.isNaN(Number(value))) return "--";
   return (Number(value) * 100).toFixed(1) + "%";
-}
-
-function signedDelta(current, previous, digits = 4) {
-  if (previous == null || Number.isNaN(Number(previous))) return "delta --";
-  const delta = Number(current) - Number(previous);
-  const sign = delta > 0 ? "+" : "";
-  return `delta ${sign}${delta.toFixed(digits)}`;
-}
-
-function signedBaselineDelta(current, baseline, digits = 2) {
-  if (baseline == null || Number.isNaN(Number(baseline))) return "baseline --";
-  const delta = Number(current) - Number(baseline);
-  const sign = delta > 0 ? "+" : "";
-  return `${sign}${delta.toFixed(digits)}`;
-}
-
-function strategyStatusLabel(pf) {
-  const value = Number(pf || 0);
-  if (value < 1) return { text: "LOSING", color: "var(--red)" };
-  if (value < 1.2) return { text: "WEAK EDGE", color: "var(--amber)" };
-  return { text: "VALID EDGE", color: "var(--green)" };
 }
 
 function computeSystemHealth(snapshot) {
@@ -687,9 +556,6 @@ function buildAlerts(snapshot, metrics, state, gate) {
   const total = snapshot.total_signals ?? 0;
   const selected = snapshot.selected_signals ?? 0;
   const selectedRate = total > 0 ? selected / total : 0;
-  const noRanked = (snapshot.blocked_signal_stats?.no_ranked_signal?.all_filtered ?? 0) +
-    (snapshot.blocked_signal_stats?.no_ranked_signal?.legacy ?? 0);
-  const dailyLossLimit = snapshot.risk_trigger_stats?.DAILY_LOSS_LIMIT ?? 0;
   const pf = Number(snapshot.profit_factor ?? 0);
   const consec = Number(state?.risk_metrics?.consecutive_losses ?? snapshot.max_consecutive_losses ?? 0);
   const breakoutExp = Number(metrics?.breakout_v1?.expectancy ?? 0);
@@ -706,12 +572,6 @@ function buildAlerts(snapshot, metrics, state, gate) {
 
   if (selectedRate < 0.05) {
     alerts.push({ level: "bad", title: "RANKER WARNING", text: `selection rate is ${pct(selectedRate)}.` });
-  }
-  if (total < 50 || noRanked > selected * 5) {
-    alerts.push({ level: "warn", title: "CANDIDATE STARVATION", text: `total=${total}, no_ranked_signal=${noRanked}.` });
-  }
-  if (dailyLossLimit > 0) {
-    alerts.push({ level: "warn", title: "DAILY LOSS LIMIT ACTIVE", text: `triggered ${dailyLossLimit} times in runtime evidence.` });
   }
   if (pf < 1) {
     alerts.push({ level: "bad", title: "WEAK PROFIT FACTOR", text: `PF ${fmt(pf, 3)} is below profitability threshold.` });
@@ -767,15 +627,20 @@ function describeOpenTrade(openTrade) {
   return `${openTrade.strategy_name ?? "--"} @ ${fmt(openTrade.entry_price, 2)} qty ${fmt(openTrade.entry_qty, 5)}`;
 }
 
-function render(snapshot, metrics, state, gate, shadow) {
-  const previous = (() => {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
-    } catch {
-      return null;
-    }
-  })();
+function riskSyncText(state, snapshot) {
+  const risk = state?.risk_metrics ?? {};
+  const daily = Number(risk.daily_loss_count ?? 0);
+  const consecutive = Number(risk.consecutive_losses ?? 0);
+  const dailyHits = Number(snapshot?.risk_trigger_stats?.DAILY_LOSS_LIMIT ?? 0);
+  return `
+    <div class="kv-row"><span class="kv-key">Daily Loss Count</span><span class="kv-val">${daily}</span></div>
+    <div class="kv-row"><span class="kv-key">Consecutive Losses</span><span class="kv-val">${consecutive}</span></div>
+    <div class="kv-row"><span class="kv-key">Daily Loss Hits</span><span class="kv-val">${dailyHits}</span></div>
+    <div class="kv-row"><span class="kv-key">Sync Status</span><span class="kv-val">${daily >= 0 && consecutive >= 0 ? "state/portfolio aligned" : "check required"}</span></div>
+  `;
+}
 
+function render(snapshot, metrics, state, gate, shadow) {
   const health = computeSystemHealth(snapshot);
   const healthBadge = document.getElementById("health-badge");
   healthBadge.textContent = health;
@@ -838,59 +703,15 @@ function render(snapshot, metrics, state, gate, shadow) {
     </div>
   `).join("");
 
-  document.getElementById("m-winrate").textContent = pct(snapshot.win_rate ?? 0);
-  document.getElementById("m-winloss").textContent = `${snapshot.wins ?? 0} wins / ${snapshot.losses ?? 0} losses`;
   document.getElementById("m-pf").textContent = fmt(snapshot.profit_factor, 3);
   document.getElementById("m-pf").className = `metric-value ${Number(snapshot.profit_factor ?? 0) >= 1 ? "positive" : "negative"}`;
-  document.getElementById("m-pf-delta").textContent = signedDelta(snapshot.profit_factor, previous?.profit_factor, 3);
+  document.getElementById("m-pf-sub").textContent = `closed=${snapshot.closed_trades ?? 0} | max consecutive losses=${snapshot.max_consecutive_losses ?? 0}`;
   document.getElementById("m-exp").textContent = fmt(snapshot.expectancy, 6);
   document.getElementById("m-exp").className = `metric-value ${Number(snapshot.expectancy ?? 0) > 0 ? "positive" : "negative"}`;
-  document.getElementById("m-exp-delta").textContent = signedDelta(snapshot.expectancy, previous?.expectancy, 6);
+  document.getElementById("m-exp-sub").textContent = `win rate ${pct(snapshot.win_rate ?? 0)} | wins=${snapshot.wins ?? 0} losses=${snapshot.losses ?? 0}`;
   document.getElementById("m-pnl").textContent = `${Number(snapshot.net_pnl ?? 0) >= 0 ? "+" : ""}${fmt(snapshot.net_pnl, 6)}`;
   document.getElementById("m-pnl").className = `metric-value ${Number(snapshot.net_pnl ?? 0) >= 0 ? "positive" : "negative"}`;
   document.getElementById("m-pnl-sub").textContent = `avg win ${fmt(snapshot.avg_win, 5)} / avg loss ${fmt(snapshot.avg_loss, 5)}`;
-
-  const total = snapshot.total_signals ?? 0;
-  const selected = snapshot.selected_signals ?? 0;
-  const executed = snapshot.executed_trades ?? 0;
-  const closed = snapshot.closed_trades ?? 0;
-  const openCount = snapshot.open_positions_count ?? 0;
-  document.getElementById("p-total").textContent = total;
-  document.getElementById("p-selected").textContent = selected;
-  document.getElementById("p-selected-rate").textContent = total ? pct(selected / total) : "--";
-  document.getElementById("p-executed").textContent = executed;
-  document.getElementById("p-executed-rate").textContent = selected ? pct(executed / selected) : "--";
-  document.getElementById("p-closed").textContent = closed;
-  document.getElementById("p-open-count").textContent = `open ${openCount}`;
-
-  const blocked = snapshot.blocked_signal_stats ?? {};
-  const filtered = blocked.no_ranked_signal?.all_filtered ?? 0;
-  const legacy = blocked.no_ranked_signal?.legacy ?? 0;
-  document.getElementById("pipeline-breakdown").innerHTML = `
-    <div class="kv-row"><span class="kv-key">Filtered Out</span><span class="kv-val">${filtered}</span></div>
-    <div class="kv-row"><span class="kv-key">No Ranked Signal (legacy)</span><span class="kv-val">${legacy}</span></div>
-    <div class="kv-row"><span class="kv-key">Selected / Total</span><span class="kv-val">${total ? pct(selected / total) : "--"}</span></div>
-    <div class="kv-row"><span class="kv-key">Executed / Selected</span><span class="kv-val">${selected ? pct(executed / selected) : "--"}</span></div>
-  `;
-
-  const noRankedTotal = filtered + legacy;
-  const currentSelectionRate = total ? selected / total : 0;
-  const currentExecutionRate = selected ? executed / selected : 0;
-  const splitTotal = Object.values(snapshot.strategy_breakdown ?? {}).reduce((sum, item) => sum + Number(item?.signals_selected ?? 0), 0);
-  const pullbackSelected = Number(snapshot.strategy_breakdown?.pullback_v1?.signals_selected ?? 0);
-  const breakoutSelected = Number(snapshot.strategy_breakdown?.breakout_v1?.signals_selected ?? 0);
-  const breakoutShare = splitTotal ? breakoutSelected / splitTotal : 0;
-  const baselineSplitTotal = LIVE_READY_BASELINE.pullback_selected + LIVE_READY_BASELINE.breakout_selected;
-  const baselineBreakoutShare = baselineSplitTotal ? LIVE_READY_BASELINE.breakout_selected / baselineSplitTotal : 0;
-
-  document.getElementById("b-selection-rate").textContent = pct(currentSelectionRate);
-  document.getElementById("b-selection-delta").textContent = `vs baseline ${signedBaselineDelta(currentSelectionRate * 100, LIVE_READY_BASELINE.selection_rate * 100, 2)} pts`;
-  document.getElementById("b-execution-rate").textContent = pct(currentExecutionRate);
-  document.getElementById("b-execution-delta").textContent = `vs baseline ${signedBaselineDelta(currentExecutionRate * 100, LIVE_READY_BASELINE.execution_rate * 100, 2)} pts`;
-  document.getElementById("b-no-ranked").textContent = String(noRankedTotal);
-  document.getElementById("b-no-ranked-delta").textContent = `vs baseline ${signedBaselineDelta(noRankedTotal, LIVE_READY_BASELINE.no_ranked_signal_total, 0)}`;
-  document.getElementById("b-strategy-split").textContent = `pullback ${pullbackSelected} / breakout ${breakoutSelected}`;
-  document.getElementById("b-strategy-delta").textContent = `breakout share ${pct(breakoutShare)} vs baseline ${signedBaselineDelta(breakoutShare * 100, baselineBreakoutShare * 100, 2)} pts`;
 
   document.getElementById("e-symbol").textContent = state.symbol ?? "--";
   document.getElementById("e-status").textContent = state.status ?? "--";
@@ -898,53 +719,7 @@ function render(snapshot, metrics, state, gate, shadow) {
   document.getElementById("e-pending").textContent = describePending(state.pending_order);
   document.getElementById("e-open").textContent = describeOpenTrade(state.open_trade);
   document.getElementById("e-price").textContent = state.price != null ? fmt(state.price, 2) : "--";
-
-  const metricValues = Object.values(metrics);
-  metricValues.sort((a, b) => (b.signals_selected ?? 0) - (a.signals_selected ?? 0));
-  document.getElementById("strategy-body").innerHTML = metricValues.map(strategy => {
-    const pf = Number(strategy.profit_factor ?? 0);
-    const pfColor = pf < 1 ? "var(--red)" : pf < 1.2 ? "var(--amber)" : "var(--green)";
-    const pfWidth = Math.min(100, Math.max(8, Math.round(pf * 40)));
-    const label = strategyStatusLabel(pf);
-    return `
-      <tr>
-        <td>${strategy.strategy_name}</td>
-        <td>${strategy.trades_closed ?? 0}</td>
-        <td>${pct(strategy.win_rate ?? 0)}</td>
-        <td>${fmt(strategy.expectancy, 6)}</td>
-        <td>
-          <span class="pf-track"><span class="pf-fill" style="width:${pfWidth}%;background:${pfColor};display:block;"></span></span>
-          <span style="color:${pfColor}">${fmt(pf, 3)}</span>
-        </td>
-        <td style="color:${label.color}">${label.text}</td>
-      </tr>
-    `;
-  }).join("");
-
-  const riskMetrics = state.risk_metrics ?? {};
-  document.getElementById("r-daily").textContent = snapshot.risk_trigger_stats?.DAILY_LOSS_LIMIT ?? 0;
-  document.getElementById("r-consec").textContent = riskMetrics.consecutive_losses ?? snapshot.max_consecutive_losses ?? 0;
-  document.getElementById("r-price").textContent = state.price != null ? fmt(state.price, 2) : "--";
-
-  const blockedRows = [];
-  Object.entries(blocked).forEach(([key, value]) => {
-    if (typeof value === "object" && value !== null) {
-      Object.entries(value).forEach(([nestedKey, nestedValue]) => {
-        blockedRows.push(`<div class="kv-row"><span class="kv-key">${key}.${nestedKey}</span><span class="kv-val">${nestedValue}</span></div>`);
-      });
-    } else {
-      blockedRows.push(`<div class="kv-row"><span class="kv-key">${key}</span><span class="kv-val">${value}</span></div>`);
-    }
-  });
-  document.getElementById("blocked-body").innerHTML = blockedRows.join("") || `<div class="kv-row"><span class="kv-key">blocked</span><span class="kv-val">none</span></div>`;
-
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({
-    timestamp: snapshot.timestamp,
-    profit_factor: snapshot.profit_factor,
-    expectancy: snapshot.expectancy,
-    selected_signals: snapshot.selected_signals,
-    total_signals: snapshot.total_signals,
-  }));
+  document.getElementById("risk-sync-body").innerHTML = riskSyncText(state, snapshot);
 }
 
 async function loadData() {

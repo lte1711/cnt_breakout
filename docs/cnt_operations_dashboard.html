@@ -351,6 +351,37 @@
       <div class="top-warning-items" id="top-warning-items"></div>
     </section>
 
+    <section class="grid-2" style="margin-bottom:12px;">
+      <div class="card">
+        <h2>Runtime Mode</h2>
+        <div class="big-number small" id="mode-title">LOADING</div>
+        <div class="metric-sub" id="mode-summary">checking active runtime mode...</div>
+        <div class="header-meta" id="mode-badges" style="justify-content:flex-start;margin-top:12px;"></div>
+      </div>
+      <div class="card">
+        <h2>Breakout V3 Shadow</h2>
+        <div class="grid-4">
+          <div class="card" style="padding:12px;">
+            <div class="metric-label">Signals</div>
+            <div id="v3-signals" class="metric-value" style="font-size:22px;">0</div>
+          </div>
+          <div class="card" style="padding:12px;">
+            <div class="metric-label">Allowed</div>
+            <div id="v3-allowed" class="metric-value" style="font-size:22px;">0</div>
+          </div>
+          <div class="card" style="padding:12px;">
+            <div class="metric-label">Soft 3+</div>
+            <div id="v3-soft-good" class="metric-value" style="font-size:22px;">0</div>
+          </div>
+          <div class="card" style="padding:12px;">
+            <div class="metric-label">Updated</div>
+            <div id="v3-updated" class="metric-value" style="font-size:18px;">--</div>
+          </div>
+        </div>
+        <div class="stack" style="margin-top:12px;" id="v3-shadow-body"></div>
+      </div>
+    </section>
+
     <section class="grid-4" style="margin-bottom:12px;">
       <div class="card">
         <div class="metric-label">Win Rate</div>
@@ -494,7 +525,7 @@
     </section>
 
     <div class="footer" id="footer-note">
-      CNT runtime sources: ../data/performance_snapshot.json | ../data/strategy_metrics.json | ../data/state.json | ../data/live_gate_decision.json
+      CNT runtime sources: ../data/performance_snapshot.json | ../data/strategy_metrics.json | ../data/state.json | ../data/live_gate_decision.json | ../data/shadow_breakout_v3_snapshot.json
     </div>
   </main>
 
@@ -504,6 +535,7 @@ const DATA_FILES = {
   metrics: "../data/strategy_metrics.json",
   state: "../data/state.json",
   gate: "../data/live_gate_decision.json",
+  shadowV3: "../data/shadow_breakout_v3_snapshot.json",
 };
 
 const GATE_THRESHOLD = 20;
@@ -620,7 +652,34 @@ function buildTopWarnings(snapshot, metrics, state, gate) {
   if (Number(breakout.expectancy ?? 0) < 0) {
     warnings.push(`BREAKOUT NEGATIVE (${fmt(breakout.expectancy, 6)})`);
   }
+  if ((state?.strategy_name ?? "") === "pullback_v1") {
+    warnings.push("PULLBACK-ONLY RUNTIME ACTIVE");
+  }
   return warnings;
+}
+
+function buildModeBadges(state, shadow) {
+  const badges = [];
+  const runtimeStrategy = String(state?.strategy_name ?? "--");
+  const action = String(state?.action ?? "--");
+  const signalCount = Number(shadow?.signal_count ?? 0);
+  const allowedCount = Number(shadow?.allowed_signal_count ?? 0);
+  badges.push(`<span class="badge ok">LIVE ACTIVE: ${runtimeStrategy}</span>`);
+  badges.push(`<span class="badge info">ACTION: ${action}</span>`);
+  badges.push(`<span class="badge warn">BREAKOUT_V3 SHADOW_ONLY</span>`);
+  badges.push(`<span class="badge info">SHADOW SIGNALS: ${signalCount}</span>`);
+  badges.push(`<span class="badge ${allowedCount > 0 ? "ok" : "warn"}">SHADOW ALLOWED: ${allowedCount}</span>`);
+  return badges.join("");
+}
+
+function blockerSummary(distribution) {
+  const entries = Object.entries(distribution ?? {});
+  if (!entries.length) return "none";
+  return entries
+    .sort((a, b) => Number(b[1]) - Number(a[1]))
+    .slice(0, 2)
+    .map(([key, value]) => `${key}=${value}`)
+    .join(" | ");
 }
 
 function buildAlerts(snapshot, metrics, state, gate) {
@@ -708,7 +767,7 @@ function describeOpenTrade(openTrade) {
   return `${openTrade.strategy_name ?? "--"} @ ${fmt(openTrade.entry_price, 2)} qty ${fmt(openTrade.entry_qty, 5)}`;
 }
 
-function render(snapshot, metrics, state, gate) {
+function render(snapshot, metrics, state, gate, shadow) {
   const previous = (() => {
     try {
       return JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
@@ -746,6 +805,30 @@ function render(snapshot, metrics, state, gate) {
   const topWarningItems = document.getElementById("top-warning-items");
   topWarningItems.innerHTML = topWarnings.map(text => `<span class="top-warning-pill">${text}</span>`).join("");
   topWarningStrip.classList.toggle("visible", topWarnings.length > 0);
+
+  const runtimeStrategy = String(state?.strategy_name ?? "--");
+  const runtimeAction = String(state?.action ?? "--");
+  const allowedCount = Number(shadow?.allowed_signal_count ?? 0);
+  const shadowSignals = Number(shadow?.signal_count ?? 0);
+  const softDist = shadow?.soft_pass_count_distribution ?? {};
+  const softGood = Object.entries(softDist).reduce((sum, [key, value]) => (
+    Number(key) >= 3 ? sum + Number(value) : sum
+  ), 0);
+  document.getElementById("mode-title").textContent = runtimeStrategy === "pullback_v1" ? "PULLBACK-ONLY ACTIVE" : runtimeStrategy.toUpperCase();
+  document.getElementById("mode-summary").textContent = `runtime action=${runtimeAction} | breakout_v3 remains shadow-only`;
+  document.getElementById("mode-badges").innerHTML = buildModeBadges(state, shadow);
+  document.getElementById("v3-signals").textContent = String(shadowSignals);
+  document.getElementById("v3-allowed").textContent = String(allowedCount);
+  document.getElementById("v3-allowed").className = `metric-value ${allowedCount > 0 ? "positive" : "negative"}`;
+  document.getElementById("v3-soft-good").textContent = String(softGood);
+  document.getElementById("v3-soft-good").className = `metric-value ${softGood > 0 ? "positive" : "negative"}`;
+  document.getElementById("v3-updated").textContent = shadow?.last_updated ?? "--";
+  document.getElementById("v3-shadow-body").innerHTML = `
+    <div class="kv-row"><span class="kv-key">First Blockers</span><span class="kv-val">${blockerSummary(shadow?.first_blocker_distribution)}</span></div>
+    <div class="kv-row"><span class="kv-key">Hard Blockers</span><span class="kv-val">${blockerSummary(shadow?.hard_blocker_distribution)}</span></div>
+    <div class="kv-row"><span class="kv-key">Soft Pass Dist</span><span class="kv-val">${Object.entries(softDist).map(([k, v]) => `${k}:${v}`).join(" | ") || "none"}</span></div>
+    <div class="kv-row"><span class="kv-key">Stage Fail</span><span class="kv-val">${Object.entries(shadow?.stage_fail_counts ?? {}).map(([k, v]) => `${k}:${v}`).join(" | ") || "none"}</span></div>
+  `;
 
   const alerts = buildAlerts(snapshot, metrics, state, gate);
   document.getElementById("alerts").innerHTML = alerts.map(alert => `
@@ -869,13 +952,14 @@ async function loadData() {
   button.disabled = true;
   button.textContent = "LOADING";
   try {
-    const [snapshot, metrics, state, gate] = await Promise.all([
+    const [snapshot, metrics, state, gate, shadow] = await Promise.all([
       readJSON(DATA_FILES.snapshot),
       readJSON(DATA_FILES.metrics),
       readJSON(DATA_FILES.state),
       readJSON(DATA_FILES.gate),
+      readJSON(DATA_FILES.shadowV3),
     ]);
-    render(snapshot, metrics, state, gate);
+    render(snapshot, metrics, state, gate, shadow);
   } catch (error) {
     document.getElementById("alerts").innerHTML = `
       <div class="alert-item bad">

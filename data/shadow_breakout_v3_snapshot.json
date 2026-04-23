@@ -1,34 +1,43 @@
 {
-  "signal_count": 1,
+  "signal_count": 8,
   "allowed_signal_count": 0,
   "allowed_signal_ratio": 0.0,
-  "expanded_event_count": 1,
+  "expanded_event_count": 8,
   "first_blocker_distribution": {
-    "setup_not_ready": 1
+    "setup_not_ready": 5,
+    "breakout_not_confirmed": 3
   },
   "hard_blocker_distribution": {
-    "setup_not_ready": 1
+    "setup_not_ready": 5,
+    "breakout_not_confirmed": 3
   },
   "secondary_blocker_distribution": {
-    "band_width_fail": 1,
-    "band_expansion_fail": 1,
-    "volume_fail": 1,
-    "vwap_distance_fail": 1
+    "band_width_fail": 5,
+    "band_expansion_fail": 8,
+    "volume_fail": 6,
+    "vwap_distance_fail": 5,
+    "ema_fail": 1
   },
   "soft_pass_count_distribution": {
-    "2": 1
+    "2": 2,
+    "3": 2,
+    "1": 1,
+    "4": 3
   },
   "stage_pass_counts": {
-    "regime": 1
+    "regime": 8,
+    "trigger": 2,
+    "quality": 5,
+    "setup": 3
   },
   "stage_fail_counts": {
-    "setup": 1,
-    "trigger": 1,
-    "quality": 1
+    "setup": 5,
+    "trigger": 6,
+    "quality": 3
   },
   "min_soft_pass_required": 3,
   "soft_total_count": 6,
   "aggregation_scope": "all_breakout_v3_shadow_events",
   "strategy": "breakout_v3_shadow",
-  "last_updated": "2026-04-24T06:41:45+09:00"
+  "last_updated": "2026-04-24T07:24:04+09:00"
 }

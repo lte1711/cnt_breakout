@@ -75,9 +75,8 @@ SHADOW_BREAKOUT_V3_LOG_FILE = "logs/shadow_breakout_v3.jsonl"
 # =========================
 
 STRATEGY_ENABLED = True
-ACTIVE_STRATEGY = "breakout_v1"
+ACTIVE_STRATEGY = "pullback_v1"
 ACTIVE_STRATEGIES = [
-    "breakout_v1",
     "pullback_v1",
 ]
 # mean_reversion_v1 is registered and parameterized, but remains inactive by default

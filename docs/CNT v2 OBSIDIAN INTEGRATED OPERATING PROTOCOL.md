@@ -34,6 +34,24 @@ Obsidian is therefore not treated as a notes app only.
 
 Within this protocol it acts as the strategy decision interface.
 
+## Korean-First Documentation Mode
+
+CNT documentation now follows a Korean-first dual-path model.
+
+Fixed interpretation:
+
+- `docs/` keeps the official repository path
+- `docs/ko/` provides the Korean mirror for user-facing work
+
+This protocol change is documentation-only.
+
+It does not change:
+
+- runtime behavior
+- engine flow
+- strategy evaluation
+- observation state criteria
+
 ## Operating Components
 
 The integrated system contains four parts.

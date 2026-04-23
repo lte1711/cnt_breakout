@@ -33,6 +33,25 @@ These files are writing aids only.
 
 Official CNT judgement documents should still be created under `docs/`.
 
+## Dual-Language Lock
+
+CNT now uses a Korean-first dual-document workflow.
+
+This means:
+
+- the official repository document remains under `docs/`
+- the user-facing Korean mirror should be added under `docs/ko/`
+
+For all new important documents, the preferred rule is:
+
+- create the official document
+- create the Korean mirror in the same step
+
+This workflow guide therefore supports both:
+
+- English repository path stability
+- Korean reading and judgement convenience
+
 ## Recommended Folder Usage
 
 Suggested vault structure:

@@ -37,6 +37,14 @@ def _pick_first_blocker(stage_results: dict[str, StageResult]) -> str | None:
     return None
 
 
+def _pick_first_blocking_stage(stage_results: dict[str, StageResult]) -> str | None:
+    for stage_name in ("regime", "setup", "trigger", "quality"):
+        stage = stage_results[stage_name]
+        if not stage.passed and stage.fail_reasons:
+            return stage_name
+    return None
+
+
 def _build_shadow_context(symbol: str) -> MarketContext:
     klines_primary = get_recent_closed_klines(
         symbol=symbol,
@@ -67,13 +75,9 @@ def evaluate_breakout_v3_shadow(
     regime_fail_reasons: list[str] = []
     if not conditions.market_bias_pass:
         regime_fail_reasons.append("market_not_trend_up")
-    if not conditions.trend_up_pass:
-        regime_fail_reasons.append("trend_not_up")
-    if not conditions.range_bias_pass:
-        regime_fail_reasons.append("range_without_upward_bias")
     regime = _stage_result(
         "regime",
-        ["market_bias_pass", "trend_up_pass", "range_bias_pass"],
+        ["market_bias_pass"],
         regime_fail_reasons,
     )
 
@@ -139,14 +143,17 @@ def evaluate_breakout_v3_shadow(
     hard_pass = regime.passed and trigger.passed
     quality_pass = quality.passed
     allowed = hard_pass and quality_pass
-    first_blocker = _pick_first_blocker(stage_results)
-    hard_blocker = None if hard_pass else first_blocker
+    blocking_stage = _pick_first_blocking_stage(stage_results)
+    first_blocker = None if allowed else _pick_first_blocker(stage_results)
+    hard_blocker = None if allowed else first_blocker
 
     if allowed:
         summary_reason = "allowed_by_hard_and_soft_gates"
-    elif not regime.passed:
+    elif blocking_stage == "regime":
         summary_reason = "regime_blocked"
-    elif not trigger.passed:
+    elif blocking_stage == "setup":
+        summary_reason = "setup_blocked"
+    elif blocking_stage == "trigger":
         summary_reason = "trigger_blocked"
     else:
         summary_reason = "hard_pass_but_soft_count_insufficient"

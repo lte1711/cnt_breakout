@@ -10,6 +10,17 @@ from src.models.portfolio_state import PortfolioState
 from src.models.position_state import PositionState
 
 
+def _extract_runtime_risk_counts(runtime_state: dict) -> tuple[int, int]:
+    risk_metrics = runtime_state.get("risk_metrics")
+    if not isinstance(risk_metrics, dict):
+        return 0, 0
+
+    return (
+        int(risk_metrics.get("daily_loss_count", 0) or 0),
+        int(risk_metrics.get("consecutive_losses", 0) or 0),
+    )
+
+
 def load_portfolio_state(state_file: Path) -> PortfolioState:
     if not state_file.exists():
         return PortfolioState(schema_version=PORTFOLIO_STATE_SCHEMA_VERSION, total_exposure=0.0)
@@ -39,6 +50,7 @@ def save_portfolio_state(state_file: Path, portfolio_state: PortfolioState) -> N
 
 def build_portfolio_state(runtime_state: dict, cash_balance: float = 0.0) -> PortfolioState:
     last_update_time = str(runtime_state.get("last_run_time") or datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    daily_loss_count, consecutive_losses = _extract_runtime_risk_counts(runtime_state)
     open_trade = runtime_state.get("open_trade")
     if not isinstance(open_trade, dict):
         return PortfolioState(
@@ -46,6 +58,8 @@ def build_portfolio_state(runtime_state: dict, cash_balance: float = 0.0) -> Por
             total_exposure=0.0,
             open_positions=[],
             cash_balance=cash_balance,
+            daily_loss_count=daily_loss_count,
+            consecutive_losses=consecutive_losses,
             last_update_time=last_update_time,
             source="rebuild_from_runtime",
         )
@@ -67,6 +81,8 @@ def build_portfolio_state(runtime_state: dict, cash_balance: float = 0.0) -> Por
         total_exposure=position.entry_price * position.entry_qty,
         open_positions=[position],
         cash_balance=cash_balance,
+        daily_loss_count=daily_loss_count,
+        consecutive_losses=consecutive_losses,
         last_update_time=last_update_time,
         source="rebuild_from_runtime",
     )

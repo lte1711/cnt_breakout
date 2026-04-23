@@ -80,6 +80,28 @@ class BreakoutV3ShadowEvalTests(unittest.TestCase):
             min_soft_pass_required=3,
         )
         self.assertTrue(result.allowed)
+        self.assertIsNone(result.first_blocker)
+        self.assertIsNone(result.hard_blocker)
+        self.assertEqual(result.summary_reason, "allowed_by_hard_and_soft_gates")
+
+    def test_allowed_signal_with_setup_false_does_not_emit_blocker(self) -> None:
+        result = evaluate_breakout_v3_shadow(
+            self._conditions(
+                setup_ready=False,
+                volatility_floor_pass=False,
+                band_width_pass=True,
+                band_expansion_pass=False,
+                volume_pass=False,
+                vwap_distance_pass=True,
+                rsi_threshold_pass=True,
+                ema_pass=True,
+            ),
+            min_soft_pass_required=3,
+        )
+        self.assertTrue(result.allowed)
+        self.assertIsNone(result.first_blocker)
+        self.assertIsNone(result.hard_blocker)
+        self.assertEqual(result.summary_reason, "allowed_by_hard_and_soft_gates")
 
     def test_first_blocker_ordering_prefers_regime(self) -> None:
         result = evaluate_breakout_v3_shadow(
@@ -92,6 +114,22 @@ class BreakoutV3ShadowEvalTests(unittest.TestCase):
             )
         )
         self.assertEqual(result.first_blocker, "market_not_trend_up")
+
+    def test_setup_blocked_summary_aligns_with_first_failed_stage(self) -> None:
+        result = evaluate_breakout_v3_shadow(
+            self._conditions(
+                setup_ready=False,
+                volatility_floor_pass=False,
+                price_position_pass=False,
+                breakout_confirmed=False,
+                trigger_price_pass=False,
+                band_width_pass=False,
+            )
+        )
+        self.assertFalse(result.allowed)
+        self.assertEqual(result.summary_reason, "setup_blocked")
+        self.assertEqual(result.first_blocker, "setup_not_ready")
+        self.assertEqual(result.hard_blocker, "setup_not_ready")
 
     def test_secondary_fail_reasons_and_stage_flags_present(self) -> None:
         result = evaluate_breakout_v3_shadow(

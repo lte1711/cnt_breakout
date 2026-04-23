@@ -13,11 +13,11 @@ tags:
   - strategy/breakout_v3
 ---
 
-# CNT Observation Review — <% tp.date.now("YYYY-MM-DD") %>
+# CNT Observation Review - <% tp.date.now("YYYY-MM-DD") %>
 
 ## 0. Review Metadata
 
-| 항목 | 값 |
+| Item | Value |
 |---|---|
 | strategy | breakout_v3 |
 | phase | shadow_observation |
@@ -30,14 +30,14 @@ tags:
 
 ## 1. Summary
 
-| 항목 | 값 |
+| Item | Value |
 |---|---|
 | signal_count | |
 | allowed_signal_count | |
 | allowed_signal_ratio | |
 | observation_period | from ____ to <% tp.date.now("YYYY-MM-DD HH:mm") %> |
 
-**판정 후보 (반드시 하나만 최종 선택):**
+Final judgement candidates:
 
 - [ ] STILL_OVER_FILTERED
 - [ ] FIRST_ALLOWED_DETECTED
@@ -46,7 +46,7 @@ tags:
 
 **FINAL_JUDGEMENT:** `______________`
 
-**요약 3줄**
+Three-line summary:
 - 
 - 
 - 
@@ -55,7 +55,7 @@ tags:
 
 ## 2. First Blocker Distribution
 
-| blocker | count | ratio | 비고 |
+| blocker | count | ratio | note |
 |---|---:|---:|---|
 | regime_fail | | | |
 | setup_fail | | | |
@@ -63,30 +63,32 @@ tags:
 | quality_fail | | | |
 | other | | | |
 
-**dominant_ratio 계산**
+dominant_ratio:
+
 - dominant blocker:
 - dominant ratio = (dominant count / total signal_count)
 
-**판단 기준**
-- `> 70%` → single bottleneck 가능성 높음
-- `40~70%` → mixed structure
-- `< 40%` → diversified blockage / 구조 분산
+Interpretation guide:
 
-**해석**
+- `> 70%` -> single bottleneck likely
+- `40~70%` -> mixed structure
+- `< 40%` -> diversified blockage
+
+Interpretation:
 > 
 
 ---
 
 ## 3. Hard vs Soft Structure
 
-### Hard Gate 결과
+### Hard Gate Results
 
-| gate | fail_count | pass_count | 해석 |
+| gate | fail_count | pass_count | interpretation |
 |---|---:|---:|---|
 | regime | | | |
 | trigger | | | |
 
-### Soft Pass 분포
+### Soft Pass Distribution
 
 | soft_pass_count | frequency | ratio |
 |---|---:|---:|
@@ -96,10 +98,11 @@ tags:
 | 3 | | |
 | 4+ | | |
 
-**핵심 해석**
-- hard gate를 통과하는가:
-- soft group에서 주로 어디에 몰리는가:
-- `3+`가 실제로 발생하는가:
+Key interpretation:
+
+- do hard gates pass at all:
+- where does the soft group cluster:
+- does `3+` actually occur:
 
 > 
 
@@ -114,14 +117,14 @@ tags:
 | trigger | | |
 | quality | | |
 
-**관찰**
+Observation:
 > 
 
 ---
 
-## 5. V2 vs V3 비교
+## 5. V2 vs V3 Comparison
 
-| 항목 | v2 | v3 |
+| item | v2 | v3 |
 |---|---|---|
 | allowed_signals | 0 | |
 | dominant_blocker | volatility / multi-stage confusion | |
@@ -129,7 +132,7 @@ tags:
 | soft_pass_avg | — | |
 | overall | FAILED | |
 
-**판정**
+Judgement:
 > 
 
 ---
@@ -140,7 +143,8 @@ tags:
 |---|---:|---|---|
 | | | | |
 
-없다면:
+If none:
+
 - `No allowed signal observed in this review window`
 
 ---
@@ -155,19 +159,23 @@ tags:
 
 ## 8. Decision Criteria
 
-### Activation 기준
-아래를 모두 만족하기 전에는 activation 금지:
+### Activation Criteria
+
+Activation remains prohibited until all are true:
+
 - [ ] allowed_signal_count > 0
 - [ ] allowed_signal_ratio >= 5%
-- [ ] soft_pass_count `3+` 분포가 일시적이 아니라 반복적으로 관측됨
-- [ ] hard gate failure가 지배적이지 않음
-- [ ] observation window 내 구조 개선이 확인됨
+- [ ] soft_pass_count `3+` is observed repeatedly
+- [ ] hard gate failure is not dominant
+- [ ] structural improvement is confirmed in the observation window
 
-### Tuning 기준
-아래 조건일 때만 제한적 검토:
-- [ ] soft_pass_count가 `2~3` 경계에 집중됨
-- [ ] single blocker dominance가 분명함
-- [ ] 구조 자체는 개선됐으나 threshold만 약간 경직된 것으로 보임
+### Tuning Criteria
+
+Threshold review may be considered only if:
+
+- [ ] soft_pass_count clusters near `2~3`
+- [ ] single blocker dominance is clear
+- [ ] the structure appears valid but slightly too rigid
 
 ---
 
@@ -183,13 +191,13 @@ tags:
 - [ ] MINOR_ALLOWED
 - [ ] FULL
 
-### 다음 단계
+### Next Step
 - [ ] continue_observation
 - [ ] soft_threshold_adjust
 - [ ] prepare_redesign
 - [ ] activation_review
 
-**최종 결정 한 줄**
+**One-line final decision**
 > 
 
 ---
@@ -207,8 +215,8 @@ tags:
 * [[CNT v2 BREAKOUT V3 SHADOW OBSERVATION WINDOW START]]
 * [[CNT v2 BREAKOUT V3 SHADOW RUNTIME ONE-SHOT VERIFICATION]]
 * [[breakout_v3 allowed signal log]]
-* [[previous observation review]]
+* previous observation review: add the actual prior review file here when it exists
 
 ---
 
-*분석은 Python / 판단 기록은 Obsidian*
+Analysis is done in Python. Judgement is recorded in Obsidian.

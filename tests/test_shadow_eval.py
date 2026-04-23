@@ -82,10 +82,24 @@ class ShadowEvalTests(unittest.TestCase):
             "band_expansion_ratio",
             "volume_ratio",
             "hypothetical_entry",
+            "secondary_fail_reasons",
+            "evaluated_stage_trace",
+            "stage_flags",
         }
         self.assertEqual(result["symbol"], "ETHUSDT")
         self.assertEqual(result["strategy"], "breakout_v2_shadow")
         self.assertTrue(expected_keys.issubset(result.keys()))
+        self.assertIsInstance(result["secondary_fail_reasons"], list)
+        self.assertIsInstance(result["evaluated_stage_trace"], list)
+        self.assertIsInstance(result["stage_flags"], dict)
+        self.assertIn("market_bias_pass", result["stage_flags"])
+        self.assertIn("volatility_pass", result["stage_flags"])
+        self.assertIn("ema_pass", result["stage_flags"])
+        self.assertIn("breakout_confirmed", result["stage_flags"])
+        self.assertIn("vwap_distance_pass", result["stage_flags"])
+        self.assertIn("band_width_pass", result["stage_flags"])
+        self.assertIn("band_expansion_pass", result["stage_flags"])
+        self.assertIn("volume_pass", result["stage_flags"])
 
     def test_append_shadow_log_writes_jsonl(self) -> None:
         event = {
@@ -101,6 +115,9 @@ class ShadowEvalTests(unittest.TestCase):
             "band_expansion_ratio": 1.05,
             "volume_ratio": 0.8,
             "hypothetical_entry": False,
+            "secondary_fail_reasons": ["volume_not_confirmed"],
+            "evaluated_stage_trace": [{"stage": "volume", "passed": False, "reason": "volume_not_confirmed"}],
+            "stage_flags": {"volume_pass": False},
         }
         with tempfile.TemporaryDirectory() as tmpdir:
             log_file = Path(tmpdir) / "logs" / "shadow_breakout_v2.jsonl"
@@ -109,6 +126,7 @@ class ShadowEvalTests(unittest.TestCase):
 
         self.assertEqual(len(lines), 1)
         self.assertEqual(json.loads(lines[0])["filter_reason"], "volume_not_confirmed")
+        self.assertIn("secondary_fail_reasons", json.loads(lines[0]))
 
     def test_update_shadow_snapshot_updates_counts(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -117,11 +135,25 @@ class ShadowEvalTests(unittest.TestCase):
                 "ts": "2026-04-22T15:00:00+09:00",
                 "entry_allowed": False,
                 "filter_reason": "band_width_too_narrow",
+                "secondary_fail_reasons": ["volume_not_confirmed"],
+                "evaluated_stage_trace": [{"stage": "band_width", "passed": False, "reason": "band_width_too_narrow"}],
+                "stage_flags": {
+                    "band_width_pass": False,
+                    "volume_pass": False,
+                    "breakout_confirmed": False,
+                },
             }
             allowed_event = {
                 "ts": "2026-04-22T15:10:00+09:00",
                 "entry_allowed": True,
                 "filter_reason": "trend_up_vwap_boll_volume_breakout",
+                "secondary_fail_reasons": [],
+                "evaluated_stage_trace": [{"stage": "volume", "passed": True, "reason": None}],
+                "stage_flags": {
+                    "band_width_pass": True,
+                    "volume_pass": True,
+                    "breakout_confirmed": True,
+                },
             }
 
             update_shadow_snapshot(snapshot_file, filtered_event)
@@ -136,6 +168,11 @@ class ShadowEvalTests(unittest.TestCase):
         self.assertAlmostEqual(snapshot["allowed_signal_ratio"], 0.5)
         self.assertEqual(snapshot["reason_distribution"]["band_width_too_narrow"], 1)
         self.assertEqual(snapshot["reason_distribution"]["trend_up_vwap_boll_volume_breakout"], 1)
+        self.assertEqual(snapshot["expanded_event_count"], 2)
+        self.assertEqual(snapshot["secondary_fail_distribution"]["volume_not_confirmed"], 1)
+        self.assertEqual(snapshot["stage_false_counts"]["band_width_pass"], 1)
+        self.assertEqual(snapshot["stage_false_counts"]["volume_pass"], 1)
+        self.assertEqual(snapshot["stage_false_counts"]["breakout_confirmed"], 1)
 
 
 if __name__ == "__main__":

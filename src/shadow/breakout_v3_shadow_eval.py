@@ -282,7 +282,7 @@ def update_breakout_v3_shadow_snapshot(snapshot_file: Path, log_file: Path) -> N
     snapshot_file.parent.mkdir(parents=True, exist_ok=True)
     events: list[dict[str, Any]] = []
     if log_file.exists():
-        with log_file.open("r", encoding="utf-8") as file_handle:
+        with log_file.open("r", encoding="utf-8-sig") as file_handle:
             for line in file_handle:
                 payload = line.strip()
                 if not payload:

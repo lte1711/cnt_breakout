@@ -215,6 +215,38 @@ class BreakoutV3ShadowEvalTests(unittest.TestCase):
             self.assertIn("stage_fail_counts", snapshot)
             self.assertEqual(snapshot["strategy"], "breakout_v3_shadow")
 
+    def test_update_breakout_v3_shadow_snapshot_accepts_utf8_bom_log(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            log_file = root / "logs" / "shadow_breakout_v3.jsonl"
+            snapshot_file = root / "data" / "shadow_breakout_v3_snapshot.json"
+            log_file.parent.mkdir(parents=True, exist_ok=True)
+
+            event = build_breakout_v3_shadow_event(
+                evaluate_breakout_v3_shadow(
+                    self._conditions(
+                        setup_ready=False,
+                        volatility_floor_pass=False,
+                        breakout_confirmed=False,
+                        trigger_price_pass=False,
+                        band_width_pass=False,
+                        band_expansion_pass=False,
+                        volume_pass=False,
+                        vwap_distance_pass=False,
+                    ),
+                    min_soft_pass_required=3,
+                ),
+                symbol="ETHUSDT",
+            ).to_dict()
+
+            log_file.write_text(json.dumps(event, ensure_ascii=False) + "\n", encoding="utf-8-sig")
+            update_breakout_v3_shadow_snapshot(snapshot_file, log_file)
+
+            snapshot = json.loads(snapshot_file.read_text(encoding="utf-8"))
+            self.assertEqual(snapshot["signal_count"], 1)
+            self.assertEqual(snapshot["allowed_signal_count"], 0)
+            self.assertEqual(snapshot["first_blocker_distribution"]["setup_not_ready"], 1)
+
 
 if __name__ == "__main__":
     unittest.main()

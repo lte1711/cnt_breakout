@@ -1,16 +1,23 @@
 from __future__ import annotations
 
+import json
 from collections import Counter
 from dataclasses import asdict
 from datetime import datetime
+from pathlib import Path
 from typing import Any
 
+from binance_client import get_price
+from config import ENTRY_INTERVAL, KLINES_LIMIT, PRIMARY_INTERVAL
+from src.market_data import get_recent_closed_klines
 from src.models.breakout_v3_eval_result import (
     BreakoutV3Conditions,
     BreakoutV3EvalResult,
     BreakoutV3ShadowEvent,
     StageResult,
 )
+from src.models.market_context import MarketContext
+from src.strategies.breakout_v3 import build_breakout_v3_conditions
 
 
 def _stage_result(name: str, checks: list[str], fail_reasons: list[str]) -> StageResult:
@@ -28,6 +35,28 @@ def _pick_first_blocker(stage_results: dict[str, StageResult]) -> str | None:
         if not stage.passed and stage.fail_reasons:
             return stage.fail_reasons[0]
     return None
+
+
+def _build_shadow_context(symbol: str) -> MarketContext:
+    klines_primary = get_recent_closed_klines(
+        symbol=symbol,
+        interval=PRIMARY_INTERVAL,
+        limit=KLINES_LIMIT,
+    )
+    klines_entry = get_recent_closed_klines(
+        symbol=symbol,
+        interval=ENTRY_INTERVAL,
+        limit=KLINES_LIMIT,
+    )
+    last_price = get_price(symbol)
+    return MarketContext(
+        symbol=symbol,
+        primary_interval=PRIMARY_INTERVAL,
+        entry_interval=ENTRY_INTERVAL,
+        klines_primary=klines_primary,
+        klines_entry=klines_entry,
+        last_price=last_price,
+    )
 
 
 def evaluate_breakout_v3_shadow(
@@ -213,3 +242,52 @@ def aggregate_breakout_v3_shadow_events(events: list[dict[str, Any]]) -> dict[st
 
 def breakout_v3_shadow_event_to_dict(event: BreakoutV3ShadowEvent) -> dict[str, Any]:
     return asdict(event)
+
+
+def evaluate_breakout_v3_shadow_for_symbol(
+    symbol: str,
+    params: dict[str, Any],
+) -> dict[str, Any]:
+    context = _build_shadow_context(symbol)
+    conditions = build_breakout_v3_conditions(context, params)
+    result = evaluate_breakout_v3_shadow(
+        conditions,
+        min_soft_pass_required=int(params.get("min_soft_pass_required", 3)),
+    )
+    event = build_breakout_v3_shadow_event(
+        result,
+        symbol=symbol,
+        metadata={
+            "primary_interval": context.primary_interval,
+            "entry_interval": context.entry_interval,
+        },
+    )
+    return breakout_v3_shadow_event_to_dict(event)
+
+
+def append_breakout_v3_shadow_log(log_file: Path, event: dict[str, Any]) -> None:
+    log_file.parent.mkdir(parents=True, exist_ok=True)
+    with log_file.open("a", encoding="utf-8", newline="\n") as file_handle:
+        file_handle.write(json.dumps(event, ensure_ascii=False) + "\n")
+
+
+def update_breakout_v3_shadow_snapshot(snapshot_file: Path, log_file: Path) -> None:
+    snapshot_file.parent.mkdir(parents=True, exist_ok=True)
+    events: list[dict[str, Any]] = []
+    if log_file.exists():
+        with log_file.open("r", encoding="utf-8") as file_handle:
+            for line in file_handle:
+                payload = line.strip()
+                if not payload:
+                    continue
+                loaded = json.loads(payload)
+                if isinstance(loaded, dict):
+                    events.append(loaded)
+
+    snapshot = aggregate_breakout_v3_shadow_events(events)
+    snapshot["strategy"] = "breakout_v3_shadow"
+    snapshot["last_updated"] = events[-1]["timestamp"] if events else None
+    snapshot_file.write_text(
+        json.dumps(snapshot, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )

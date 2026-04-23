@@ -26,6 +26,8 @@ from config import (
     PORTFOLIO_STATE_FILE,
     SHADOW_BREAKOUT_V2_LOG_FILE,
     SHADOW_BREAKOUT_V2_SNAPSHOT_FILE,
+    SHADOW_BREAKOUT_V3_LOG_FILE,
+    SHADOW_BREAKOUT_V3_SNAPSHOT_FILE,
     STATE_FILE,
     STRATEGY_METRICS_FILE,
     STRATEGY_PARAMS,
@@ -61,6 +63,11 @@ from src.order_validator import (
 from src.portfolio.strategy_orchestrator import get_ranked_signal_selection
 from src.risk.enhanced_exit_manager import evaluate_exit
 from src.shadow_eval import append_shadow_log, evaluate_breakout_v2_shadow, update_shadow_snapshot
+from src.shadow.breakout_v3_shadow_eval import (
+    append_breakout_v3_shadow_log,
+    evaluate_breakout_v3_shadow_for_symbol,
+    update_breakout_v3_shadow_snapshot,
+)
 from src.state.state_manager import build_portfolio_state, load_portfolio_state, save_portfolio_state
 from src.state_writer import write_state
 from src.validation.live_gate_evaluator import evaluate_live_gate, save_live_gate_decision
@@ -402,6 +409,30 @@ def _run_breakout_v2_shadow(*, project_root: Path, symbol: str) -> None:
 
     try:
         update_shadow_snapshot(project_root / SHADOW_BREAKOUT_V2_SNAPSHOT_FILE, event)
+    except Exception:
+        pass
+
+
+def _run_breakout_v3_shadow(*, project_root: Path, symbol: str) -> None:
+    params = STRATEGY_PARAMS.get("breakout_v3")
+    if not isinstance(params, dict):
+        return
+
+    try:
+        event = evaluate_breakout_v3_shadow_for_symbol(symbol, params)
+    except Exception:
+        return
+
+    log_file = project_root / SHADOW_BREAKOUT_V3_LOG_FILE
+    snapshot_file = project_root / SHADOW_BREAKOUT_V3_SNAPSHOT_FILE
+
+    try:
+        append_breakout_v3_shadow_log(log_file, event)
+    except Exception:
+        pass
+
+    try:
+        update_breakout_v3_shadow_snapshot(snapshot_file, log_file)
     except Exception:
         pass
 
@@ -1258,6 +1289,10 @@ def start_engine() -> None:
         ranked_selection = get_ranked_signal_selection(SYMBOL, strategy_metrics=strategy_metrics)
         save_strategy_metrics(strategy_metrics_file, strategy_metrics)
         _run_breakout_v2_shadow(
+            project_root=state_file.parent.parent,
+            symbol=SYMBOL,
+        )
+        _run_breakout_v3_shadow(
             project_root=state_file.parent.parent,
             symbol=SYMBOL,
         )

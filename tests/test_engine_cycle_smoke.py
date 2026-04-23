@@ -103,6 +103,40 @@ class EngineCycleSmokeTests(unittest.TestCase):
             append_shadow_log.assert_called_once()
             update_shadow_snapshot.assert_called_once()
 
+    def test_run_breakout_v3_shadow_does_not_interrupt_on_log_failure(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            event = {
+                "timestamp": "2026-04-24T12:00:00+09:00",
+                "symbol": "ETHUSDT",
+                "strategy_name": "breakout_v3_candidate",
+                "allowed": False,
+                "summary_reason": "trigger_blocked",
+                "first_blocker": "breakout_not_confirmed",
+                "hard_blocker": "breakout_not_confirmed",
+                "soft_pass_count": 2,
+                "soft_fail_count": 4,
+                "soft_total_count": 6,
+                "min_soft_pass_required": 3,
+                "stage_flags": {"regime": True, "setup": True, "trigger": False, "quality": False},
+                "condition_flags": {"market_bias_pass": True, "breakout_confirmed": False},
+                "secondary_fail_reasons": ["band_width_fail", "volume_fail"],
+                "metadata": {"primary_interval": "5m", "entry_interval": "1m"},
+            }
+            with (
+                patch("src.engine.evaluate_breakout_v3_shadow_for_symbol", return_value=event) as evaluate_shadow,
+                patch("src.engine.append_breakout_v3_shadow_log", side_effect=OSError("log failed")) as append_log,
+                patch("src.engine.update_breakout_v3_shadow_snapshot") as update_snapshot,
+            ):
+                engine._run_breakout_v3_shadow(
+                    project_root=root,
+                    symbol="ETHUSDT",
+                )
+
+            evaluate_shadow.assert_called_once()
+            append_log.assert_called_once()
+            update_snapshot.assert_called_once()
+
 
 if __name__ == "__main__":
     unittest.main()

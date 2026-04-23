@@ -67,6 +67,8 @@ PERFORMANCE_SNAPSHOT_FILE = "data/performance_snapshot.json"
 LIVE_GATE_DECISION_FILE = "data/live_gate_decision.json"
 SHADOW_BREAKOUT_V2_SNAPSHOT_FILE = "data/shadow_breakout_v2_snapshot.json"
 SHADOW_BREAKOUT_V2_LOG_FILE = "logs/shadow_breakout_v2.jsonl"
+SHADOW_BREAKOUT_V3_SNAPSHOT_FILE = "data/shadow_breakout_v3_snapshot.json"
+SHADOW_BREAKOUT_V3_LOG_FILE = "logs/shadow_breakout_v3.jsonl"
 
 # =========================
 # STRATEGY ENABLE SWITCH

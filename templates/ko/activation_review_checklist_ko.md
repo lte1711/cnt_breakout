@@ -7,13 +7,14 @@ status: draft
 tags:
   - review/activation
   - strategy/breakout_v3
+  - ko
 ---
 
-# Breakout V3 Activation Review Checklist - <% tp.date.now("YYYY-MM-DD HH:mm") %>
+# Breakout V3 Activation Review 체크리스트 - <% tp.date.now("YYYY-MM-DD HH:mm") %>
 
-## 1. Preconditions
+## 1. 사전 조건
 
-Do not start activation review unless all of the following are satisfied.
+아래가 모두 충족되지 않으면 activation review 자체를 시작하지 않는다.
 
 - [ ] shadow observation window completed
 - [ ] one-shot runtime verification passed
@@ -24,9 +25,9 @@ Do not start activation review unless all of the following are satisfied.
 
 ---
 
-## 2. Shadow Performance Evidence
+## 2. Shadow 성능 증거
 
-| Item | Value |
+| 항목 | 값 |
 |---|---|
 | total_signal_count | |
 | allowed_signal_count | |
@@ -35,7 +36,7 @@ Do not start activation review unless all of the following are satisfied.
 | dominant_first_blocker | |
 | dominant_blocker_ratio | |
 
-Judgement:
+판정:
 
 - [ ] evidence_insufficient
 - [ ] evidence_mixed
@@ -43,7 +44,7 @@ Judgement:
 
 ---
 
-## 3. Structural Viability
+## 3. 구조적 타당성
 
 ### Hard Gate
 
@@ -64,7 +65,7 @@ Judgement:
 
 ---
 
-## 4. Safety Review
+## 4. 안전성 검토
 
 - [ ] still shadow-only up to now
 - [ ] no unintended effect on live engine behavior
@@ -75,9 +76,9 @@ Judgement:
 
 ---
 
-## 5. Decision Threshold
+## 5. 의사결정 기준
 
-Activation consideration requires all of the following:
+Activation 후보 검토를 하려면 최소 아래를 만족해야 한다.
 
 - [ ] allowed_signal_count > 0
 - [ ] allowed_signal_ratio >= 5%
@@ -87,16 +88,16 @@ Activation consideration requires all of the following:
 
 ---
 
-## 6. Final Recommendation
+## 6. 최종 권고
 
 - [ ] NO_GO
 - [ ] CONDITIONAL_GO
 - [ ] GO_TO_NEXT_VALIDATION_STAGE
 
-**Conclusion**
+**결론**
 > 
 
-**Required follow-up**
+**필요한 후속 조치**
 
 - [ ] continue shadow observation
 - [ ] prepare limited simulation
@@ -106,7 +107,7 @@ Activation consideration requires all of the following:
 
 ---
 
-## 7. Linked Evidence
+## 7. 연결 증거
 
 - [[CNT v2 BREAKOUT V3 SHADOW OBSERVATION WINDOW START]]
 - [[CNT v2 BREAKOUT V3 FIRST SHADOW OBSERVATION REVIEW]]

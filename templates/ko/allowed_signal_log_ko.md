@@ -7,13 +7,14 @@ status: recorded
 tags:
   - signal/allowed
   - strategy/breakout_v3
+  - ko
 ---
 
-# Breakout V3 Allowed Signal Log - <% tp.date.now("YYYY-MM-DD HH:mm") %>
+# Breakout V3 Allowed Signal 기록 - <% tp.date.now("YYYY-MM-DD HH:mm") %>
 
-## 1. Event Summary
+## 1. 이벤트 요약
 
-| Item | Value |
+| 항목 | 값 |
 |---|---|
 | strategy_name | breakout_v3_candidate |
 | timestamp | |
@@ -26,7 +27,7 @@ tags:
 
 ---
 
-## 2. Key Conditions
+## 2. 핵심 조건
 
 | condition | value |
 |---|---|
@@ -56,19 +57,19 @@ tags:
 
 ---
 
-## 4. Interpretation
+## 4. 해석
 
-### Why this signal mattered
-
-- 
-- 
-
-### What was different from previous blocked cases
+### 왜 이 신호가 중요했는가
 
 - 
 - 
 
-### Repeatability
+### 이전 blocked 케이스와 무엇이 달랐는가
+
+- 
+- 
+
+### 재현 가능성
 
 - [ ] likely_repeatable
 - [ ] rare_outlier
@@ -83,13 +84,13 @@ tags:
 
 ---
 
-## 6. Decision Impact
+## 6. 의사결정 영향
 
 - [ ] observation only
 - [ ] include in next review
 - [ ] candidate for activation evidence
 - [ ] candidate for threshold analysis
 
-**Notes**
+**메모**
 
 >

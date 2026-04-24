@@ -201,6 +201,8 @@
   },
   "active": "612bf4d770206c98",
   "lastOpenFiles": [
+    "docs/ko/CNT REPOSITORY CLEANUP REPORT KO.md",
+    "docs/CNT REPOSITORY CLEANUP REPORT.md",
     "docs/ko/CNT v2 BREAKOUT V3 FIRST SHADOW OBSERVATION REVIEW KO.md",
     "docs/CNT v2 BREAKOUT V3 FIRST SHADOW OBSERVATION REVIEW.md",
     "data/engine.lock",
@@ -234,8 +236,6 @@
     "scripts/fix_korean_links.py",
     "docs/ko/CNT 버전 분류 보고서 KO.md",
     "docs/CNT GRAPH VIEW COLOR CONFIGURATION.md",
-    "docs/ko/CNT OBSIDIAN 버전 시각화 설정 KO.md",
-    "docs/CNT OBSIDIAN VERSION VISUALIZATION SETUP.md",
     "docs/canvas_color_config.json",
     "무제.canvas"
   ]

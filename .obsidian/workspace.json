@@ -201,12 +201,12 @@
   },
   "active": "612bf4d770206c98",
   "lastOpenFiles": [
+    "data/engine.lock",
     "tools/__pycache__/analyze_breakout_v3_post_trend_setup_residual_trace.cpython-312.pyc",
     "reports/breakout_v3_post_trend_setup_residual_trace.md",
     "reports/breakout_v3_post_trend_setup_residual_trace.json",
     "tools/analyze_breakout_v3_post_trend_setup_residual_trace.py",
     "docs/ko/CNT DATA DASHBOARD KO.md",
-    "data/engine.lock",
     "tools/__pycache__/analyze_breakout_v3_setup_market_context_split.cpython-312.pyc",
     "reports/breakout_v3_setup_market_context_split.md",
     "reports/breakout_v3_setup_market_context_split.json",

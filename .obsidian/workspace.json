@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docs/ko/CNT OBSIDIAN GRAPH HARD SIMPLIFICATION REPORT KO.md",
+                "file": "docs/CNT v2 BREAKOUT V3 SHADOW VALIDATION RUNTIME INTEGRATION PLAN.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CNT OBSIDIAN GRAPH HARD SIMPLIFICATION REPORT KO"
+              "title": "CNT v2 BREAKOUT V3 SHADOW VALIDATION RUNTIME INTEGRATION PLAN"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#vscode",
+                "query": "tag:#breakout",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -201,23 +201,33 @@
   },
   "active": "612bf4d770206c98",
   "lastOpenFiles": [
-    "src/validation/__pycache__/live_gate_evaluator.cpython-312.pyc",
-    "src/validation/__pycache__",
-    "src/__pycache__/state_writer.cpython-312.pyc",
-    "src/state/__pycache__/state_manager.cpython-312.pyc",
-    "src/state/__pycache__",
-    "src/models/__pycache__/breakout_v3_eval_result.cpython-312.pyc",
-    "src/shadow/__pycache__/breakout_v3_shadow_eval.cpython-312.pyc",
-    "src/shadow/__pycache__",
-    "src/__pycache__/shadow_eval.cpython-312.pyc",
-    "src/risk/__pycache__/enhanced_exit_manager.cpython-312.pyc",
-    "src/models/__pycache__/ranked_signal_selection.cpython-312.pyc",
+    "tools/__pycache__/analyze_breakout_v3_post_trend_setup_residual_trace.cpython-312.pyc",
+    "reports/breakout_v3_post_trend_setup_residual_trace.md",
+    "reports/breakout_v3_post_trend_setup_residual_trace.json",
+    "tools/analyze_breakout_v3_post_trend_setup_residual_trace.py",
+    "docs/ko/CNT DATA DASHBOARD KO.md",
+    "data/engine.lock",
+    "tools/__pycache__/analyze_breakout_v3_setup_market_context_split.cpython-312.pyc",
+    "reports/breakout_v3_setup_market_context_split.md",
+    "reports/breakout_v3_setup_market_context_split.json",
+    "tools/analyze_breakout_v3_setup_market_context_split.py",
+    "tools/__pycache__/analyze_breakout_v3_setup_cluster_layers.cpython-312.pyc",
+    "reports/breakout_v3_setup_cluster_layer_isolation.md",
+    "reports/breakout_v3_setup_cluster_layer_isolation.json",
+    "tools/analyze_breakout_v3_setup_cluster_layers.py",
+    "tools/__pycache__/analyze_breakout_v3_setup_root_cause_matrix.cpython-312.pyc",
+    "reports/breakout_v3_setup_root_cause_matrix.md",
+    "docs/ko/CNT OBSIDIAN GRAPH HARD SIMPLIFICATION REPORT KO.md",
+    "docs/ko/CNT v2 DASHBOARD SETUP BOTTLENECK ISOLATION UPGRADE REPORT KO.md",
+    "docs/CNT v2 DASHBOARD SETUP BOTTLENECK ISOLATION UPGRADE REPORT.md",
+    "docs/ko/CNT v2 BREAKOUT V3 SETUP BOTTLENECK ISOLATION REPORT KO.md",
+    "docs/CNT v2 BREAKOUT V3 SETUP BOTTLENECK ISOLATION REPORT.md",
+    "reports/breakout_v3_setup_bottleneck_report.md",
     "docs/ko/CNT REPOSITORY CLEANUP REPORT KO.md",
     "docs/CNT REPOSITORY CLEANUP REPORT.md",
     "docs/ko/CNT v2 BREAKOUT V3 FIRST SHADOW OBSERVATION REVIEW KO.md",
     "docs/CNT v2 BREAKOUT V3 FIRST SHADOW OBSERVATION REVIEW.md",
     "docs/ko/00 Docs Index KO.md",
-    "docs/ko/CNT OBSIDIAN GRAPH HARD SIMPLIFICATION REPORT KO.md",
     "docs/CNT OBSIDIAN GRAPH HARD SIMPLIFICATION REPORT.md",
     "docs/ko/CNT OBSIDIAN PARENT-LINK SIMPLIFICATION REPORT KO.md",
     "docs/CNT OBSIDIAN PARENT-LINK SIMPLIFICATION REPORT.md",
@@ -227,16 +237,6 @@
     "docs/ko/CNT LINKS FIX REPORT KO.md",
     "docs/ko/CNT GRAPH LINK SIMPLIFICATION REPORT KO.md",
     "docs/ko/CNT GRAPH VIEW COLOR CONFIGURATION KO.md",
-    "docs/ko/CNT VERSION CLASSIFICATION AND COLOR CODING GUIDE KO.md",
-    "docs/ko/CNT OBSIDIAN VERSION VISUALIZATION CONFIGURATION KO.md",
-    "docs/CNT GRAPH LINKS SIMPLIFICATION REPORT.md",
-    "docs/ko/CNT Graph 링크 단순화 보고서 KO.md",
-    "docs/ko/CNT GRAPH 뷰 색상 구성 KO.md",
-    "docs/CNT LINKS FIX REPORT.md",
-    "docs/ko/CNT 링크 수정 보고서 KO.md",
-    "docs/ko/CNT v2 TESTNET PERFORMANCE REPORT KO.md",
-    "docs/00 Docs Index.md",
-    "docs/ko/CNT 버전 분류 보고서 KO.md",
     "무제.canvas"
   ]
 }

@@ -1,0 +1,176 @@
+[
+  {
+    "event_index": 10,
+    "timestamp": "2026-04-24T07:44:05+09:00",
+    "symbol": "ETHUSDT",
+    "strategy_name": "breakout_v3_candidate",
+    "allowed": true,
+    "summary_reason": "allowed_by_hard_and_soft_gates",
+    "first_blocker": null,
+    "hard_blocker": null,
+    "soft_pass_count": 3,
+    "soft_fail_count": 3,
+    "min_soft_pass_required": 3,
+    "stage_flags": {
+      "regime": true,
+      "setup": true,
+      "trigger": true,
+      "quality": true
+    },
+    "condition_flags": {
+      "market_bias_pass": true,
+      "trend_up_pass": true,
+      "range_bias_pass": false,
+      "setup_ready": true,
+      "volatility_floor_pass": true,
+      "price_position_pass": true,
+      "breakout_confirmed": true,
+      "trigger_price_pass": true,
+      "band_width_pass": false,
+      "band_expansion_pass": false,
+      "volume_pass": true,
+      "vwap_distance_pass": false,
+      "rsi_threshold_pass": true,
+      "ema_pass": true
+    },
+    "secondary_fail_reasons": [
+      "band_width_fail",
+      "band_expansion_fail",
+      "vwap_distance_fail"
+    ],
+    "metadata": {
+      "primary_interval": "5m",
+      "entry_interval": "1m"
+    },
+    "raw_event": {
+      "timestamp": "2026-04-24T07:44:05+09:00",
+      "symbol": "ETHUSDT",
+      "strategy_name": "breakout_v3_candidate",
+      "allowed": true,
+      "summary_reason": "allowed_by_hard_and_soft_gates",
+      "first_blocker": null,
+      "hard_blocker": null,
+      "soft_pass_count": 3,
+      "soft_fail_count": 3,
+      "soft_total_count": 6,
+      "min_soft_pass_required": 3,
+      "stage_flags": {
+        "regime": true,
+        "setup": true,
+        "trigger": true,
+        "quality": true
+      },
+      "condition_flags": {
+        "market_bias_pass": true,
+        "trend_up_pass": true,
+        "range_bias_pass": false,
+        "setup_ready": true,
+        "volatility_floor_pass": true,
+        "price_position_pass": true,
+        "breakout_confirmed": true,
+        "trigger_price_pass": true,
+        "band_width_pass": false,
+        "band_expansion_pass": false,
+        "volume_pass": true,
+        "vwap_distance_pass": false,
+        "rsi_threshold_pass": true,
+        "ema_pass": true
+      },
+      "secondary_fail_reasons": [
+        "band_width_fail",
+        "band_expansion_fail",
+        "vwap_distance_fail"
+      ],
+      "metadata": {
+        "primary_interval": "5m",
+        "entry_interval": "1m"
+      }
+    }
+  },
+  {
+    "event_index": 20,
+    "timestamp": "2026-04-24T09:24:04+09:00",
+    "symbol": "ETHUSDT",
+    "strategy_name": "breakout_v3_candidate",
+    "allowed": true,
+    "summary_reason": "allowed_by_hard_and_soft_gates",
+    "first_blocker": null,
+    "hard_blocker": null,
+    "soft_pass_count": 4,
+    "soft_fail_count": 2,
+    "min_soft_pass_required": 3,
+    "stage_flags": {
+      "regime": true,
+      "setup": false,
+      "trigger": true,
+      "quality": true
+    },
+    "condition_flags": {
+      "market_bias_pass": true,
+      "trend_up_pass": false,
+      "range_bias_pass": true,
+      "setup_ready": false,
+      "volatility_floor_pass": false,
+      "price_position_pass": true,
+      "breakout_confirmed": true,
+      "trigger_price_pass": true,
+      "band_width_pass": false,
+      "band_expansion_pass": true,
+      "volume_pass": true,
+      "vwap_distance_pass": true,
+      "rsi_threshold_pass": false,
+      "ema_pass": true
+    },
+    "secondary_fail_reasons": [
+      "band_width_fail",
+      "rsi_threshold_fail"
+    ],
+    "metadata": {
+      "primary_interval": "5m",
+      "entry_interval": "1m"
+    },
+    "raw_event": {
+      "timestamp": "2026-04-24T09:24:04+09:00",
+      "symbol": "ETHUSDT",
+      "strategy_name": "breakout_v3_candidate",
+      "allowed": true,
+      "summary_reason": "allowed_by_hard_and_soft_gates",
+      "first_blocker": null,
+      "hard_blocker": null,
+      "soft_pass_count": 4,
+      "soft_fail_count": 2,
+      "soft_total_count": 6,
+      "min_soft_pass_required": 3,
+      "stage_flags": {
+        "regime": true,
+        "setup": false,
+        "trigger": true,
+        "quality": true
+      },
+      "condition_flags": {
+        "market_bias_pass": true,
+        "trend_up_pass": false,
+        "range_bias_pass": true,
+        "setup_ready": false,
+        "volatility_floor_pass": false,
+        "price_position_pass": true,
+        "breakout_confirmed": true,
+        "trigger_price_pass": true,
+        "band_width_pass": false,
+        "band_expansion_pass": true,
+        "volume_pass": true,
+        "vwap_distance_pass": true,
+        "rsi_threshold_pass": false,
+        "ema_pass": true
+      },
+      "secondary_fail_reasons": [
+        "band_width_fail",
+        "rsi_threshold_fail"
+      ],
+      "metadata": {
+        "primary_interval": "5m",
+        "entry_interval": "1m"
+      }
+    }
+  }
+]

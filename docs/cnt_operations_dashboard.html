@@ -399,6 +399,31 @@
       </div>
     </section>
 
+    <section style="margin-bottom:12px;">
+      <div class="card">
+        <h2>V3 Setup Bottleneck</h2>
+        <div class="grid-4">
+          <div class="card" style="padding:12px;">
+            <div class="metric-label">Setup Pass</div>
+            <div id="v3-setup-pass" class="metric-value" style="font-size:22px;">0 / 0</div>
+          </div>
+          <div class="card" style="padding:12px;">
+            <div class="metric-label">Setup Pass Rate</div>
+            <div id="v3-setup-pass-rate" class="metric-value" style="font-size:22px;">--</div>
+          </div>
+          <div class="card" style="padding:12px;">
+            <div class="metric-label">Top Setup Pressure</div>
+            <div id="v3-setup-top" class="metric-value" style="font-size:18px;">--</div>
+          </div>
+          <div class="card" style="padding:12px;">
+            <div class="metric-label">Trace Counts</div>
+            <div class="metric-sub">allowed=<span id="v3-setup-allowed-traces">0</span> | setup-pass blocked=<span id="v3-setup-blocked-traces">0</span></div>
+          </div>
+        </div>
+        <div class="stack" style="margin-top:12px;" id="v3-setup-body"></div>
+      </div>
+    </section>
+
     <section class="grid-3" style="margin-bottom:12px;">
       <div class="card">
         <div class="metric-label">Expectancy</div>
@@ -447,7 +472,7 @@
     </section>
 
     <div class="footer" id="footer-note">
-      CNT runtime sources: ../data/performance_snapshot.json | ../data/strategy_metrics.json | ../data/state.json | ../data/portfolio_state.json | ../data/live_gate_decision.json | ../data/shadow_breakout_v3_snapshot.json
+      CNT runtime sources: ../data/performance_snapshot.json | ../data/strategy_metrics.json | ../data/state.json | ../data/portfolio_state.json | ../data/live_gate_decision.json | ../data/shadow_breakout_v3_snapshot.json | ../reports/breakout_v3_allowed_trace.json | ../reports/breakout_v3_setup_pass_blocked_trace.json
     </div>
   </main>
 
@@ -459,6 +484,8 @@ const DATA_FILES = {
   portfolio: "../data/portfolio_state.json",
   gate: "../data/live_gate_decision.json",
   shadowV3: "../data/shadow_breakout_v3_snapshot.json",
+  v3AllowedTrace: "../reports/breakout_v3_allowed_trace.json",
+  v3SetupPassBlockedTrace: "../reports/breakout_v3_setup_pass_blocked_trace.json",
 };
 
 const GATE_THRESHOLD = 20;
@@ -673,6 +700,14 @@ async function readJSON(path) {
   return JSON.parse(text.replace(/^\uFEFF/, ""));
 }
 
+async function readJSONOptional(path, fallbackValue) {
+  try {
+    return await readJSON(path);
+  } catch (_error) {
+    return fallbackValue;
+  }
+}
+
 function describePending(pending) {
   if (!pending) return "none";
   return `${pending.side} ${pending.status} #${pending.orderId ?? "--"}`;
@@ -696,7 +731,43 @@ function riskSyncText(state, snapshot) {
   `;
 }
 
-function render(snapshot, metrics, state, portfolio, gate, shadow) {
+function buildV3SetupIsolation(shadow, allowedTrace, setupPassBlockedTrace) {
+  const signalCount = Number(shadow?.signal_count ?? 0);
+  const setupPassCount = Number(shadow?.stage_pass_counts?.setup ?? 0);
+  const setupFailCount = Number(shadow?.stage_fail_counts?.setup ?? 0);
+  const setupPassRate = signalCount > 0 ? setupPassCount / signalCount : 0;
+  const requestedCounts = {
+    vwap_distance_fail: Number(shadow?.secondary_blocker_distribution?.vwap_distance_fail ?? 0),
+    band_width_fail: Number(shadow?.secondary_blocker_distribution?.band_width_fail ?? 0),
+    volume_fail: Number(shadow?.secondary_blocker_distribution?.volume_fail ?? 0),
+    band_expansion_fail: Number(shadow?.secondary_blocker_distribution?.band_expansion_fail ?? 0),
+    setup_not_ready: Number(shadow?.first_blocker_distribution?.setup_not_ready ?? 0),
+  };
+  const sortedRequested = Object.entries(requestedCounts).sort((a, b) => Number(b[1]) - Number(a[1]));
+  const [topKey, topValue] = sortedRequested[0] ?? ["none", 0];
+  const allowedTraceCount = Array.isArray(allowedTrace) ? allowedTrace.length : 0;
+  const setupPassBlockedTraceCount = Array.isArray(setupPassBlockedTrace) ? setupPassBlockedTrace.length : 0;
+  const allowedWithSetupPass = Array.isArray(allowedTrace)
+    ? allowedTrace.filter(item => item?.stage_flags?.setup === true).length
+    : 0;
+  const allowedWithSetupFail = Array.isArray(allowedTrace)
+    ? allowedTrace.filter(item => item?.stage_flags?.setup === false).length
+    : 0;
+  return {
+    signalCount,
+    setupPassCount,
+    setupFailCount,
+    setupPassRate,
+    topKey,
+    topValue,
+    allowedTraceCount,
+    setupPassBlockedTraceCount,
+    allowedWithSetupPass,
+    allowedWithSetupFail,
+  };
+}
+
+function render(snapshot, metrics, state, portfolio, gate, shadow, allowedTrace, setupPassBlockedTrace) {
   const health = computeSystemHealth(snapshot);
   const healthBadge = document.getElementById("health-badge");
   healthBadge.textContent = health;
@@ -752,6 +823,7 @@ function render(snapshot, metrics, state, portfolio, gate, shadow) {
   const softGood = Object.entries(softDist).reduce((sum, [key, value]) => (
     Number(key) >= 3 ? sum + Number(value) : sum
   ), 0);
+  const v3Setup = buildV3SetupIsolation(shadow, allowedTrace, setupPassBlockedTrace);
   document.getElementById("mode-title").textContent = runtimeStrategy === "pullback_v1" ? "PULLBACK-ONLY ACTIVE" : runtimeStrategy.toUpperCase();
   document.getElementById("mode-summary").textContent = `runtime action=${runtimeAction} | breakout_v3 remains shadow-only`;
   document.getElementById("mode-badges").innerHTML = buildModeBadges(state, shadow);
@@ -766,6 +838,17 @@ function render(snapshot, metrics, state, portfolio, gate, shadow) {
     <div class="kv-row"><span class="kv-key">Hard Blockers</span><span class="kv-val">${blockerSummary(shadow?.hard_blocker_distribution)}</span></div>
     <div class="kv-row"><span class="kv-key">Soft Pass Dist</span><span class="kv-val">${Object.entries(softDist).map(([k, v]) => `${k}:${v}`).join(" | ") || "none"}</span></div>
     <div class="kv-row"><span class="kv-key">Stage Fail</span><span class="kv-val">${Object.entries(shadow?.stage_fail_counts ?? {}).map(([k, v]) => `${k}:${v}`).join(" | ") || "none"}</span></div>
+  `;
+  document.getElementById("v3-setup-pass").textContent = `${v3Setup.setupPassCount} / ${v3Setup.signalCount}`;
+  document.getElementById("v3-setup-pass-rate").textContent = pct(v3Setup.setupPassRate);
+  document.getElementById("v3-setup-top").textContent = `${v3Setup.topKey} = ${v3Setup.topValue}`;
+  document.getElementById("v3-setup-allowed-traces").textContent = String(v3Setup.allowedTraceCount);
+  document.getElementById("v3-setup-blocked-traces").textContent = String(v3Setup.setupPassBlockedTraceCount);
+  document.getElementById("v3-setup-body").innerHTML = `
+    <div class="kv-row"><span class="kv-key">Setup Fail Count</span><span class="kv-val">${v3Setup.setupFailCount}</span></div>
+    <div class="kv-row"><span class="kv-key">Allowed With Setup Pass</span><span class="kv-val">${v3Setup.allowedWithSetupPass}</span></div>
+    <div class="kv-row"><span class="kv-key">Allowed With Setup Fail</span><span class="kv-val">${v3Setup.allowedWithSetupFail}</span></div>
+    <div class="kv-row"><span class="kv-key">Interpretation</span><span class="kv-val">setup bottleneck isolation only | no tuning | no activation</span></div>
   `;
 
   const alerts = buildAlerts(snapshot, metrics, state, gate);
@@ -800,15 +883,17 @@ async function loadData() {
   button.disabled = true;
   button.textContent = "LOADING";
   try {
-    const [snapshot, metrics, state, portfolio, gate, shadow] = await Promise.all([
+    const [snapshot, metrics, state, portfolio, gate, shadow, allowedTrace, setupPassBlockedTrace] = await Promise.all([
       readJSON(DATA_FILES.snapshot),
       readJSON(DATA_FILES.metrics),
       readJSON(DATA_FILES.state),
       readJSON(DATA_FILES.portfolio),
       readJSON(DATA_FILES.gate),
       readJSON(DATA_FILES.shadowV3),
+      readJSONOptional(DATA_FILES.v3AllowedTrace, []),
+      readJSONOptional(DATA_FILES.v3SetupPassBlockedTrace, []),
     ]);
-    render(snapshot, metrics, state, portfolio, gate, shadow);
+    render(snapshot, metrics, state, portfolio, gate, shadow, allowedTrace, setupPassBlockedTrace);
   } catch (error) {
     document.getElementById("alerts").innerHTML = `
       <div class="alert-item bad">

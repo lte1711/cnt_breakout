@@ -5,18 +5,84 @@
   "showAttachments": true,
   "hideUnresolved": true,
   "showOrphans": true,
-  "collapse-color-groups": false,
-  "colorGroups": [],
+  "collapse-color-groups": true,
+  "colorGroups": [
+    {
+      "query": "tag:cnt/v1.1",
+      "color": "#4CAF50",
+      "name": "v1.1 Completed"
+    },
+    {
+      "query": "tag:cnt/v2.0",
+      "color": "#2196F3",
+      "name": "v2.0 Designed"
+    },
+    {
+      "query": "tag:cnt/v2.1",
+      "color": "#FF9800",
+      "name": "v2.1 Implementation"
+    },
+    {
+      "query": "tag:cnt/v2.2",
+      "color": "#9C27B0",
+      "name": "v2.2 Automation"
+    },
+    {
+      "query": "tag:cnt/v3.0",
+      "color": "#F44336",
+      "name": "v3.0 Planned"
+    },
+    {
+      "query": "tag:status/completed",
+      "color": "#4CAF50",
+      "name": "Completed"
+    },
+    {
+      "query": "tag:status/active",
+      "color": "#FF9800",
+      "name": "Active"
+    },
+    {
+      "query": "tag:status/planned",
+      "color": "#F44336",
+      "name": "Planned"
+    },
+    {
+      "query": "tag:type/architecture",
+      "color": "#2196F3",
+      "name": "Architecture"
+    },
+    {
+      "query": "tag:type/implementation",
+      "color": "#FF9800",
+      "name": "Implementation"
+    },
+    {
+      "query": "tag:type/validation",
+      "color": "#4CAF50",
+      "name": "Validation"
+    },
+    {
+      "query": "tag:type/automation",
+      "color": "#9C27B0",
+      "name": "Automation"
+    },
+    {
+      "query": "tag:type/operation",
+      "color": "#607D8B",
+      "name": "Operation"
+    }
+  ],
   "collapse-display": false,
   "showArrow": true,
   "textFadeMultiplier": 0,
-  "nodeSizeMultiplier": 1,
-  "lineSizeMultiplier": 1,
+  "nodeSizeMultiplier": 1.2,
+  "lineSizeMultiplier": 1.1,
   "collapse-forces": false,
-  "centerStrength": 0,
-  "repelStrength": 20,
+  "centerStrength": 0.2,
+  "repelStrength": 25,
   "linkStrength": 1,
-  "linkDistance": 500,
-  "scale": 0.22920131214925143,
+  "linkDistance": 600,
+  "scale": 0.05607756585711719,
   "close": true
 }

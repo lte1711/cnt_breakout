@@ -351,6 +351,23 @@
       <div class="top-warning-items" id="top-warning-items"></div>
     </section>
 
+    <section style="margin-bottom:12px;">
+      <div class="card">
+        <h2>Auxiliary Recovery</h2>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;">
+          <div>
+            <div class="big-number small" id="aux-title">LOADING</div>
+            <div class="metric-sub" id="aux-summary">checking post-isolation recovery status...</div>
+          </div>
+          <div id="aux-badges" class="header-meta" style="justify-content:flex-start;"></div>
+        </div>
+        <div class="help" id="aux-explain" style="margin-top:12px;">
+          This is an explanatory layer only. It does not override the official live gate.
+        </div>
+        <div class="stack" style="margin-top:12px;" id="aux-body"></div>
+      </div>
+    </section>
+
     <section class="grid-2" style="margin-bottom:12px;">
       <div class="card">
         <h2>Runtime Mode</h2>
@@ -430,7 +447,7 @@
     </section>
 
     <div class="footer" id="footer-note">
-      CNT runtime sources: ../data/performance_snapshot.json | ../data/strategy_metrics.json | ../data/state.json | ../data/live_gate_decision.json | ../data/shadow_breakout_v3_snapshot.json
+      CNT runtime sources: ../data/performance_snapshot.json | ../data/strategy_metrics.json | ../data/state.json | ../data/portfolio_state.json | ../data/live_gate_decision.json | ../data/shadow_breakout_v3_snapshot.json
     </div>
   </main>
 
@@ -439,6 +456,7 @@ const DATA_FILES = {
   snapshot: "../data/performance_snapshot.json",
   metrics: "../data/strategy_metrics.json",
   state: "../data/state.json",
+  portfolio: "../data/portfolio_state.json",
   gate: "../data/live_gate_decision.json",
   shadowV3: "../data/shadow_breakout_v3_snapshot.json",
 };
@@ -541,6 +559,44 @@ function buildModeBadges(state, shadow) {
   return badges.join("");
 }
 
+function buildAuxiliaryRecovery(snapshot, state, portfolio, shadow, gate) {
+  const pullback = snapshot?.strategy_breakdown?.pullback_v1 ?? {};
+  const runtimePullbackOnly = String(state?.strategy_name ?? "") === "pullback_v1";
+  const officialGateFail = String(gate?.status ?? "") === "FAIL";
+  const stateDaily = Number(state?.risk_metrics?.daily_loss_count ?? -1);
+  const stateConsecutive = Number(state?.risk_metrics?.consecutive_losses ?? -1);
+  const portfolioDaily = Number(portfolio?.daily_loss_count ?? -2);
+  const portfolioConsecutive = Number(portfolio?.consecutive_losses ?? -2);
+  const riskSyncAligned = stateDaily === portfolioDaily && stateConsecutive === portfolioConsecutive;
+  const pullbackPositive = Number(pullback.expectancy ?? 0) > 0 && Number(pullback.profit_factor ?? 0) >= 1;
+  const shadowSignals = Number(shadow?.signal_count ?? 0);
+  const shadowAllowed = Number(shadow?.allowed_signal_count ?? 0);
+  const softDist = shadow?.soft_pass_count_distribution ?? {};
+  const shadowSoftGood = Object.entries(softDist).reduce((sum, [key, value]) => (
+    Number(key) >= 3 ? sum + Number(value) : sum
+  ), 0);
+
+  let status = "NEEDS_REVIEW";
+  if (runtimePullbackOnly && riskSyncAligned && pullbackPositive && shadowSignals > 0) {
+    status = officialGateFail ? "IMPROVING" : "ALIGNED_READY";
+  } else if (runtimePullbackOnly && riskSyncAligned) {
+    status = "STABLE";
+  }
+
+  const checks = [
+    { label: "pullback-only runtime", pass: runtimePullbackOnly, text: runtimePullbackOnly ? "pullback_v1 active only" : `runtime=${state?.strategy_name ?? "--"}` },
+    { label: "risk sync", pass: riskSyncAligned, text: `${stateDaily}/${stateConsecutive} vs ${portfolioDaily}/${portfolioConsecutive}` },
+    { label: "pullback edge", pass: pullbackPositive, text: `exp=${fmt(pullback.expectancy, 6)} | pf=${fmt(pullback.profit_factor, 3)}` },
+    { label: "shadow observation", pass: shadowSignals > 0, text: `signals=${shadowSignals} | allowed=${shadowAllowed} | soft3+=${shadowSoftGood}` },
+  ];
+
+  const summary = officialGateFail
+    ? "Official gate remains conservative FAIL; auxiliary layer tracks post-isolation recovery only."
+    : "Official gate and auxiliary recovery view are currently aligned.";
+
+  return { status, summary, checks, shadowAllowed, shadowSoftGood };
+}
+
 function blockerSummary(distribution) {
   const entries = Object.entries(distribution ?? {});
   if (!entries.length) return "none";
@@ -640,7 +696,7 @@ function riskSyncText(state, snapshot) {
   `;
 }
 
-function render(snapshot, metrics, state, gate, shadow) {
+function render(snapshot, metrics, state, portfolio, gate, shadow) {
   const health = computeSystemHealth(snapshot);
   const healthBadge = document.getElementById("health-badge");
   healthBadge.textContent = health;
@@ -661,6 +717,23 @@ function render(snapshot, metrics, state, gate, shadow) {
   document.getElementById("gate-progress").style.width = `${Math.min(100, ((snapshot.closed_trades ?? 0) / GATE_THRESHOLD) * 100)}%`;
   document.getElementById("gate-rule").textContent = "closed_trades >= 20 | expectancy > 0 | net_pnl > 0 | max_consecutive_losses <= 5 | risk_guard_observed";
   document.getElementById("gate-explain").textContent = classificationText(snapshot, gateStatus, gateReason);
+
+  const aux = buildAuxiliaryRecovery(snapshot, state, portfolio, shadow, gate);
+  document.getElementById("aux-title").textContent = aux.status;
+  document.getElementById("aux-summary").textContent = aux.summary;
+  document.getElementById("aux-badges").innerHTML = [
+    `<span class="badge ${aux.status === "IMPROVING" || aux.status === "ALIGNED_READY" ? "ok" : aux.status === "STABLE" ? "warn" : "bad"}">AUX: ${aux.status}</span>`,
+    `<span class="badge info">OFFICIAL GATE: ${gateStatus}</span>`,
+    `<span class="badge ${aux.shadowAllowed > 0 ? "ok" : "warn"}">V3 ALLOWED: ${aux.shadowAllowed}</span>`,
+    `<span class="badge ${aux.shadowSoftGood > 0 ? "ok" : "warn"}">V3 SOFT 3+: ${aux.shadowSoftGood}</span>`
+  ].join("");
+  document.getElementById("aux-explain").textContent = "Auxiliary recovery is explanatory only. It does not change, relax, or override the official live gate.";
+  document.getElementById("aux-body").innerHTML = aux.checks.map(check => `
+    <div class="kv-row">
+      <span class="kv-key">${check.label}</span>
+      <span class="kv-val ${check.pass ? "positive" : "negative"}">${check.pass ? "PASS" : "CHECK"} | ${check.text}</span>
+    </div>
+  `).join("");
 
   document.getElementById("health-title").textContent = health;
   document.getElementById("health-summary").textContent = `selected=${snapshot.selected_signals ?? 0}, executed=${snapshot.executed_trades ?? 0}, PF=${fmt(snapshot.profit_factor, 3)}`;
@@ -727,14 +800,15 @@ async function loadData() {
   button.disabled = true;
   button.textContent = "LOADING";
   try {
-    const [snapshot, metrics, state, gate, shadow] = await Promise.all([
+    const [snapshot, metrics, state, portfolio, gate, shadow] = await Promise.all([
       readJSON(DATA_FILES.snapshot),
       readJSON(DATA_FILES.metrics),
       readJSON(DATA_FILES.state),
+      readJSON(DATA_FILES.portfolio),
       readJSON(DATA_FILES.gate),
       readJSON(DATA_FILES.shadowV3),
     ]);
-    render(snapshot, metrics, state, gate, shadow);
+    render(snapshot, metrics, state, portfolio, gate, shadow);
   } catch (error) {
     document.getElementById("alerts").innerHTML = `
       <div class="alert-item bad">

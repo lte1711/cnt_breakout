@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - gate
 aliases:
   - CNT v2 LIVE READINESS GATE
 ---
@@ -61,7 +56,5 @@ CNT v2의 라이브 게이트는 단순 수익 여부가 아니라, 실제 Testn
 
 ## Obsidian Links
 
-- [[CNT v2 TESTNET PERFORMANCE REPORT]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT]]
-- [[CNT v2 STAGE 3 RUNTIME OBSERVATION REPORT]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 LIVE READINESS GATE]]
+

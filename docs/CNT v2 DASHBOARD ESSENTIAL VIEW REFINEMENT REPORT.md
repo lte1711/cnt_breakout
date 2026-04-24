@@ -3,11 +3,6 @@ title: CNT v2 DASHBOARD ESSENTIAL VIEW REFINEMENT REPORT
 status: FINAL
 language: en
 updated: 2026-04-24
-tags:
-  - cnt
-  - dashboard
-  - refinement
-  - observation
 ---
 
 # CNT v2 DASHBOARD ESSENTIAL VIEW REFINEMENT REPORT
@@ -79,3 +74,8 @@ It does not:
 ## Conclusion
 
 The dashboard now reflects the current CNT operating phase more cleanly by showing only the high-signal panels needed for pullback-only live observation and breakout_v3 shadow monitoring.
+
+## Obsidian Links
+
+- [[CNT DATA DASHBOARD]]
+

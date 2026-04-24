@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - tooling
-  - obsidian
-  - vscode
-  - gemma4
 aliases:
   - CNT TOOLCHAIN INTEGRATION REPORT KO
 ---
@@ -77,6 +71,12 @@ aliases:
 
 ## 링크
 
-- [[CNT DATA DASHBOARD KO]]
-- [[CNT OBSIDIAN PLUGIN POLICY KO]]
-- [[00 Docs Index KO]]
+- CNT DATA DASHBOARD KO
+- CNT OBSIDIAN PLUGIN POLICY KO
+- 00 Docs Index KO
+
+## Obsidian Links
+
+- [[CNT TOOLCHAIN INTEGRATION REPORT KO]]
+
+

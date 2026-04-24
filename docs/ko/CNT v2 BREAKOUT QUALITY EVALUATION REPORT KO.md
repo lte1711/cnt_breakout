@@ -1,11 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - breakout
-  - report
-  - quality
-  - v2
 aliases:
   - CNT v2 BREAKOUT QUALITY EVALUATION REPORT KO
 ---
@@ -148,8 +141,6 @@ NEXT_ACTION = CONTINUE_OBSERVATION
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT FIRST TRADE REVIEW]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT]]
-- [[CNT v2 TESTNET PERFORMANCE REPORT]]
-- [[CNT v2 LIVE READINESS GATE]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT KO]]
+
+

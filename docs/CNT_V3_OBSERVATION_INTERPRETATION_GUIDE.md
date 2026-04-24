@@ -365,3 +365,7 @@ regime 통과: 5~8 events (17~27%)
 ---
 
 **다음**: 이 가이드로 Observation Review 작성 시작
+
+## Obsidian Links
+
+- [[00 Docs Index]]

@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - shadow
-  - implementation
 ---
 
 # CNT v2 BREAKOUT V2 SHADOW RUNTIME IMPLEMENTATION
@@ -116,6 +111,5 @@ without promoting `breakout_v2` into production.
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT V2 SHADOW RUNTIME INTEGRATION]]
-- [[CNT v2 BREAKOUT V2 SHADOW VALIDATION SPEC]]
-- [[CNT v2 BREAKOUT V2 VALIDATION WINDOW START]]
+- [[CNT v2 BREAKOUT V2 DESIGN]]
+

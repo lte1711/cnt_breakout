@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - breakout
-  - report
-  - v2
 aliases:
   - CNT v2 BREAKOUT COMPLETION ALERT REPORT KO
 ---
@@ -72,8 +66,6 @@ POST_CHANGE_BREAKOUT_CYCLES >= 30
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT KO]]
 
-### Related
-- [[00 Docs Index|Docs Index]]
+

@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - obsidian
-  - graph
-  - color
-  - configuration
 aliases:
   - CNT GRAPH VIEW COLOR CONFIGURATION
 ---
@@ -284,3 +278,8 @@ CNT 프로젝트의 버전 분류 및 색상 코딩 시스템을 Obsidian Graph 
 ---
 
 *이 가이드는 CNT 프로젝트의 Graph View 시각화를 최적화하기 위해 작성되었습니다.*
+
+## Obsidian Links
+
+- [[CNT TOOLCHAIN INTEGRATION REPORT]]
+

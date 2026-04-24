@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - validation
-  - candidate
 ---
 
 # CNT v2 BREAKOUT V2 CANDIDATE VALIDATION START KO
@@ -18,7 +13,7 @@ tags:
 참조:
 
 - 현재 `breakout_v1` final isolation review
-  - [[CNT v2 BREAKOUT ISOLATION FINAL REVIEW KO]]
+  - CNT v2 BREAKOUT ISOLATION FINAL REVIEW KO
 
 ## 시작 조건
 
@@ -83,5 +78,11 @@ tags:
 
 ## 링크
 
+- CNT v2 BREAKOUT V2 DESIGN KO
+- CNT v2 BREAKOUT ISOLATION FINAL REVIEW KO
+
+## Obsidian Links
+
 - [[CNT v2 BREAKOUT V2 DESIGN KO]]
-- [[CNT v2 BREAKOUT ISOLATION FINAL REVIEW KO]]
+
+

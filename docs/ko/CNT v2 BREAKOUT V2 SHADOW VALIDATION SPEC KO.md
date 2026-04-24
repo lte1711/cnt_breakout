@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - validation
-  - shadow
 ---
 
 # CNT v2 BREAKOUT V2 SHADOW VALIDATION SPEC KO
@@ -90,6 +85,12 @@ shadow candidate를 observed production strategy로 보고하면 안 된다.
 
 ## 링크
 
+- CNT v2 BREAKOUT V2 DESIGN KO
+- CNT v2 BREAKOUT V2 VALIDATION WINDOW START KO
+- CNT v2 BREAKOUT ISOLATION FINAL REVIEW KO
+
+## Obsidian Links
+
 - [[CNT v2 BREAKOUT V2 DESIGN KO]]
-- [[CNT v2 BREAKOUT V2 VALIDATION WINDOW START KO]]
-- [[CNT v2 BREAKOUT ISOLATION FINAL REVIEW KO]]
+
+

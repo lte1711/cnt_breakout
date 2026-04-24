@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - breakout
-  - instruction
-  - v2
 aliases:
   - CNT v2 BREAKOUT TREND FILTER REVIEW INSTRUCTION
 ---
@@ -122,8 +116,5 @@ This stage is complete only when:
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

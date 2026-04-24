@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - instruction
-  - v1
 aliases:
   - cnt_v1_implementation_work_instruction_ko_source
 ---
@@ -646,8 +641,5 @@ v1 완료 뒤 다음 후보는 아래다.
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 ARCHITECTURE DESIGN DOCUMENT]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

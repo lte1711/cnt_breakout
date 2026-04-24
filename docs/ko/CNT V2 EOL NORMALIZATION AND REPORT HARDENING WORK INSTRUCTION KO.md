@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - v2
-  - eol
-  - reproducibility
-  - instruction
 aliases:
   - CNT v2 EOL NORMALIZATION AND REPORT GENERATION HARDENING WORK INSTRUCTION KO
 ---
@@ -26,7 +20,7 @@ aliases:
 
 이미 완료된 것:
 
-- Obsidian 비표준 `[[../...]]` 링크 제거
+- Obsidian 비표준 `../...` 링크 제거
 - `.obsidian/plugins/` 구조 생성
 - Obsidian 플러그인 설치 정책 문서화
 - `.windsurf` 기본 의존성 제거
@@ -76,7 +70,13 @@ aliases:
 
 ## 링크
 
-- [[CNT TOOLCHAIN INTEGRATION REPORT KO]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT KO]]
-- [[CNT v2 TESTNET PERFORMANCE REPORT KO]]
+- CNT TOOLCHAIN INTEGRATION REPORT KO
+- CNT v2 CURRENT STATUS ASSESSMENT KO
+- CNT v2 TESTNET PERFORMANCE REPORT KO
+- 00 Docs Index KO
+
+## Obsidian Links
+
 - [[00 Docs Index KO]]
+
+

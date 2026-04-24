@@ -1,11 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - v3
-  - shadow
-  - observation
-  - ko
 aliases:
   - CNT v2 BREAKOUT V3 SHADOW OBSERVATION WINDOW START KO
 ---
@@ -23,7 +16,7 @@ aliases:
 
 - baseline_commit = `8b6e772`
 - window_start_time = `2026-04-24T02:04:04+09:00`
-- verification_source = [[CNT v2 BREAKOUT V3 SHADOW RUNTIME ONE-SHOT VERIFICATION]]
+- verification_source = CNT v2 BREAKOUT V3 SHADOW RUNTIME ONE-SHOT VERIFICATION
 
 이 관측 창은 다음 3개가 모두 완료된 뒤 시작됐다.
 
@@ -118,3 +111,9 @@ one-shot verification baseline을 넘어서는 의미 있는 표본이 쌓이기
 `breakout_v3`는 이제 유효한 shadow observation phase에 들어와 있다.
 
 runtime에 연결되어 관측 산출물을 만들지만, live execution behavior와는 완전히 분리된 상태를 유지한다.
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V3 DESIGN DRAFT KO]]
+
+

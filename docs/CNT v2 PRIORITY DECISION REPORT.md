@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - report
-  - v2
 aliases:
   - CNT v2 PRIORITY DECISION REPORT
 ---
@@ -85,10 +80,5 @@ NEXT_STEP       = ADD OBSERVABILITY FOR REJECTION AND SELECTION REASONS
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
-
-### Related
 - [[CNT v2 ENGINEERING PHASE PLAN]]
-- [[CNT v2 TEST HARNESS IMPLEMENTATION REPORT]]
-- [[CNT v2 OBSERVABILITY PRIORITY PLAN]]
+

@@ -1,11 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - live-ready
-  - degradation
-  - ko
 aliases:
   - CNT v2 POST-READY DEGRADATION REVIEW KO
 ---
@@ -148,6 +141,12 @@ blocked-signal evidence:
 
 ## 링크
 
-- [[CNT v2 POST-READY DEGRADATION REVIEW]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT KO]]
-- [[CNT v2 LIVE READY POST-READINESS MONITORING PLAN KO]]
+- CNT v2 POST-READY DEGRADATION REVIEW
+- CNT v2 CURRENT STATUS ASSESSMENT KO
+- CNT v2 LIVE READY POST-READINESS MONITORING PLAN KO
+
+## Obsidian Links
+
+- [[00 Docs Index KO]]
+
+

@@ -3,12 +3,6 @@ title: CNT v2 BREAKOUT V1 ACTIVE ISOLATION IMPLEMENTATION REPORT KO
 status: FINAL
 language: ko
 updated: 2026-04-24
-tags:
-  - cnt
-  - breakout_v1
-  - active-set
-  - implementation
-  - validation
 ---
 
 # CNT v2 BREAKOUT V1 ACTIVE ISOLATION IMPLEMENTATION REPORT
@@ -108,3 +102,9 @@ signal log 기준:
 ## 결론
 
 `breakout_v1` active-set isolation 패치는 테스트, 컴파일, 엔트리 체인 런타임을 깨지 않고 성공적으로 적용되었다.
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT KO]]
+
+

@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - v2
-  - fix
-  - analytics
 aliases:
   - CNT v2 Metrics And Strategy Attribution Fix Report KO
 ---
@@ -78,8 +73,6 @@ OK
 
 ## Obsidian Links
 
-- [[CNT v2 CURRENT STATUS ASSESSMENT]]
-- [[CNT v2 TESTNET PERFORMANCE REPORT]]
-- [[CNT v2 BREAKOUT FIRST TRADE REVIEW]]
-- [[CNT OBSIDIAN PLUGIN POLICY]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 VALIDATION REPORT KO]]
+
+

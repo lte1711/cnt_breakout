@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - shadow
-  - gate
-  - review
 ---
 
 # CNT v2 BREAKOUT V2 GATE REDUNDANCY REVIEW
@@ -110,6 +104,5 @@ Immediate tuning is not justified because:
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT V2 VOLATILITY BLOCKED SUBSET REVIEW]]
-- [[CNT v2 BREAKOUT V2 FILTER STACK DECOMPOSITION REVIEW]]
-- [[CNT v2 BREAKOUT V2 SHADOW SCHEMA LIMITATION REVIEW]]
+- [[CNT v2 BREAKOUT V2 DESIGN]]
+

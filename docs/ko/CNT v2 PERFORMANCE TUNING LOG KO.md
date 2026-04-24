@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - performance
-  - v2
-  - ko
 aliases:
   - CNT v2 PERFORMANCE TUNING LOG KO
 ---
@@ -68,6 +62,12 @@ POST_CHANGE_VALIDATION: performance validation report written
 
 ## 링크
 
-- [[CNT v2 PERFORMANCE TUNING LOG]]
-- [[CNT v2 PERFORMANCE VALIDATION CHECKLIST KO]]
-- [[CNT v2 NEXT PHASE PLAN KO]]
+- CNT v2 PERFORMANCE TUNING LOG
+- CNT v2 PERFORMANCE VALIDATION CHECKLIST KO
+- CNT v2 NEXT PHASE PLAN KO
+
+## Obsidian Links
+
+- [[CNT v2 VALIDATION REPORT KO]]
+
+

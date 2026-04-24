@@ -1,8 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - instruction
 aliases:
   - SHARING CHECKLIST
 ---
@@ -21,8 +17,4 @@ Before sharing project snapshots externally:
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
-
-### Related
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 ARCHITECTURE DESIGN DOCUMENT]]

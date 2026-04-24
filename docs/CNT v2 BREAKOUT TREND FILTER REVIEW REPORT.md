@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - breakout
-  - report
-  - v2
 aliases:
   - CNT v2 BREAKOUT TREND FILTER REVIEW REPORT
 ---
@@ -236,9 +230,5 @@ NEXT_STAGE                   = ACTUAL_TREND_FILTER_CHANGE_DESIGN
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT]]
 
-### Related
-- [[CNT v2 BREAKOUT TREND FILTER REVIEW INSTRUCTION]]
-- [[CNT v2 BREAKOUT TIMER JUDGMENT REPORT]]

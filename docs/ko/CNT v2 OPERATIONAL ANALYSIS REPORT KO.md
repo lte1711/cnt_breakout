@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - report
-  - v2
 aliases:
   - CNT v2 OPERATIONAL ANALYSIS REPORT KO
 ---
@@ -120,6 +115,12 @@ CURRENT_PHASE = DATA_COLLECTION_RUNNING
 
 ## 링크
 
-- [[CNT v2 CURRENT STATUS ASSESSMENT KO]]
-- [[CNT v2 TESTNET PERFORMANCE REPORT KO]]
+- CNT v2 CURRENT STATUS ASSESSMENT KO
+- CNT v2 TESTNET PERFORMANCE REPORT KO
+- 00 Docs Index KO
+
+## Obsidian Links
+
 - [[00 Docs Index KO]]
+
+

@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - plan
-  - v2
 aliases:
   - CNT v2 STRATEGIC ANALYSIS PLAN
 ---
@@ -109,8 +104,5 @@ CNT v2 ENGINE DECOMPOSITION DESIGN
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[00 Docs Index]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

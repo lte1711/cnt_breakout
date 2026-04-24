@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - dashboard
-  - operations
-  - guide
-  - ko
 aliases:
   - CNT Operations Dashboard Guide KO
 ---
@@ -76,6 +70,5 @@ http://127.0.0.1:8000/docs/cnt_operations_dashboard.html
 ## Obsidian Links
 
 - [[CNT DATA DASHBOARD KO]]
-- [[CNT TOOLCHAIN INTEGRATION REPORT]]
-- [[CNT v2 TESTNET PERFORMANCE REPORT KO]]
-- [[00 Docs Index KO|Docs Index KO]]
+
+

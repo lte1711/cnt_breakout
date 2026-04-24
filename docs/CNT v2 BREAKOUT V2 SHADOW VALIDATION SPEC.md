@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - validation
-  - shadow
 ---
 
 # CNT v2 BREAKOUT V2 SHADOW VALIDATION SPEC
@@ -134,7 +129,12 @@ Before any activation discussion:
 
 ## Related References
 
-- [[CNT v2 BREAKOUT ISOLATION FINAL REVIEW]]
+- CNT v2 BREAKOUT ISOLATION FINAL REVIEW
+- CNT v2 BREAKOUT V2 DESIGN
+- CNT v2 BREAKOUT A B VALIDATION PLAN
+- CNT v2 BREAKOUT V2 VALIDATION WINDOW START
+
+## Obsidian Links
+
 - [[CNT v2 BREAKOUT V2 DESIGN]]
-- [[CNT v2 BREAKOUT A B VALIDATION PLAN]]
-- [[CNT v2 BREAKOUT V2 VALIDATION WINDOW START]]
+

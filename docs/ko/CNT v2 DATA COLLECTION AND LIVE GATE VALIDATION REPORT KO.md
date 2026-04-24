@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - validation
-  - report
-  - v2
 aliases:
   - CNT v2 DATA COLLECTION AND LIVE GATE VALIDATION REPORT KO
 ---
@@ -92,11 +86,6 @@ NEXT = CONTINUE_TESTNET_DATA_COLLECTION
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 TESTNET PERFORMANCE REPORT KO]]
 
-### Related
-- [[CNT v2 TESTNET DATA COLLECTION INSTRUCTION]]
-- [[CNT v2 LIVE READINESS GATE]]
-- [[CNT v2 TESTNET DATA COLLECTION STATUS REPORT]]
-- [[CNT v2 LIVE READINESS REPORT]]
+

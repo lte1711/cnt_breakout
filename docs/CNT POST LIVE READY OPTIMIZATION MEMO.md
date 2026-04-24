@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - memo
-  - backlog
 aliases:
   - CNT POST LIVE READY OPTIMIZATION MEMO
 ---
@@ -101,8 +96,5 @@ Do not use this memo as evidence for changing runtime parameters immediately.
 
 ## Obsidian Links
 
-- [[CNT v2 CURRENT STATUS ASSESSMENT]]
-- [[CNT v2 TESTNET PERFORMANCE REPORT]]
-- [[CNT v2 LIVE GATE ALIGNMENT REPORT]]
-- [[CNT SYNTHETIC ARCHITECTURE RISK MEMO]]
-- [[00 Docs Index|Docs Index]]
+- [[00 Docs Index]]
+

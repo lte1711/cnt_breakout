@@ -3,12 +3,6 @@ title: CNT v2 DASHBOARD PULLBACK-ONLY OBSERVATION UPGRADE REPORT
 status: FINAL
 language: en
 updated: 2026-04-24
-tags:
-  - cnt
-  - dashboard
-  - observation
-  - pullback_v1
-  - breakout_v3
 ---
 
 # CNT v2 DASHBOARD PULLBACK-ONLY OBSERVATION UPGRADE REPORT
@@ -105,3 +99,8 @@ At the time of this report, the dashboard should present the following interpret
 ## Conclusion
 
 This dashboard upgrade aligns the visual operating interface with the actual post-isolation CNT runtime state.
+
+## Obsidian Links
+
+- [[CNT DATA DASHBOARD]]
+

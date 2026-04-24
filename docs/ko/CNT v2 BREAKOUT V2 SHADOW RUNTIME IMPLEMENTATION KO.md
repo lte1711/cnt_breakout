@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - shadow
-  - implementation
 ---
 
 # CNT v2 BREAKOUT V2 SHADOW RUNTIME IMPLEMENTATION KO
@@ -99,5 +94,11 @@ shadow result는 다음으로 전달되지 않는다.
 
 ## 링크
 
-- [[CNT v2 BREAKOUT V2 SHADOW RUNTIME INTEGRATION KO]]
-- [[CNT v2 BREAKOUT V2 SHADOW VALIDATION SPEC KO]]
+- CNT v2 BREAKOUT V2 SHADOW RUNTIME INTEGRATION KO
+- CNT v2 BREAKOUT V2 SHADOW VALIDATION SPEC KO
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V2 DESIGN KO]]
+
+

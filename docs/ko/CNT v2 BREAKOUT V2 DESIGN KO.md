@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - strategy
-  - design
 ---
 
 # CNT v2 BREAKOUT V2 DESIGN KO
@@ -144,6 +139,12 @@ VWAP은 공정 intraday 위치보다 아래이거나 너무 가까운 약한 bre
 
 ## 링크
 
-- [[CNT v2 BREAKOUT ISOLATION RUNTIME START KO]]
-- [[CNT v2 POST-READY DEGRADATION REVIEW KO]]
-- [[CNT v2 STRATEGY ISOLATION COMPARISON KO]]
+- CNT v2 BREAKOUT ISOLATION RUNTIME START KO
+- CNT v2 POST-READY DEGRADATION REVIEW KO
+- CNT v2 STRATEGY ISOLATION COMPARISON KO
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V2 DESIGN KO]]
+
+

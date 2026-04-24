@@ -282,3 +282,7 @@ setup_ready 4개 중:
 1. 매주 업데이트 (또는 20 event마다)
 2. 최종 review는 50 event 또는 판정 가능 신호 출현 시
 3. 코드 변경 전 최종 체크리스트 완성
+
+## Obsidian Links
+
+- [[00 Docs Index]]

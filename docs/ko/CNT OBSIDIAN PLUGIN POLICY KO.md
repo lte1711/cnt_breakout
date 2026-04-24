@@ -1,8 +1,4 @@
 ---
-tags:
-  - cnt
-  - obsidian
-  - tooling
 aliases:
   - CNT Obsidian Plugin Policy KO
 ---
@@ -27,7 +23,7 @@ aliases:
 
 ## 기대 동작
 
-- [[CNT DATA DASHBOARD]] 문서는 CNT 저장소 루트를 Vault 루트로 쓰는 Obsidian 환경을 전제로 설계된다.
+- CNT DATA DASHBOARD 문서는 CNT 저장소 루트를 Vault 루트로 쓰는 Obsidian 환경을 전제로 설계된다.
 - Dataview가 필요한 대시보드 쿼리는 사용자가 `dataview` 플러그인을 로컬 설치해야 동작한다.
 - Templater 기반 템플릿 워크플로는 사용자가 `templater-obsidian` 플러그인을 로컬 설치해야 동작한다.
 
@@ -43,6 +39,12 @@ aliases:
 
 ## 링크
 
-- [[CNT DATA DASHBOARD KO]]
+- CNT DATA DASHBOARD KO
+- CNT TOOLCHAIN INTEGRATION REPORT KO
+- 00 Docs Index KO
+
+## Obsidian Links
+
 - [[CNT TOOLCHAIN INTEGRATION REPORT KO]]
-- [[00 Docs Index KO]]
+
+

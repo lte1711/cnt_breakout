@@ -1,11 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - live-ready
-  - monitoring
-  - ko
 aliases:
   - CNT v2 LIVE READY POST-READINESS MONITORING PLAN KO
 ---
@@ -115,7 +108,13 @@ post-readiness observation window 동안 아래는 동결된다.
 
 ## 링크
 
-- [[CNT v2 LIVE READY POST-READINESS MONITORING PLAN]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT KO]]
+- CNT v2 LIVE READY POST-READINESS MONITORING PLAN
+- CNT v2 CURRENT STATUS ASSESSMENT KO
+- CNT v2 LIVE READINESS GATE KO
+- CNT v2 LIVE GATE ALIGNMENT REPORT KO
+
+## Obsidian Links
+
 - [[CNT v2 LIVE READINESS GATE KO]]
-- [[CNT v2 LIVE GATE ALIGNMENT REPORT KO]]
+
+

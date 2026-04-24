@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - report
-  - v2
 aliases:
   - CNT v2 TEST HARNESS IMPLEMENTATION REPORT KO
 ---
@@ -92,6 +87,12 @@ NEXT = ADD OBSERVABILITY FOR STRATEGY REJECTION REASONS
 
 ## 링크
 
-- [[CNT v2 ENGINEERING PHASE PLAN KO]]
-- [[CNT v2 ENGINE DECOMPOSITION DESIGN KO]]
+- CNT v2 ENGINEERING PHASE PLAN KO
+- CNT v2 ENGINE DECOMPOSITION DESIGN KO
+- 00 Docs Index KO
+
+## Obsidian Links
+
 - [[00 Docs Index KO]]
+
+

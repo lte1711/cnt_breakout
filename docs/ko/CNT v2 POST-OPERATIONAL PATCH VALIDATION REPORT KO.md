@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - validation
-  - report
-  - v2
 aliases:
   - CNT v2 POST-OPERATIONAL PATCH VALIDATION REPORT KO
 ---
@@ -126,9 +120,6 @@ Ready for further performance-oriented improvements
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 POST-OPERATIONAL PATCH WORK INSTRUCTION KO]]
 
-### Related
-- [[CNT v2 POST-OPERATIONAL PATCH WORK INSTRUCTION]]
-- [[CNT v2 VALIDATION REPORT]]
+

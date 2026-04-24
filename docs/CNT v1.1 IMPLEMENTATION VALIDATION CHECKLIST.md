@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - validation
-  - instruction
-  - v1
 aliases:
   - CNT v1.1 IMPLEMENTATION VALIDATION CHECKLIST
 ---
@@ -824,9 +818,5 @@ FINAL DECISION
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v1.1 ARCHITECTURE DESIGN DOCUMENT]]
 
-### Related
-- [[cnt_v1.1_architecture_design]]
-- [[cnt_v1.1_implementation_work_instruction]]

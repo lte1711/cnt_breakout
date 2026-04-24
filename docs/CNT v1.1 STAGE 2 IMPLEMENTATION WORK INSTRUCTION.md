@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - instruction
-  - v1
 aliases:
   - CNT v1.1 STAGE 2 IMPLEMENTATION WORK INSTRUCTION
 ---
@@ -509,9 +504,5 @@ Stage 2는 엔진을 바꾸는 작업이 아니다.
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v1.1 ARCHITECTURE DESIGN DOCUMENT]]
 
-### Related
-- [[cnt_v1.1_stage2_architecture_design]]
-- [[cnt_v1.1_implementation_validation_checklist]]

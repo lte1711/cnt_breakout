@@ -1,8 +1,4 @@
 ---
-tags:
-  - cnt
-  - dashboard
-  - auto-generated
 generated_at: 2026-04-24 11:06:09
 ---
 
@@ -66,3 +62,8 @@ generated_at: 2026-04-24 11:06:09
 - `data/shadow_breakout_v3_snapshot.json`
 
 *이 대시보드는 Python 스크립트로 자동 생성되었습니다. Dataview 플러그인이 필요 없습니다.*
+
+## Obsidian Links
+
+- [[CNT TOOLCHAIN INTEGRATION REPORT]]
+

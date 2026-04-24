@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - shadow
-  - review
-  - ko
 aliases:
   - CNT v2 BREAKOUT V2 EXPANDED SHADOW OBSERVATION REVIEW KO
 ---
@@ -183,6 +177,12 @@ expanded shadow sample은 `breakout_v2`가 하나의 dominant threshold가 아�
 
 ## 링크
 
-- [[CNT v2 BREAKOUT V2 EXPANDED SHADOW OBSERVATION REVIEW]]
-- [[CNT v2 BREAKOUT V2 STATUS RECLASSIFICATION KO]]
-- [[CNT v2 BREAKOUT V2 REDESIGN PREPARATION KO]]
+- CNT v2 BREAKOUT V2 EXPANDED SHADOW OBSERVATION REVIEW
+- CNT v2 BREAKOUT V2 STATUS RECLASSIFICATION KO
+- CNT v2 BREAKOUT V2 REDESIGN PREPARATION KO
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V2 DESIGN KO]]
+
+

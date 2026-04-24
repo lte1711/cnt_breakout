@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - memo
-  - backlog
-  - ko
 aliases:
   - CNT POST LIVE READY OPTIMIZATION MEMO KO
 ---
@@ -102,6 +96,12 @@ CNT는 이미 “실데이터 이전 단계”를 넘어섰다.
 
 ## 링크
 
-- [[CNT POST LIVE READY OPTIMIZATION MEMO]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT KO]]
-- [[CNT SYNTHETIC ARCHITECTURE RISK MEMO KO]]
+- CNT POST LIVE READY OPTIMIZATION MEMO
+- CNT v2 CURRENT STATUS ASSESSMENT KO
+- CNT SYNTHETIC ARCHITECTURE RISK MEMO KO
+
+## Obsidian Links
+
+- [[00 Docs Index KO]]
+
+

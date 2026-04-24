@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - dashboard
-  - mapping
 aliases:
   - CNT v2 DASHBOARD PATCH TARGET MAPPING KO
 ---
@@ -190,6 +184,6 @@ Top strip 순서:
 
 ## Obsidian Links
 
-- [[CNT v2 GATE DISPLAY ACTUAL PATCH SPEC]]
-- [[CNT v2 BREAKOUT ISOLATION OBSERVATION WINDOW SPEC]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT DATA DASHBOARD KO]]
+
+

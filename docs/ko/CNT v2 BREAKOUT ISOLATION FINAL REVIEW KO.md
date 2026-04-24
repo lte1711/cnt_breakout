@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - isolation
-  - review
 aliases:
   - CNT v2 BREAKOUT ISOLATION FINAL REVIEW KO
 ---
@@ -119,6 +114,6 @@ aliases:
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT ISOLATION RUNTIME START]]
-- [[CNT v2 BREAKOUT ISOLATION MIDPOINT CHECK]]
-- [[CNT v2 POST-READY DEGRADATION REVIEW]]
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT KO]]
+
+

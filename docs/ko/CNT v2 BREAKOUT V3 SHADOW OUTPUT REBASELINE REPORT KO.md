@@ -1,12 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - breakout_v3
-  - shadow
-  - rebaseline
-  - report
-  - ko
 aliases:
   - CNT v2 BREAKOUT V3 SHADOW OUTPUT REBASELINE REPORT KO
 ---
@@ -90,7 +82,6 @@ rebaseline 검증 중, 외부 도구가 만든 UTF-8 BOM 포함 JSONL 파일에�
 
 ## Obsidian Links
 
-- [[CNT v2 SHADOW SEMANTICS AND PORTFOLIO STATE PATCH REPORT KO]]
-- [[CNT v2 BREAKOUT V3 SHADOW OBSERVATION WINDOW START KO]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT KO]]
-- [[00 Docs Index KO|Docs Index KO]]
+- [[CNT v2 BREAKOUT V3 DESIGN DRAFT KO]]
+
+

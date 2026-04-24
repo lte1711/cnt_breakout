@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - breakout
-  - plan
-  - v2
 aliases:
   - CNT v2 BREAKOUT TREND FILTER CHANGE PLAN KO
 ---
@@ -73,8 +67,6 @@ OPTION A = trend-filter relaxation
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT KO]]
 
-### Related
-- [[00 Docs Index|Docs Index]]
+

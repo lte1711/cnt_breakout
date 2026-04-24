@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - v3
-  - draft
-  - ko
 aliases:
   - CNT v2 BREAKOUT V3 DESIGN DRAFT KO
 ---
@@ -268,6 +262,12 @@ Entry candidate는 아래를 모두 만족할 때만 허용한다.
 
 ## 링크
 
-- [[CNT v2 BREAKOUT V3 DESIGN DRAFT]]
-- [[CNT v2 BREAKOUT V3 SHADOW OBSERVATION WINDOW START KO]]
-- [[CNT DOCS KOREAN MIRROR POLICY KO]]
+- CNT v2 BREAKOUT V3 DESIGN DRAFT
+- CNT v2 BREAKOUT V3 SHADOW OBSERVATION WINDOW START KO
+- CNT DOCS KOREAN MIRROR POLICY KO
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V3 DESIGN DRAFT KO]]
+
+

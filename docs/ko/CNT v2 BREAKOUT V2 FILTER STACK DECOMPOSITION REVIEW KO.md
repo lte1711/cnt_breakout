@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - shadow
-  - review
-  - ko
 aliases:
   - CNT v2 BREAKOUT V2 FILTER STACK DECOMPOSITION REVIEW KO
 ---
@@ -34,7 +28,7 @@ aliases:
 
 ## Filter Stack 순서
 
-[[breakout_v2]] 코드상의 실제 순서:
+breakout_v2 코드상의 실제 순서:
 
 1. range / upward bias gate
 2. volatility gate
@@ -209,6 +203,12 @@ zero-allowed 결과는 하나의 metric만으로 설명되지 않는다.
 
 ## 링크
 
-- [[CNT v2 BREAKOUT V2 FILTER STACK DECOMPOSITION REVIEW]]
-- [[CNT v2 BREAKOUT V2 GATE REDUNDANCY REVIEW KO]]
-- [[CNT v2 BREAKOUT V2 SHADOW SCHEMA EXPANSION PLAN KO]]
+- CNT v2 BREAKOUT V2 FILTER STACK DECOMPOSITION REVIEW
+- CNT v2 BREAKOUT V2 GATE REDUNDANCY REVIEW KO
+- CNT v2 BREAKOUT V2 SHADOW SCHEMA EXPANSION PLAN KO
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V2 DESIGN KO]]
+
+

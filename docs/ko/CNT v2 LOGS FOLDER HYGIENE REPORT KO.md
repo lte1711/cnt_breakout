@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - logs
-  - report
-  - ko
 aliases:
   - CNT v2 LOGS FOLDER HYGIENE REPORT KO
 ---
@@ -121,5 +116,5 @@ aliases:
 ## Obsidian Links
 
 - [[CNT v2 SCHEDULED DATA COLLECTION SETUP KO]]
-- [[CNT v2 TASK SCHEDULER REGISTRATION CHECKLIST KO]]
-- [[00 Docs Index KO|Docs Index KO]]
+
+

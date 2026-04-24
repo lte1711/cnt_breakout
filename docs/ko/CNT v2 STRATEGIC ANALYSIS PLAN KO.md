@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - plan
-  - v2
 aliases:
   - CNT v2 STRATEGIC ANALYSIS PLAN KO
 ---
@@ -79,6 +74,12 @@ ROLE          = PLANNING_DOCUMENT_NOT_RUNTIME_TRUTH
 
 ## 링크
 
-- [[CNT v2 ENGINE DECOMPOSITION DESIGN KO]]
-- [[CNT v2 ENGINEERING PHASE PLAN KO]]
+- CNT v2 ENGINE DECOMPOSITION DESIGN KO
+- CNT v2 ENGINEERING PHASE PLAN KO
+- 00 Docs Index KO
+
+## Obsidian Links
+
 - [[00 Docs Index KO]]
+
+

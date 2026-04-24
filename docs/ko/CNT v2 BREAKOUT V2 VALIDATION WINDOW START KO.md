@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - validation
-  - runtime
 ---
 
 # CNT v2 BREAKOUT V2 VALIDATION WINDOW START KO
@@ -23,7 +18,7 @@ tags:
 ### breakout_v1 final reference
 
 - isolation final review:
-  - [[CNT v2 BREAKOUT ISOLATION FINAL REVIEW KO]]
+  - CNT v2 BREAKOUT ISOLATION FINAL REVIEW KO
 - observed baseline
   - `trades_closed = 3`
   - `expectancy = -0.022197999999999656`
@@ -98,6 +93,12 @@ tags:
 
 ## 링크
 
+- CNT v2 BREAKOUT V2 DESIGN KO
+- CNT v2 BREAKOUT V2 CANDIDATE VALIDATION START KO
+- CNT v2 BREAKOUT ISOLATION FINAL REVIEW KO
+
+## Obsidian Links
+
 - [[CNT v2 BREAKOUT V2 DESIGN KO]]
-- [[CNT v2 BREAKOUT V2 CANDIDATE VALIDATION START KO]]
-- [[CNT v2 BREAKOUT ISOLATION FINAL REVIEW KO]]
+
+

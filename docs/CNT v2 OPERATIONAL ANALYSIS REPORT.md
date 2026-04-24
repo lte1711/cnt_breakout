@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - report
-  - v2
 aliases:
   - CNT v2 OPERATIONAL ANALYSIS REPORT
 ---
@@ -257,8 +252,5 @@ ACTION = NO_CHANGE
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[00 Docs Index]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

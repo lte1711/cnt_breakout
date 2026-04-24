@@ -1,7 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
 aliases:
   - RECORD TEXT KO
 ---
@@ -30,5 +27,11 @@ aliases:
 
 ## 링크
 
-- [[DESIGN SUMMARY KO]]
-- [[00 Docs Index KO]]
+- DESIGN SUMMARY KO
+- 00 Docs Index KO
+
+## Obsidian Links
+
+- [[CNT v2 ARCHITECTURE DESIGN DOCUMENT KO]]
+
+

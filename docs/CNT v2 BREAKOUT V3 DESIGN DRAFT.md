@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - v3
-  - draft
 aliases:
   - CNT v2 BREAKOUT V3 DESIGN DRAFT
 ---
@@ -287,3 +282,8 @@ At this stage, the design direction is fixed as:
 - secondary future research = `Weighted Scoring`
 
 Implementation is not started yet.
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V3 DESIGN DRAFT]]
+

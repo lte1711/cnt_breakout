@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - localization
-  - plan
-  - ko
 aliases:
   - CNT DOCS KOREAN MIGRATION PLAN KO
 ---
@@ -110,3 +104,9 @@ CNT 문서 체계는 아래의 안정된 이중 구조로 가야 한다.
 - `docs/ko/` = 사용자 열람용 한글 미러
 
 이 방향은 사용자가 명시적으로 바꾸기 전까지 앞으로의 문서 기본 방향으로 유지한다.
+
+## Obsidian Links
+
+- [[00 Docs Index KO]]
+
+

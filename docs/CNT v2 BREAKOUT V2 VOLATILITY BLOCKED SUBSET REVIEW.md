@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - shadow
-  - subset
-  - review
 ---
 
 # CNT v2 BREAKOUT V2 VOLATILITY BLOCKED SUBSET REVIEW
@@ -161,6 +155,5 @@ In practical terms:
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT V2 FILTER STACK DECOMPOSITION REVIEW]]
-- [[CNT v2 BREAKOUT V2 SHADOW RUNTIME VERIFICATION]]
 - [[CNT v2 BREAKOUT V2 DESIGN]]
+

@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - shadow
-  - schema
-  - plan
 ---
 
 # CNT v2 BREAKOUT V2 SHADOW SCHEMA EXPANSION PLAN
@@ -109,6 +103,5 @@ This keeps the rollout conservative and avoids contaminating existing validation
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT V2 SHADOW SCHEMA LIMITATION REVIEW]]
-- [[CNT v2 BREAKOUT V2 SHADOW RUNTIME INTEGRATION]]
-- [[CNT v2 BREAKOUT V2 SHADOW RUNTIME IMPLEMENTATION]]
+- [[CNT v2 BREAKOUT V2 DESIGN]]
+

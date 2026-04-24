@@ -1,11 +1,4 @@
 ---
-tags:
-  - cnt
-  - memo
-  - synthetic
-  - architecture
-  - backlog
-  - ko
 aliases:
   - CNT SYNTHETIC ARCHITECTURE RISK MEMO KO
 ---
@@ -99,6 +92,12 @@ future hardening topic으로 유효한 것:
 
 ## 링크
 
-- [[CNT SYNTHETIC ARCHITECTURE RISK MEMO]]
-- [[CNT POST LIVE READY OPTIMIZATION MEMO KO]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT KO]]
+- CNT SYNTHETIC ARCHITECTURE RISK MEMO
+- CNT POST LIVE READY OPTIMIZATION MEMO KO
+- CNT v2 CURRENT STATUS ASSESSMENT KO
+
+## Obsidian Links
+
+- [[00 Docs Index KO]]
+
+

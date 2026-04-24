@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - breakout
-  - plan
-  - v2
 aliases:
   - CNT v2 BREAKOUT TREND FILTER REDESIGN PLAN KO
 ---
@@ -105,9 +99,6 @@ REFERENCE_2   = CNT v2 CURRENT STATUS ASSESSMENT
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT KO]]
 
-### Related
-- [[CNT v2 BREAKOUT TREND FILTER REVIEW REPORT]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT]]
+

@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - validation
-  - report
-  - v1
 aliases:
   - cnt_v1_closure_validation_report
 ---
@@ -117,8 +111,5 @@ NEXT STEP
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[00 Docs Index]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - v2
-  - eol
-  - reproducibility
-  - instruction
 aliases:
   - CNT v2 EOL NORMALIZATION AND REPORT GENERATION HARDENING WORK INSTRUCTION
 ---
@@ -26,7 +20,7 @@ Target statement after completion:
 
 Already completed:
 
-- Obsidian non-standard `[[../...]]` links were removed
+- Obsidian non-standard `../...` links were removed
 - `.obsidian/plugins/` structure was created
 - Obsidian plugin installation policy was documented
 - `.windsurf` default dependency was removed from repo-default context
@@ -77,6 +71,4 @@ Completion requires all of the following:
 ## Obsidian Links
 
 - [[CNT TOOLCHAIN INTEGRATION REPORT]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT]]
-- [[CNT v2 TESTNET PERFORMANCE REPORT]]
-- [[00 Docs Index|Docs Index]]
+

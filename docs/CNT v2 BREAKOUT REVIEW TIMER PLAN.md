@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - breakout
-  - plan
-  - v2
 aliases:
   - CNT v2 BREAKOUT REVIEW TIMER PLAN
 ---
@@ -71,8 +65,5 @@ The next review must conclude with one of:
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

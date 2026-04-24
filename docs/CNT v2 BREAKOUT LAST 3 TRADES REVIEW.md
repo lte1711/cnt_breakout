@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - breakout
-  - review
 aliases:
   - CNT v2 BREAKOUT LAST 3 TRADES REVIEW
 ---
@@ -83,6 +77,5 @@ Across the last three confirmed breakout trades:
 
 ## Obsidian Links
 
-- [[CNT v2 POST-READY DEGRADATION REVIEW]]
-- [[CNT v2 STRATEGY ISOLATION COMPARISON]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT]]
+

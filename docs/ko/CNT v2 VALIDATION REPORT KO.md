@@ -1,11 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - validation
-  - report
-  - v2
-  - ko
 aliases:
   - CNT v2 VALIDATION REPORT KO
 ---
@@ -225,6 +218,12 @@ CNT v2 초기 구현은 CNT v1.1 위의 유효한 확장이지만, operating-rea
 
 ## 링크
 
-- [[CNT v2 VALIDATION REPORT]]
-- [[CNT v2 VALIDATION CHECKLIST KO]]
-- [[CNT v2 PERFORMANCE VALIDATION REPORT KO]]
+- CNT v2 VALIDATION REPORT
+- CNT v2 VALIDATION CHECKLIST KO
+- CNT v2 PERFORMANCE VALIDATION REPORT KO
+
+## Obsidian Links
+
+- [[CNT v2 VALIDATION REPORT KO]]
+
+

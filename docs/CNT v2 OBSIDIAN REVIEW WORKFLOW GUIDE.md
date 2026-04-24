@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - obsidian
-  - workflow
-  - templates
 aliases:
   - CNT v2 OBSIDIAN REVIEW WORKFLOW GUIDE
 ---
@@ -185,9 +180,9 @@ Recommended visual status rules:
 
 Recommended breakout_v3 linked evidence:
 
-- [[CNT v2 BREAKOUT V3 DESIGN DRAFT]]
-- [[CNT v2 BREAKOUT V3 SHADOW OBSERVATION WINDOW START]]
-- [[CNT v2 BREAKOUT V3 FIRST SHADOW OBSERVATION REVIEW]]
+- CNT v2 BREAKOUT V3 DESIGN DRAFT
+- CNT v2 BREAKOUT V3 SHADOW OBSERVATION WINDOW START
+- CNT v2 BREAKOUT V3 FIRST SHADOW OBSERVATION REVIEW
 
 Canvas therefore acts as a state interface, not just a notes surface.
 
@@ -291,3 +286,8 @@ Therefore:
 The `templates/` folder is now the standard Obsidian review support layer for `breakout_v3`.
 
 Official CNT decisions must still be recorded under `docs/`.
+
+## Obsidian Links
+
+- [[00 Docs Index]]
+

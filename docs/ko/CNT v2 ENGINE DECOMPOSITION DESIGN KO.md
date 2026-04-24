@@ -1,8 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
 aliases:
   - CNT v2 ENGINE DECOMPOSITION DESIGN KO
 ---
@@ -242,8 +238,6 @@ PREREQUISITE  = KEEP COLLECTING TESTNET EVIDENCE WHILE REFACTORING CAREFULLY
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 VALIDATION REPORT KO]]
 
-### Related
-- [[00 Docs Index|Docs Index]]
+

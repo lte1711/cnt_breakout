@@ -3,13 +3,6 @@ title: CNT v2 OFFICIAL LIVE GATE RETENTION AND AUXILIARY RECOVERY PLAN KO
 status: FINAL
 language: ko
 updated: 2026-04-24
-tags:
-  - cnt
-  - gate
-  - recovery
-  - pullback_v1
-  - breakout_v1
-  - observation
 ---
 
 # CNT v2 공식 Live Gate 유지 및 보조 회복 평가 체계
@@ -146,9 +139,6 @@ tags:
 
 ## Obsidian Links
 
-- [[CNT v2 LIVE READINESS GATE]]
-- [[CNT v2 LIVE GATE ALIGNMENT REPORT]]
-- [[CNT v2 BREAKOUT V1 ACTIVE ISOLATION DECISION]]
-- [[CNT v2 PULLBACK-ONLY OBSERVATION WINDOW EXECUTION REPORT]]
-- [[CNT v2 BREAKOUT V3 SHADOW OUTPUT REBASELINE REPORT]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 LIVE READINESS GATE KO]]
+
+

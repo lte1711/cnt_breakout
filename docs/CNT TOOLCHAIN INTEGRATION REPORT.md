@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - tooling
-  - obsidian
-  - vscode
-  - gemma4
 aliases:
   - CNT TOOLCHAIN INTEGRATION REPORT
 ---
@@ -82,6 +76,5 @@ aliases:
 
 ## Obsidian Links
 
-- [[CNT DATA DASHBOARD]]
-- [[CNT v2 TESTNET PERFORMANCE REPORT]]
-- [[00 Docs Index|Docs Index]]
+- [[00 Docs Index]]
+

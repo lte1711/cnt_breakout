@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - strategy
-  - design
 ---
 
 # CNT v2 BREAKOUT V2 DESIGN
@@ -155,6 +150,5 @@ This preserves the current runtime baseline while making the next validation sta
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT ISOLATION RUNTIME START]]
-- [[CNT v2 POST-READY DEGRADATION REVIEW]]
-- [[CNT v2 STRATEGY ISOLATION COMPARISON]]
+- [[CNT v2 BREAKOUT V2 DESIGN]]
+

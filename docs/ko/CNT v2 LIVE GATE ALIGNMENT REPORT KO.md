@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - gate
-  - validation
-  - ko
 aliases:
   - CNT v2 LIVE GATE ALIGNMENT REPORT KO
 ---
@@ -99,6 +93,12 @@ aliases:
 
 ## 링크
 
-- [[CNT v2 LIVE GATE ALIGNMENT REPORT]]
+- CNT v2 LIVE GATE ALIGNMENT REPORT
+- CNT v2 LIVE READINESS GATE KO
+- CNT v2 CURRENT STATUS ASSESSMENT KO
+
+## Obsidian Links
+
 - [[CNT v2 LIVE READINESS GATE KO]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT KO]]
+
+

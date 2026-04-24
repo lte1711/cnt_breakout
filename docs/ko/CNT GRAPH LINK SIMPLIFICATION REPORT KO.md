@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - graph
-  - simplification
-  - report
 generated_at: 현재 날짜: 2026-04-24 
 새로운 날짜를 입력하십시오: (년-월-일)
 ---
@@ -56,27 +51,10 @@ generated_at: 현재 날짜: 2026-04-24
 
 ### 링크 섹션 재구성
 ```
+
 ## Obsidian Links
 
-### 핵심 문서 (아키텍처, 규칙, 인덱스)
-- [[CNT v2 ARCHITECTURE DESIGN DOCUMENT|아키텍처 설계]]
-- [[AGENTS|시스템 규칙]]
-- [[00 Docs Index|문서 인덱스]]
-
-### 구현 관련 문서
-- [[CNT v2 IMPLEMENTATION WORK INSTRUCTION|구현 작업 지침]]
-- [[CNT v2 VALIDATION REPORT|검증 보고서]]
-
-*총 25개 링크 중 6개 표시됨*
-```
-
-### Graph 뷰 개선 효과
-- **노드 간 연결 단순화**: 불필요한 연결 제거
-- **핵심 관계 강조**: 중요한 문서 간 연결만 표시
-- **가독성 향상**: 복잡한 네트워크를 명확한 구조로 정리
-
----
-
+- [[CNT TOOLCHAIN INTEGRATION REPORT KO]]
 ## 📈 효과 분석
 
 ### Graph 뷰 시각화
@@ -125,3 +103,5 @@ generated_at: 현재 날짜: 2026-04-24
 ---
 
 *이 보고서는 CNT 프로젝트의 Graph 뷰 링크 단순화 시스템을 위해 생성되었습니다.*
+
+

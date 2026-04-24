@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - plan
-  - v2
 aliases:
   - CNT v2 ENGINEERING PHASE PLAN KO
 ---
@@ -94,6 +89,12 @@ REFACTOR          = DEFERRED_UNTIL_BASELINE_IS_TESTED
 
 ## 링크
 
-- [[CNT v2 PRIORITY DECISION REPORT KO]]
-- [[CNT v2 OBSERVABILITY PRIORITY PLAN KO]]
-- [[00 Docs Index KO]]
+- CNT v2 PRIORITY DECISION REPORT KO
+- CNT v2 OBSERVABILITY PRIORITY PLAN KO
+- 00 Docs Index KO
+
+## Obsidian Links
+
+- [[CNT v2 VALIDATION REPORT KO]]
+
+

@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - v3
-  - shadow
-  - observation
 aliases:
   - CNT v2 BREAKOUT V3 SHADOW OBSERVATION WINDOW START
 ---
@@ -22,7 +16,7 @@ aliases:
 
 - baseline_commit = `8b6e772`
 - window_start_time = `2026-04-24T02:04:04+09:00`
-- verification_source = [[CNT v2 BREAKOUT V3 SHADOW RUNTIME ONE-SHOT VERIFICATION]]
+- verification_source = CNT v2 BREAKOUT V3 SHADOW RUNTIME ONE-SHOT VERIFICATION
 
 This observation window starts only after:
 
@@ -121,3 +115,8 @@ At that point the project should produce a dedicated observation review covering
 `breakout_v3` is now in a valid shadow observation phase.
 
 It is connected to runtime, producing observation outputs, and remains completely separated from live execution behavior.
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V3 DESIGN DRAFT]]
+

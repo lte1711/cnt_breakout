@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - instruction
-  - v2
 aliases:
   - CNT v2 EXIT FAILSAFE OPERATION CHECKLIST
 ---
@@ -96,8 +91,5 @@ pending 있어도 stop이 반드시 실행되면 PASS
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 VALIDATION REPORT]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

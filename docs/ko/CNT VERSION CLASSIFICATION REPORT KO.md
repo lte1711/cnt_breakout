@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - version
-  - classification
-  - report
 generated_at: 2026-04-24 11:17:35
 ---
 
@@ -70,3 +65,9 @@ generated_at: 2026-04-24 11:17:35
 - **general**: 2개
 - **implementation**: 2개
 - **validation**: 2개
+
+## Obsidian Links
+
+- [[CNT TOOLCHAIN INTEGRATION REPORT KO]]
+
+

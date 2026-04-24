@@ -1,8 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v1
 aliases:
   - cnt_v1_final_strategy_architecture_spec_ko_source
 ---
@@ -649,8 +645,5 @@ strategy=breakout_v1 symbol=ETHUSDT entry_allowed=True side=BUY trigger=BREAKOUT
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 ARCHITECTURE DESIGN DOCUMENT]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - performance
-  - v2
 aliases:
   - CNT v2 PERFORMANCE TUNING LOG
 ---
@@ -71,8 +66,5 @@ POST_CHANGE_VALIDATION: performance validation report written
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 VALIDATION REPORT]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

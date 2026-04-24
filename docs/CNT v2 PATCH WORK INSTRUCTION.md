@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - instruction
-  - v2
 aliases:
   - CNT v2 PATCH WORK INSTRUCTION
 ---
@@ -473,8 +468,5 @@ synthetic 또는 stub 환경에서 아래를 각각 재현한다.
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 VALIDATION REPORT]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

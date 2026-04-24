@@ -1,8 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
 aliases:
   - CNT v2 SCHEDULED DATA COLLECTION SETUP
 ---
@@ -126,8 +122,5 @@ Only obvious bug fixes are allowed.
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[00 Docs Index]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

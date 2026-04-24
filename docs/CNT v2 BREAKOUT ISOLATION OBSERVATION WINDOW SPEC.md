@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - breakout
-  - isolation
 aliases:
   - CNT v2 BREAKOUT ISOLATION OBSERVATION WINDOW SPEC
 ---
@@ -127,6 +121,5 @@ Use wording like:
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT LAST 3 TRADES REVIEW]]
-- [[CNT v2 STRATEGY ISOLATION COMPARISON]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT]]
+

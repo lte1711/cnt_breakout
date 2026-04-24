@@ -1,8 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - validation
 aliases:
   - VALIDATION RESULT
 ---
@@ -37,8 +33,5 @@ aliases:
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 ARCHITECTURE DESIGN DOCUMENT]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

@@ -3,12 +3,6 @@ title: CNT v2 PULLBACK-ONLY OBSERVATION WINDOW EXECUTION REPORT KO
 status: FINAL
 language: ko
 updated: 2026-04-24
-tags:
-  - cnt
-  - observation
-  - pullback_v1
-  - breakout_v3
-  - verification
 ---
 
 # CNT v2 PULLBACK-ONLY OBSERVATION WINDOW EXECUTION REPORT
@@ -179,3 +173,9 @@ pullback-only window에서 최신으로 추가된 signal log는 다음이었다.
 - shadow semantics = clean
 - portfolio risk sync = 유지
 - Live Gate = 아직 음수, 추가 post-isolation observation 필요
+
+## Obsidian Links
+
+- [[CNT v2 LIVE READINESS GATE KO]]
+
+

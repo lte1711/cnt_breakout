@@ -1,12 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - performance
-  - validation
-  - instruction
-  - v2
-  - ko
 aliases:
   - CNT v2 PERFORMANCE VALIDATION CHECKLIST KO
 ---
@@ -207,6 +199,12 @@ Testnet 운영 데이터를 기반으로
 
 ## 링크
 
-- [[CNT v2 PERFORMANCE VALIDATION CHECKLIST]]
-- [[CNT v2 TESTNET PERFORMANCE REPORT KO]]
-- [[CNT v2 PERFORMANCE TUNING LOG KO]]
+- CNT v2 PERFORMANCE VALIDATION CHECKLIST
+- CNT v2 TESTNET PERFORMANCE REPORT KO
+- CNT v2 PERFORMANCE TUNING LOG KO
+
+## Obsidian Links
+
+- [[CNT v2 VALIDATION REPORT KO]]
+
+

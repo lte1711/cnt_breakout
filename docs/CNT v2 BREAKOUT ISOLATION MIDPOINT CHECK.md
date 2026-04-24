@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - isolation
-  - midpoint
 ---
 
 # CNT v2 BREAKOUT ISOLATION MIDPOINT CHECK
@@ -120,6 +115,5 @@ No strong conclusion should be drawn from unchanged breakout observed metrics at
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT ISOLATION RUNTIME START]]
-- [[CNT v2 POST-READY DEGRADATION REVIEW]]
-- [[CNT v2 STRATEGY ISOLATION COMPARISON]]
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT]]
+

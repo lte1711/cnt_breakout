@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - obsidian
-  - version
-  - visualization
-  - setup
 aliases:
   - CNT OBSIDIAN VERSION VISUALIZATION SETUP
 ---
@@ -349,3 +343,8 @@ def add_version_tags(directory):
 ---
 
 *이 설정 가이드는 CNT 프로젝트의 버전 관리 시스템을 Obsidian에 완벽하게 적용하기 위해 작성되었습니다.*
+
+## Obsidian Links
+
+- [[CNT TOOLCHAIN INTEGRATION REPORT]]
+

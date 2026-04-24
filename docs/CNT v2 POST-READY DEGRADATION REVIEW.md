@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - live-ready
-  - degradation
 aliases:
   - CNT v2 POST-READY DEGRADATION REVIEW
 ---
@@ -148,7 +142,4 @@ Current phase should be interpreted as:
 ## Obsidian Links
 
 - [[CNT v2 BREAKOUT LAST 3 TRADES REVIEW]]
-- [[CNT v2 STRATEGY ISOLATION COMPARISON]]
-- [[CNT v2 GATE DISPLAY CONSISTENCY AUDIT]]
-- [[CNT v2 DASHBOARD WARNING ENHANCEMENT INSTRUCTION]]
-- [[00 Docs Index|Docs Index]]
+

@@ -1,11 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - breakout_v3
-  - shadow
-  - rebaseline
-  - report
 aliases:
   - CNT v2 BREAKOUT V3 SHADOW OUTPUT REBASELINE REPORT
 ---
@@ -89,7 +82,5 @@ This step did not change:
 
 ## Obsidian Links
 
-- [[CNT v2 SHADOW SEMANTICS AND PORTFOLIO STATE PATCH REPORT]]
-- [[CNT v2 BREAKOUT V3 SHADOW OBSERVATION WINDOW START]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 BREAKOUT V3 DESIGN DRAFT]]
+

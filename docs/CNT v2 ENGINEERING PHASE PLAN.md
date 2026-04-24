@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - plan
-  - v2
 aliases:
   - CNT v2 ENGINEERING PHASE PLAN
 ---
@@ -114,8 +109,5 @@ REFACTOR          = DEFERRED_UNTIL_BASELINE_IS_TESTED
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 VALIDATION REPORT]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

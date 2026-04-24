@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - live-ready
-  - monitoring
 aliases:
   - CNT v2 LIVE READY POST-READINESS MONITORING PLAN
 ---
@@ -114,8 +108,5 @@ Escalate to the next design review if any of the following occur:
 
 ## Obsidian Links
 
-- [[CNT v2 CURRENT STATUS ASSESSMENT]]
-- [[CNT v2 TESTNET PERFORMANCE REPORT]]
 - [[CNT v2 LIVE READINESS GATE]]
-- [[CNT v2 LIVE GATE ALIGNMENT REPORT]]
-- [[00 Docs Index|Docs Index]]
+

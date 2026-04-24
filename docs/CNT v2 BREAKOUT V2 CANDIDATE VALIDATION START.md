@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - validation
-  - candidate
 ---
 
 # CNT v2 BREAKOUT V2 CANDIDATE VALIDATION START
@@ -19,7 +14,7 @@ It defines the start conditions for a later candidate validation window.
 Reference:
 
 - current `breakout_v1` final isolation review:
-  - [[CNT v2 BREAKOUT ISOLATION FINAL REVIEW]]
+  - CNT v2 BREAKOUT ISOLATION FINAL REVIEW
 
 ## Start Condition
 
@@ -89,5 +84,4 @@ At this stage:
 ## Obsidian Links
 
 - [[CNT v2 BREAKOUT V2 DESIGN]]
-- [[CNT v2 BREAKOUT A B VALIDATION PLAN]]
-- [[CNT v2 BREAKOUT ISOLATION FINAL REVIEW]]
+

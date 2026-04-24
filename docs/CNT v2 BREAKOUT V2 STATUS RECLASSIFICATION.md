@@ -1,8 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - status
 aliases:
   - CNT v2 BREAKOUT V2 STATUS RECLASSIFICATION
 ---
@@ -48,3 +44,8 @@ Until redesign is explicitly approved and implemented:
 - keep `breakout_v2` off
 - keep `breakout_v1` as reference only
 - keep `pullback_v1` as the live positive driver
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V2 DESIGN]]
+

@@ -1,8 +1,4 @@
 ---
-tags:
-  - cnt
-  - obsidian
-  - tooling
 aliases:
   - CNT Obsidian Plugin Policy
 ---
@@ -43,7 +39,5 @@ If a local environment needs full dashboard/template behavior, install the plugi
 
 ## Obsidian Links
 
-- [[CNT DATA DASHBOARD]]
 - [[CNT TOOLCHAIN INTEGRATION REPORT]]
-- [[AGENTS]]
-- [[00 Docs Index|Docs Index]]
+

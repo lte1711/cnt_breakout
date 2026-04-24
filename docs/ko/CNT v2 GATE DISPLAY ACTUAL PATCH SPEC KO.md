@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - gate
-  - dashboard
 aliases:
   - CNT v2 GATE DISPLAY ACTUAL PATCH SPEC KO
 ---
@@ -119,6 +113,6 @@ Fallback은 `live_gate_decision.json`을 로드하지 못할 때의 방어용 la
 
 ## Obsidian Links
 
-- [[CNT v2 DASHBOARD PATCH TARGET MAPPING]]
-- [[CNT v2 GATE DISPLAY CONSISTENCY AUDIT]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 DASHBOARD PATCH TARGET MAPPING KO]]
+
+

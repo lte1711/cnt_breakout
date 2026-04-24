@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - report
-  - v2
-  - ko
 aliases:
   - CNT v2 LIVE READINESS REPORT KO
 ---
@@ -125,6 +119,12 @@ REASON   = PRECONDITIONS_NOT_MET
 
 ## 링크
 
-- [[CNT v2 LIVE READINESS REPORT]]
+- CNT v2 LIVE READINESS REPORT
+- CNT v2 LIVE READINESS GATE KO
+- CNT v2 CURRENT STATUS ASSESSMENT KO
+
+## Obsidian Links
+
 - [[CNT v2 LIVE READINESS GATE KO]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT KO]]
+
+

@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - v2
-  - ranking
-  - performance
 aliases:
   - CNT v2 RANKER REDESIGN REPORT
 ---
@@ -156,8 +151,5 @@ OK
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT]]
-- [[CNT v2 TESTNET PERFORMANCE REPORT]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT]]
-- [[CNT v2 METRICS AND STRATEGY ATTRIBUTION FIX REPORT]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 VALIDATION REPORT]]
+

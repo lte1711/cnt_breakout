@@ -1,8 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
 aliases:
   - CNT v2 ARCHITECTURE DESIGN DOCUMENT
 ---
@@ -721,8 +717,5 @@ CNT v2는 더 이상 단순한 전략 봇이 아니다.
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[00 Docs Index]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

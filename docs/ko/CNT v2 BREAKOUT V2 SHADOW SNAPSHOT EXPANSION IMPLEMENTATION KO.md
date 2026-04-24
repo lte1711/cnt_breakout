@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - shadow
-  - snapshot
 aliases:
   - CNT v2 BREAKOUT V2 SHADOW SNAPSHOT EXPANSION IMPLEMENTATION KO
 ---
@@ -71,3 +66,9 @@ aliases:
 ## 알려진 한계
 
 이 snapshot은 아직 hypothetical expectancy / profit factor를 shadow event lifecycle에서 계산하지 않는다. observability layer이지, 단독 promotion-decision engine은 아니다.
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V2 DESIGN KO]]
+
+

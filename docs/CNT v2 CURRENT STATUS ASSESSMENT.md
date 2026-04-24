@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - report
-  - status
 aliases:
   - CNT v2 CURRENT STATUS ASSESSMENT
 ---
@@ -163,8 +157,5 @@ One-line conclusion:
 
 ## Obsidian Links
 
-- [[CNT v2 TESTNET PERFORMANCE REPORT]]
 - [[CNT v2 LIVE READINESS GATE]]
-- [[CNT v2 LIVE GATE ALIGNMENT REPORT]]
-- [[CNT v2 LIVE READY POST-READINESS MONITORING PLAN]]
-- [[00 Docs Index|Docs Index]]
+

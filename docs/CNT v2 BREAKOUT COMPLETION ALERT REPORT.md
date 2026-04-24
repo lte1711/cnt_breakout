@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - breakout
-  - report
-  - v2
 aliases:
   - CNT v2 BREAKOUT COMPLETION ALERT REPORT
 ---
@@ -74,8 +68,5 @@ If a shorter review point is needed later, the threshold can be changed explicit
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

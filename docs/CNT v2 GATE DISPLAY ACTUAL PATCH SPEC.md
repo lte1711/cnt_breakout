@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - gate
-  - dashboard
 aliases:
   - CNT v2 GATE DISPLAY ACTUAL PATCH SPEC
 ---
@@ -120,5 +114,4 @@ Recommended footer text:
 ## Obsidian Links
 
 - [[CNT v2 DASHBOARD PATCH TARGET MAPPING]]
-- [[CNT v2 GATE DISPLAY CONSISTENCY AUDIT]]
-- [[00 Docs Index|Docs Index]]
+

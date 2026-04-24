@@ -1,11 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - observability
-  - plan
-  - v2
-  - ko
 aliases:
   - CNT v2 OBSERVABILITY PRIORITY PLAN KO
 ---
@@ -92,7 +85,6 @@ ENGINE_SPLIT        = DEFER_UNTIL_MORE_VISIBILITY_EXISTS
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index KO|Docs Index KO]]
-- [[CNT v2 OBSERVABILITY IMPLEMENTATION REPORT KO]]
-- [[CNT v2 OBSERVABILITY VALIDATION GATE KO]]
+- [[CNT v2 OBSERVABILITY PRIORITY PLAN KO]]
+
+

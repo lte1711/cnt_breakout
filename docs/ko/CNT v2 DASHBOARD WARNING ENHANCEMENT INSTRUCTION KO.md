@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - dashboard
-  - instruction
 aliases:
   - CNT v2 DASHBOARD WARNING ENHANCEMENT INSTRUCTION KO
 ---
@@ -99,6 +93,6 @@ aliases:
 
 ## Obsidian Links
 
-- [[CNT v2 GATE DISPLAY CONSISTENCY AUDIT]]
-- [[CNT v2 POST-READY DEGRADATION REVIEW]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT DATA DASHBOARD KO]]
+
+

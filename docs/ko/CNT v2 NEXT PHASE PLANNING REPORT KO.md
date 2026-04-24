@@ -1,11 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - report
-  - plan
-  - v2
-  - ko
 aliases:
   - CNT v2 NEXT PHASE PLANNING REPORT KO
 ---
@@ -98,6 +91,12 @@ TUNING_NOW = NO
 
 ## 링크
 
-- [[CNT v2 NEXT PHASE PLANNING REPORT]]
-- [[CNT v2 NEXT PHASE PLAN KO]]
-- [[CNT v2 PERFORMANCE VALIDATION REPORT KO]]
+- CNT v2 NEXT PHASE PLANNING REPORT
+- CNT v2 NEXT PHASE PLAN KO
+- CNT v2 PERFORMANCE VALIDATION REPORT KO
+
+## Obsidian Links
+
+- [[00 Docs Index KO]]
+
+

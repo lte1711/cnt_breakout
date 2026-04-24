@@ -3,12 +3,6 @@ title: CNT v2 DASHBOARD AUXILIARY RECOVERY VIEW REPORT
 status: FINAL
 language: en
 updated: 2026-04-24
-tags:
-  - cnt
-  - dashboard
-  - gate
-  - recovery
-  - observation
 ---
 
 # CNT v2 DASHBOARD AUXILIARY RECOVERY VIEW REPORT
@@ -85,8 +79,5 @@ in one coherent operating view.
 
 ## Obsidian Links
 
-- [[CNT v2 OFFICIAL LIVE GATE RETENTION AND AUXILIARY RECOVERY PLAN]]
-- [[CNT v2 PULLBACK-ONLY OBSERVATION WINDOW EXECUTION REPORT]]
-- [[CNT v2 DASHBOARD ESSENTIAL VIEW REFINEMENT REPORT]]
-- [[CNT v2 BREAKOUT V1 ACTIVE ISOLATION DECISION]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT DATA DASHBOARD]]
+

@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - performance
-  - instruction
-  - v2
 aliases:
   - CNT v2 PERFORMANCE TUNING WORK INSTRUCTION
 ---
@@ -455,8 +449,5 @@ confidence_multiplier = min(1.0, trades_closed / N)
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 VALIDATION REPORT]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

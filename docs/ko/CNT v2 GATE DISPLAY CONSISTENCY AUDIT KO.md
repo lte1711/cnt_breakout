@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - audit
-  - dashboard
 aliases:
   - CNT v2 GATE DISPLAY CONSISTENCY AUDIT KO
 ---
@@ -96,6 +90,6 @@ Dashboard footer에는 아직 runtime source line에 깨진 separator character�
 
 ## Obsidian Links
 
-- [[CNT v2 POST-READY DEGRADATION REVIEW]]
-- [[CNT v2 DASHBOARD WARNING ENHANCEMENT INSTRUCTION]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 POST-READY DEGRADATION REVIEW KO]]
+
+

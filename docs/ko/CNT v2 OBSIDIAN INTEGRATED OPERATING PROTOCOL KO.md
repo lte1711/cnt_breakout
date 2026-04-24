@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - obsidian
-  - protocol
-  - ko
 aliases:
   - CNT v2 OBSIDIAN INTEGRATED OPERATING PROTOCOL KO
 ---
@@ -230,3 +225,9 @@ CNT의 Obsidian 운영 스택은 이제 다음으로 정의된다.
 - transition rules = 다음 단계 제어
 
 즉 이 프로토콜은 runtime 실행과 전략 판단을 분리한 상태에서, 일관된 전략 검증 운영을 가능하게 한다.
+
+## Obsidian Links
+
+- [[00 Docs Index KO]]
+
+

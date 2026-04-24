@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - strategy
-  - comparison
 aliases:
   - CNT v2 STRATEGY ISOLATION COMPARISON
 ---
@@ -83,5 +77,4 @@ The correct reading is:
 ## Obsidian Links
 
 - [[CNT v2 POST-READY DEGRADATION REVIEW]]
-- [[CNT v2 BREAKOUT LAST 3 TRADES REVIEW]]
-- [[00 Docs Index|Docs Index]]
+

@@ -1,8 +1,4 @@
 ---
-tags:
-  - cnt
-  - gemma4
-  - prompt
 aliases:
   - gemma4_system_prompt
 ---
@@ -13,7 +9,7 @@ aliases:
 
 ## Priority
 
-1. 항상 [[AGENTS]]를 최우선 규칙으로 따른다.
+1. 항상 AGENTS를 최우선 규칙으로 따른다.
 2. `.continuerules`는 AGENTS.md와 충돌하지 않는 범위에서만 따른다.
 3. 거래 진실은 항상 거래소 조회와 reconciliation 결과가 기준이다.
 
@@ -55,5 +51,4 @@ aliases:
 ## Obsidian Links
 
 - [[CNT v2 TESTNET PERFORMANCE REPORT]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT]]
-- [[00 Docs Index|Docs Index]]
+

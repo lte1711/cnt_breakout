@@ -1,11 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - performance
-  - validation
-  - instruction
-  - v2
 aliases:
   - CNT v2 PERFORMANCE VALIDATION CHECKLIST
 ---
@@ -304,8 +297,5 @@ NEXT   = CAPITAL_ALLOCATION / LIVE_PREP
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 VALIDATION REPORT]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

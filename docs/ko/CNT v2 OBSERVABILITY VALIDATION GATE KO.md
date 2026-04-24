@@ -1,11 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - observability
-  - validation
-  - v2
-  - ko
 aliases:
   - CNT v2 OBSERVABILITY VALIDATION GATE KO
 ---
@@ -119,7 +112,6 @@ BREAKOUT_EXPERIMENT = ALLOWED
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index KO|Docs Index KO]]
 - [[CNT v2 OBSERVABILITY PRIORITY PLAN KO]]
-- [[CNT v2 OBSERVABILITY IMPLEMENTATION REPORT KO]]
+
+

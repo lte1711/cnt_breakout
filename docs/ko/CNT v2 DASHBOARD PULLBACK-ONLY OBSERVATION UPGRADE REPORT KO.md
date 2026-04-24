@@ -3,12 +3,6 @@ title: CNT v2 DASHBOARD PULLBACK-ONLY OBSERVATION UPGRADE REPORT KO
 status: FINAL
 language: ko
 updated: 2026-04-24
-tags:
-  - cnt
-  - dashboard
-  - observation
-  - pullback_v1
-  - breakout_v3
 ---
 
 # CNT v2 DASHBOARD PULLBACK-ONLY OBSERVATION UPGRADE REPORT
@@ -106,3 +100,9 @@ tags:
 ## 결론
 
 이번 대시보드 업그레이드는 post-isolation CNT 런타임의 실제 상태를 시각 운영 인터페이스에 맞춰 정렬한 패치다.
+
+## Obsidian Links
+
+- [[CNT DATA DASHBOARD KO]]
+
+

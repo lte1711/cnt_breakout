@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - v3
-  - shadow
-  - plan
 aliases:
   - CNT v2 BREAKOUT V3 SHADOW VALIDATION RUNTIME INTEGRATION PLAN
 ---
@@ -216,3 +210,8 @@ The next implementation step after this plan is:
 It will be inserted as a shadow evaluation branch, not as a trading branch.
 
 No activation, tuning, or live consumption is permitted before a shadow observation window produces evidence.
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V3 DESIGN DRAFT]]
+

@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - instruction
-  - v2
 aliases:
   - CNT v2 TASK SCHEDULER REGISTRATION CHECKLIST
 ---
@@ -114,8 +109,5 @@ CURRENT_GATE     = NOT_READY / INSUFFICIENT_SAMPLE
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[00 Docs Index]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

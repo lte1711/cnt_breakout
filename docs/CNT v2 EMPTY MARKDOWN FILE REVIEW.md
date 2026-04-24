@@ -1,8 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - hygiene
 aliases:
   - CNT v2 EMPTY MARKDOWN FILE REVIEW
 ---
@@ -108,3 +104,8 @@ The `templates/observation_review.md` file was updated so it no longer contains 
 The empty markdown files were not system faults.
 
 They were untracked placeholder artifacts and were safe to remove.
+
+## Obsidian Links
+
+- [[00 Docs Index]]
+

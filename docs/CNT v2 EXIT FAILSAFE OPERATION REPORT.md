@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - report
-  - v2
 aliases:
   - CNT v2 EXIT FAILSAFE OPERATION REPORT
 ---
@@ -84,9 +79,5 @@ NEXT                       = CONTINUE TESTNET OBSERVATION UNTIL FIRST QUALIFYING
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 VALIDATION REPORT]]
 
-### Related
-- [[CNT v2 EXIT FAILSAFE PATCH REPORT]]
-- [[CNT v2 EXIT FAILSAFE OPERATION CHECKLIST]]

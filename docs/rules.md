@@ -1,7 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
 aliases:
   - rules
 ---
@@ -511,8 +508,5 @@ cnt/docs/rules.md
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[00 Docs Index]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

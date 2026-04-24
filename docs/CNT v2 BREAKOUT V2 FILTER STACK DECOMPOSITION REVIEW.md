@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - shadow
-  - review
 ---
 
 # CNT v2 BREAKOUT V2 FILTER STACK DECOMPOSITION REVIEW
@@ -31,7 +26,7 @@ Current interpretation:
 
 ## Filter Stack Order
 
-Actual code order in [[breakout_v2]]:
+Actual code order in breakout_v2:
 
 1. range / upward bias gate
 2. volatility gate
@@ -208,6 +203,5 @@ Supporting note:
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT V2 SHADOW VALIDATION SPEC]]
-- [[CNT v2 BREAKOUT V2 SHADOW RUNTIME VERIFICATION]]
 - [[CNT v2 BREAKOUT V2 DESIGN]]
+

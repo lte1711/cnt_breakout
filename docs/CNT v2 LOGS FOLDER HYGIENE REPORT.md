@@ -1,8 +1,4 @@
 ---
-tags:
-  - cnt
-  - logs
-  - report
 aliases:
   - CNT v2 LOGS FOLDER HYGIENE REPORT
 ---
@@ -117,3 +113,8 @@ Interpretation:
 - that defect has been corrected at both:
   - source level (`run.ps1`)
   - existing file level (`scheduler_stdout.log`)
+
+## Obsidian Links
+
+- [[00 Docs Index]]
+

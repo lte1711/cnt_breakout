@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - shadow
-  - snapshot
 aliases:
   - CNT v2 BREAKOUT V2 SHADOW SNAPSHOT EXPANSION IMPLEMENTATION
 ---
@@ -73,3 +68,8 @@ No existing consumer is required to read the new fields.
 ## Known Limitation
 
 This snapshot still does not compute hypothetical expectancy or hypothetical profit factor from shadow events. It remains an observability layer, not a promotion-decision engine by itself.
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V2 DESIGN]]
+

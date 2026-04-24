@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - audit
-  - dashboard
 aliases:
   - CNT v2 GATE DISPLAY CONSISTENCY AUDIT
 ---
@@ -97,5 +91,4 @@ The current situation is:
 ## Obsidian Links
 
 - [[CNT v2 POST-READY DEGRADATION REVIEW]]
-- [[CNT v2 DASHBOARD WARNING ENHANCEMENT INSTRUCTION]]
-- [[00 Docs Index|Docs Index]]
+

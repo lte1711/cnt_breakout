@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - plan
-  - v2
 aliases:
   - CNT v2 NEXT PHASE PLAN
 ---
@@ -294,8 +289,5 @@ build automatic judgment on top of accumulating evidence
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[00 Docs Index]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

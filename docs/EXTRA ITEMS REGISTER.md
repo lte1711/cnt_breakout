@@ -1,7 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
 aliases:
   - EXTRA ITEMS REGISTER
 ---
@@ -808,12 +805,4 @@ CHANGE LOG
 
 ## Obsidian Links
 
-### 핵심 링크
-- [[00 Docs Index|문서 인덱스]]
-- [[AGENTS|시스템 규칙]]
-
-### 관련 문서
-- [[CNT v2 ARCHITECTURE DESIGN DOCUMENT|아키텍처 설계]]
-- [[CNT DATA DASHBOARD|데이터 대시보드]]
-
-*링크가 단순화되었습니다*
+- [[AGENTS]]

@@ -1,11 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - breakout
-  - plan
-  - v1
-  - v2
 aliases:
   - CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT PLAN
 ---
@@ -126,8 +119,5 @@ Experiment result must be stored in:
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

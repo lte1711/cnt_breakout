@@ -3,11 +3,6 @@ title: CNT v2 DASHBOARD ESSENTIAL VIEW REFINEMENT REPORT KO
 status: FINAL
 language: ko
 updated: 2026-04-24
-tags:
-  - cnt
-  - dashboard
-  - refinement
-  - observation
 ---
 
 # CNT v2 DASHBOARD ESSENTIAL VIEW REFINEMENT REPORT
@@ -80,3 +75,9 @@ tags:
 ## 결론
 
 이제 대시보드는 pullback-only live observation과 breakout_v3 shadow monitoring에 필요한 고신호 패널만 보여주도록 정리되었다.
+
+## Obsidian Links
+
+- [[CNT DATA DASHBOARD KO]]
+
+

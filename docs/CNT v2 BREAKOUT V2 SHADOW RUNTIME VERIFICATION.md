@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - shadow
-  - verification
 ---
 
 # CNT v2 BREAKOUT V2 SHADOW RUNTIME VERIFICATION
@@ -131,6 +126,5 @@ Production execution remains unchanged.
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT V2 SHADOW RUNTIME IMPLEMENTATION]]
-- [[CNT v2 BREAKOUT V2 SHADOW RUNTIME INTEGRATION]]
-- [[CNT v2 BREAKOUT V2 VALIDATION WINDOW START]]
+- [[CNT v2 BREAKOUT V2 DESIGN]]
+

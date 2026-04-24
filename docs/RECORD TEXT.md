@@ -1,7 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
 aliases:
   - RECORD TEXT
 ---
@@ -26,8 +23,4 @@ NO_ENTRY_SIGNAL 동작을 확인했으므로, 운영 기준 복귀도 완료되�
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
-
-### Related
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 ARCHITECTURE DESIGN DOCUMENT]]

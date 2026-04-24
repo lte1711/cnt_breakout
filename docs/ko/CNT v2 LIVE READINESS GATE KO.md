@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - gate
-  - ko
 aliases:
   - CNT v2 LIVE READINESS GATE KO
 ---
@@ -75,7 +69,13 @@ CNT v2의 라이브 준비도 게이트는 단순 수익 여부만 보는 기준
 
 ## 링크
 
-- [[CNT v2 LIVE READINESS GATE]]
-- [[CNT v2 LIVE READINESS REPORT KO]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT KO]]
-- [[00 Docs Index KO]]
+- CNT v2 LIVE READINESS GATE
+- CNT v2 LIVE READINESS REPORT KO
+- CNT v2 CURRENT STATUS ASSESSMENT KO
+- 00 Docs Index KO
+
+## Obsidian Links
+
+- [[CNT v2 LIVE READINESS GATE KO]]
+
+

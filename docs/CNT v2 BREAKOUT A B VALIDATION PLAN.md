@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - validation
-  - ab-test
 ---
 
 # CNT v2 BREAKOUT A B VALIDATION PLAN
@@ -139,7 +134,5 @@ Observed and inferred baselines must remain clearly separated.
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT V2 DESIGN]]
-- [[CNT v2 BREAKOUT ISOLATION RUNTIME START]]
-- [[CNT v2 BREAKOUT ISOLATION MIDPOINT CHECK]]
-- [[CNT v2 STRATEGY ISOLATION COMPARISON]]
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT]]
+

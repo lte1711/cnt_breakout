@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - obsidian
-  - workflow
-  - ko
 aliases:
   - CNT v2 OBSIDIAN REVIEW WORKFLOW GUIDE KO
 ---
@@ -162,9 +157,9 @@ CNT SYSTEM
 
 연결 권장 문서:
 
-- [[CNT v2 BREAKOUT V3 DESIGN DRAFT]]
-- [[CNT v2 BREAKOUT V3 SHADOW OBSERVATION WINDOW START]]
-- [[CNT v2 BREAKOUT V3 FIRST SHADOW OBSERVATION REVIEW]]
+- CNT v2 BREAKOUT V3 DESIGN DRAFT
+- CNT v2 BREAKOUT V3 SHADOW OBSERVATION WINDOW START
+- CNT v2 BREAKOUT V3 FIRST SHADOW OBSERVATION REVIEW
 
 ## 상태 전이 규칙
 
@@ -214,3 +209,9 @@ CNT SYSTEM
 - `tuning = PROHIBITED`
 
 따라서 현재 활성 문서 타입은 observation review이고, activation checklist는 아직 보류 상태다.
+
+## Obsidian Links
+
+- [[00 Docs Index KO]]
+
+

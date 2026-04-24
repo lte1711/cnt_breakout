@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - isolation
-  - runtime
 aliases:
   - CNT v2 BREAKOUT ISOLATION RUNTIME START KO
 ---
@@ -95,8 +90,6 @@ aliases:
 
 ## Obsidian Links
 
-- [[CNT v2 POST-READY DEGRADATION REVIEW]]
-- [[CNT v2 BREAKOUT LAST 3 TRADES REVIEW]]
-- [[CNT v2 STRATEGY ISOLATION COMPARISON]]
-- [[CNT v2 DASHBOARD PATCH TARGET MAPPING]]
-- [[CNT v2 GATE DISPLAY ACTUAL PATCH SPEC]]
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT KO]]
+
+

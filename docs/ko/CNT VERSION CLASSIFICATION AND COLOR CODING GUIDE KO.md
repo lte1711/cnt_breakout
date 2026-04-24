@@ -1,12 +1,6 @@
 ---
-tags:
-  - cnt
-  - version
-  - classification
-  - color-coding
-  - guide
 aliases:
-  - CNT 버전 분류 및 색상 코딩 가이드 KO
+  - CNT VERSION CLASSIFICATION AND COLOR CODING GUIDE KO
 ---
 
 # CNT 버전 분류 및 색상 코딩 가이드
@@ -320,3 +314,9 @@ PERFORMANCE VALIDATION REPORT   # 성능 검증 보고
 ---
 
 *이 가이드는 CNT 프로젝트의 체계적인 문서 관리를 위해 작성되었습니다.*
+
+## Obsidian Links
+
+- [[CNT TOOLCHAIN INTEGRATION REPORT KO]]
+
+

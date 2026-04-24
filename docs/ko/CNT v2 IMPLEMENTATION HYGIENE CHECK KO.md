@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - hygiene
 aliases:
   - CNT v2 IMPLEMENTATION HYGIENE CHECK KO
 ---
@@ -95,7 +90,6 @@ local noise 파일 복원:
 
 ## Obsidian Links
 
-- [[CNT v2 DASHBOARD PATCH TARGET MAPPING]]
-- [[CNT v2 GATE DISPLAY ACTUAL PATCH SPEC]]
-- [[CNT v2 BREAKOUT ISOLATION OBSERVATION WINDOW SPEC]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 VALIDATION REPORT KO]]
+
+

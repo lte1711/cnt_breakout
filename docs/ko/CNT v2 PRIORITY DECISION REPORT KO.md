@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - report
-  - v2
 aliases:
   - CNT v2 PRIORITY DECISION REPORT KO
 ---
@@ -55,6 +50,12 @@ NEXT_STEP       = ADD OBSERVABILITY FOR REJECTION AND SELECTION REASONS
 
 ## 링크
 
-- [[CNT v2 ENGINEERING PHASE PLAN KO]]
-- [[CNT v2 OBSERVABILITY PRIORITY PLAN KO]]
+- CNT v2 ENGINEERING PHASE PLAN KO
+- CNT v2 OBSERVABILITY PRIORITY PLAN KO
+- 00 Docs Index KO
+
+## Obsidian Links
+
 - [[00 Docs Index KO]]
+
+

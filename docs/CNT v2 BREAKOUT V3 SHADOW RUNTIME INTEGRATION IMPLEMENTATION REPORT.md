@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - v3
-  - shadow
-  - implementation
 aliases:
   - CNT v2 BREAKOUT V3 SHADOW RUNTIME INTEGRATION IMPLEMENTATION REPORT
 ---
@@ -128,3 +122,8 @@ Expected guarantees:
 This step implements runtime integration skeleton only.
 
 `breakout_v3` is now observable from the engine, but it remains fully disconnected from live execution behavior.
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V3 DESIGN DRAFT]]
+

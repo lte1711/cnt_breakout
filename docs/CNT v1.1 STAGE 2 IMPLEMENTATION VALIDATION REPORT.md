@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - validation
-  - report
-  - v1
 aliases:
   - CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION REPORT
 ---
@@ -287,10 +281,5 @@ This report closes the Stage 2 implementation validation cycle.
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v1.1 ARCHITECTURE DESIGN DOCUMENT]]
 
-### Related
-- [[cnt_v1.1_stage2_architecture_design]]
-- [[cnt_v1.1_stage2_implementation_work_instruction]]
-- [[cnt_v1.1_stage2_implementation_validation_checklist]]

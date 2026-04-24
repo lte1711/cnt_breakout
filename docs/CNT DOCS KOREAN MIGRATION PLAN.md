@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - localization
-  - plan
 aliases:
   - CNT DOCS KOREAN MIGRATION PLAN
 ---
@@ -109,3 +104,8 @@ CNT should move toward a stable dual-document system:
 - user-facing Korean mirrors in `docs/ko/`
 
 This is the forward documentation direction unless explicitly changed by the user.
+
+## Obsidian Links
+
+- [[CNT TOOLCHAIN INTEGRATION REPORT]]
+

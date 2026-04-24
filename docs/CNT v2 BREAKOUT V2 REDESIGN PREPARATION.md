@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - redesign
-  - plan
 aliases:
   - CNT v2 BREAKOUT V2 REDESIGN PREPARATION
 ---
@@ -108,3 +103,8 @@ without changing runtime behavior.
 For repository and operational interpretation, the correct current label is:
 
 > `breakout_v2 = failed design (inactive experimental strategy)`
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V2 DESIGN]]
+

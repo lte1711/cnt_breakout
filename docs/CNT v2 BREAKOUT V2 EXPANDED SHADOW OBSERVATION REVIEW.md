@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - shadow
-  - review
 aliases:
   - CNT v2 BREAKOUT V2 EXPANDED SHADOW OBSERVATION REVIEW
 ---
@@ -179,3 +174,8 @@ That means:
 - no threshold relaxation
 - no single-gate experiment
 - redesign options must be documented before any future implementation
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V2 DESIGN]]
+

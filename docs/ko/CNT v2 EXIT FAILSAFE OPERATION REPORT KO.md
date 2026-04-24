@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - report
-  - v2
 aliases:
   - CNT v2 EXIT FAILSAFE OPERATION REPORT KO
 ---
@@ -70,6 +65,12 @@ NEXT                        = CONTINUE TESTNET OBSERVATION UNTIL FIRST QUALIFYIN
 
 ## 링크
 
-- [[CNT v2 EXIT FAILSAFE PATCH REPORT KO]]
-- [[CNT v2 EXIT FAILSAFE OPERATION CHECKLIST KO]]
-- [[00 Docs Index KO]]
+- CNT v2 EXIT FAILSAFE PATCH REPORT KO
+- CNT v2 EXIT FAILSAFE OPERATION CHECKLIST KO
+- 00 Docs Index KO
+
+## Obsidian Links
+
+- [[CNT v2 VALIDATION REPORT KO]]
+
+

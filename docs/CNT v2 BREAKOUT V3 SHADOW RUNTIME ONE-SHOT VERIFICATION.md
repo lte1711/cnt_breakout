@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - v3
-  - shadow
-  - verification
 aliases:
   - CNT v2 BREAKOUT V3 SHADOW RUNTIME ONE-SHOT VERIFICATION
 ---
@@ -114,3 +108,8 @@ The next valid phase is:
 - `breakout_v3 shadow observation window start`
 
 Direct activation, tuning, and order-path connection remain prohibited.
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V3 DESIGN DRAFT]]
+

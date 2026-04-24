@@ -3,11 +3,6 @@ title: CNT v2 BREAKOUT V1 ACTIVE ISOLATION DECISION
 status: FINAL
 language: en
 updated: 2026-04-24
-tags:
-  - cnt
-  - breakout_v1
-  - active-set
-  - isolation
 ---
 
 # CNT v2 BREAKOUT V1 ACTIVE ISOLATION DECISION
@@ -84,3 +79,8 @@ This decision should be interpreted as:
 ## Conclusion
 
 The active-set isolation of `breakout_v1` is the smallest valid operational change that directly addresses the remaining live performance contamination source.
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT]]
+

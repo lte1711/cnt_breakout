@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - automation
-  - tools
-  - guide
 aliases:
   - CNT AUTOMATION TOOLS USAGE GUIDE
 ---
@@ -365,3 +360,8 @@ python scripts/standalone_dashboard.py --watch &
 ---
 
 *이 가이드는 CNT 프로젝트의 Obsidian 관리 자동화를 돕기 위해 작성되었습니다.*
+
+## Obsidian Links
+
+- [[CNT TOOLCHAIN INTEGRATION REPORT]]
+

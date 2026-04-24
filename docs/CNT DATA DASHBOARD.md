@@ -1,8 +1,4 @@
 ---
-tags:
-  - cnt
-  - obsidian
-  - dashboard
 aliases:
   - CNT DATA DASHBOARD
 ---
@@ -107,12 +103,11 @@ if (raw) {
 ## Usage Note
 
 - 이 문서는 Obsidian 내부 확인용 대시보드다.
-- 운영 판단은 항상 실제 `data/*.json`, `logs/*.log`, 그리고 [[AGENTS]] 규칙과 함께 읽어야 한다.
+- 운영 판단은 항상 실제 `data/*.json`, `logs/*.log`, 그리고 AGENTS 규칙과 함께 읽어야 한다.
 
 ---
 
 ## Obsidian Links
 
-- [[CNT v2 TESTNET PERFORMANCE REPORT]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT]]
-- [[00 Docs Index|Docs Index]]
+- [[00 Docs Index]]
+

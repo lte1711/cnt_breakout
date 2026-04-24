@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - v2
-  - breakout
-  - isolation
 aliases:
   - CNT v2 BREAKOUT ISOLATION OBSERVATION WINDOW SPEC KO
 ---
@@ -126,6 +120,6 @@ Breakout 전용 관측은 아래 조건 전까지 과장해서 해석하면 안 
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT LAST 3 TRADES REVIEW]]
-- [[CNT v2 STRATEGY ISOLATION COMPARISON]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT KO]]
+
+

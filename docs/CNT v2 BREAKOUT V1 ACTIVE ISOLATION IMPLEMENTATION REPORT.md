@@ -3,12 +3,6 @@ title: CNT v2 BREAKOUT V1 ACTIVE ISOLATION IMPLEMENTATION REPORT
 status: FINAL
 language: en
 updated: 2026-04-24
-tags:
-  - cnt
-  - breakout_v1
-  - active-set
-  - implementation
-  - validation
 ---
 
 # CNT v2 BREAKOUT V1 ACTIVE ISOLATION IMPLEMENTATION REPORT
@@ -106,3 +100,8 @@ After this patch:
 ## Conclusion
 
 The active-set isolation patch was applied successfully without breaking tests, compile checks, or the entry-chain runtime flow.
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT]]
+

@@ -1,7 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
 aliases:
   - DESIGN SUMMARY
 ---
@@ -29,8 +26,4 @@ strategy_signal 기반 신규 BUY 진입 게이트를 engine 실행 흐름에 �
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
-
-### Related
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 ARCHITECTURE DESIGN DOCUMENT]]

@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - validation
-  - instruction
-  - v2
 aliases:
   - CNT v2 AUTO VALIDATION & DECISION SYSTEM WORK INSTRUCTION
 ---
@@ -61,8 +55,5 @@ DATA -> SNAPSHOT -> ANALYSIS -> DECISION
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[00 Docs Index]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

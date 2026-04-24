@@ -122,3 +122,6 @@ if strategy_registry[name].weight == 0.0:
 - **Result**: NON_IMMEDIATE (Observation phase 계속)
 - **Next**: First Observation Review 시 적용
 
+## Obsidian Links
+
+- [[00 Docs Index]]

@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - v3
-  - shadow
-  - report
 aliases:
   - CNT v2 BREAKOUT V3 SHADOW EVALUATOR IMPLEMENTATION REPORT
 ---
@@ -129,3 +123,8 @@ The current state is:
 - evaluator skeleton -> implemented
 - runtime integration -> not started
 - activation -> prohibited
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V3 DESIGN DRAFT]]
+

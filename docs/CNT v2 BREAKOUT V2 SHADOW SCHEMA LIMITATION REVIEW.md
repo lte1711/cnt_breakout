@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - shadow
-  - schema
-  - review
 ---
 
 # CNT v2 BREAKOUT V2 SHADOW SCHEMA LIMITATION REVIEW
@@ -15,7 +9,7 @@ This review documents what the current `breakout_v2` shadow schema can and canno
 
 ## Currently Observable Fields
 
-Current shadow event schema in [[shadow_eval.py]] directly records:
+Current shadow event schema in shadow_eval.py directly records:
 
 - `ts`
 - `symbol`
@@ -104,6 +98,5 @@ This makes conditional decomposition weaker than it should be.
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT V2 GATE REDUNDANCY REVIEW]]
-- [[CNT v2 BREAKOUT V2 SHADOW RUNTIME IMPLEMENTATION]]
-- [[CNT v2 BREAKOUT V2 SHADOW SCHEMA EXPANSION PLAN]]
+- [[CNT v2 BREAKOUT V2 DESIGN]]
+

@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - localization
-  - policy
 aliases:
   - CNT DOCS KOREAN MIRROR POLICY
 ---
@@ -115,3 +110,8 @@ The current direction is:
 CNT documentation now operates under a Korean-first, dual-path rule.
 
 All future official CNT documents should be accompanied by a Korean mirror unless the user explicitly suspends that rule.
+
+## Obsidian Links
+
+- [[CNT TOOLCHAIN INTEGRATION REPORT]]
+

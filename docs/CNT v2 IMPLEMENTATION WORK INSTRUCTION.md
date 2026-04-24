@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - instruction
-  - v2
 aliases:
   - CNT v2 IMPLEMENTATION WORK INSTRUCTION
 ---
@@ -414,8 +409,5 @@ CNT v2 구현의 핵심은 이것 하나다:
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[00 Docs Index]]
 
-### Related
-- [[00 Docs Index|Docs Index]]

@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - v2
-  - strategy
-  - candidate-recovery
-  - validation
 aliases:
   - CNT v2 CANDIDATE RECOVERY STAGE 2 REPORT
 ---
@@ -147,8 +141,5 @@ OK
 
 ## Obsidian Links
 
-- [[CNT v2 RANKER REDESIGN REPORT]]
-- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT]]
-- [[CNT v2 TESTNET PERFORMANCE REPORT]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 VALIDATION REPORT]]
+

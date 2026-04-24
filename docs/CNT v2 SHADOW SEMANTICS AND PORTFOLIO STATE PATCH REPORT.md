@@ -1,11 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - patch
-  - shadow
-  - state
-  - v2
 aliases:
   - CNT v2 SHADOW SEMANTICS AND PORTFOLIO STATE PATCH REPORT
 ---
@@ -94,7 +87,5 @@ That issue remains an operating decision problem, not a shadow/state integrity p
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT V3 SHADOW EVALUATOR IMPLEMENTATION REPORT]]
-- [[CNT v2 BREAKOUT V3 SHADOW OBSERVATION WINDOW START]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 VALIDATION REPORT]]
+

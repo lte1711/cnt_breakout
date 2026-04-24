@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - redesign
-  - plan
-  - ko
 aliases:
   - CNT v2 BREAKOUT V2 REDESIGN PREPARATION KO
 ---
@@ -112,6 +106,12 @@ strict AND stacking을 weighted quality scoring으로 대체한다.
 
 ## 링크
 
-- [[CNT v2 BREAKOUT V2 REDESIGN PREPARATION]]
-- [[CNT v2 BREAKOUT V2 EXPANDED SHADOW OBSERVATION REVIEW KO]]
-- [[CNT v2 BREAKOUT V3 DESIGN DRAFT KO]]
+- CNT v2 BREAKOUT V2 REDESIGN PREPARATION
+- CNT v2 BREAKOUT V2 EXPANDED SHADOW OBSERVATION REVIEW KO
+- CNT v2 BREAKOUT V3 DESIGN DRAFT KO
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT V2 DESIGN KO]]
+
+

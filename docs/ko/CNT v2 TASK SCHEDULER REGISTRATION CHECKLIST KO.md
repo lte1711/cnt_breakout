@@ -1,11 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - instruction
-  - v2
-  - scheduler
-  - ko
 aliases:
   - CNT v2 TASK SCHEDULER REGISTRATION CHECKLIST KO
 ---
@@ -116,7 +109,6 @@ CURRENT_GATE     = NOT_READY / INSUFFICIENT_SAMPLE
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index KO|Docs Index KO]]
-- [[CNT v2 SCHEDULED DATA COLLECTION SETUP KO]]
-- [[CNT v2 LOGS FOLDER HYGIENE REPORT KO]]
+- [[CNT v2 TESTNET PERFORMANCE REPORT KO]]
+
+

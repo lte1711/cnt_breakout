@@ -3,11 +3,6 @@ title: CNT v2 BREAKOUT V1 ACTIVE ISOLATION DECISION KO
 status: FINAL
 language: ko
 updated: 2026-04-24
-tags:
-  - cnt
-  - breakout_v1
-  - active-set
-  - isolation
 ---
 
 # CNT v2 BREAKOUT V1 ACTIVE ISOLATION DECISION
@@ -84,3 +79,9 @@ tags:
 ## 결론
 
 `breakout_v1` active-set isolation은 현재 남아 있는 live performance contamination source를 직접 줄이는 가장 작은 유효 운영 변경이다.
+
+## Obsidian Links
+
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT KO]]
+
+

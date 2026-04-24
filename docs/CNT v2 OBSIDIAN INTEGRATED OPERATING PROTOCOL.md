@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - obsidian
-  - workflow
-  - protocol
 aliases:
   - CNT v2 OBSIDIAN INTEGRATED OPERATING PROTOCOL
 ---
@@ -278,3 +273,8 @@ The CNT Obsidian operating stack is now defined as a unified protocol:
 - transition rules control next decisions
 
 This protocol exists to keep strategic judgement consistent while runtime execution remains separate.
+
+## Obsidian Links
+
+- [[00 Docs Index]]
+

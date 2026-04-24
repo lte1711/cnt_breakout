@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - observability
-  - report
-  - v2
 aliases:
   - CNT v2 OBSERVABILITY AGGREGATION PATCH REPORT
 ---
@@ -136,9 +130,5 @@ Required next action:
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 OBSERVABILITY PRIORITY PLAN]]
 
-### Related
-- [[CNT v2 OBSERVABILITY IMPLEMENTATION REPORT]]
-- [[CNT v2 OBSERVABILITY VALIDATION GATE]]

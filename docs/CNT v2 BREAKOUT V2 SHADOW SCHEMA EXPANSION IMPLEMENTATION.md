@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - shadow
-  - schema
-  - implementation
 ---
 
 # CNT v2 BREAKOUT V2 SHADOW SCHEMA EXPANSION IMPLEMENTATION
@@ -106,6 +100,5 @@ This step improves causal observability, not profitability proof.
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT V2 SHADOW SCHEMA EXPANSION PLAN]]
-- [[CNT v2 BREAKOUT V2 SHADOW SCHEMA LIMITATION REVIEW]]
-- [[CNT v2 BREAKOUT V2 SHADOW RUNTIME IMPLEMENTATION]]
+- [[CNT v2 BREAKOUT V2 DESIGN]]
+

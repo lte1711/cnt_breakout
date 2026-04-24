@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - validation
-  - report
-  - v2
 aliases:
   - CNT v2 AUTO VALIDATION & DECISION SYSTEM PROGRESS REPORT
 ---
@@ -81,10 +75,5 @@ NEXT   = CONTINUE_DATA_COLLECTION_WITH_AUTOMATIC_EVALUATION
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
-
-### Related
 - [[CNT v2 AUTO VALIDATION & DECISION SYSTEM WORK INSTRUCTION]]
-- [[CNT v2 NEXT PHASE PLAN]]
-- [[CNT v2 PERFORMANCE VALIDATION REPORT]]
+

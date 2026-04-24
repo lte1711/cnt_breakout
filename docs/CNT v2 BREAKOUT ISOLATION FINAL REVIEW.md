@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - isolation
-  - review
 ---
 
 # CNT v2 BREAKOUT ISOLATION FINAL REVIEW
@@ -117,6 +112,5 @@ This review must preserve:
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT ISOLATION RUNTIME START]]
-- [[CNT v2 BREAKOUT ISOLATION MIDPOINT CHECK]]
-- [[CNT v2 POST-READY DEGRADATION REVIEW]]
+- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT]]
+

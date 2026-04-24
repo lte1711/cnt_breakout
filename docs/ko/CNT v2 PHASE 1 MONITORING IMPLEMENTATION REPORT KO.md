@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - report
-  - v2
 aliases:
   - CNT v2 PHASE 1 MONITORING IMPLEMENTATION REPORT KO
 ---
@@ -121,9 +116,6 @@ NEXT             = CONTINUE PHASE 1 OBSERVATION WITH MONITOR OUTPUT
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 VALIDATION REPORT KO]]
 
-### Related
-- [[CNT v2 OPERATIONAL ANALYSIS REPORT]]
-- [[CNT v2 PHASE 1 OPERATION MONITORING INSTRUCTION]]
+

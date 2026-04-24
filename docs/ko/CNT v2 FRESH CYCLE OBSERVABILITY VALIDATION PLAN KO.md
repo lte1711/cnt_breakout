@@ -1,11 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - observability
-  - validation
-  - plan
-  - v2
 aliases:
   - CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION PLAN KO
 ---
@@ -89,8 +82,6 @@ NEXT   = breakout_v1 first relaxation experiment
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[00 Docs Index KO]]
 
-### Related
-- [[00 Docs Index|Docs Index]]
+

@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - breakout
-  - shadow
-  - runtime
 ---
 
 # CNT v2 BREAKOUT V2 SHADOW RUNTIME INTEGRATION
@@ -153,6 +148,5 @@ without changing production execution.
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT V2 SHADOW VALIDATION SPEC]]
-- [[CNT v2 BREAKOUT V2 VALIDATION WINDOW START]]
-- [[CNT v2 BREAKOUT ISOLATION FINAL REVIEW]]
+- [[CNT v2 BREAKOUT V2 DESIGN]]
+

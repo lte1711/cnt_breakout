@@ -3,12 +3,6 @@ title: CNT v2 PULLBACK-ONLY OBSERVATION WINDOW EXECUTION REPORT
 status: FINAL
 language: en
 updated: 2026-04-24
-tags:
-  - cnt
-  - observation
-  - pullback_v1
-  - breakout_v3
-  - verification
 ---
 
 # CNT v2 PULLBACK-ONLY OBSERVATION WINDOW EXECUTION REPORT
@@ -178,3 +172,8 @@ The current CNT state is now:
 - shadow semantics = clean
 - portfolio risk sync = preserved
 - Live Gate = still negative, pending further post-isolation observation
+
+## Obsidian Links
+
+- [[CNT v2 LIVE READINESS GATE]]
+

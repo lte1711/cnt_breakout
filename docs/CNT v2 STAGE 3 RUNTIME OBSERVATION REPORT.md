@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - v2
-  - stage3
-  - runtime
-  - observation
 aliases:
   - CNT v2 STAGE 3 RUNTIME OBSERVATION REPORT
 ---
@@ -169,8 +163,5 @@ Stage 3의 목적은 2단계 후보 회복 패치가 **실제 운영 로그에�
 
 ## Obsidian Links
 
-- [[CNT v2 CANDIDATE RECOVERY STAGE 2 REPORT]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT]]
-- [[CNT v2 TESTNET PERFORMANCE REPORT]]
-- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT]]
-- [[00 Docs Index|Docs Index]]
+- [[CNT v2 VALIDATION REPORT]]
+

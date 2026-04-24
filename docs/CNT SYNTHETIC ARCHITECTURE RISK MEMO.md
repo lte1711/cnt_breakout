@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - memo
-  - synthetic
-  - architecture
-  - backlog
 aliases:
   - CNT Synthetic Architecture Risk Memo
 ---
@@ -96,8 +90,5 @@ The correct interpretation is:
 
 ## Obsidian Links
 
-- [[CNT v2 CURRENT STATUS ASSESSMENT]]
-- [[CNT v2 TESTNET PERFORMANCE REPORT]]
-- [[CNT TOOLCHAIN INTEGRATION REPORT]]
-- [[CNT v2 STAGE 3 RUNTIME OBSERVATION REPORT]]
-- [[00 Docs Index|Docs Index]]
+- [[00 Docs Index]]
+

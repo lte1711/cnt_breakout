@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - report
-  - v2
 aliases:
   - CNT v2 TEST HARNESS IMPLEMENTATION REPORT
 ---
@@ -116,9 +111,5 @@ NEXT = ADD OBSERVABILITY FOR STRATEGY REJECTION REASONS
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
-
-### Related
 - [[CNT v2 ENGINEERING PHASE PLAN]]
-- [[CNT v2 ENGINE DECOMPOSITION DESIGN]]
+

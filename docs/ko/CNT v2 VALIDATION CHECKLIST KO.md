@@ -1,11 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - validation
-  - checklist
-  - v2
-  - ko
 aliases:
   - CNT v2 VALIDATION CHECKLIST KO
 ---
@@ -252,6 +245,12 @@ symbol
 
 ## 링크
 
-- [[CNT v2 VALIDATION CHECKLIST]]
+- CNT v2 VALIDATION CHECKLIST
+- CNT v2 VALIDATION REPORT KO
+- CNT v2 PERFORMANCE VALIDATION REPORT KO
+
+## Obsidian Links
+
 - [[CNT v2 VALIDATION REPORT KO]]
-- [[CNT v2 PERFORMANCE VALIDATION REPORT KO]]
+
+

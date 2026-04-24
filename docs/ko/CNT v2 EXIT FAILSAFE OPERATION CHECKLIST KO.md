@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - instruction
-  - v2
 aliases:
   - CNT v2 EXIT FAILSAFE OPERATION CHECKLIST KO
 ---
@@ -80,6 +75,12 @@ pending가 있어도 stop이 먼저 필요하면 보호 청산이 실행되면 P
 
 ## 링크
 
-- [[CNT v2 EXIT FAILSAFE PATCH REPORT KO]]
-- [[CNT v2 EXIT FAILSAFE OPERATION REPORT KO]]
-- [[00 Docs Index KO]]
+- CNT v2 EXIT FAILSAFE PATCH REPORT KO
+- CNT v2 EXIT FAILSAFE OPERATION REPORT KO
+- 00 Docs Index KO
+
+## Obsidian Links
+
+- [[CNT v2 VALIDATION REPORT KO]]
+
+

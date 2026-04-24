@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - version
-  - classification
-  - report
 generated_at: 2026-04-24 11:17:35
 ---
 
@@ -70,3 +65,8 @@ generated_at: 2026-04-24 11:17:35
 - **general**: 2
 - **implementation**: 2
 - **validation**: 2
+
+## Obsidian Links
+
+- [[00 Docs Index]]
+

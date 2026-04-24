@@ -1,9 +1,4 @@
 ---
-tags:
-  - cnt
-  - obsidian
-  - dashboard
-  - ko
 aliases:
   - CNT DATA DASHBOARD KO
 ---
@@ -109,13 +104,12 @@ if (raw) {
 ## 사용 메모
 
 - 이 문서는 Obsidian 내부에서 확인하는 대시보드입니다.
-- 운영 판단은 항상 실제 `data/*.json`, `logs/*.log`, 그리고 [[AGENTS]] 규칙과 함께 읽어야 합니다.
+- 운영 판단은 항상 실제 `data/*.json`, `logs/*.log`, 그리고 AGENTS 규칙과 함께 읽어야 합니다.
 
 ---
 
 ## Obsidian Links
 
-- [[CNT OPERATIONS DASHBOARD GUIDE KO]]
-- [[CNT v2 TESTNET PERFORMANCE REPORT KO]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT KO]]
-- [[00 Docs Index KO|Docs Index KO]]
+- [[CNT DATA DASHBOARD KO]]
+
+

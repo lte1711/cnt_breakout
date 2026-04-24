@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - docs
-  - validation
-  - report
-  - v2
 aliases:
   - CNT v2 VALIDATION REPORT
 ---
@@ -247,10 +241,5 @@ The current result confirms:
 
 ## Obsidian Links
 
-- [[00 CNT Vault Home|Vault Home]]
-- [[00 Docs Index|Docs Index]]
+- [[00 Docs Index]]
 
-### Related
-- [[cnt_v2_architecture_design]]
-- [[cnt_v2_implementation_work_instruction]]
-- [[cnt_v2_validation_checklist]]

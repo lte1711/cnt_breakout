@@ -1,10 +1,4 @@
 ---
-tags:
-  - cnt
-  - v2
-  - eol
-  - reproducibility
-  - report
 aliases:
   - CNT v2 EOL NORMALIZATION AND REPORT HARDENING REPORT
 ---
@@ -69,7 +63,4 @@ Operational note:
 ## Obsidian Links
 
 - [[CNT V2 EOL NORMALIZATION AND REPORT HARDENING WORK INSTRUCTION]]
-- [[CNT TOOLCHAIN INTEGRATION REPORT]]
-- [[CNT v2 CURRENT STATUS ASSESSMENT]]
-- [[CNT v2 TESTNET PERFORMANCE REPORT]]
-- [[00 Docs Index|Docs Index]]
+

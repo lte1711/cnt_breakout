@@ -241,6 +241,15 @@ def _build_exit_model_from_strategy(strategy_name: str, entry_price: float) -> t
     return stop_price, target_price
 
 
+def _select_exit_limit_price(exit_signal: ExitSignal, current_price: float) -> float:
+    if exit_signal.exit_type in {"TARGET", "PARTIAL"}:
+        if exit_signal.target_price is None:
+            raise ValueError(f"missing target_price for {exit_signal.exit_type} limit exit")
+        return float(exit_signal.target_price)
+
+    return current_price
+
+
 def _normalize_open_trade(open_trade: dict | None) -> dict | None:
     if not isinstance(open_trade, dict):
         return None
@@ -1147,7 +1156,8 @@ def start_engine() -> None:
             entry_qty = float(open_trade["entry_qty"])
             if exit_signal.exit_type in {"TARGET", "PARTIAL", "TIME_EXIT"}:
                 exit_qty = entry_qty if exit_signal.exit_type != "PARTIAL" else float(exit_signal.partial_qty or 0.0)
-                adjusted_exit = auto_adjust_order_inputs(price, exit_qty, filters)
+                exit_limit_price = _select_exit_limit_price(exit_signal, price)
+                adjusted_exit = auto_adjust_order_inputs(exit_limit_price, exit_qty, filters)
                 adjusted_exit_qty = min(entry_qty, float(adjusted_exit["adjusted_qty"]))
 
                 exit_validation = validate_order(

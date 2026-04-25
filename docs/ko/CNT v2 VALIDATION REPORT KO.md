@@ -224,6 +224,5 @@ CNT v2 초기 구현은 CNT v1.1 위의 유효한 확장이지만, operating-rea
 
 ## Obsidian Links
 
-- [[CNT v2 VALIDATION REPORT KO]]
-
+- [[00 Docs Index KO]]
 

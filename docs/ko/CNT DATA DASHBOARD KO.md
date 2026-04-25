@@ -110,6 +110,5 @@ if (raw) {
 
 ## Obsidian Links
 
-- [[CNT DATA DASHBOARD KO]]
-
+- [[00 Docs Index KO]]
 

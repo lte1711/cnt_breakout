@@ -195,6 +195,6 @@ CNT v1.1은 v1 구조를 깨지 않고,
 
 ## Obsidian Links
 
-- [[CNT v1.1 ARCHITECTURE DESIGN DOCUMENT KO]]
+- [[00 Docs Index KO]]
 
 

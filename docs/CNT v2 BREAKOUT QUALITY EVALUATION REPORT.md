@@ -139,5 +139,5 @@ One-line conclusion:
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT QUALITY EVALUATION REPORT]]
+- [[00 Docs Index]]
 

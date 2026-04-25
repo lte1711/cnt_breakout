@@ -56,5 +56,5 @@ CNT v2의 라이브 게이트는 단순 수익 여부가 아니라, 실제 Testn
 
 ## Obsidian Links
 
-- [[CNT v2 LIVE READINESS GATE]]
+- [[00 Docs Index]]
 

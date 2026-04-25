@@ -285,5 +285,5 @@ Implementation is not started yet.
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT V3 DESIGN DRAFT]]
+- [[00 Docs Index]]
 

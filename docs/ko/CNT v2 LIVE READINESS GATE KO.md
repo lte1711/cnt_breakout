@@ -76,6 +76,6 @@ CNT v2의 라이브 준비도 게이트는 단순 수익 여부만 보는 기준
 
 ## Obsidian Links
 
-- [[CNT v2 LIVE READINESS GATE KO]]
+- [[00 Docs Index KO]]
 
 

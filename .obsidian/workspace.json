@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "7c31b544ca600b9e",
+        "id": "65fde13502d96e96",
         "type": "tabs",
         "children": [
           {
-            "id": "101817b638c0a378",
+            "id": "50fcff1daa78b9f5",
             "type": "leaf",
             "state": {
-              "type": "graph",
+              "type": "empty",
               "state": {},
-              "icon": "lucide-git-fork",
-              "title": "그래프 뷰"
+              "icon": "lucide-file",
+              "title": "새 탭"
             }
           }
         ]
@@ -195,43 +195,44 @@
       "workspaces:작업 공간 레이아웃 관리": false
     }
   },
-  "active": "101817b638c0a378",
+  "active": "50fcff1daa78b9f5",
   "lastOpenFiles": [
+    "docs/ko/CNT OBSERVATION RESUME CHECK 20260425 2007 KO.md",
+    "docs/ko/00 Docs Index KO.md",
+    "docs/ko/CNT DATA DASHBOARD KO.md",
+    "docs/ko/CNT v2 DASHBOARD SETUP BOTTLENECK ISOLATION UPGRADE REPORT KO.md",
+    "docs/ko/CNT v2 BREAKOUT V3 SETUP BOTTLENECK ISOLATION REPORT KO.md",
+    "docs/ko/CNT v2 OBSIDIAN INTEGRATED OPERATING PROTOCOL KO.md",
+    "docs/ko/CNT DOCS KOREAN MIGRATION PLAN KO.md",
+    "docs/ko/CNT DOCS KOREAN MIRROR POLICY KO.md",
     "data/engine.lock",
+    "docs/ko/CNT v2 BREAKOUT V2 DESIGN KO.md",
+    "AGENTS.md",
+    "00 CNT Vault Home.md",
+    "docs/ko/CNT PROGRESS STATUS REPORT 20260426 0204 KO.md",
+    "docs/ko/CNT TARGET EXIT ORDER REPLACEMENT REPORT 20260425 KO.md",
+    "docs/ko/CNT TARGET EXIT PRICE FIX REPORT 20260425 KO.md",
+    "tests/__pycache__/test_engine_exit_price.cpython-312-pytest-9.0.3.pyc",
+    "tests/__pycache__/test_engine_exit_price.cpython-312.pyc",
+    "tests/test_engine_exit_price.py",
+    "docs/ko/CNT TARGET EXIT PRICE MISMATCH REPORT 20260425 KO.md",
+    "docs/ko/CNT TRADING STATUS REPORT 20260425 1948 KO.md",
+    "docs/CNT v2 BREAKOUT V2 DESIGN.md",
+    "docs/CNT OBSIDIAN LINK PATH FIX REPORT 20260425.md",
     "docs/CNT OBSIDIAN LINK VALIDATION REPORT 20260425.md",
     "templates/ko/allowed_signal_log_ko.md",
     "templates/allowed_signal_log.md",
     "templates/ko/activation_review_checklist_ko.md",
     "templates/activation_review_checklist.md",
-    "docs/CNT v2 BREAKOUT V2 DESIGN.md",
-    "AGENTS.md",
     "docs/00 Docs Index.md",
     "docs/ko/CNT v2 VALIDATION REPORT KO.md",
     "docs/CNT v2 BREAKOUT V3 SHADOW VALIDATION RUNTIME INTEGRATION PLAN.md",
     "tools/__pycache__/analyze_breakout_v3_post_trend_setup_residual_trace.cpython-312.pyc",
-    "reports/breakout_v3_post_trend_setup_residual_trace.md",
     "reports/breakout_v3_post_trend_setup_residual_trace.json",
     "tools/analyze_breakout_v3_post_trend_setup_residual_trace.py",
-    "docs/ko/CNT DATA DASHBOARD KO.md",
     "tools/__pycache__/analyze_breakout_v3_setup_market_context_split.cpython-312.pyc",
-    "reports/breakout_v3_setup_market_context_split.md",
     "reports/breakout_v3_setup_market_context_split.json",
     "tools/analyze_breakout_v3_setup_market_context_split.py",
-    "tools/__pycache__/analyze_breakout_v3_setup_cluster_layers.cpython-312.pyc",
-    "reports/breakout_v3_setup_cluster_layer_isolation.md",
-    "reports/breakout_v3_setup_cluster_layer_isolation.json",
-    "tools/analyze_breakout_v3_setup_cluster_layers.py",
-    "reports/breakout_v3_setup_root_cause_matrix.md",
-    "docs/ko/CNT OBSIDIAN GRAPH HARD SIMPLIFICATION REPORT KO.md",
-    "docs/ko/CNT v2 DASHBOARD SETUP BOTTLENECK ISOLATION UPGRADE REPORT KO.md",
-    "docs/CNT v2 DASHBOARD SETUP BOTTLENECK ISOLATION UPGRADE REPORT.md",
-    "docs/ko/CNT v2 BREAKOUT V3 SETUP BOTTLENECK ISOLATION REPORT KO.md",
-    "docs/CNT v2 BREAKOUT V3 SETUP BOTTLENECK ISOLATION REPORT.md",
-    "reports/breakout_v3_setup_bottleneck_report.md",
-    "docs/ko/CNT REPOSITORY CLEANUP REPORT KO.md",
-    "docs/CNT REPOSITORY CLEANUP REPORT.md",
-    "docs/ko/CNT v2 BREAKOUT V3 FIRST SHADOW OBSERVATION REVIEW KO.md",
-    "docs/CNT v2 BREAKOUT V3 FIRST SHADOW OBSERVATION REVIEW.md",
     "무제.canvas"
   ]
 }

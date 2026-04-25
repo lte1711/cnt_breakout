@@ -77,6 +77,6 @@ aliases:
 
 ## Obsidian Links
 
-- [[CNT TOOLCHAIN INTEGRATION REPORT KO]]
+- [[00 Docs Index KO]]
 
 

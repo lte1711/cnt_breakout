@@ -150,4 +150,4 @@ This preserves the current runtime baseline while making the next validation sta
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT V2 DESIGN]]
+- [[00 Docs Index]]

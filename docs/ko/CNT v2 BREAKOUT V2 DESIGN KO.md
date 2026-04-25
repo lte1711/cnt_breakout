@@ -145,6 +145,6 @@ VWAP은 공정 intraday 위치보다 아래이거나 너무 가까운 약한 bre
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT V2 DESIGN KO]]
+- [[00 Docs Index KO]]
 
 

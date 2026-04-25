@@ -79,6 +79,6 @@ NOTES: auto-generated from performance snapshot
 
 ## Obsidian Links
 
-- [[CNT v2 TESTNET PERFORMANCE REPORT KO]]
+- [[00 Docs Index KO]]
 
 

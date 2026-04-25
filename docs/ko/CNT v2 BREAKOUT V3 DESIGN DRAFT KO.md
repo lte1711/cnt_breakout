@@ -268,6 +268,6 @@ Entry candidate는 아래를 모두 만족할 때만 허용한다.
 
 ## Obsidian Links
 
-- [[CNT v2 BREAKOUT V3 DESIGN DRAFT KO]]
+- [[00 Docs Index KO]]
 
 

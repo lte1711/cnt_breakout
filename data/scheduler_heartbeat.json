@@ -1,8 +1,8 @@
 ﻿{
     "last_event":  "finish",
-    "current_time":  "2026-04-25 17:54:03",
-    "last_start_time":  "2026-04-25 17:54:01",
-    "last_finish_time":  "2026-04-25 17:54:03",
+    "current_time":  "2026-04-26 02:34:02",
+    "last_start_time":  "2026-04-26 02:34:00",
+    "last_finish_time":  "2026-04-26 02:34:02",
     "expected_interval_minutes":  10,
     "gap_threshold_minutes":  20,
     "gap_detected":  false,

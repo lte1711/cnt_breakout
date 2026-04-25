@@ -43,6 +43,10 @@ class EngineCycleSmokeTests(unittest.TestCase):
                 patch("src.engine.generate_performance_report") as perf_report,
                 patch("src.engine.evaluate_live_gate", return_value={"status": "NOT_READY"}) as live_gate,
                 patch("src.engine.save_live_gate_decision") as save_gate,
+                patch("src.engine.load_strategy_metrics", return_value={}) as load_metrics,
+                patch("src.engine.load_portfolio_state", return_value={}) as load_portfolio,
+                patch("src.engine.build_auxiliary_recovery_status", return_value={"status": "ok"}) as aux_status,
+                patch("src.engine.save_auxiliary_recovery_status") as save_aux,
             ):
                 engine._save_and_finish(
                     state_file=state_file,
@@ -70,6 +74,10 @@ class EngineCycleSmokeTests(unittest.TestCase):
             perf_report.assert_called_once()
             live_gate.assert_called_once()
             save_gate.assert_called_once()
+            load_metrics.assert_called_once()
+            load_portfolio.assert_called_once()
+            aux_status.assert_called_once()
+            save_aux.assert_called_once()
             self.assertEqual(state["strategy_name"], "pullback_v1")
 
     def test_run_breakout_v2_shadow_does_not_interrupt_on_log_failure(self) -> None:

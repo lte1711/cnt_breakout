@@ -11,8 +11,8 @@ aliases:
 
 ## 파일
 
-- HTML 대시보드: [cnt_operations_dashboard.html](</c:/cnt/docs/cnt_operations_dashboard.html>)
-- 실행 스크립트: [serve_dashboard.py](/c:/cnt/scripts/serve_dashboard.py)
+- HTML 대시보드: [cnt_operations_dashboard.html](../cnt_operations_dashboard.html)
+- 실행 스크립트: [serve_dashboard.py](../../scripts/serve_dashboard.py)
 
 ## 이 대시보드가 추가하는 것
 
@@ -70,5 +70,3 @@ http://127.0.0.1:8000/docs/cnt_operations_dashboard.html
 ## Obsidian Links
 
 - [[CNT DATA DASHBOARD KO]]
-
-

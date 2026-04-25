@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-04-25 17:54:03",
+  "official_gate": {
+    "status": "FAIL",
+    "reason": "NON_POSITIVE_EXPECTANCY",
+    "expectancy": -0.0003352571428572645,
+    "net_pnl": -0.011734000000004186,
+    "closed_trades": 35
+  },
+  "pullback_v1": {
+    "closed_trades": 32,
+    "wins": 17,
+    "losses": 15,
+    "win_rate": 0.53125,
+    "expectancy": 0.0017143749999998367,
+    "profit_factor": 1.234828800986202,
+    "net_pnl": 0.054859999999994774,
+    "signals_generated": 596,
+    "signals_selected": 210
+  },
+  "system_excluding_breakout_v1": {
+    "excluded_strategy": "breakout_v1",
+    "included_strategies": [
+      "pullback_v1"
+    ],
+    "closed_trades": 32,
+    "wins": 17,
+    "losses": 15,
+    "win_rate": 0.53125,
+    "expectancy": 0.0017143749999998367,
+    "profit_factor": 1.234828800986202,
+    "net_pnl": 0.054859999999994774
+  },
+  "recovery_signal": {
+    "status": "RECOVERY_OBSERVATION_IN_PROGRESS",
+    "is_positive_expectancy": true,
+    "is_positive_net_pnl": true,
+    "profit_factor_pass": true,
+    "is_statistically_valid": false,
+    "all_recovery_criteria_passed": false,
+    "min_sample_required": 50,
+    "min_profit_factor": 1.1
+  },
+  "runtime_state": {
+    "active_strategy": "pullback_v1",
+    "last_run_time": "2026-04-25 17:54:01",
+    "last_action": "HOLD_OPEN_TRADE",
+    "pending_order_exists": false,
+    "open_trade_exists": true,
+    "open_positions_count": 1,
+    "total_exposure": 5.0994019999999995
+  },
+  "risk_counter_sync": {
+    "daily_loss_count_synced": true,
+    "consecutive_losses_synced": true,
+    "state_daily_loss_count": 0,
+    "portfolio_daily_loss_count": 0,
+    "state_consecutive_losses": 3,
+    "portfolio_consecutive_losses": 3
+  },
+  "interpretation": "official_gate_remains_authoritative_auxiliary_status_is_observational_only"
+}

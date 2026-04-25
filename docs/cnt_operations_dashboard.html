@@ -370,6 +370,23 @@
 
     <section class="grid-2" style="margin-bottom:12px;">
       <div class="card">
+        <h2>Current Pullback Position</h2>
+        <div class="big-number small" id="position-title">LOADING</div>
+        <div class="metric-sub" id="position-summary">checking open trade...</div>
+        <div class="header-meta" id="position-badges" style="justify-content:flex-start;margin-top:12px;"></div>
+        <div class="stack" style="margin-top:12px;" id="position-body"></div>
+      </div>
+      <div class="card">
+        <h2>Scheduler Heartbeat</h2>
+        <div class="big-number small" id="heartbeat-title">LOADING</div>
+        <div class="metric-sub" id="heartbeat-summary">checking scheduler freshness...</div>
+        <div class="header-meta" id="heartbeat-badges" style="justify-content:flex-start;margin-top:12px;"></div>
+        <div class="stack" style="margin-top:12px;" id="heartbeat-body"></div>
+      </div>
+    </section>
+
+    <section class="grid-2" style="margin-bottom:12px;">
+      <div class="card">
         <h2>Runtime Mode</h2>
         <div class="big-number small" id="mode-title">LOADING</div>
         <div class="metric-sub" id="mode-summary">checking active runtime mode...</div>
@@ -472,7 +489,7 @@
     </section>
 
     <div class="footer" id="footer-note">
-      CNT runtime sources: ../data/performance_snapshot.json | ../data/strategy_metrics.json | ../data/state.json | ../data/portfolio_state.json | ../data/live_gate_decision.json | ../data/shadow_breakout_v3_snapshot.json | ../reports/breakout_v3_allowed_trace.json | ../reports/breakout_v3_setup_pass_blocked_trace.json
+      CNT runtime sources: ../data/performance_snapshot.json | ../data/strategy_metrics.json | ../data/state.json | ../data/portfolio_state.json | ../data/live_gate_decision.json | ../data/auxiliary_recovery_status.json | ../data/scheduler_heartbeat.json | ../data/shadow_breakout_v3_snapshot.json | ../reports/breakout_v3_allowed_trace.json | ../reports/breakout_v3_setup_pass_blocked_trace.json
     </div>
   </main>
 
@@ -483,6 +500,8 @@ const DATA_FILES = {
   state: "../data/state.json",
   portfolio: "../data/portfolio_state.json",
   gate: "../data/live_gate_decision.json",
+  auxRecovery: "../data/auxiliary_recovery_status.json",
+  heartbeat: "../data/scheduler_heartbeat.json",
   shadowV3: "../data/shadow_breakout_v3_snapshot.json",
   v3AllowedTrace: "../reports/breakout_v3_allowed_trace.json",
   v3SetupPassBlockedTrace: "../reports/breakout_v3_setup_pass_blocked_trace.json",
@@ -586,42 +605,105 @@ function buildModeBadges(state, shadow) {
   return badges.join("");
 }
 
-function buildAuxiliaryRecovery(snapshot, state, portfolio, shadow, gate) {
-  const pullback = snapshot?.strategy_breakdown?.pullback_v1 ?? {};
-  const runtimePullbackOnly = String(state?.strategy_name ?? "") === "pullback_v1";
-  const officialGateFail = String(gate?.status ?? "") === "FAIL";
-  const stateDaily = Number(state?.risk_metrics?.daily_loss_count ?? -1);
-  const stateConsecutive = Number(state?.risk_metrics?.consecutive_losses ?? -1);
-  const portfolioDaily = Number(portfolio?.daily_loss_count ?? -2);
-  const portfolioConsecutive = Number(portfolio?.consecutive_losses ?? -2);
-  const riskSyncAligned = stateDaily === portfolioDaily && stateConsecutive === portfolioConsecutive;
-  const pullbackPositive = Number(pullback.expectancy ?? 0) > 0 && Number(pullback.profit_factor ?? 0) >= 1;
-  const shadowSignals = Number(shadow?.signal_count ?? 0);
-  const shadowAllowed = Number(shadow?.allowed_signal_count ?? 0);
-  const softDist = shadow?.soft_pass_count_distribution ?? {};
-  const shadowSoftGood = Object.entries(softDist).reduce((sum, [key, value]) => (
-    Number(key) >= 3 ? sum + Number(value) : sum
-  ), 0);
+function recoveryBadgeClass(status) {
+  if (status === "RECOVERY_EVIDENCE_CONFIRMED" || status === "RECOVERY_EVIDENCE_READY") return "ok";
+  if (status === "RECOVERY_OBSERVATION_IN_PROGRESS") return "warn";
+  return "bad";
+}
 
-  let status = "NEEDS_REVIEW";
-  if (runtimePullbackOnly && riskSyncAligned && pullbackPositive && shadowSignals > 0) {
-    status = officialGateFail ? "IMPROVING" : "ALIGNED_READY";
-  } else if (runtimePullbackOnly && riskSyncAligned) {
-    status = "STABLE";
-  }
+function buildAuxiliaryRecovery(auxStatus, gate) {
+  const pullback = auxStatus?.pullback_v1 ?? {};
+  const recovery = auxStatus?.recovery_signal ?? {};
+  const runtime = auxStatus?.runtime_state ?? {};
+  const officialGate = auxStatus?.official_gate ?? gate ?? {};
+  const status = recovery.all_recovery_criteria_passed
+    ? "RECOVERY_EVIDENCE_CONFIRMED"
+    : (recovery.status ?? "UNKNOWN");
+  const closedTrades = Number(pullback.closed_trades ?? 0);
+  const minSample = Number(recovery.min_sample_required ?? 50);
+  const tradesRemaining = Math.max(0, minSample - closedTrades);
+  const summary = status === "RECOVERY_OBSERVATION_IN_PROGRESS"
+    ? `Need ${tradesRemaining} more closed pullback_v1 trades before recovery can be confirmed.`
+    : "Auxiliary recovery status is read from data/auxiliary_recovery_status.json.";
 
   const checks = [
-    { label: "pullback-only runtime", pass: runtimePullbackOnly, text: runtimePullbackOnly ? "pullback_v1 active only" : `runtime=${state?.strategy_name ?? "--"}` },
-    { label: "risk sync", pass: riskSyncAligned, text: `${stateDaily}/${stateConsecutive} vs ${portfolioDaily}/${portfolioConsecutive}` },
-    { label: "pullback edge", pass: pullbackPositive, text: `exp=${fmt(pullback.expectancy, 6)} | pf=${fmt(pullback.profit_factor, 3)}` },
-    { label: "shadow observation", pass: shadowSignals > 0, text: `signals=${shadowSignals} | allowed=${shadowAllowed} | soft3+=${shadowSoftGood}` },
+    { label: "sample size", pass: Boolean(recovery.is_statistically_valid), text: `${closedTrades} / ${minSample}` },
+    { label: "expectancy", pass: Boolean(recovery.is_positive_expectancy), text: fmt(pullback.expectancy, 6) },
+    { label: "profit factor", pass: Boolean(recovery.profit_factor_pass), text: `${fmt(pullback.profit_factor, 3)} / ${fmt(recovery.min_profit_factor ?? 1.1, 1)}` },
+    { label: "official gate", pass: String(officialGate.status ?? "") !== "FAIL", text: `${officialGate.status ?? "--"} | ${officialGate.reason ?? "--"}` },
+    { label: "runtime", pass: String(runtime.active_strategy ?? "") === "pullback_v1", text: `${runtime.active_strategy ?? "--"} | ${runtime.last_action ?? "--"}` },
+    { label: "risk counter sync", pass: Boolean(auxStatus?.risk_counter_sync?.daily_loss_count_synced && auxStatus?.risk_counter_sync?.consecutive_losses_synced), text: `daily=${auxStatus?.risk_counter_sync?.state_daily_loss_count ?? "--"} | consecutive=${auxStatus?.risk_counter_sync?.state_consecutive_losses ?? "--"}` },
   ];
 
-  const summary = officialGateFail
-    ? "Official gate remains conservative FAIL; auxiliary layer tracks post-isolation recovery only."
-    : "Official gate and auxiliary recovery view are currently aligned.";
+  return { status, summary, checks, pullback, recovery, officialGate, tradesRemaining };
+}
 
-  return { status, summary, checks, shadowAllowed, shadowSoftGood };
+function buildPositionObservation(state) {
+  const openTrade = state?.open_trade ?? null;
+  if (!openTrade) {
+    return {
+      title: "NO OPEN TRADE",
+      summary: "No pullback_v1 exit result is pending right now.",
+      badges: [`<span class="badge info">PENDING ORDER: ${state?.pending_order ? "YES" : "NO"}</span>`],
+      rows: [
+        ["Action", state?.action ?? "--"],
+        ["Price", state?.price != null ? fmt(state.price, 2) : "--"],
+      ],
+    };
+  }
+
+  const price = Number(state?.price ?? 0);
+  const entry = Number(openTrade.entry_price ?? 0);
+  const target = Number(openTrade.target_price ?? 0);
+  const stop = Number(openTrade.stop_price ?? 0);
+  const targetGap = target > 0 && price > 0 ? target - price : null;
+  const stopGap = stop > 0 && price > 0 ? price - stop : null;
+  const unrealized = entry > 0 && price > 0 ? (price - entry) * Number(openTrade.entry_qty ?? 0) : null;
+
+  return {
+    title: "WAITING EXIT RESULT",
+    summary: "Next evidence point is whether this pullback_v1 trade closes as WIN or LOSS.",
+    badges: [
+      `<span class="badge warn">OPEN_TRADE</span>`,
+      `<span class="badge info">ENTRY #${openTrade.entry_order_id ?? "--"}</span>`,
+      `<span class="badge ${price >= entry ? "ok" : "bad"}">PRICE ${fmt(price, 2)}</span>`,
+    ],
+    rows: [
+      ["Strategy", openTrade.strategy_name ?? "--"],
+      ["Entry", fmt(entry, 2)],
+      ["Current", fmt(price, 2)],
+      ["Target", fmt(target, 2)],
+      ["Stop", fmt(stop, 2)],
+      ["Qty", fmt(openTrade.entry_qty, 5)],
+      ["Unrealized PnL", unrealized == null ? "--" : `${unrealized >= 0 ? "+" : ""}${fmt(unrealized, 6)}`],
+      ["Distance To Target", targetGap == null ? "--" : fmt(targetGap, 4)],
+      ["Distance To Stop", stopGap == null ? "--" : fmt(stopGap, 4)],
+      ["Entry Time", openTrade.entry_time ?? "--"],
+    ],
+  };
+}
+
+function buildHeartbeatStatus(heartbeat) {
+  const gapDetected = Boolean(heartbeat?.gap_detected);
+  const exitCode = Number(heartbeat?.exit_code ?? -1);
+  const ok = !gapDetected && exitCode === 0;
+  return {
+    title: ok ? "SCHEDULER OK" : "CHECK SCHEDULER",
+    summary: `last finish=${heartbeat?.last_finish_time ?? "--"} | interval=${heartbeat?.expected_interval_minutes ?? "--"}m`,
+    badges: [
+      `<span class="badge ${ok ? "ok" : "bad"}">EXIT ${heartbeat?.exit_code ?? "--"}</span>`,
+      `<span class="badge ${gapDetected ? "bad" : "ok"}">GAP ${gapDetected ? "YES" : "NO"}</span>`,
+      `<span class="badge info">EVENT ${heartbeat?.last_event ?? "--"}</span>`,
+    ],
+    rows: [
+      ["Current Time", heartbeat?.current_time ?? "--"],
+      ["Last Start", heartbeat?.last_start_time ?? "--"],
+      ["Last Finish", heartbeat?.last_finish_time ?? "--"],
+      ["Gap Threshold", `${heartbeat?.gap_threshold_minutes ?? "--"} minutes`],
+      ["Gap Duration", heartbeat?.gap_duration_minutes ?? "none"],
+      ["Error", heartbeat?.error_message || "none"],
+    ],
+  };
 }
 
 function blockerSummary(distribution) {
@@ -767,7 +849,7 @@ function buildV3SetupIsolation(shadow, allowedTrace, setupPassBlockedTrace) {
   };
 }
 
-function render(snapshot, metrics, state, portfolio, gate, shadow, allowedTrace, setupPassBlockedTrace) {
+function render(snapshot, metrics, state, portfolio, gate, auxStatus, heartbeat, shadow, allowedTrace, setupPassBlockedTrace) {
   const health = computeSystemHealth(snapshot);
   const healthBadge = document.getElementById("health-badge");
   healthBadge.textContent = health;
@@ -789,14 +871,14 @@ function render(snapshot, metrics, state, portfolio, gate, shadow, allowedTrace,
   document.getElementById("gate-rule").textContent = "closed_trades >= 20 | expectancy > 0 | net_pnl > 0 | max_consecutive_losses <= 5 | risk_guard_observed";
   document.getElementById("gate-explain").textContent = classificationText(snapshot, gateStatus, gateReason);
 
-  const aux = buildAuxiliaryRecovery(snapshot, state, portfolio, shadow, gate);
+  const aux = buildAuxiliaryRecovery(auxStatus, gate);
   document.getElementById("aux-title").textContent = aux.status;
   document.getElementById("aux-summary").textContent = aux.summary;
   document.getElementById("aux-badges").innerHTML = [
-    `<span class="badge ${aux.status === "IMPROVING" || aux.status === "ALIGNED_READY" ? "ok" : aux.status === "STABLE" ? "warn" : "bad"}">AUX: ${aux.status}</span>`,
-    `<span class="badge info">OFFICIAL GATE: ${gateStatus}</span>`,
-    `<span class="badge ${aux.shadowAllowed > 0 ? "ok" : "warn"}">V3 ALLOWED: ${aux.shadowAllowed}</span>`,
-    `<span class="badge ${aux.shadowSoftGood > 0 ? "ok" : "warn"}">V3 SOFT 3+: ${aux.shadowSoftGood}</span>`
+    `<span class="badge ${recoveryBadgeClass(aux.status)}">AUX: ${aux.status}</span>`,
+    `<span class="badge ${gateStatus === "FAIL" ? "warn" : "ok"}">OFFICIAL GATE: ${gateStatus}</span>`,
+    `<span class="badge ${aux.tradesRemaining > 0 ? "warn" : "ok"}">NEED ${aux.tradesRemaining} TRADES</span>`,
+    `<span class="badge ${aux.recovery?.all_recovery_criteria_passed ? "ok" : "warn"}">CONFIRMED: ${aux.recovery?.all_recovery_criteria_passed ? "YES" : "NO"}</span>`
   ].join("");
   document.getElementById("aux-explain").textContent = "Auxiliary recovery is explanatory only. It does not change, relax, or override the official live gate.";
   document.getElementById("aux-body").innerHTML = aux.checks.map(check => `
@@ -804,6 +886,22 @@ function render(snapshot, metrics, state, portfolio, gate, shadow, allowedTrace,
       <span class="kv-key">${check.label}</span>
       <span class="kv-val ${check.pass ? "positive" : "negative"}">${check.pass ? "PASS" : "CHECK"} | ${check.text}</span>
     </div>
+  `).join("");
+
+  const position = buildPositionObservation(state);
+  document.getElementById("position-title").textContent = position.title;
+  document.getElementById("position-summary").textContent = position.summary;
+  document.getElementById("position-badges").innerHTML = position.badges.join("");
+  document.getElementById("position-body").innerHTML = position.rows.map(([key, value]) => `
+    <div class="kv-row"><span class="kv-key">${key}</span><span class="kv-val">${value}</span></div>
+  `).join("");
+
+  const heartbeatStatus = buildHeartbeatStatus(heartbeat);
+  document.getElementById("heartbeat-title").textContent = heartbeatStatus.title;
+  document.getElementById("heartbeat-summary").textContent = heartbeatStatus.summary;
+  document.getElementById("heartbeat-badges").innerHTML = heartbeatStatus.badges.join("");
+  document.getElementById("heartbeat-body").innerHTML = heartbeatStatus.rows.map(([key, value]) => `
+    <div class="kv-row"><span class="kv-key">${key}</span><span class="kv-val">${value}</span></div>
   `).join("");
 
   document.getElementById("health-title").textContent = health;
@@ -883,17 +981,19 @@ async function loadData() {
   button.disabled = true;
   button.textContent = "LOADING";
   try {
-    const [snapshot, metrics, state, portfolio, gate, shadow, allowedTrace, setupPassBlockedTrace] = await Promise.all([
+    const [snapshot, metrics, state, portfolio, gate, auxStatus, heartbeat, shadow, allowedTrace, setupPassBlockedTrace] = await Promise.all([
       readJSON(DATA_FILES.snapshot),
       readJSON(DATA_FILES.metrics),
       readJSON(DATA_FILES.state),
       readJSON(DATA_FILES.portfolio),
       readJSON(DATA_FILES.gate),
+      readJSON(DATA_FILES.auxRecovery),
+      readJSON(DATA_FILES.heartbeat),
       readJSON(DATA_FILES.shadowV3),
       readJSONOptional(DATA_FILES.v3AllowedTrace, []),
       readJSONOptional(DATA_FILES.v3SetupPassBlockedTrace, []),
     ]);
-    render(snapshot, metrics, state, portfolio, gate, shadow, allowedTrace, setupPassBlockedTrace);
+    render(snapshot, metrics, state, portfolio, gate, auxStatus, heartbeat, shadow, allowedTrace, setupPassBlockedTrace);
   } catch (error) {
     document.getElementById("alerts").innerHTML = `
       <div class="alert-item bad">

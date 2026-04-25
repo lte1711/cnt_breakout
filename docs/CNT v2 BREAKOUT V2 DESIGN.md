@@ -142,13 +142,12 @@ This preserves the current runtime baseline while making the next validation sta
 
 ## Related Files
 
-- [config.py](/c:/cnt/config.py)
-- [strategy_registry.py](/c:/cnt/src/strategy_registry.py)
-- [indicators.py](/c:/cnt/src/indicators.py)
-- [breakout_v2.py](/c:/cnt/src/strategies/breakout_v2.py)
-- [test_breakout_v2_filters.py](/c:/cnt/tests/test_breakout_v2_filters.py)
+- [config.py](../config.py)
+- [strategy_registry.py](../src/strategy_registry.py)
+- [indicators.py](../src/indicators.py)
+- [breakout_v2.py](../src/strategies/breakout_v2.py)
+- [test_breakout_v2_filters.py](../tests/test_breakout_v2_filters.py)
 
 ## Obsidian Links
 
 - [[CNT v2 BREAKOUT V2 DESIGN]]
-

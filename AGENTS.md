@@ -547,7 +547,7 @@ OBSIDIAN_MINIMUM_RULE=
 1. provide readable markdown headings
 2. preserve repo-relative document placement
 3. keep a vault entry path through 00 CNT Vault Home.md or docs/00 Docs Index.md
-4. prefer [[wiki links]] for internal document navigation
+4. prefer Obsidian wiki-style internal links for document navigation
 5. do not break existing markdown readability outside Obsidian
 
 # --------------------------------------------------

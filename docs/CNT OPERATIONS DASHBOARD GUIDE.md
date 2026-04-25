@@ -11,8 +11,8 @@ This guide explains how to use the CNT operations dashboard that reads current r
 
 ## Files
 
-- HTML dashboard: [cnt_operations_dashboard.html](</c:/cnt/docs/cnt_operations_dashboard.html>)
-- launcher script: [serve_dashboard.py](/c:/cnt/scripts/serve_dashboard.py)
+- HTML dashboard: [cnt_operations_dashboard.html](cnt_operations_dashboard.html)
+- launcher script: [serve_dashboard.py](../scripts/serve_dashboard.py)
 
 ## What This Dashboard Adds
 
@@ -34,7 +34,11 @@ The dashboard reads:
 - `data/performance_snapshot.json`
 - `data/strategy_metrics.json`
 - `data/state.json`
+- `data/portfolio_state.json`
 - `data/live_gate_decision.json`
+- `data/auxiliary_recovery_status.json`
+- `data/scheduler_heartbeat.json`
+- `data/shadow_breakout_v3_snapshot.json`
 
 ## How To Use
 
@@ -70,4 +74,5 @@ http://127.0.0.1:8000/docs/cnt_operations_dashboard.html
 ## Obsidian Links
 
 - [[CNT DATA DASHBOARD]]
+- [[CNT v2 DASHBOARD CURRENT STATUS VIEW REPORT]]
 

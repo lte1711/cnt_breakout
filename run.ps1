@@ -6,8 +6,11 @@ Set-Location $RepoRoot
 $DataDir = Join-Path $RepoRoot "data"
 $LogsDir = Join-Path $RepoRoot "logs"
 $LockFile = Join-Path $DataDir "engine.lock"
+$HeartbeatFile = Join-Path $DataDir "scheduler_heartbeat.json"
 $StdoutLog = Join-Path $LogsDir "scheduler_stdout.log"
 $StderrLog = Join-Path $LogsDir "scheduler_stderr.log"
+$SchedulerExpectedIntervalMinutes = 10
+$SchedulerGapThresholdMinutes = 20
 $PythonCandidates = @(
     (Join-Path $env:LOCALAPPDATA "Programs\Python\Python312\python.exe"),
     "C:\Users\Administrator\AppData\Local\Programs\Python\Python312\python.exe",
@@ -27,6 +30,72 @@ function Write-Utf8Log {
     Add-Content -Path $Path -Value $Message -Encoding utf8
 }
 
+function Write-SchedulerHeartbeat {
+    param(
+        [string]$Event,
+        [Nullable[int]]$ExitCode = $null,
+        [string]$ErrorMessage = $null
+    )
+
+    $now = Get-Date
+    $previous = $null
+    if (Test-Path $HeartbeatFile) {
+        try {
+            $previous = Get-Content $HeartbeatFile -Raw -Encoding utf8 | ConvertFrom-Json
+        }
+        catch {
+            $previous = $null
+        }
+    }
+
+    $previousFinishTime = $null
+    $previousStartTime = $null
+    if ($previous -and $previous.last_finish_time) {
+        $previousFinishTime = [string]$previous.last_finish_time
+    }
+    if ($previous -and $previous.last_start_time) {
+        $previousStartTime = [string]$previous.last_start_time
+    }
+
+    $gapDetected = $false
+    $gapDurationMinutes = $null
+    if ($Event -eq "start" -and $previousFinishTime) {
+        try {
+            $lastFinish = [datetime]::Parse($previousFinishTime)
+            $gapDurationMinutes = [math]::Round(($now - $lastFinish).TotalMinutes, 2)
+            $gapDetected = $gapDurationMinutes -gt $SchedulerGapThresholdMinutes
+        }
+        catch {
+            $gapDetected = $false
+            $gapDurationMinutes = $null
+        }
+    }
+
+    $lastStartTime = $previousStartTime
+    $lastFinishTime = $previousFinishTime
+    if ($Event -eq "start") {
+        $lastStartTime = $now.ToString("yyyy-MM-dd HH:mm:ss")
+    }
+    if ($Event -in @("finish", "skip", "exception")) {
+        $lastFinishTime = $now.ToString("yyyy-MM-dd HH:mm:ss")
+    }
+
+    $payload = [ordered]@{
+        last_event = $Event
+        current_time = $now.ToString("yyyy-MM-dd HH:mm:ss")
+        last_start_time = $lastStartTime
+        last_finish_time = $lastFinishTime
+        expected_interval_minutes = $SchedulerExpectedIntervalMinutes
+        gap_threshold_minutes = $SchedulerGapThresholdMinutes
+        gap_detected = $gapDetected
+        gap_duration_minutes = $gapDurationMinutes
+        exit_code = $ExitCode
+        error_message = $ErrorMessage
+    }
+
+    $payload | ConvertTo-Json -Depth 4 | Set-Content -Path $HeartbeatFile -Encoding utf8
+}
+
 if (-not (Test-Path $DataDir)) {
     New-Item -ItemType Directory -Path $DataDir | Out-Null
 }
@@ -38,6 +107,7 @@ if (-not (Test-Path $LogsDir)) {
 if (Test-Path $LockFile) {
     $now = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     Write-Utf8Log -Path $StdoutLog -Message "[$now] scheduler_skip reason=lock_exists"
+    Write-SchedulerHeartbeat -Event "skip" -ExitCode 0 -ErrorMessage "lock_exists"
     exit 0
 }
 
@@ -46,6 +116,7 @@ New-Item -ItemType File -Path $LockFile | Out-Null
 try {
     $now = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     Write-Utf8Log -Path $StdoutLog -Message "[$now] scheduler_start"
+    Write-SchedulerHeartbeat -Event "start"
 
     $PythonExe = $null
     foreach ($candidate in $PythonCandidates) {
@@ -95,12 +166,14 @@ try {
 
     $now = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     Write-Utf8Log -Path $StdoutLog -Message "[$now] scheduler_finish exit_code=$LASTEXITCODE"
+    Write-SchedulerHeartbeat -Event "finish" -ExitCode $LASTEXITCODE
 
     exit $LASTEXITCODE
 }
 catch {
     $now = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     Write-Utf8Log -Path $StderrLog -Message "[$now] scheduler_exception $_"
+    Write-SchedulerHeartbeat -Event "exception" -ExitCode 1 -ErrorMessage "$_"
     exit 1
 }
 finally {

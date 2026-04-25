@@ -16,6 +16,7 @@ from binance_client import (
 )
 from config import (
     ACTIVE_STRATEGY,
+    AUXILIARY_RECOVERY_STATUS_FILE,
     BINANCE_BASE_URL,
     ENABLE_PARTIAL_EXIT,
     ENABLE_TEST_ORDER_VALIDATION,
@@ -34,6 +35,10 @@ from config import (
     SYMBOL,
     TIME_EXIT_MINUTES,
     TRAILING_STOP_PCT,
+)
+from src.analytics.auxiliary_recovery_status import (
+    build_auxiliary_recovery_status,
+    save_auxiliary_recovery_status,
 )
 from src.analytics.performance_report import generate_performance_report
 from src.analytics.performance_snapshot import generate_and_save_performance_snapshot
@@ -384,9 +389,20 @@ def _save_and_finish(
             project_root / "docs/CNT v2 TESTNET PERFORMANCE REPORT.md",
             snapshot,
         )
+        live_gate_decision = evaluate_live_gate(snapshot)
         save_live_gate_decision(
             project_root / LIVE_GATE_DECISION_FILE,
-            evaluate_live_gate(snapshot),
+            live_gate_decision,
+        )
+        save_auxiliary_recovery_status(
+            project_root / AUXILIARY_RECOVERY_STATUS_FILE,
+            build_auxiliary_recovery_status(
+                snapshot=snapshot,
+                strategy_metrics=load_strategy_metrics(project_root / STRATEGY_METRICS_FILE),
+                state=next_state,
+                portfolio_state=load_portfolio_state(project_root / PORTFOLIO_STATE_FILE),
+                live_gate_decision=live_gate_decision,
+            ),
         )
     except Exception:
         pass

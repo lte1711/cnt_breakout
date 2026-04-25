@@ -252,9 +252,9 @@ Prefer linking evidence, not copying runtime code into notes.
 
 Examples:
 
-- `[engine.py](file:///c:/cnt/src/engine.py)`
-- `[breakout_v3_shadow_eval.py](file:///c:/cnt/src/shadow/breakout_v3_shadow_eval.py)`
-- `[shadow_breakout_v3_snapshot.json](file:///c:/cnt/data/shadow_breakout_v3_snapshot.json)`
+- `[engine.py](../src/engine.py)`
+- `[breakout_v3_shadow_eval.py](../src/shadow/breakout_v3_shadow_eval.py)`
+- `[shadow_breakout_v3_snapshot.json](../data/shadow_breakout_v3_snapshot.json)`
 
 ## Operating Principle
 

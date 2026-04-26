@@ -6,7 +6,7 @@
 
 ---
 
-## 📋 Header Section
+##  Header Section
 
 ```markdown
 # Breakout_v3 Observation Review
@@ -20,7 +20,7 @@
 
 ---
 
-## 📊 Section 1: 핵심 메트릭
+##  Section 1: 핵심 메트릭
 
 ### 1.1 Total Event Summary
 
@@ -31,7 +31,7 @@
 | Total signals | 20 | - |
 | Setup ready passed | 8 | 40% |
 | Allowed signals | 3 | 15% |
-| **Data Readiness** | **60%** | ⚠️ Observation continues |
+| **Data Readiness** | **60%** |  Observation continues |
 ```
 
 ### 1.2 Regime Gate Analysis
@@ -64,11 +64,11 @@
 - Regime gate 첫 개방: Event #19
 - 개방 빈도: 7/20 (35%)
 - 개방 형태: range_bias (4) + trend_up (3)
-- **평가**: ✓ 정상 범위 (20~40% 기대)
+- **평가**:  정상 범위 (20~40% 기대)
 
 ---
 
-## 📈 Section 2: Setup Ready 진행
+##  Section 2: Setup Ready 진행
 
 ```markdown
 ### 2.1 Setup Ready 통과
@@ -95,19 +95,19 @@ regime pass 7개 중:
   └─ setup_ready = TRUE: 4개 ← 진입
 
 setup_ready 4개 중:
-  ├─ soft_pass >= 3: 2개 ✓ allowed
-  ├─ soft_pass = 2: 1개 ✗ blocked
-  └─ soft_pass = 1: 1개 ✗ blocked
+  ├─ soft_pass >= 3: 2개  allowed
+  ├─ soft_pass = 2: 1개  blocked
+  └─ soft_pass = 1: 1개  blocked
 ```
 
 **해석**:
 - Volatility floor가 주요 filter (2개 차단)
 - Setup ready 통과율은 적절 (57%)
-- ✓ 설계 의도대로 작동 중
+-  설계 의도대로 작동 중
 
 ---
 
-## 🎯 Section 3: Soft Pass Distribution 분석
+##  Section 3: Soft Pass Distribution 분석
 
 ### 3.1 Quality Filter 성과
 
@@ -155,42 +155,42 @@ setup_ready 4개 중:
 | **rsi_threshold** | 1 | 낮음 | RSI 조건 대체로 만족 |
 
 **해석**:
-✓ 설계가 의도한 "엄격한 품질 필터" 정상 작동
-✓ band_expansion 3개 실패는 예상 범위
-✓ 최종 통과율 5/6 (83%)은 건강한 수준
+ 설계가 의도한 "엄격한 품질 필터" 정상 작동
+ band_expansion 3개 실패는 예상 범위
+ 최종 통과율 5/6 (83%)은 건강한 수준
 
 ---
 
-## ✅ Section 4: 검증 체크리스트
+##  Section 4: 검증 체크리스트
 
 ```markdown
 ### 4.1 구조 검증
 
 - [x] Regime gate 첫 개방: Event #19
-- [x] Regime 개방율 20~40%: 35% ✓
-- [x] Setup ready 통과율 > 30%: 57% ✓
-- [x] Soft pass >= 3 통과율 > 50%: 83% ✓
-- [x] Secondary blocker 분포: 다양함 ✓
+- [x] Regime 개방율 20~40%: 35% 
+- [x] Setup ready 통과율 > 30%: 57% 
+- [x] Soft pass >= 3 통과율 > 50%: 83% 
+- [x] Secondary blocker 분포: 다양함 
 
 ### 4.2 이상 신호 체크
 
-- [ ] Regime 개방 안 됨 ❌ (35% 정상)
-- [ ] Setup ready 0% ❌ (57% 정상)
-- [ ] Allowed signal 0 ❌ (2개 정상)
-- [ ] 특정 필터 100% 실패 ❌ (최고 50%)
+- [ ] Regime 개방 안 됨  (35% 정상)
+- [ ] Setup ready 0%  (57% 정상)
+- [ ] Allowed signal 0  (2개 정상)
+- [ ] 특정 필터 100% 실패  (최고 50%)
 
 ---
 
-## 📌 Section 5: 결론 및 판정
+##  Section 5: 결론 및 판정
 
 ### 5.1 설계 평가
 
 | 항목 | 평가 |
 |------|------|
-| **Regime Gate** | ✓ 정상 작동 |
-| **Setup Filter** | ✓ 정상 작동 |
-| **Quality Filter** | ✓ 정상 작동 |
-| **최종 필터링** | ✓ 의도대로 작동 |
+| **Regime Gate** |  정상 작동 |
+| **Setup Filter** |  정상 작동 |
+| **Quality Filter** |  정상 작동 |
+| **최종 필터링** |  의도대로 작동 |
 
 **결론**: 
 > Breakout_v3 설계는 구조적으로 정상입니다.  
@@ -205,7 +205,7 @@ setup_ready 4개 중:
 
 **다음 단계**:
 
-1. ✅ Breakout_v1 격리 적용
+1.  Breakout_v1 격리 적용
    - config.py: breakout_v1 weight = 0.0
    - 예상 효과: Expectancy +0.0017로 복구
    - 타이밍: 즉시 적용 가능
@@ -215,7 +215,7 @@ setup_ready 4개 중:
    - Regime 통과 빈도 추이 추적
    - 최종 부정기: 50 event 수집 후
 
-3. 📊 V1 격리 효과 측정
+3.  V1 격리 효과 측정
    - 적용 후 성과 스냅샷 재생성
    - Live Gate PASS 시간 추적
    - Pullback_v1만의 성능 검증
@@ -223,7 +223,7 @@ setup_ready 4개 중:
 
 ---
 
-## 🔄 Section 6: Decision Record
+##  Section 6: Decision Record
 
 ```markdown
 ## 실행 결정
@@ -249,7 +249,7 @@ setup_ready 4개 중:
 
 ---
 
-## 📝 Appendix A: 용어 정의
+##  Appendix A: 용어 정의
 
 | 용어 | 정의 |
 |------|------|
@@ -261,7 +261,7 @@ setup_ready 4개 중:
 
 ---
 
-## 📝 Appendix B: 관찰 체크리스트 (주 1-2회)
+##  Appendix B: 관찰 체크리스트 (주 1-2회)
 
 ```markdown
 ### Weekly Observation Checklist

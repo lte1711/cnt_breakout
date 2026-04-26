@@ -11,7 +11,7 @@ CNT 프로젝트의 Obsidian 관리 보완을 위해 개발된 자동화 도구 
 
 ---
 
-## 🛠️ 도구 목록
+##  도구 목록
 
 ### 1. Template Generator (`template_generator.py`)
 템플릿 자동 생성 시스템
@@ -122,14 +122,14 @@ python scripts/standalone_dashboard.py --with-logs
 ```
 
 **출력 형식:**
-- 📊 전략 성과 테이블
-- 💼 포트폴리오 상태
-- 🔍 섀도 분석
-- 🎯 라이브 상태 요약
+-  전략 성과 테이블
+-  포트폴리오 상태
+-  섀도 분석
+-  라이브 상태 요약
 
 ---
 
-## 🚀 빠른 시작
+##  빠른 시작
 
 ### 1. 기본 설정
 ```bash
@@ -169,7 +169,7 @@ python scripts/standalone_dashboard.py --watch
 
 ---
 
-## 📋 운영 시나리오
+##  운영 시나리오
 
 ### 시나리오 1: 일일 운영 보고
 ```bash
@@ -206,7 +206,7 @@ cat docs/CNT\ AUTO\ DASHBOARD.md
 
 ---
 
-## 🔧 고급 설정
+##  고급 설정
 
 ### 모니터링 간격 조정
 ```python
@@ -232,7 +232,7 @@ def format_number(self, value, decimals=2):
 
 ---
 
-## 📁 파일 구조
+##  파일 구조
 
 ```
 c:/cnt/
@@ -255,7 +255,7 @@ c:/cnt/
 
 ---
 
-## 🐛 문제 해결
+##  문제 해결
 
 ### 일반적인 문제
 
@@ -290,7 +290,7 @@ file -bi data/strategy_metrics.json
 
 ---
 
-## 🔄 자동화 팁
+##  자동화 팁
 
 ### 1. 스케줄러 등록 (Windows)
 ```batch
@@ -315,7 +315,7 @@ python scripts/standalone_dashboard.py --watch &
 
 ---
 
-## 📈 성능 최적화
+##  성능 최적화
 
 ### 1. 메모리 사용량 감소
 - 불필요한 데이터 로드 제거
@@ -331,7 +331,7 @@ python scripts/standalone_dashboard.py --watch &
 
 ---
 
-## 🔮 향후 개선 계획
+##  향후 개선 계획
 
 1. **웹 인터페이스**: 브라우저 기반 대시보드
 2. **알림 시스템**: 중요 이벤트 푸시 알림
@@ -341,7 +341,7 @@ python scripts/standalone_dashboard.py --watch &
 
 ---
 
-## 📞 지원
+##  지원
 
 문제 발생 시:
 1. 이 가이드의 문제 해결 섹션 확인
@@ -350,7 +350,7 @@ python scripts/standalone_dashboard.py --watch &
 
 ---
 
-## 📝 변경 로그
+##  변경 로그
 
 - **v1.0**: 초기 자동화 도구 모음
 - **v1.1**: 실시간 모니터링 추가

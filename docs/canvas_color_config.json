@@ -2,32 +2,32 @@
   "version_colors": {
     "v1.0": {
       "hex": "#FFC107",
-      "emoji": "🟡",
+      "emoji": "",
       "status": "concept"
     },
     "v1.1": {
       "hex": "#4CAF50",
-      "emoji": "🟢",
+      "emoji": "",
       "status": "completed"
     },
     "v2.0": {
       "hex": "#2196F3",
-      "emoji": "🔵",
+      "emoji": "",
       "status": "designed"
     },
     "v2.1": {
       "hex": "#FF9800",
-      "emoji": "🟠",
+      "emoji": "",
       "status": "implementation"
     },
     "v2.2": {
       "hex": "#9C27B0",
-      "emoji": "🟣",
+      "emoji": "",
       "status": "automation"
     },
     "v3.0": {
       "hex": "#F44336",
-      "emoji": "🔴",
+      "emoji": "",
       "status": "planned"
     }
   },

@@ -6,30 +6,30 @@
 
 ---
 
-## 🔒 철칙 01: 절대 변경 금지 영역
+##  철칙 01: 절대 변경 금지 영역
 
 ### 다음은 100% 금지
 
 ```
-❌ 전략 파라미터 수정 (어떤 것도)
+ 전략 파라미터 수정 (어떤 것도)
    - EMA fast/slow period
    - RSI threshold / overheat
    - ATR / Bollinger band settings
    - Any other filter parameter
 
-❌ Interval 변경
+ Interval 변경
    - PRIMARY_INTERVAL = 5m 유지
    - ENTRY_INTERVAL = 1m 유지
 
-❌ Filter 제거/추가
+ Filter 제거/추가
    - Soft pass 6개 filter 모두 유지
    - Setup ready 3단계 모두 유지
 
-❌ Breakout_v1 weight 적용
+ Breakout_v1 weight 적용
    - 격리 결정 기록 있음 (아직 적용 금지)
    - Observation Review 후에만 적용
 
-❌ 로그 구조 변경
+ 로그 구조 변경
    - shadow_breakout_v3_snapshot.json 포맷 변경 금지
    - first_blocker_distribution 기록 방식 변경 금지
 ```
@@ -42,7 +42,7 @@
 
 ---
 
-## ✅ 철칙 02: 허용되는 유일한 행동 3가지
+##  철칙 02: 허용되는 유일한 행동 3가지
 
 ### 1. run.ps1 실행 유지
 
@@ -87,7 +87,7 @@ logs/shadow_breakout_v3.jsonl
 
 ---
 
-## 📊 철칙 03: 관측 중 반드시 보는 3개 신호
+##  철칙 03: 관측 중 반드시 보는 3개 신호
 
 ### ① market_not_trend_up 감소 추이
 
@@ -119,8 +119,8 @@ Event #26+:
 | 상태 | 의미 |
 |------|------|
 | 100% 유지 | 여전히 5m 추세 없음 (정상) |
-| 100% → 90% | 시장 구조 변화 시작 ✓ |
-| 100% → 50% | 강한 상방 신호 ✓ |
+| 100% → 90% | 시장 구조 변화 시작  |
+| 100% → 50% | 강한 상방 신호  |
 | 100% → 0% | 강하고 지속된 상방 |
 ```
 
@@ -141,7 +141,7 @@ Event #26+:
 #### 의미
 
 ```
-❗ "Breakout_v3가 실제 시장에서 거래 신호를 발생시킨 순간"
+ "Breakout_v3가 실제 시장에서 거래 신호를 발생시킨 순간"
 ```
 
 #### 기대 시점
@@ -155,9 +155,9 @@ Event #26+:
 #### 감정적 주의
 
 ```
-⚠️ 위험: 첫 allowed > 0이 나오면 "성공했다!"고 생각하기 쉬움
+ 위험: 첫 allowed > 0이 나오면 "성공했다!"고 생각하기 쉬움
 
-✅ 올바른: 첫 > 0은 "조사 신호" 일 뿐
+ 올바른: 첫 > 0은 "조사 신호" 일 뿐
    → 10+ events 이상 같은 패턴 반복되어야 "정상"
 ```
 
@@ -208,16 +208,16 @@ shadow_breakout_v3_snapshot.json
 #### 주의
 
 ```
-⚠️ 실수: "3~4만 나와야 한다"고 고집하기
+ 실수: "3~4만 나와야 한다"고 고집하기
 
-✅ 올바른: 
+ 올바른: 
    - soft_pass >= 3인 비율 > 30% → 설계 정상
    - soft_pass >= 3인 비율 < 10% AND 30개 이상 → 재검토 대상
 ```
 
 ---
 
-## ⚠️ 철칙 04: 가장 위험한 순간과 대응
+##  철칙 04: 가장 위험한 순간과 대응
 
 ### 상황 1: "20 Events, Still allowed = 0"
 
@@ -229,18 +229,18 @@ Event 20: allowed_signal_count = 0
 #### 위험한 생각 (100% 금지)
 
 ```
-❌ "뭔가 잘못되지 않았을까?"
-❌ "threshold 낮춰야 하나?"
-❌ "filter 하나 빼야 하나?"
-❌ "interval 변경해봐야 할까?"
+ "뭔가 잘못되지 않았을까?"
+ "threshold 낮춰야 하나?"
+ "filter 하나 빼야 하나?"
+ "interval 변경해봐야 할까?"
 ```
 
 #### 올바른 반응
 
 ```
-✅ "데이터 더 필요"
-✅ "30 events까지 계속 보자"
-✅ "regime 신호 대기"
+ "데이터 더 필요"
+ "30 events까지 계속 보자"
+ "regime 신호 대기"
 ```
 
 #### 이유
@@ -278,8 +278,8 @@ allowed_signal_count: 0
 #### 위험한 생각
 
 ```
-❌ "regime은 열렸는데 entry 조건이 너무 빡빡한가?"
-❌ "soft_pass threshold 3이 너무 높나?"
+ "regime은 열렸는데 entry 조건이 너무 빡빡한가?"
+ "soft_pass threshold 3이 너무 높나?"
 ```
 
 #### 올바른 해석 절차
@@ -307,17 +307,17 @@ setup_ready 2개 중:
 **Step 3**: 결론
 
 ```
-✅ "설계가 정상적으로 작동 중"
-✅ "시장 조건이 까다로운 단계"
-✅ "계속 관찰"
+ "설계가 정상적으로 작동 중"
+ "시장 조건이 까다로운 단계"
+ "계속 관찰"
 ```
 
 #### 절대 금지
 
 ```
-❌ 30 event 전에 조정
-❌ 강제로 soft_pass threshold 낮추기
-❌ setup_ready 조건 완화
+ 30 event 전에 조정
+ 강제로 soft_pass threshold 낮추기
+ setup_ready 조건 완화
 ```
 
 ---
@@ -357,14 +357,14 @@ setup_ready까지는 자주 도달
 #### 대응
 
 ```
-✅ "이것도 정상 동작"
-✅ "계속 관찰"
-✅ 50 event 후 최종 판단
+ "이것도 정상 동작"
+ "계속 관찰"
+ 50 event 후 최종 판단
 ```
 
 ---
 
-## 📋 철칙 05: 체크리스트 (Daily)
+##  철칙 05: 체크리스트 (Daily)
 
 ### 매일 운영 확인
 
@@ -399,7 +399,7 @@ setup_ready까지는 자주 도달
 
 ---
 
-## 🔄 철칙 06: Observation Review 진입 기준
+##  철칙 06: Observation Review 진입 기준
 
 ### Trigger 1: 30 Events + 신호 출현
 
@@ -433,13 +433,13 @@ setup_ready까지는 자주 도달
 
 ---
 
-## 📌 철칙 07: Breakout_v1 격리 적용 절차
+##  철칙 07: Breakout_v1 격리 적용 절차
 
 ### 현재 상태
 
 ```
-✔ 격리 결정 완료
-✔ 문서화 완료 (CNT_BREAKOUT_V1_ISOLATION_DECISION.md)
+ 격리 결정 완료
+ 문서화 완료 (CNT_BREAKOUT_V1_ISOLATION_DECISION.md)
 ⏳ 적용 보류
 ```
 
@@ -475,63 +475,63 @@ STRATEGY_PARAMS = {
 
 ---
 
-## 🧠 철칙 08: 운영 사고방식
+##  철칙 08: 운영 사고방식
 
 ### 현재 단계의 본질
 
 ```
-❌ "성능 개선 단계"
-❌ "트레이딩 최적화"
-❌ "수익 창출"
+ "성능 개선 단계"
+ "트레이딩 최적화"
+ "수익 창출"
 
-✅ "시스템 검증 단계"
-✅ "설계 정당성 증명"
-✅ "신뢰도 구축"
+ "시스템 검증 단계"
+ "설계 정당성 증명"
+ "신뢰도 구축"
 ```
 
 ### 성공의 정의
 
 ```
-❌ "allowed_signal 많이 나오기"
-❌ "승률 높게 나오기"
+ "allowed_signal 많이 나오기"
+ "승률 높게 나오기"
 
-✅ "설계대로 작동하는가?"
-✅ "데이터가 일관성 있는가?"
-✅ "이상 신호는 없는가?"
+ "설계대로 작동하는가?"
+ "데이터가 일관성 있는가?"
+ "이상 신호는 없는가?"
 ```
 
 ### 실패의 정의
 
 ```
-❌ "0% 통과율"
+ "0% 통과율"
 
-✅ "무작위처럼 보이는 패턴"
-✅ "설계와 다른 동작"
-✅ "기록 불일치"
+ "무작위처럼 보이는 패턴"
+ "설계와 다른 동작"
+ "기록 불일치"
 ```
 
 ---
 
-## 🚫 절대 금지 리스트 (한 번 더 강조)
+##  절대 금지 리스트 (한 번 더 강조)
 
 ```
-❌ config.py 수정
-❌ 전략 클래스 수정
-❌ indicator 계산 방식 변경
-❌ snapshot 포맷 변경
-❌ 로그 구조 변경
-❌ filter 개수 변경
-❌ threshold 조정
-❌ interval 변경
-❌ weight 적용 (v1 만)
-❌ parameter file 수정
+ config.py 수정
+ 전략 클래스 수정
+ indicator 계산 방식 변경
+ snapshot 포맷 변경
+ 로그 구조 변경
+ filter 개수 변경
+ threshold 조정
+ interval 변경
+ weight 적용 (v1 만)
+ parameter file 수정
 ```
 
 → **모두 Observation Review 완료 후**
 
 ---
 
-## ✅ 최종 확인
+##  최종 확인
 
 이 문서를 읽었다면:
 

@@ -11,54 +11,54 @@ CNT 프로젝트의 버전 분류 및 색상 코딩 시스템을 Obsidian에 적
 
 ---
 
-## 🎨 색상 코딩 적용
+##  색상 코딩 적용
 
 ### 1. 문서명 색상 추가
 
-#### v1.1 문서 (녹색 🟢)
+#### v1.1 문서 (녹색 )
 ```
-🟢 CNT v1.1 ARCHITECTURE DESIGN DOCUMENT.md
-🟢 CNT v1.1 IMPLEMENTATION VALIDATION REPORT.md
-🟢 CNT v1.1 IMPLEMENTATION WORK INSTRUCTION.md
-🟢 CNT v1.1 STAGE 2 ARCHITECTURE DESIGN DOCUMENT.md
-🟢 CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION REPORT.md
-🟢 CNT v1.1 STAGE 2 IMPLEMENTATION WORK INSTRUCTION.md
-```
-
-#### v2.0 문서 (파란색 🔵)
-```
-🔵 CNT v2 ARCHITECTURE DESIGN DOCUMENT.md
-🔵 CNT v2 ENGINEERING PHASE PLAN.md
-🔵 CNT v2 STRATEGIC ANALYSIS PLAN.md
+ CNT v1.1 ARCHITECTURE DESIGN DOCUMENT.md
+ CNT v1.1 IMPLEMENTATION VALIDATION REPORT.md
+ CNT v1.1 IMPLEMENTATION WORK INSTRUCTION.md
+ CNT v1.1 STAGE 2 ARCHITECTURE DESIGN DOCUMENT.md
+ CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION REPORT.md
+ CNT v1.1 STAGE 2 IMPLEMENTATION WORK INSTRUCTION.md
 ```
 
-#### v2.1 문서 (주황색 🟠)
+#### v2.0 문서 (파란색 )
 ```
-🟠 CNT v2 BREAKOUT * (모든 breakout 관련)
-🟠 CNT v2 CURRENT STATUS ASSESSMENT.md
-🟠 CNT v2 LIVE READINESS GATE.md
-🟠 CNT v2 LIVE READINESS REPORT.md
-🟠 CNT v2 PERFORMANCE VALIDATION REPORT.md
-🟠 CNT v2 VALIDATION REPORT.md
+ CNT v2 ARCHITECTURE DESIGN DOCUMENT.md
+ CNT v2 ENGINEERING PHASE PLAN.md
+ CNT v2 STRATEGIC ANALYSIS PLAN.md
 ```
 
-#### v2.2 문서 (보라색 🟣)
+#### v2.1 문서 (주황색 )
 ```
-🟣 CNT v2 OBSIDIAN INTEGRATED OPERATING PROTOCOL.md
-🟣 CNT v2 OBSIDIAN REVIEW WORKFLOW GUIDE.md
-🟣 CNT v2 OBSIDIAN PLUGIN POLICY.md
-🟣 CNT v2 OBSERVABILITY IMPLEMENTATION REPORT.md
+ CNT v2 BREAKOUT * (모든 breakout 관련)
+ CNT v2 CURRENT STATUS ASSESSMENT.md
+ CNT v2 LIVE READINESS GATE.md
+ CNT v2 LIVE READINESS REPORT.md
+ CNT v2 PERFORMANCE VALIDATION REPORT.md
+ CNT v2 VALIDATION REPORT.md
 ```
 
-#### v3.0 문서 (빨간색 🔴)
+#### v2.2 문서 (보라색 )
 ```
-🔴 CNT V3 OBSERVATION INTERPRETATION GUIDE.md
-🔴 [향후 v3.0 문서들]
+ CNT v2 OBSIDIAN INTEGRATED OPERATING PROTOCOL.md
+ CNT v2 OBSIDIAN REVIEW WORKFLOW GUIDE.md
+ CNT v2 OBSIDIAN PLUGIN POLICY.md
+ CNT v2 OBSERVABILITY IMPLEMENTATION REPORT.md
+```
+
+#### v3.0 문서 (빨간색 )
+```
+ CNT V3 OBSERVATION INTERPRETATION GUIDE.md
+ [향후 v3.0 문서들]
 ```
 
 ---
 
-## 🏷️ 태그 시스템 적용
+##  태그 시스템 적용
 
 ### 1. 버전 태그
 각 문서의 프론트매터에 버전 태그 추가:
@@ -99,7 +99,7 @@ tags:
 
 ---
 
-## 📊 Dataview 쿼리 적용
+##  Dataview 쿼리 적용
 
 ### 1. 버전별 문서 목록
 ```dataview
@@ -141,7 +141,7 @@ GROUP BY tag
 
 ---
 
-## 🎨 Canvas 시각화 설정
+##  Canvas 시각화 설정
 
 ### 1. 노드 색상 설정
 Canvas에서 각 버전별 노드 색상 설정:
@@ -168,16 +168,16 @@ Canvas에서 각 버전별 노드 색상 설정:
 ### 3. Canvas 구조 예시
 ```
 CNT SYSTEM (중앙)
-├── 🟢 v1.1 (완료) → 📦 보관됨
-├── 🔵 v2.0 (설계) → 🏗️ 기반
-├── 🟠 v2.1 (운영) → ⚙️ 현재
-├── 🟣 v2.2 (자동화) → 🤖 진행 중
-└── 🔴 v3.0 (계획) → 🎯 미래
+├──  v1.1 (완료) →  보관됨
+├──  v2.0 (설계) →  기반
+├──  v2.1 (운영) →  현재
+├──  v2.2 (자동화) →  진행 중
+└──  v3.0 (계획) →  미래
 ```
 
 ---
 
-## 🔧 Obsidian 설정
+##  Obsidian 설정
 
 ### 1. 플러그인 설정
 `.obsidian/community-plugins.json` 확인:
@@ -211,37 +211,37 @@ tags:
 
 ---
 
-## 📋 적용 확인 체크리스트
+##  적용 확인 체크리스트
 
-### ✅ 기본 설정
+###  기본 설정
 - [ ] 버전 분류 가이드 읽기
 - [ ] 색상 코딩 시스템 이해
 - [ ] 태그 시스템 숙지
 
-### ✅ 문서 적용
+###  문서 적용
 - [ ] 주요 문서에 색상 이모지 추가
 - [ ] 버전 태그 추가
 - [ ] 상태 태그 추가
 - [ ] 유형 태그 추가
 
-### ✅ Dataview 적용
+###  Dataview 적용
 - [ ] 버전별 쿼리 작성
 - [ ] 상태별 필터 설정
 - [ ] 통계 쿼리 확인
 
-### ✅ Canvas 적용
+###  Canvas 적용
 - [ ] 노드 색상 설정
 - [ ] 연결선 색상 구성
 - [ ] 버전별 그룹화
 
-### ✅ 테스트
+###  테스트
 - [ ] Dataview 쿼리 동작 확인
 - [ ] 태그 필터링 확인
 - [ ] Canvas 시각화 확인
 
 ---
 
-## 🚀 자동화 적용
+##  자동화 적용
 
 ### 1. 스크립트 실행
 ```bash
@@ -264,7 +264,7 @@ git commit -m "Update version classification"
 
 ---
 
-## 📈 효과 확인
+##  효과 확인
 
 ### 1. 시각적 개선
 - 색상으로 버전 즉시 식별
@@ -283,7 +283,7 @@ git commit -m "Update version classification"
 
 ---
 
-## 🔧 문제 해결
+##  문제 해결
 
 ### 일반적인 문제
 
@@ -328,7 +328,7 @@ def add_version_tags(directory):
 
 ---
 
-## 📞 지원
+##  지원
 
 ### 도움말
 - Obsidian 공식 문서

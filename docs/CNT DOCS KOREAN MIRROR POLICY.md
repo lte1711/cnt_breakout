@@ -27,6 +27,19 @@ From this point forward, every new CNT document must follow both rules below.
 
 The two documents must be created in the same work step whenever practical.
 
+## Emoji Ban
+
+All CNT documents must avoid emoji, emoticons, pictograms, and decorative symbol markers.
+
+This applies to:
+
+- official documents under `docs/`
+- Korean mirror documents under `docs/ko/`
+- docs-hosted JSON, HTML, and dashboard/reference assets
+- headings, tables, checklists, status labels, and examples
+
+Use plain text labels such as `PASS`, `FAIL`, `WARNING`, `READY`, `BLOCKED`, and color names instead of emoji symbols.
+
 ## Naming Rule
 
 Because CNT forbids Unicode filenames, filenames remain ASCII only.

@@ -3,7 +3,7 @@ aliases:
   - CNT v2 TESTNET DATA COLLECTION INSTRUCTION
 ---
 
-﻿맞다. 현재 판정은 **`PERFORMANCE_VALIDATION_IN_PROGRESS`**가 정확하다.
+맞다. 현재 판정은 **`PERFORMANCE_VALIDATION_IN_PROGRESS`**가 정확하다.
 
 # 현재 상태 정리
 

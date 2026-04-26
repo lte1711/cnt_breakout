@@ -41,9 +41,9 @@ Execution Phase / Mandatory Validation
 
 아래 중 하나 충족 전까지 **절대 결론 금지**
 
-* ✔ closed trades ≥ 20
+*  closed trades ≥ 20
   또는
-* ✔ 운영 기간 ≥ 3일
+*  운영 기간 ≥ 3일
 
 ---
 
@@ -120,7 +120,7 @@ Execution Phase / Mandatory Validation
 * 어떤 전략이 가장 높은 expectancy?
 * 어떤 전략이 손실 집중 발생?
 
-👉 결과:
+ 결과:
 
 * 유지 / 개선 / 제거 후보 분류
 
@@ -149,7 +149,7 @@ Execution Phase / Mandatory Validation
 * daily_loss_limit 실제 작동하는가?
 * exposure 차단 정상인가?
 
-👉 하나라도 “안 걸리는” 정책이 있으면 문제
+ 하나라도 “안 걸리는” 정책이 있으면 문제
 
 ---
 
@@ -288,8 +288,8 @@ NEXT   = CAPITAL_ALLOCATION / LIVE_PREP
 
 지금부터 중요한 건 하나다:
 
-> ❗ “코드가 맞다”가 아니라
-> ❗ **“숫자가 맞다”를 증명해야 한다**
+>  “코드가 맞다”가 아니라
+>  **“숫자가 맞다”를 증명해야 한다**
 
 ---
 

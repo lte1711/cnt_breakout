@@ -3,7 +3,7 @@ aliases:
   - CNT v2 PATCH WORK INSTRUCTION
 ---
 
-﻿아래는 바로 적용 가능한 **`CNT v2 PATCH WORK INSTRUCTION.md`** 문안이다.
+아래는 바로 적용 가능한 **`CNT v2 PATCH WORK INSTRUCTION.md`** 문안이다.
 
 ---
 

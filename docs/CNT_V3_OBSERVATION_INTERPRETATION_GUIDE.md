@@ -7,7 +7,7 @@
 
 ## Part 1: Regime 게이트 개방 신호 해석
 
-### 🔍 Trigger 1 — "market_bias_pass = TRUE" 첫 출현
+###  Trigger 1 — "market_bias_pass = TRUE" 첫 출현
 
 #### 신호 정의
 
@@ -44,11 +44,11 @@
 | A | `trend_up_pass=true` | 5m EMA_fast > EMA_slow AND gap >= 0.001 |
 | B | `range_bias_pass=true` | 5m (RANGE AND EMA_fast > EMA_slow) |
 
-**둘 중 어느 것이든**: regime gate 해제 ✓
+**둘 중 어느 것이든**: regime gate 해제 
 
 ---
 
-### 🎯 이 신호의 중요도
+###  이 신호의 중요도
 
 ```
 강도: 매우 높음 (이때부터 v3 진짜 검증 시작)
@@ -58,7 +58,7 @@
 
 ---
 
-### 📌 추적 방법
+###  추적 방법
 
 #### 현재 상태
 ```
@@ -83,12 +83,12 @@ event #14-30:
 
 ---
 
-### ⚠️ 혼동 주의
+###  혼동 주의
 
-#### ❌ 틀린 해석
+####  틀린 해석
 > "allowed_signal_count가 0이면 전략이 동작 안 하는 건가?"
 
-#### ✅ 올바른 해석
+####  올바른 해석
 > "allowed_signal_count = 0은 regime gate 때문
 > regime 풀리는 이벤트가 언제 나타나는가가 핵심
 > 그 이벤트가 최종적으로 allowed=1 되는가가 검증"
@@ -97,7 +97,7 @@ event #14-30:
 
 ## Part 2: Setup Ready 통과 신호
 
-### 🔍 Trigger 2 — "regime PASS 후 setup_ready 상태"
+###  Trigger 2 — "regime PASS 후 setup_ready 상태"
 
 #### 로그에서 확인할 항목
 
@@ -127,7 +127,7 @@ setup_ready = TRUE  ← 이 조건을 만족하는 이벤트 몇 개?
 
 ---
 
-### 📊 기대값
+###  기대값
 
 ```
 현재: setup_ready 출현 기회 = 0 (regime 때문)
@@ -139,7 +139,7 @@ setup_ready = TRUE  ← 이 조건을 만족하는 이벤트 몇 개?
    (regime은 풀렸지만 나머지 조건 불만족)
 ```
 
-### ⚠️ 이 단계에서 일어날 수 있는 일
+###  이 단계에서 일어날 수 있는 일
 
 #### 시나리오 1 (긍정적)
 ```
@@ -170,7 +170,7 @@ setup: 0/5 (모두 fail)
 
 ## Part 3: Soft Pass Distribution 읽는 법
 
-### 🔍 Trigger 3 — "softpass >= 3 달성"
+###  Trigger 3 — "softpass >= 3 달성"
 
 #### 데이터 구조
 
@@ -198,7 +198,7 @@ setup: 0/5 (모두 fail)
 
 ---
 
-### 📖 읽는 방법
+###  읽는 방법
 
 #### Step 1: soft_pass >= 3인 이벤트 계산
 
@@ -240,13 +240,13 @@ ema_fail: 2 (15%)
 
 ---
 
-### 🎯 이것이 의미하는 것
+###  이것이 의미하는 것
 
 #### 해석 1: 설계가 정상인가?
 
 ```
 allowed_signal_count > 0 AND soft_pass >= 3 (7개)
-→ "설계가 의도한 필터링 작동 중 ✓"
+→ "설계가 의도한 필터링 작동 중 "
 ```
 
 #### 해석 2: 어느 필터가 가장 엄격한가?
@@ -268,7 +268,7 @@ Soft pass >= 3: 53.8%
 
 ---
 
-### 📊 기대 수렴값 (최종)
+###  기대 수렴값 (최종)
 
 ```
 이상적 관찰 결과 (30 events 후):
@@ -286,7 +286,7 @@ regime 통과: 5~8 events (17~27%)
 
 ## Part 4: 이상 신호
 
-### 🚨 Red Flag: allowed_signal_count가 30 event 이후에도 0
+###  Red Flag: allowed_signal_count가 30 event 이후에도 0
 
 ```
 시나리오:
@@ -305,7 +305,7 @@ regime 통과: 5~8 events (17~27%)
 
 ---
 
-### 🚨 Red Flag: soft_pass < 3가 70% 이상
+###  Red Flag: soft_pass < 3가 70% 이상
 
 ```
 시나리오:
@@ -345,10 +345,10 @@ regime 통과: 5~8 events (17~27%)
 - **최종 허용율: 3 / 35 = 8.6%**
 
 ### 검증
-✓ regime gate 정상 작동
-✓ setup filter 정상 작동
-✓ soft_pass threshold 정상 작동
-✓ 최종 출력: v3 설계 검증 가능
+ regime gate 정상 작동
+ setup filter 정상 작동
+ soft_pass threshold 정상 작동
+ 최종 출력: v3 설계 검증 가능
 ```
 
 ---

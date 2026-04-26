@@ -26,13 +26,13 @@ Post-Patch / Non-blocking but Required for Production Quality
 
 # 1. 현재 상태 요약
 
-## ✔ 완료
+##  완료
 
 * P0 (운영 차단 버그): 해결됨
 * P1 (핵심 기능 결함): 해결됨
 * P2 (파라미터 검증): 강화 완료
 
-## ⚠ 남은 항목
+##  남은 항목
 
 1. error signal → stale_signal 로그 오염
 2. risk_metrics 구조 분산 (engine vs risk_guard)
@@ -110,7 +110,7 @@ if not signal.entry_allowed:
 * engine → risk_metrics 업데이트
 * risk_guard → 일부 reset 수행
 
-👉 책임이 분산됨
+ 책임이 분산됨
 
 ---
 
@@ -340,9 +340,9 @@ order_router is prepared but not connected to runtime execution path
 
 | 단계       | 상태           |
 | -------- | ------------ |
-| P3 완료    | ✅ 운영 안정화     |
-| P4 일부 적용 | ✅ 전략 고도화 시작  |
-| P4 전체    | 🚀 수익화 단계 진입 |
+| P3 완료    |  운영 안정화     |
+| P4 일부 적용 |  전략 고도화 시작  |
+| P4 전체    |  수익화 단계 진입 |
 
 ---
 
@@ -353,7 +353,7 @@ order_router is prepared but not connected to runtime execution path
 
 그리고 다음 단계는 명확하다:
 
-> ❗ **이제 문제는 구조가 아니라 성능이다**
+>  **이제 문제는 구조가 아니라 성능이다**
 
 ---
 

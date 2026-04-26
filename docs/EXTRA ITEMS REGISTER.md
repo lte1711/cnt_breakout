@@ -3,7 +3,7 @@ aliases:
   - EXTRA ITEMS REGISTER
 ---
 
-﻿CNT EXTRA ITEMS REGISTER
+CNT EXTRA ITEMS REGISTER
 
 목적:
 - 구현 작업지시서 범위를 벗어나지만 현재 저장소에 존재하는 항목을 기록한다.

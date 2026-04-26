@@ -11,19 +11,19 @@ CNT 프로젝트의 모든 문서를 버전별로 분류하고 색상 코딩을 
 
 ---
 
-## 🎯 버전 분류 체계
+##  버전 분류 체계
 
-### 📋 v1.x 시리즈 (초기 단일 전략)
-**상태**: ✅ **완료 및 보관**
+###  v1.x 시리즈 (초기 단일 전략)
+**상태**:  **완료 및 보관**
 **특징**: 단일 전략 엔진, 기본 구조 확립
 
 #### v1.0 (기초)
 - **문서**: 없음 (초기 개념 단계)
-- **색상**: 🟡 **노란색** (개념 단계)
+- **색상**:  **노란색** (개념 단계)
 
 #### v1.1 (안정화)
 - **문서**: `CNT v1.1 *`
-- **색상**: 🟢 **녹색** (안정화 완료)
+- **색상**:  **녹색** (안정화 완료)
 - **주요 문서**:
   - `CNT v1.1 ARCHITECTURE DESIGN DOCUMENT.md`
   - `CNT v1.1 IMPLEMENTATION VALIDATION REPORT.md`
@@ -31,17 +31,17 @@ CNT 프로젝트의 모든 문서를 버전별로 분류하고 색상 코딩을 
 
 ---
 
-### 📋 v2.x 시리즈 (멀티 전략 확장)
-**상태**: 🔄 **현재 운영 중**
+###  v2.x 시리즈 (멀티 전략 확장)
+**상태**:  **현재 운영 중**
 **특징**: 멀티 전략 엔진, 포트폴리오 관리, 자동화
 
 #### v2.0 (아키텍처 설계)
 - **문서**: `CNT v2 ARCHITECTURE DESIGN DOCUMENT.md`
-- **색상**: 🔵 **파란색** (설계 단계)
+- **색상**:  **파란색** (설계 단계)
 
 #### v2.1 (구현 및 검증)
 - **문서**: `CNT v2 *` (대부분)
-- **색상**: 🟠 **주황색** (구현 단계)
+- **색상**:  **주황색** (구현 단계)
 - **주요 카테고리**:
   - 아키텍처 및 설계
   - 구현 검증
@@ -50,7 +50,7 @@ CNT 프로젝트의 모든 문서를 버전별로 분류하고 색상 코딩을 
 
 #### v2.2 (자동화 및 최적화)
 - **문서**: `CNT v2 *` (최신)
-- **색상**: 🟣 **보라색** (자동화 단계)
+- **색상**:  **보라색** (자동화 단계)
 - **주요 기능**:
   - Obsidian 자동화
   - 실시간 모니터링
@@ -58,87 +58,87 @@ CNT 프로젝트의 모든 문서를 버전별로 분류하고 색상 코딩을 
 
 ---
 
-### 📋 v3.x 시리즈 (미래 확장)
-**상태**: 🔮 **개발 예정**
+###  v3.x 시리즈 (미래 확장)
+**상태**:  **개발 예정**
 **특징**: 고급 기능, AI 통합, 완전 자동화
 
 #### v3.0 (차세대)
 - **문서**: `CNT V3 *`
-- **색상**: 🔴 **빨간색** (개발 예정)
+- **색상**:  **빨간색** (개발 예정)
 
 ---
 
-## 🎨 색상 코딩 시스템
+##  색상 코딩 시스템
 
 ### 주요 색상 정의
 
 | 색상 | 버전 | 의미 | 상태 | 이모지 |
 |------|------|------|------|-------|
-| 🟢 **녹색** | v1.1 | 완료 및 보관 | ✅ 안정 | 📦 |
-| 🔵 **파란색** | v2.0 | 설계 완료 | 📐 설계 | 🏗️ |
-| 🟠 **주황색** | v2.1 | 구현 및 운영 | 🔄 진행 중 | ⚙️ |
-| 🟣 **보라색** | v2.2 | 자동화 완료 | 🚀 자동화 | 🤖 |
-| 🔴 **빨간색** | v3.0 | 개발 예정 | 🔮 예정 | 🎯 |
-| 🟡 **노란색** | v1.0 | 개념 단계 | 💡 아이디어 | 💭 |
+|  **녹색** | v1.1 | 완료 및 보관 |  안정 |  |
+|  **파란색** | v2.0 | 설계 완료 |  설계 |  |
+|  **주황색** | v2.1 | 구현 및 운영 |  진행 중 |  |
+|  **보라색** | v2.2 | 자동화 완료 |  자동화 |  |
+|  **빨간색** | v3.0 | 개발 예정 |  예정 |  |
+|  **노란색** | v1.0 | 개념 단계 |  아이디어 |  |
 
 ### 보조 색상
 
 | 색상 | 용도 | 의미 |
 |------|------|------|
-| ⚪ **흰색** | 일반 문서 | 범용 |
-| ⚫ **검정색** | 기술 문서 | 핵심 |
-| 🔘 **회색** | 보조 문서 | 참고 |
+|  **흰색** | 일반 문서 | 범용 |
+|  **검정색** | 기술 문서 | 핵심 |
+|  **회색** | 보조 문서 | 참고 |
 
 ---
 
-## 📁 문서 분류 매트릭스
+##  문서 분류 매트릭스
 
 ### v1.x 문서 목록
 ```
-🟢 CNT v1.1 ARCHITECTURE DESIGN DOCUMENT.md
-🟢 CNT v1.1 IMPLEMENTATION VALIDATION REPORT.md
-🟢 CNT v1.1 IMPLEMENTATION WORK INSTRUCTION.md
-🟢 CNT v1.1 STAGE 2 ARCHITECTURE DESIGN DOCUMENT.md
-🟢 CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION REPORT.md
-🟢 CNT v1.1 STAGE 2 IMPLEMENTATION WORK INSTRUCTION.md
+ CNT v1.1 ARCHITECTURE DESIGN DOCUMENT.md
+ CNT v1.1 IMPLEMENTATION VALIDATION REPORT.md
+ CNT v1.1 IMPLEMENTATION WORK INSTRUCTION.md
+ CNT v1.1 STAGE 2 ARCHITECTURE DESIGN DOCUMENT.md
+ CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION REPORT.md
+ CNT v1.1 STAGE 2 IMPLEMENTATION WORK INSTRUCTION.md
 ```
 
 ### v2.x 문서 분류
 
-#### 🔵 v2.0 (설계)
+####  v2.0 (설계)
 ```
-🔵 CNT v2 ARCHITECTURE DESIGN DOCUMENT.md
-🔵 CNT v2 ENGINEERING PHASE PLAN.md
-🔵 CNT v2 STRATEGIC ANALYSIS PLAN.md
-```
-
-#### 🟠 v2.1 (구현 및 운영)
-```
-🟠 CNT v2 BREAKOUT * (모든 breakout 관련 문서)
-🟠 CNT v2 CURRENT STATUS ASSESSMENT.md
-🟠 CNT v2 LIVE READINESS GATE.md
-🟠 CNT v2 LIVE READINESS REPORT.md
-🟠 CNT v2 PERFORMANCE VALIDATION REPORT.md
-🟠 CNT v2 VALIDATION REPORT.md
+ CNT v2 ARCHITECTURE DESIGN DOCUMENT.md
+ CNT v2 ENGINEERING PHASE PLAN.md
+ CNT v2 STRATEGIC ANALYSIS PLAN.md
 ```
 
-#### 🟣 v2.2 (자동화)
+####  v2.1 (구현 및 운영)
 ```
-🟣 CNT v2 OBSIDIAN INTEGRATED OPERATING PROTOCOL.md
-🟣 CNT v2 OBSIDIAN REVIEW WORKFLOW GUIDE.md
-🟣 CNT v2 OBSERVABILITY IMPLEMENTATION REPORT.md
-🟣 CNT v2 OBSIDIAN PLUGIN POLICY.md
+ CNT v2 BREAKOUT * (모든 breakout 관련 문서)
+ CNT v2 CURRENT STATUS ASSESSMENT.md
+ CNT v2 LIVE READINESS GATE.md
+ CNT v2 LIVE READINESS REPORT.md
+ CNT v2 PERFORMANCE VALIDATION REPORT.md
+ CNT v2 VALIDATION REPORT.md
 ```
 
-### 🔴 v3.x 문서 (예정)
+####  v2.2 (자동화)
 ```
-🔴 CNT V3 OBSERVATION INTERPRETATION GUIDE.md
-🔴 [향후 v3.0 관련 문서들]
+ CNT v2 OBSIDIAN INTEGRATED OPERATING PROTOCOL.md
+ CNT v2 OBSIDIAN REVIEW WORKFLOW GUIDE.md
+ CNT v2 OBSERVABILITY IMPLEMENTATION REPORT.md
+ CNT v2 OBSIDIAN PLUGIN POLICY.md
+```
+
+###  v3.x 문서 (예정)
+```
+ CNT V3 OBSERVATION INTERPRETATION GUIDE.md
+ [향후 v3.0 관련 문서들]
 ```
 
 ---
 
-## 🏷️ 태그 시스템
+##  태그 시스템
 
 ### 버전 태그
 ```yaml
@@ -171,7 +171,7 @@ tags:
 
 ---
 
-## 📊 Obsidian Canvas 색상 구성
+##  Obsidian Canvas 색상 구성
 
 ### Canvas 노드 색상
 ```javascript
@@ -195,7 +195,7 @@ tags:
 
 ---
 
-## 🔍 Dataview 쿼리 예시
+##  Dataview 쿼리 예시
 
 ### 버전별 문서 조회
 ```dataview
@@ -227,7 +227,7 @@ SORT priority DESC
 
 ---
 
-## 📋 문서 명명 규칙
+##  문서 명명 규칙
 
 ### 버전별 접두사
 ```
@@ -249,7 +249,7 @@ PERFORMANCE VALIDATION REPORT   # 성능 검증 보고
 
 ---
 
-## 🎯 적용 가이드
+##  적용 가이드
 
 ### 1. 새 문서 생성 시
 1. 버전 결정 (v1.1, v2.0, v2.1, v2.2, v3.0)
@@ -272,20 +272,20 @@ PERFORMANCE VALIDATION REPORT   # 성능 검증 보고
 
 ---
 
-## 📈 진행 상태 추적
+##  진행 상태 추적
 
 ### 현재 버전 분포
-- **v1.1**: 🟢 6개 문서 (완료)
-- **v2.0**: 🔵 3개 문서 (설계 완료)
-- **v2.1**: 🟠 85개 문서 (운영 중)
-- **v2.2**: 🟣 15개 문서 (자동화 진행 중)
-- **v3.0**: 🔴 1개 문서 (개발 예정)
+- **v1.1**:  6개 문서 (완료)
+- **v2.0**:  3개 문서 (설계 완료)
+- **v2.1**:  85개 문서 (운영 중)
+- **v2.2**:  15개 문서 (자동화 진행 중)
+- **v3.0**:  1개 문서 (개발 예정)
 
 ### 전체 문서 수: **110개**
 
 ---
 
-## 🔮 미래 계획
+##  미래 계획
 
 ### 단기 목표
 - v2.2 자동화 문서 완성
@@ -299,7 +299,7 @@ PERFORMANCE VALIDATION REPORT   # 성능 검증 보고
 
 ---
 
-## 📞 유지보수
+##  유지보수
 
 ### 정기 작업
 1. 월간 문서 분류 검토

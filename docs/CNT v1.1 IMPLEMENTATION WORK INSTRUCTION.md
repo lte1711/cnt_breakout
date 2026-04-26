@@ -3,7 +3,7 @@ aliases:
   - CNT v1.1 IMPLEMENTATION WORK INSTRUCTION
 ---
 
-﻿좋다. 아래는 **문서화 가능한 형식의 CNT v1.1 구현 작업지시서**다.
+좋다. 아래는 **문서화 가능한 형식의 CNT v1.1 구현 작업지시서**다.
 그대로 `docs/`에 넣을 수 있는 수준으로 정리했다.
 
 ---

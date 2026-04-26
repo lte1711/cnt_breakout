@@ -6,7 +6,7 @@
 
 ---
 
-## 📋 검증 단계 1: 코드 확인 (재검증)
+##  검증 단계 1: 코드 확인 (재검증)
 
 ### Task 1.1: Shadow Evaluator 코드 상태 확인
 
@@ -14,7 +14,7 @@
 **라인**: 63-76
 
 ```python
-# ✅ 확인할 코드 (현재 수정 반영됨):
+#  확인할 코드 (현재 수정 반영됨):
 regime_fail_reasons: list[str] = []
 if not conditions.market_bias_pass:
     regime_fail_reasons.append("market_not_trend_up")
@@ -26,9 +26,9 @@ regime = _stage_result(
 ```
 
 **체크**:
-- [ ] trend_up_pass 독립 체크 제거됨 ✓
-- [ ] range_bias_pass 독립 체크 제거됨 ✓
-- [ ] _stage_result 호출 시 ["market_bias_pass"]만 전달 ✓
+- [ ] trend_up_pass 독립 체크 제거됨 
+- [ ] range_bias_pass 독립 체크 제거됨 
+- [ ] _stage_result 호출 시 ["market_bias_pass"]만 전달 
 
 ### Task 1.2: 테스트 통과 확인
 
@@ -47,7 +47,7 @@ python -m pytest tests/ -v
 
 ---
 
-## 📊 검증 단계 2: Shadow 데이터 갱신 상태 확인
+##  검증 단계 2: Shadow 데이터 갱신 상태 확인
 
 ### Task 2.1: Snapshot 파일 타임스탬프 확인
 
@@ -127,7 +127,7 @@ event_index  market_bias_pass  trend_up_pass  range_bias_pass  first_blocker    
 
 ---
 
-## 🎯 검증 단계 3: 핵심 지표 변화
+##  검증 단계 3: 핵심 지표 변화
 
 ### Task 3.1: allowed_signal_count 변화 추적
 
@@ -200,7 +200,7 @@ $snapshot.soft_pass_count_distribution | ConvertTo-Json
 
 ---
 
-## 🔄 검증 단계 4: 블로커 분포 구조 변화
+##  검증 단계 4: 블로커 분포 구조 변화
 
 ### Task 4.1: First Blocker Distribution 검토
 
@@ -265,7 +265,7 @@ ema_fail: 0
 
 ---
 
-## ⚠️ 검증 단계 5: 상태 파일 동기화 확인
+##  검증 단계 5: 상태 파일 동기화 확인
 
 ### Task 5.1: Risk Metrics 불일치 확인
 
@@ -306,7 +306,7 @@ $portfolio.source
 
 ---
 
-## 🧾 검증 요약 템플릿
+##  검증 요약 템플릿
 
 ```markdown
 ## Shadow Evaluator 수정 후 검증 결과
@@ -339,14 +339,14 @@ _결과 요약_
 
 ---
 
-## 🎯 의사결정 기준
+##  의사결정 기준
 
 | 결과 | 해석 | 다음 액션 |
 |------|------|---------|
-| allowed > 0 AND blocker 분포 변화 | ✅ 수정 성공 | 상태 파일 동기화 진행 |
-| allowed = 0 AND blocker 분포 미변 | ❌ 데이터 미갱신 | run.ps1 재실행 |
-| allowed = 0 AND blocker 분포 변함 | ⚠️ 설정 재검토 필요 | 50+ events 대기 |
-| risk_metrics 불일치 유지 | ⚠️ 별도 이슈 | 포트폴리오 로거 점검 |
+| allowed > 0 AND blocker 분포 변화 |  수정 성공 | 상태 파일 동기화 진행 |
+| allowed = 0 AND blocker 분포 미변 |  데이터 미갱신 | run.ps1 재실행 |
+| allowed = 0 AND blocker 분포 변함 |  설정 재검토 필요 | 50+ events 대기 |
+| risk_metrics 불일치 유지 |  별도 이슈 | 포트폴리오 로거 점검 |
 
 ---
 

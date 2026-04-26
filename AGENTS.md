@@ -532,6 +532,7 @@ DOCUMENT_EXTENSION=.md
 DOCUMENT_ENCODING=UTF-8
 DOCUMENT_STYLE=OBSIDIAN_VAULT_COMPATIBLE
 UNICODE_FILENAME=FORBIDDEN
+DOCUMENT_EMOJI_USAGE=FORBIDDEN
 
 DOCUMENT_STORAGE_POLICY=
 1. every new report, plan, checklist, instruction, and review must be stored under docs/
@@ -542,6 +543,7 @@ DOCUMENT_STORAGE_POLICY=
 6. plain text .txt document creation is forbidden
 7. if a document is renamed or migrated, all related references must be updated
 8. document saving rules must be checked before commit and before final reporting
+9. emoji, emoticon, pictogram, and decorative symbol usage is forbidden in all project documents and docs-hosted assets
 
 OBSIDIAN_MINIMUM_RULE=
 1. provide readable markdown headings

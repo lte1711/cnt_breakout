@@ -3,7 +3,7 @@ aliases:
   - CNT v2 VALIDATION REPORT
 ---
 
-﻿# CNT v2 VALIDATION REPORT
+# CNT v2 VALIDATION REPORT
 
 ```text
 DOCUMENT_NAME = cnt_v2_validation_report

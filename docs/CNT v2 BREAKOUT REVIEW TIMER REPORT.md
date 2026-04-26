@@ -3,7 +3,7 @@ aliases:
   - CNT v2 BREAKOUT REVIEW TIMER REPORT
 ---
 
-﻿# CNT v2 BREAKOUT REVIEW TIMER REPORT
+# CNT v2 BREAKOUT REVIEW TIMER REPORT
 
 ```text
 DOCUMENT_NAME = cnt_v2_breakout_review_timer_report

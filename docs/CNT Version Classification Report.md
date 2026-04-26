@@ -8,17 +8,17 @@ generated_at: 2026-04-24 11:17:35
 
 ---
 
-## 📊 Overview
+##  Overview
 
 ### English Documents
 - **Total**: 280 documents
-- ⚪ **general**: 264 documents
-- 🟢 **v1.1**: 16 documents
+-  **general**: 264 documents
+-  **v1.1**: 16 documents
 
 ### Korean Documents
 - **Total**: 128 documents
-- ⚪ **general**: 120 documents
-- 🟢 **v1.1**: 8 documents
+-  **general**: 120 documents
+-  **v1.1**: 8 documents
 
 ### Combined Statistics
 - **Total Documents**: 408
@@ -27,11 +27,11 @@ generated_at: 2026-04-24 11:17:35
 
 ---
 
-## 📋 Detailed Classification
+##  Detailed Classification
 
 ### English Documents by Version
 
-#### ⚪ general (264 documents)
+####  general (264 documents)
 - **architecture**: 2
 - **automation**: 1
 - **fix**: 2
@@ -42,7 +42,7 @@ generated_at: 2026-04-24 11:17:35
 - **protocol**: 2
 - **status**: 2
 
-#### 🟢 v1.1 (16 documents)
+####  v1.1 (16 documents)
 - **architecture**: 4
 - **general**: 4
 - **implementation**: 4
@@ -50,7 +50,7 @@ generated_at: 2026-04-24 11:17:35
 
 ### Korean Documents by Version
 
-#### ⚪ general (120 documents)
+####  general (120 documents)
 - **architecture**: 1
 - **fix**: 1
 - **general**: 113
@@ -60,7 +60,7 @@ generated_at: 2026-04-24 11:17:35
 - **protocol**: 1
 - **status**: 1
 
-#### 🟢 v1.1 (8 documents)
+####  v1.1 (8 documents)
 - **architecture**: 2
 - **general**: 2
 - **implementation**: 2

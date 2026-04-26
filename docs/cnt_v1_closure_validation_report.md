@@ -3,7 +3,7 @@ aliases:
   - cnt_v1_closure_validation_report
 ---
 
-﻿CNT V1 CLOSURE VALIDATION REPORT
+CNT V1 CLOSURE VALIDATION REPORT
 
 DATE=2026-04-19
 PROJECT=CNT

@@ -568,7 +568,7 @@ function buildTopWarnings(snapshot, metrics, state, gate) {
   const breakout = metrics?.breakout_v1 ?? {};
   if ((gate?.status ?? "") === "FAIL") {
     warnings.push(`FAIL: ${gate?.reason ?? "UNKNOWN_REASON"}`);
-    warnings.push("⚠ PERFORMANCE DEGRADED");
+    warnings.push(" PERFORMANCE DEGRADED");
   }
   if (Number(snapshot.expectancy ?? 0) < 0) {
     warnings.push(`EXPECTANCY < 0 (${fmt(snapshot.expectancy, 6)})`);

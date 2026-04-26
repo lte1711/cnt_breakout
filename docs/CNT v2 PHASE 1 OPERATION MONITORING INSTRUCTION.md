@@ -33,7 +33,7 @@ aliases:
 판정 기준:
 
 ```text
-closed_trades >= 20 → Phase 2 진입 가능
+closed_trades >= 50 → Phase 2 진입 가능
 ```
 
 ---
@@ -216,7 +216,7 @@ closed_trades >= 5
 ### Phase 3 진입
 
 ```text
-closed_trades >= 20
+closed_trades >= 50
 ```
 
 ---

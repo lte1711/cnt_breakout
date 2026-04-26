@@ -67,7 +67,7 @@ NOT MET
 
 Required:
 
-* `closed_trades >= 20`
+* `closed_trades >= 50`
   or
 * `testnet operation >= 3 days`
 

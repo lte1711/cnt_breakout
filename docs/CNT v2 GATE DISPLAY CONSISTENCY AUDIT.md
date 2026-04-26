@@ -16,7 +16,7 @@ Compared files:
 
 `live_gate_evaluator.py` currently evaluates in this order:
 
-1. `closed_trades >= 20`
+1. `closed_trades >= 50`
 2. `expectancy > 0`
 3. `net_pnl > 0`
 4. `max_consecutive_losses <= 5`
@@ -34,7 +34,7 @@ The dashboard currently shows this gate rule text:
 
 The fallback `gateReady(snapshot)` function also uses:
 
-- `closed_trades >= 20`
+- `closed_trades >= 50`
 - `profit_factor >= 1.1`
 - `expectancy > 0`
 

@@ -62,7 +62,7 @@ REASON   = PRECONDITIONS_NOT_MET
 
 근거:
 
-* `closed_trades >= 20` 미충족
+* `closed_trades >= 50` 미충족
 * `operation_period >= 3 days` 미충족
 * profitability metrics는 아직 측정 불가
 * real risk-trigger evidence도 collected operating logs에서 아직 부족

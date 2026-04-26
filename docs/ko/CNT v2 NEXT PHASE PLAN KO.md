@@ -25,7 +25,7 @@ DATA_SUFFICIENCY_READY -> PERFORMANCE_VALIDATED -> LIVE_READY
 
 ### Objective 1 - Data Sufficiency
 
-- `closed_trades >= 20`
+- `closed_trades >= 50`
 - 또는 `>= 3 days`
 
 ### Objective 2 - Analysis Automation
@@ -65,7 +65,7 @@ DATA_SUFFICIENCY_READY -> PERFORMANCE_VALIDATED -> LIVE_READY
 
 1. `closed_trades`
 2. `operation_time_hours`
-3. `READY_FOR_VALIDATION = closed_trades >= 20 OR runtime >= 72h`
+3. `READY_FOR_VALIDATION = closed_trades >= 50 OR runtime >= 72h`
 
 ## 5. Track B - Automated Analysis
 

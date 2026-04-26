@@ -31,7 +31,7 @@ aliases:
 판단 기준:
 
 ```text
-closed_trades >= 20 -> Phase 2 진입 가능
+closed_trades >= 50 -> Phase 2 진입 가능
 ```
 
 ### 2.2 랭커 상태
@@ -192,7 +192,7 @@ closed_trades >= 5
 ### Phase 3 진입
 
 ```text
-closed_trades >= 20
+closed_trades >= 50
 ```
 
 ---

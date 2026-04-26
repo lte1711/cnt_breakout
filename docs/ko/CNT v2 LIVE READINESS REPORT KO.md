@@ -31,7 +31,7 @@ REFERENCE_3   = CNT v2 TESTNET DATA COLLECTION STATUS REPORT
 ### 필수 사전조건
 
 ```text
-closed_trades >= 20                    = FAIL
+closed_trades >= 50                    = FAIL
 operation_period >= 3 days             = FAIL
 strategy_metrics.json persistence      = PASS
 portfolio.log field recording          = PASS

@@ -16,7 +16,7 @@ aliases:
 
 `live_gate_evaluator.py`는 현재 아래 순서로 평가한다.
 
-1. `closed_trades >= 20`
+1. `closed_trades >= 50`
 2. `expectancy > 0`
 3. `net_pnl > 0`
 4. `max_consecutive_losses <= 5`
@@ -34,7 +34,7 @@ aliases:
 
 그리고 fallback `gateReady(snapshot)` 함수도 아래를 사용한다.
 
-- `closed_trades >= 20`
+- `closed_trades >= 50`
 - `profit_factor >= 1.1`
 - `expectancy > 0`
 

@@ -61,7 +61,7 @@ NEXT     = TESTNET_DATA_COLLECTION
 
 아래 둘 중 하나 충족 시 종료:
 
-* `closed_trades >= 20`
+* `closed_trades >= 50`
 * `testnet operation >= 3 days`
 
 ## 운영 중 금지

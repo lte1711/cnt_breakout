@@ -52,9 +52,9 @@ http://127.0.0.1:8000/docs/cnt_operations_dashboard.html
 
 ## 해석 메모
 
-- `READY`는 단순히 `closed_trades >= 20`만으로 판정되지 않음
+- `READY`는 단순히 `closed_trades >= 50`만으로 판정되지 않음
 - 대시보드 gate rule:
-  - `closed_trades >= 20`
+  - `closed_trades >= 50`
   - `profit_factor >= 1.1`
   - `expectancy > 0`
 - `RANKER FAILURE`와 `CANDIDATE STARVATION`은 운영 지원용 heuristic warning layer임

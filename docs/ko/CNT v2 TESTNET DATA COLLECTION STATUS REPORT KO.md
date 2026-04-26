@@ -61,7 +61,7 @@ NOT MET
 
 요구 조건:
 
-- `closed_trades >= 20`
+- `closed_trades >= 50`
   또는
 - `testnet operation >= 3 days`
 

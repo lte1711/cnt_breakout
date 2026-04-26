@@ -14,7 +14,7 @@ aliases:
 
 The evaluator currently uses this real order:
 
-1. `closed_trades >= 20`
+1. `closed_trades >= 50`
 2. `expectancy > 0`
 3. `net_pnl > 0`
 4. `max_consecutive_losses <= 5`

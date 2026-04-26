@@ -62,7 +62,7 @@ REASON   = PRECONDITIONS_NOT_MET
 
 Supporting facts:
 
-* `closed_trades >= 20` not satisfied
+* `closed_trades >= 50` not satisfied
 * `operation_period >= 3 days` not satisfied
 * profitability metrics are not yet measurable
 * real risk-trigger evidence is not yet present in collected operating logs

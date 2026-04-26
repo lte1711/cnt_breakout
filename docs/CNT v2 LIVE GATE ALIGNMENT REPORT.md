@@ -22,7 +22,7 @@ aliases:
 
 ### Snapshot Facts
 
-- `closed_trades = 20`
+- `closed_trades = 50`
 - `expectancy = 0.002786549999999867`
 - `net_pnl = 0.05573099999999734`
 - `max_consecutive_losses = 2`

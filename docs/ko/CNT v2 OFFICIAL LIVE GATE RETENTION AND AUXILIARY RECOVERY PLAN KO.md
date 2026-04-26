@@ -18,7 +18,7 @@ updated: 2026-04-24
 
 공식 live gate는 그대로 유지한다.
 
-1. `closed_trades >= 20`
+1. `closed_trades >= 50`
 2. `expectancy > 0`
 3. `net_pnl > 0`
 4. `max_consecutive_losses <= 5`

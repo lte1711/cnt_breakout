@@ -14,7 +14,7 @@ aliases:
 
 현재 evaluator는 실제로 아래 순서를 사용한다.
 
-1. `closed_trades >= 20`
+1. `closed_trades >= 50`
 2. `expectancy > 0`
 3. `net_pnl > 0`
 4. `max_consecutive_losses <= 5`

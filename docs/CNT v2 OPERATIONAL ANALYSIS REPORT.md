@@ -198,7 +198,7 @@ CURRENT_PHASE = DATA_COLLECTION_RUNNING
 
 조건:
 
-* closed_trades >= 20
+* closed_trades >= 50
 
 행동:
 

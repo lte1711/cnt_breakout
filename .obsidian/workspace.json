@@ -4,11 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "65fde13502d96e96",
+        "id": "74710273b45f6fbb",
         "type": "tabs",
         "children": [
           {
-            "id": "50fcff1daa78b9f5",
+            "id": "73de11de6096c4e7",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "그래프 뷰"
+            }
+          },
+          {
+            "id": "157c9f1c8015b915",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -17,7 +27,8 @@
               "title": "새 탭"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -49,7 +60,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "[\"status\"]",
+                "query": "tag:#607D8B",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -176,7 +187,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 320
+    "width": 320,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -195,17 +207,20 @@
       "workspaces:작업 공간 레이아웃 관리": false
     }
   },
-  "active": "50fcff1daa78b9f5",
+  "active": "157c9f1c8015b915",
   "lastOpenFiles": [
+    "docs/ko/CNT TOOLCHAIN INTEGRATION REPORT KO.md",
+    "docs/ko/CNT GRAPH VIEW COLOR CONFIGURATION KO.md",
+    "무제.canvas",
+    "data/engine.lock",
+    "docs/ko/CNT DATA DASHBOARD KO.md",
     "docs/ko/CNT OBSERVATION RESUME CHECK 20260425 2007 KO.md",
     "docs/ko/00 Docs Index KO.md",
-    "docs/ko/CNT DATA DASHBOARD KO.md",
     "docs/ko/CNT v2 DASHBOARD SETUP BOTTLENECK ISOLATION UPGRADE REPORT KO.md",
     "docs/ko/CNT v2 BREAKOUT V3 SETUP BOTTLENECK ISOLATION REPORT KO.md",
     "docs/ko/CNT v2 OBSIDIAN INTEGRATED OPERATING PROTOCOL KO.md",
     "docs/ko/CNT DOCS KOREAN MIGRATION PLAN KO.md",
     "docs/ko/CNT DOCS KOREAN MIRROR POLICY KO.md",
-    "data/engine.lock",
     "docs/ko/CNT v2 BREAKOUT V2 DESIGN KO.md",
     "AGENTS.md",
     "00 CNT Vault Home.md",
@@ -225,14 +240,11 @@
     "templates/ko/activation_review_checklist_ko.md",
     "templates/activation_review_checklist.md",
     "docs/00 Docs Index.md",
-    "docs/ko/CNT v2 VALIDATION REPORT KO.md",
-    "docs/CNT v2 BREAKOUT V3 SHADOW VALIDATION RUNTIME INTEGRATION PLAN.md",
     "tools/__pycache__/analyze_breakout_v3_post_trend_setup_residual_trace.cpython-312.pyc",
     "reports/breakout_v3_post_trend_setup_residual_trace.json",
     "tools/analyze_breakout_v3_post_trend_setup_residual_trace.py",
     "tools/__pycache__/analyze_breakout_v3_setup_market_context_split.cpython-312.pyc",
     "reports/breakout_v3_setup_market_context_split.json",
-    "tools/analyze_breakout_v3_setup_market_context_split.py",
-    "무제.canvas"
+    "tools/analyze_breakout_v3_setup_market_context_split.py"
   ]
 }

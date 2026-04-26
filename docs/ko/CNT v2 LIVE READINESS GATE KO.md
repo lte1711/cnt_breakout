@@ -1,41 +1,45 @@
 ---
 aliases:
   - CNT v2 LIVE READINESS GATE KO
+tags:
+  - cnt
+  - live-readiness
+  - gate
+  - testnet
+  - ko
+status: ACTIVE
+updated: 2026-04-26
 ---
 
 # CNT v2 라이브 준비도 게이트
 
 ## 목적
 
-CNT v2의 라이브 준비도 게이트는 단순 수익 여부만 보는 기준이 아니다.
+이 문서는 Binance Spot Testnet 운영 기준의 CNT v2 공식 라이브 준비도 게이트를 정의한다.
 
-이 문서는 Testnet 운영에서 아래 항목이 실제로 관측되었는지를 바탕으로
-보수적으로 `NOT_READY`, `FAIL`, `LIVE_READY`를 판정하는 기준 문서다.
+이 게이트는 단순 수익 여부만 보는 기준이 아니다. 실제 런타임 증거에서 아래 조건이 모두 확인되는지를 보수적으로 판단하는 운영 기준이다.
 
-핵심 확인 항목:
-
-- 충분한 표본 수
-- 기대값과 순손익의 양수 여부
-- 연속 손실 통제 여부
-- 리스크 보호 로직의 실제 발동 증거
+- 충분한 종료 거래 표본 수
+- 양수 기대값
+- 양수 순손익
+- 제한 범위 안의 연속 손실
+- 리스크 보호 계층의 실제 작동 증거
 
 ## 현재 규칙
 
-현재 게이트 판정은 아래 순서로 진행된다.
+공식 라이브 게이트는 아래 순서로 평가한다.
 
-1. `closed_trades >= 20`
+1. `closed_trades >= 50`
 2. `expectancy > 0`
 3. `net_pnl > 0`
 4. `max_consecutive_losses <= 5`
-5. `risk_trigger_stats` 안에서 아래 중 하나 이상이 실제로 관측되어야 함
+5. `risk_trigger_stats` 안에 아래 리스크 가드 중 하나 이상이 실제로 관측되어야 한다.
    - `LOSS_COOLDOWN`
    - `DAILY_LOSS_LIMIT`
 
-즉 현재 게이트는 `cooldown`만 강제하는 것이 아니라,
-`daily loss guard` 또는 `cooldown guard` 중 하나라도 실제 로그/스냅샷에 남으면
-리스크 보호 계층이 동작한 것으로 본다.
+리스크 가드 증거 조건은 두 보호 장치가 모두 발동해야 한다는 뜻이 아니다. 런타임 로그와 스냅샷 데이터에서 둘 중 하나 이상이 관측되면 보호 계층이 작동한 것으로 본다.
 
-## Reason Codes
+## 사유 코드
 
 - `NOT_READY / INSUFFICIENT_SAMPLE`
 - `FAIL / NON_POSITIVE_EXPECTANCY`
@@ -46,36 +50,37 @@ CNT v2의 라이브 준비도 게이트는 단순 수익 여부만 보는 기준
 
 ## 해석 규칙
 
-현재 CNT 문맥에서 각 상태의 의미는 다음과 같다.
+- `NOT_READY`는 아직 표본이 부족해 최종 준비도 판단을 할 수 없다는 뜻이다.
+- `FAIL`은 표본은 있으나 성과 또는 보호 조건 중 하나 이상이 충족되지 않았다는 뜻이다.
+- `LIVE_READY`는 정의된 증거 게이트를 통과했다는 뜻이다. 수익 보장을 의미하지 않는다.
 
-- `NOT_READY` = 아직 표본이 부족한 상태
-- `FAIL` = 표본은 있지만 운영 성과 또는 보호 계층 조건이 부족한 상태
-- `LIVE_READY` = 수익만이 아니라 리스크 보호 로직이 실제로 관측된 상태
+## 현재 증거 소스
 
-즉 `LIVE_READY`는 “최적화 완료”가 아니라
-“최소 준비 기준을 사실 기반으로 통과함”을 뜻한다.
-
-## 현재 상태 메모
-
-현재 CNT는 Testnet 운영 단계이며,
-라이브 게이트는 최신 산출물을 기준으로 계속 재평가된다.
-
-우선 참조 데이터:
+게이트는 요약 문서만이 아니라 현재 프로젝트 증거를 기준으로 평가해야 한다.
 
 - `data/performance_snapshot.json`
 - `data/live_gate_decision.json`
 - `logs/runtime.log`
 - `logs/portfolio.log`
+- `src/validation/live_gate_evaluator.py`
 
-## 링크
+## 현재 상태 메모
 
-- CNT v2 LIVE READINESS GATE
-- CNT v2 LIVE READINESS REPORT KO
-- CNT v2 CURRENT STATUS ASSESSMENT KO
-- 00 Docs Index KO
+검증된 `2026-04-26 14:34:05` 스냅샷 기준:
+
+```text
+closed_trades = 42
+expectancy    = -0.0005784761904763167
+net_pnl       = -0.024296000000005313
+status        = NOT_READY
+reason        = INSUFFICIENT_SAMPLE
+```
+
+따라서 현재 CNT v2는 Testnet 데이터 수집 단계이며, 공식 게이트 기준으로 라이브 준비 완료 상태가 아니다.
 
 ## Obsidian Links
 
 - [[00 Docs Index KO]]
-
-
+- [[CNT v2 TESTNET PERFORMANCE REPORT KO]]
+- [[CNT_PROJECT_STATUS_REPORT_20260426]]
+- [[CNT_PRECISION_ANALYSIS_REPORT_20260426]]

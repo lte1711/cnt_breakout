@@ -4,6 +4,9 @@ import json
 from pathlib import Path
 
 
+MIN_LIVE_GATE_CLOSED_TRADES = 50
+
+
 def evaluate_live_gate(snapshot: dict) -> dict:
     closed_trades = int(snapshot.get("closed_trades", 0) or 0)
     expectancy = float(snapshot.get("expectancy", 0.0) or 0.0)
@@ -14,7 +17,7 @@ def evaluate_live_gate(snapshot: dict) -> dict:
     daily_loss_trigger = int(risk_trigger_stats.get("DAILY_LOSS_LIMIT", 0) or 0)
     observed_risk_guard_trigger = cooldown_trigger + daily_loss_trigger
 
-    if closed_trades < 20:
+    if closed_trades < MIN_LIVE_GATE_CLOSED_TRADES:
         return {
             "status": "NOT_READY",
             "reason": "INSUFFICIENT_SAMPLE",

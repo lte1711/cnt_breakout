@@ -1,35 +1,35 @@
 {
-  "timestamp": "2026-04-26 02:34:02",
+  "timestamp": "2026-04-26 11:34:04",
   "official_gate": {
-    "status": "FAIL",
-    "reason": "NON_POSITIVE_EXPECTANCY",
-    "expectancy": -0.0009355135135136299,
-    "net_pnl": -0.03461400000000442,
-    "closed_trades": 37
+    "status": "NOT_READY",
+    "reason": "INSUFFICIENT_SAMPLE",
+    "expectancy": -0.0005784761904763167,
+    "net_pnl": -0.024296000000005313,
+    "closed_trades": 42
   },
   "pullback_v1": {
-    "closed_trades": 34,
-    "wins": 17,
-    "losses": 17,
-    "win_rate": 0.5,
-    "expectancy": 0.0009405882352939579,
-    "profit_factor": 1.124679820816594,
-    "net_pnl": 0.03197999999999457,
-    "signals_generated": 610,
-    "signals_selected": 217
+    "closed_trades": 39,
+    "wins": 20,
+    "losses": 19,
+    "win_rate": 0.5128205128205128,
+    "expectancy": 0.0010845641025639396,
+    "profit_factor": 1.1546030388426254,
+    "net_pnl": 0.042297999999993674,
+    "signals_generated": 626,
+    "signals_selected": 223
   },
   "system_excluding_breakout_v1": {
     "excluded_strategy": "breakout_v1",
     "included_strategies": [
       "pullback_v1"
     ],
-    "closed_trades": 34,
-    "wins": 17,
-    "losses": 17,
-    "win_rate": 0.5,
-    "expectancy": 0.0009405882352939579,
-    "profit_factor": 1.124679820816594,
-    "net_pnl": 0.03197999999999457
+    "closed_trades": 39,
+    "wins": 20,
+    "losses": 19,
+    "win_rate": 0.5128205128205128,
+    "expectancy": 0.0010845641025639396,
+    "profit_factor": 1.1546030388426254,
+    "net_pnl": 0.042297999999993674
   },
   "recovery_signal": {
     "status": "RECOVERY_OBSERVATION_IN_PROGRESS",
@@ -43,20 +43,20 @@
   },
   "runtime_state": {
     "active_strategy": "pullback_v1",
-    "last_run_time": "2026-04-26 02:34:00",
-    "last_action": "HOLD_OPEN_TRADE",
+    "last_run_time": "2026-04-26 11:34:01",
+    "last_action": "NO_ENTRY_SIGNAL",
     "pending_order_exists": false,
-    "open_trade_exists": true,
-    "open_positions_count": 1,
-    "total_exposure": 5.079580000000001
+    "open_trade_exists": false,
+    "open_positions_count": 0,
+    "total_exposure": 0.0
   },
   "risk_counter_sync": {
     "daily_loss_count_synced": true,
     "consecutive_losses_synced": true,
-    "state_daily_loss_count": 1,
-    "portfolio_daily_loss_count": 1,
-    "state_consecutive_losses": 5,
-    "portfolio_consecutive_losses": 5
+    "state_daily_loss_count": 3,
+    "portfolio_daily_loss_count": 3,
+    "state_consecutive_losses": 1,
+    "portfolio_consecutive_losses": 1
   },
   "interpretation": "official_gate_remains_authoritative_auxiliary_status_is_observational_only"
 }

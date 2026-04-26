@@ -1,48 +1,48 @@
 {
-  "signal_count": 62,
+  "signal_count": 78,
   "allowed_signal_count": 2,
-  "allowed_signal_ratio": 0.03225806451612903,
-  "expanded_event_count": 62,
+  "allowed_signal_ratio": 0.02564102564102564,
+  "expanded_event_count": 78,
   "first_blocker_distribution": {
-    "setup_not_ready": 20,
-    "breakout_not_confirmed": 4,
-    "market_not_trend_up": 36
+    "setup_not_ready": 25,
+    "breakout_not_confirmed": 7,
+    "market_not_trend_up": 44
   },
   "hard_blocker_distribution": {
-    "setup_not_ready": 20,
-    "breakout_not_confirmed": 4,
-    "market_not_trend_up": 36
+    "setup_not_ready": 25,
+    "breakout_not_confirmed": 7,
+    "market_not_trend_up": 44
   },
   "secondary_blocker_distribution": {
-    "band_width_fail": 54,
-    "band_expansion_fail": 48,
-    "volume_fail": 48,
-    "vwap_distance_fail": 55,
-    "ema_fail": 33,
-    "rsi_threshold_fail": 35
+    "band_width_fail": 70,
+    "band_expansion_fail": 62,
+    "volume_fail": 59,
+    "vwap_distance_fail": 71,
+    "ema_fail": 39,
+    "rsi_threshold_fail": 44
   },
   "soft_pass_count_distribution": {
-    "2": 14,
-    "3": 9,
-    "1": 16,
-    "4": 7,
-    "0": 16
+    "2": 21,
+    "3": 10,
+    "1": 19,
+    "4": 8,
+    "0": 20
   },
   "stage_pass_counts": {
-    "regime": 26,
-    "trigger": 19,
-    "quality": 16,
-    "setup": 5
+    "regime": 34,
+    "trigger": 24,
+    "quality": 18,
+    "setup": 8
   },
   "stage_fail_counts": {
-    "setup": 57,
-    "trigger": 43,
-    "quality": 46,
-    "regime": 36
+    "setup": 70,
+    "trigger": 54,
+    "quality": 60,
+    "regime": 44
   },
   "min_soft_pass_required": 3,
   "soft_total_count": 6,
   "aggregation_scope": "all_breakout_v3_shadow_events",
   "strategy": "breakout_v3_shadow",
-  "last_updated": "2026-04-26T02:04:03+09:00"
+  "last_updated": "2026-04-26T11:34:04+09:00"
 }

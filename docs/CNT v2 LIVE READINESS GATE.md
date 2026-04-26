@@ -18,7 +18,7 @@ CNT v2의 라이브 게이트는 단순 수익 여부가 아니라, 실제 Testn
 
 현재 게이트 판정은 아래 순서로 진행된다.
 
-1. `closed_trades >= 20`
+1. `closed_trades >= 50`
 2. `expectancy > 0`
 3. `net_pnl > 0`
 4. `max_consecutive_losses <= 5`

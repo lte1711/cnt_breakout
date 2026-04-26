@@ -116,7 +116,7 @@ class StandaloneDashboard:
         
         # LIVE READY 상태 판단
         total_trades = sum(s.get('trades_closed', 0) for s in self.load_json_file(self.data_dir / "strategy_metrics.json").values())
-        is_live_ready = total_trades >= 20 and consecutive_losses <= 2
+        is_live_ready = total_trades >= 50 and consecutive_losses <= 2
         
         status = "✅ LIVE_READY" if is_live_ready else "❌ NOT_READY"
         print(f"라이브 준비 상태: {status}")
@@ -177,7 +177,7 @@ class StandaloneDashboard:
         print(f"허용 신호: {shadow_data.get('allowed_signals', 0)}")
         
         # 상태 아이콘
-        if total_trades >= 20:
+        if total_trades >= 50:
             trade_status = "✅"
         elif total_trades >= 10:
             trade_status = "🟡"
@@ -189,7 +189,7 @@ class StandaloneDashboard:
         else:
             shadow_status = "🟡"
         
-        print(f"거래 상태: {trade_status} ({total_trades}/20)")
+        print(f"거래 상태: {trade_status} ({total_trades}/50)")
         print(f"섀도 상태: {shadow_status} (허용 신호: {shadow_data.get('allowed_signals', 0)})")
     
     def run_dashboard(self, watch_mode: bool = False, interval: int = 30):

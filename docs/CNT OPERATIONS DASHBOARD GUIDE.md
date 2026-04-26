@@ -56,9 +56,9 @@ http://127.0.0.1:8000/docs/cnt_operations_dashboard.html
 
 ## Interpretation Notes
 
-- `READY` is not based only on `closed_trades >= 20`
+- `READY` is not based only on `closed_trades >= 50`
 - dashboard gate rule is:
-  - `closed_trades >= 20`
+  - `closed_trades >= 50`
   - `profit_factor >= 1.1`
   - `expectancy > 0`
 - `RANKER FAILURE` and `CANDIDATE STARVATION` are heuristic warning layers for operation support

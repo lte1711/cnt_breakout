@@ -325,11 +325,11 @@
         <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-top:16px;">
           <div>
             <div class="metric-label">Closed Trades</div>
-            <div class="big-number" id="gate-count">0 / 20</div>
+            <div class="big-number" id="gate-count">0 / 50</div>
           </div>
           <div style="text-align:right;">
             <div class="metric-label">Gate Rule</div>
-            <div class="mono" id="gate-rule">closed_trades &gt;= 20 · expectancy &gt; 0 · net_pnl &gt; 0 · max_consecutive_losses &lt;= 5 · risk_guard_observed</div>
+            <div class="mono" id="gate-rule">closed_trades &gt;= 50 · expectancy &gt; 0 · net_pnl &gt; 0 · max_consecutive_losses &lt;= 5 · risk_guard_observed</div>
           </div>
         </div>
         <div class="progress"><div id="gate-progress"></div></div>
@@ -507,7 +507,7 @@ const DATA_FILES = {
   v3SetupPassBlockedTrace: "../reports/breakout_v3_setup_pass_blocked_trace.json",
 };
 
-const GATE_THRESHOLD = 20;
+const GATE_THRESHOLD = 50;
 
 function fmt(value, digits = 4) {
   if (value == null || Number.isNaN(Number(value))) return "--";
@@ -868,7 +868,7 @@ function render(snapshot, metrics, state, portfolio, gate, auxStatus, heartbeat,
   document.getElementById("gate-reason").textContent = gateReason;
   document.getElementById("gate-count").textContent = `${snapshot.closed_trades ?? 0} / ${GATE_THRESHOLD}`;
   document.getElementById("gate-progress").style.width = `${Math.min(100, ((snapshot.closed_trades ?? 0) / GATE_THRESHOLD) * 100)}%`;
-  document.getElementById("gate-rule").textContent = "closed_trades >= 20 | expectancy > 0 | net_pnl > 0 | max_consecutive_losses <= 5 | risk_guard_observed";
+  document.getElementById("gate-rule").textContent = "closed_trades >= 50 | expectancy > 0 | net_pnl > 0 | max_consecutive_losses <= 5 | risk_guard_observed";
   document.getElementById("gate-explain").textContent = classificationText(snapshot, gateStatus, gateReason);
 
   const aux = buildAuxiliaryRecovery(auxStatus, gate);

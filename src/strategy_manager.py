@@ -5,6 +5,7 @@ from pathlib import Path
 
 from binance_client import get_price
 from config import ACTIVE_STRATEGIES, ACTIVE_STRATEGY, ENTRY_INTERVAL, KLINES_LIMIT, PRIMARY_INTERVAL, SIGNAL_LOG_FILE, STRATEGY_PARAMS
+from src.market.feature_snapshot import build_market_feature_snapshot
 from src.market_data import get_recent_closed_klines
 from src.models.market_context import MarketContext
 from src.models.strategy_signal import StrategySignal
@@ -13,10 +14,11 @@ from src.strategy_registry import STRATEGY_REGISTRY
 
 
 def _build_error_signal(symbol: str, strategy_name: str, message: str) -> StrategySignal:
+    timestamp = time.time()
     return StrategySignal(
         strategy_name=strategy_name,
         symbol=symbol,
-        signal_timestamp=time.time(),
+        signal_timestamp=timestamp,
         signal_age_limit_sec=-1,
         entry_allowed=False,
         side="NONE",
@@ -27,6 +29,8 @@ def _build_error_signal(symbol: str, strategy_name: str, message: str) -> Strate
         volatility_state="UNKNOWN",
         entry_price_hint=None,
         exit_model=None,
+        decision_id=f"{symbol}-{strategy_name}-{int(timestamp * 1000)}",
+        market_features={},
     )
 
 
@@ -35,6 +39,17 @@ def _append_signal_log_safely(signal_log_file: Path, signal: StrategySignal) -> 
         append_signal_log(signal_log_file, signal)
     except Exception:
         pass
+
+
+def _ensure_decision_metadata(signal: StrategySignal, context: MarketContext, params: dict) -> StrategySignal:
+    if not signal.decision_id:
+        timestamp_ms = int(float(signal.signal_timestamp) * 1000)
+        signal.decision_id = f"{signal.symbol}-{signal.strategy_name}-{timestamp_ms}"
+
+    if not signal.market_features:
+        signal.market_features = build_market_feature_snapshot(context, params)
+
+    return signal
 
 
 def _run_strategy(strategy_name: str, symbol: str, signal_log_file: Path) -> StrategySignal:
@@ -65,7 +80,7 @@ def _run_strategy(strategy_name: str, symbol: str, signal_log_file: Path) -> Str
             last_price=last_price,
         )
 
-        signal = strategy.evaluate(context)
+        signal = _ensure_decision_metadata(strategy.evaluate(context), context, params)
         _append_signal_log_safely(signal_log_file, signal)
         return signal
     except Exception as error:

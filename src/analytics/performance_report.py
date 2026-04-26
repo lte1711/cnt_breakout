@@ -27,6 +27,23 @@ def _format_strategy_breakdown(strategy_breakdown: dict) -> str:
     return " | ".join(lines)
 
 
+def _format_market_context_performance(market_context_performance: dict) -> str:
+    if not market_context_performance:
+        return "none"
+
+    lines: list[str] = []
+    for context, payload in sorted(market_context_performance.items()):
+        lines.append(
+            f"{context}: trades={payload.get('trades', 0)}, "
+            f"wins={payload.get('wins', 0)}, losses={payload.get('losses', 0)}, "
+            f"win_rate={_fmt_ratio(float(payload.get('win_rate', 0.0) or 0.0))}, "
+            f"expectancy={_fmt_value(float(payload.get('expectancy', 0.0) or 0.0))}, "
+            f"profit_factor={_fmt_value(float(payload.get('profit_factor', 0.0) or 0.0))}, "
+            f"net_pnl={_fmt_value(float(payload.get('net_pnl', 0.0) or 0.0))}"
+        )
+    return " | ".join(lines)
+
+
 def _format_stats(stats: dict) -> str:
     if not stats:
         return "none"
@@ -97,6 +114,7 @@ RISK_TRIGGER_STATS: {_format_stats(snapshot.get('risk_trigger_stats', {}))}
 STRATEGY_BREAKDOWN: {_format_strategy_breakdown(snapshot.get('strategy_breakdown', {}))}
 SELECTION_LOG_COUNTS: {_format_stats(snapshot.get('selected_strategy_counts', {}))}
 SELECTION_LOG_BASIS: {selection_basis}
+MARKET_CONTEXT_PERFORMANCE: {_format_market_context_performance(snapshot.get('market_context_performance', {}))}
 NOTES: auto-generated from performance snapshot
 ```
 """

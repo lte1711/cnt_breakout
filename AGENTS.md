@@ -155,6 +155,9 @@ PENDING_ORDER_KEYS=
 orderId
 status
 side
+strategy_name
+decision_id
+market_features
 
 OPEN_TRADE_KEYS=
 status
@@ -163,6 +166,8 @@ entry_qty
 entry_order_id
 entry_side
 strategy_name
+decision_id
+market_features
 stop_price
 target_price
 trailing_stop_pct
@@ -177,6 +182,7 @@ partial_exit_progress
 ### StrategySignal
 - strategy_name
 - symbol
+- decision_id
 - signal_timestamp
 - signal_age_limit_sec
 - entry_allowed
@@ -189,6 +195,7 @@ partial_exit_progress
 - volatility_state
 - entry_price_hint
 - exit_model
+- market_features
 
 ### ExitModel
 - stop_price
@@ -451,6 +458,16 @@ STOP_LOSS_PCT
 
 LOG_WRITE_REQUIRED=TRUE
 
+MARKET_CONTEXT_LOGGING_LAYER=ACTIVE
+MARKET_CONTEXT_LOGGING_RULE=
+1. every generated StrategySignal should preserve decision_id when available
+2. every generated StrategySignal should preserve decision-time market_features when available
+3. selected signal logs should include decision_id and market_features
+4. pending/open_trade state should carry decision_id and market_features from entry signal
+5. close logs should include decision_id and market_context when available
+6. performance reports should aggregate market-context performance when available
+7. market-context logging is observational only and must not change strategy parameters, order policy, or live transition status
+
 LOG_REQUIRED_FIELDS=
 action
 price
@@ -458,6 +475,8 @@ pending_order
 open_trade
 strategy_name
 reason
+decision_id
+market_features
 
 ERROR_POLICY=
 1. write state when possible

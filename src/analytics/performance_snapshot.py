@@ -30,6 +30,46 @@ def _safe_dict_literal(value: str) -> dict:
     return parsed if isinstance(parsed, dict) else {}
 
 
+def _new_context_stats() -> dict:
+    return {
+        "trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "gross_profit": 0.0,
+        "gross_loss": 0.0,
+        "net_pnl": 0.0,
+        "win_rate": 0.0,
+        "expectancy": 0.0,
+        "profit_factor": 0.0,
+    }
+
+
+def _update_context_stats(stats: dict, pnl: float) -> None:
+    stats["trades"] += 1
+    stats["net_pnl"] += pnl
+    if pnl > 0:
+        stats["wins"] += 1
+        stats["gross_profit"] += pnl
+    else:
+        stats["losses"] += 1
+        stats["gross_loss"] += abs(pnl)
+
+
+def _finalize_context_stats(stats_by_context: dict) -> dict:
+    finalized: dict = {}
+    for context, stats in stats_by_context.items():
+        trades = int(stats["trades"])
+        wins = int(stats["wins"])
+        gross_loss = float(stats["gross_loss"])
+        finalized[context] = {
+            **stats,
+            "win_rate": wins / trades if trades else 0.0,
+            "expectancy": float(stats["net_pnl"]) / trades if trades else 0.0,
+            "profit_factor": float(stats["gross_profit"]) / gross_loss if gross_loss > 0 else 0.0,
+        }
+    return finalized
+
+
 def _load_strategy_metrics(metrics_file: Path) -> dict:
     if not metrics_file.exists():
         return {}
@@ -50,6 +90,7 @@ def _parse_portfolio_log(log_file: Path) -> dict:
     close_pnls: list[float] = []
     rank_scores: list[float] = []
     rank_score_components_samples: list[dict] = []
+    market_context_performance: dict[str, dict] = {}
 
     if not log_file.exists():
         return {
@@ -60,6 +101,7 @@ def _parse_portfolio_log(log_file: Path) -> dict:
             "max_consecutive_losses": 0,
             "rank_scores": [],
             "rank_score_components_samples": [],
+            "market_context_performance": {},
         }
 
     for raw_line in log_file.read_text(encoding="utf-8").splitlines():
@@ -94,7 +136,18 @@ def _parse_portfolio_log(log_file: Path) -> dict:
 
         if "close_pnl_estimate=" in line:
             raw_value = line.split("close_pnl_estimate=", 1)[1].split()[0]
-            close_pnls.append(_safe_float(raw_value))
+            pnl = _safe_float(raw_value)
+            close_pnls.append(pnl)
+            if "close_action=" in line:
+                selected_strategy = "UNKNOWN"
+                if "selected_strategy=" in line:
+                    selected_strategy = line.split("selected_strategy=", 1)[1].split()[0]
+                market_context = "UNKNOWN"
+                if "market_context=" in line:
+                    market_context = line.split("market_context=", 1)[1].split()[0]
+                context_key = f"{selected_strategy}:{market_context}"
+                market_context_performance.setdefault(context_key, _new_context_stats())
+                _update_context_stats(market_context_performance[context_key], pnl)
 
         if "rank_score=" in line:
             raw_value = line.split("rank_score=", 1)[1].split()[0]
@@ -137,6 +190,7 @@ def _parse_portfolio_log(log_file: Path) -> dict:
         "max_consecutive_losses": max_consecutive_losses,
         "rank_scores": rank_scores,
         "rank_score_components_samples": rank_score_components_samples,
+        "market_context_performance": _finalize_context_stats(market_context_performance),
     }
 
 
@@ -252,6 +306,7 @@ def build_performance_snapshot(
         "selected_strategy_counts_basis": "new-format selection-path logs only",
         "rank_score_samples": list(log_stats["rank_scores"]),
         "rank_score_components_samples": list(log_stats["rank_score_components_samples"]),
+        "market_context_performance": dict(log_stats["market_context_performance"]),
     }
 
 

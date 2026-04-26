@@ -3,6 +3,7 @@ from __future__ import annotations
 import time
 
 from src.indicators import ema, extract_closes, rsi
+from src.market.feature_snapshot import build_market_feature_snapshot
 from src.models.market_context import MarketContext
 from src.models.strategy_signal import StrategySignal
 from src.risk.exit_models import ExitModel
@@ -50,6 +51,7 @@ class PullbackV1Strategy(BaseStrategy):
             raise ValueError("signal_age_limit_sec must be >= -1")
 
     def evaluate(self, context: MarketContext) -> StrategySignal:
+        market_features = build_market_feature_snapshot(context, self.params)
         closes = extract_closes(context.klines_entry)
         ema_fast_series = ema(closes, self.params["ema_fast_period"])
         ema_slow_series = ema(closes, self.params["ema_slow_period"])
@@ -120,4 +122,5 @@ class PullbackV1Strategy(BaseStrategy):
             volatility_state="MEDIUM",
             entry_price_hint=entry_price_hint,
             exit_model=exit_model,
+            market_features=market_features,
         )

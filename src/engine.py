@@ -56,6 +56,7 @@ from src.entry_gate import evaluate_entry_gate_from_signal
 from src.logging.portfolio_logger import append_portfolio_log
 from src.log_writer import append_log
 from src.models.exit_signal import ExitSignal
+from src.models.strategy_signal import StrategySignal
 from src.order_cancel import cancel_order
 from src.order_executor import send_live_testnet_order, send_test_order
 from src.order_payload_builder import build_limit_order_payload
@@ -198,6 +199,12 @@ def _normalize_pending_order(pending: dict | None) -> dict | None:
     if "strategy_name" in pending:
         normalized["strategy_name"] = str(pending["strategy_name"])
 
+    if "decision_id" in pending and pending["decision_id"] is not None:
+        normalized["decision_id"] = str(pending["decision_id"])
+
+    if "market_features" in pending and isinstance(pending["market_features"], dict):
+        normalized["market_features"] = pending["market_features"]
+
     if "stop_price" in pending and pending["stop_price"] is not None:
         normalized["stop_price"] = float(pending["stop_price"])
 
@@ -270,7 +277,7 @@ def _normalize_open_trade(open_trade: dict | None) -> dict | None:
     if stop_price is None or target_price is None:
         stop_price, target_price = _build_exit_model_from_strategy(strategy_name, entry_price)
 
-    return {
+    normalized = {
         "status": str(open_trade["status"]),
         "entry_price": entry_price,
         "entry_qty": float(open_trade["entry_qty"]),
@@ -302,6 +309,14 @@ def _normalize_open_trade(open_trade: dict | None) -> dict | None:
         "entry_time": open_trade.get("entry_time"),
         "partial_exit_progress": int(open_trade.get("partial_exit_progress", 0) or 0),
     }
+
+    if open_trade.get("decision_id") is not None:
+        normalized["decision_id"] = str(open_trade["decision_id"])
+
+    if isinstance(open_trade.get("market_features"), dict):
+        normalized["market_features"] = open_trade["market_features"]
+
+    return normalized
 
 
 def _resolve_strategy_name(pending: dict | None, open_trade: dict | None) -> str:
@@ -552,6 +567,36 @@ def _build_exit_extension_fields(signal_exit_model, entry_price: float) -> dict:
     }
 
 
+def _compact_json(payload: dict) -> str:
+    return json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+
+
+def _market_context_label(market_features: dict | None) -> str:
+    if not isinstance(market_features, dict):
+        return "UNKNOWN"
+    return str(market_features.get("multi_timeframe_trend") or "UNKNOWN")
+
+
+def _signal_observability_fields(signal: StrategySignal) -> str:
+    market_features = signal.market_features if isinstance(signal.market_features, dict) else {}
+    return (
+        f"decision_id={signal.decision_id or 'UNKNOWN'} "
+        f"market_context={_market_context_label(market_features)} "
+        f"market_features={_compact_json(market_features)}"
+    )
+
+
+def _trade_observability_fields(open_trade: dict | None) -> str:
+    if not isinstance(open_trade, dict):
+        return "decision_id=UNKNOWN market_context=UNKNOWN market_features={}"
+    market_features = open_trade.get("market_features") if isinstance(open_trade.get("market_features"), dict) else {}
+    return (
+        f"decision_id={open_trade.get('decision_id') or 'UNKNOWN'} "
+        f"market_context={_market_context_label(market_features)} "
+        f"market_features={_compact_json(market_features)}"
+    )
+
+
 def _build_pending_order_from_response(
     order_response: dict,
     side: str,
@@ -563,6 +608,8 @@ def _build_pending_order_from_response(
     time_based_exit_minutes: int | None = None,
     exit_type: str | None = None,
     partial_qty: float | None = None,
+    decision_id: str | None = None,
+    market_features: dict | None = None,
 ) -> dict:
     pending = {
         "orderId": int(order_response["orderId"]),
@@ -572,6 +619,12 @@ def _build_pending_order_from_response(
 
     if strategy_name is not None:
         pending["strategy_name"] = strategy_name
+
+    if decision_id is not None:
+        pending["decision_id"] = decision_id
+
+    if isinstance(market_features, dict):
+        pending["market_features"] = market_features
 
     if stop_price is not None:
         pending["stop_price"] = stop_price
@@ -684,6 +737,7 @@ def _execute_protective_exit(
             (
                 f"symbol={symbol} selected_strategy={strategy_name} close_action={filled_action} "
                 f"close_pnl_estimate={close_pnl_estimate} "
+                f"{_trade_observability_fields(open_trade)} "
                 f"strategy_expectancy_snapshot={build_expectancy_snapshot(strategy_metrics, strategy_name)}"
             ),
         )
@@ -735,6 +789,8 @@ def _build_open_trade_from_order(order_info: dict, pending: dict | None = None) 
     time_based_exit_minutes = TIME_EXIT_MINUTES
     entry_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     partial_exit_progress = 0
+    decision_id = None
+    market_features = None
 
     if isinstance(pending, dict):
         strategy_name = str(pending.get("strategy_name") or ACTIVE_STRATEGY)
@@ -745,11 +801,13 @@ def _build_open_trade_from_order(order_info: dict, pending: dict | None = None) 
         time_based_exit_minutes = pending.get("time_based_exit_minutes", TIME_EXIT_MINUTES)
         entry_time = pending.get("entry_time", entry_time)
         partial_exit_progress = int(pending.get("partial_exit_progress", 0) or 0)
+        decision_id = pending.get("decision_id")
+        market_features = pending.get("market_features") if isinstance(pending.get("market_features"), dict) else None
 
     if stop_price is None or target_price is None:
         stop_price, target_price = _build_exit_model_from_strategy(strategy_name, entry_price)
 
-    return {
+    open_trade = {
         "status": "OPEN",
         "entry_price": entry_price,
         "entry_qty": float(order_info["executedQty"]),
@@ -765,6 +823,14 @@ def _build_open_trade_from_order(order_info: dict, pending: dict | None = None) 
         "entry_time": entry_time,
         "partial_exit_progress": partial_exit_progress,
     }
+
+    if decision_id is not None:
+        open_trade["decision_id"] = str(decision_id)
+
+    if isinstance(market_features, dict):
+        open_trade["market_features"] = market_features
+
+    return open_trade
 
 
 def _update_open_trade_runtime_fields(open_trade: dict, current_price: float) -> dict:
@@ -997,6 +1063,7 @@ def start_engine() -> None:
                     (
                         f"symbol={SYMBOL} selected_strategy={strategy_name} close_action={action} "
                         f"close_pnl_estimate={close_pnl_estimate} "
+                        f"{_trade_observability_fields(open_trade)} "
                         f"strategy_expectancy_snapshot={build_expectancy_snapshot(strategy_metrics, strategy_name)}"
                     ),
                 )
@@ -1223,6 +1290,7 @@ def start_engine() -> None:
                         (
                             f"symbol={SYMBOL} selected_strategy={strategy_name} close_action=SELL_FILLED "
                             f"close_pnl_estimate={close_pnl_estimate} "
+                            f"{_trade_observability_fields(open_trade)} "
                             f"strategy_expectancy_snapshot={build_expectancy_snapshot(strategy_metrics, strategy_name)}"
                         ),
                     )
@@ -1359,6 +1427,7 @@ def start_engine() -> None:
                 f"selection_reason=highest_score total_signals={ranked_selection.total_signals} "
                 f"candidate_count={ranked_selection.candidate_count} rejected_reasons={ranked_selection.rejected_reasons} "
                 f"reason={signal.reason} rank_score={ranked_selection.rank_score} "
+                f"{_signal_observability_fields(signal)} "
                 f"rank_score_components={ranked_selection.rank_score_components} "
                 f"strategy_expectancy_snapshot={ranked_selection.strategy_expectancy_snapshot} "
                 f"rank_candidates={ranked_selection.candidate_details}"
@@ -1372,6 +1441,7 @@ def start_engine() -> None:
                 (
                     f"symbol={SYMBOL} selected_strategy={signal.strategy_name} blocked_by_policy=entry_gate "
                     f"blocked_detail={entry_reason} total_signals={ranked_selection.total_signals} "
+                    f"{_signal_observability_fields(signal)} "
                     f"candidate_count={ranked_selection.candidate_count} rejected_reasons={ranked_selection.rejected_reasons}"
                 ),
             )
@@ -1427,6 +1497,7 @@ def start_engine() -> None:
                 (
                     f"symbol={SYMBOL} selected_strategy={signal.strategy_name} blocked_by_policy={decision.reason} "
                     f"requested_notional={decision.notional_value} rank_score={ranked_selection.rank_score} "
+                    f"{_signal_observability_fields(signal)} "
                     f"rank_score_components={ranked_selection.rank_score_components}"
                 ),
             )
@@ -1490,6 +1561,8 @@ def start_engine() -> None:
                 "entry_order_id": int(order_response["orderId"]),
                 "entry_side": "BUY",
                 "strategy_name": signal.strategy_name,
+                "decision_id": signal.decision_id,
+                "market_features": signal.market_features,
                 "stop_price": signal.exit_model.stop_price,
                 "target_price": signal.exit_model.target_price,
                 **exit_extensions,
@@ -1507,6 +1580,8 @@ def start_engine() -> None:
                 trailing_stop_pct=exit_extensions["trailing_stop_pct"],
                 partial_exit_levels=exit_extensions["partial_exit_levels"],
                 time_based_exit_minutes=exit_extensions["time_based_exit_minutes"],
+                decision_id=signal.decision_id,
+                market_features=signal.market_features,
             )
             open_trade = None
             action = "BUY_SUBMITTED"

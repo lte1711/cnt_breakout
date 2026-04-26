@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from typing import Any
 
 from src.risk.exit_models import ExitModel
 
@@ -21,3 +22,5 @@ class StrategySignal:
     entry_price_hint: float | None
     exit_model: ExitModel | None
     trend_bias: str | None = None
+    decision_id: str | None = None
+    market_features: dict[str, Any] = field(default_factory=dict)

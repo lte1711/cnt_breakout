@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-26 16:24:04",
+  "timestamp": "2026-04-26 16:44:04",
   "official_gate": {
     "status": "NOT_READY",
     "reason": "INSUFFICIENT_SAMPLE",
@@ -15,8 +15,8 @@
     "expectancy": 0.0010845641025639396,
     "profit_factor": 1.1546030388426254,
     "net_pnl": 0.042297999999993674,
-    "signals_generated": 655,
-    "signals_selected": 239
+    "signals_generated": 657,
+    "signals_selected": 241
   },
   "system_excluding_breakout_v1": {
     "excluded_strategy": "breakout_v1",
@@ -43,7 +43,7 @@
   },
   "runtime_state": {
     "active_strategy": "pullback_v1",
-    "last_run_time": "2026-04-26 16:24:00",
+    "last_run_time": "2026-04-26 16:44:00",
     "last_action": "EXECUTION_BLOCKED_BY_RISK",
     "pending_order_exists": false,
     "open_trade_exists": false,

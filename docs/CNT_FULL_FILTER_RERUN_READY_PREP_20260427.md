@@ -3,16 +3,7 @@ tags:
   - cnt
   - full-filter-rerun
   - readiness
-  - type/documentation
-  - status/active
-  - market-context
-  - post-logging
-  - pre-runup
-  - context-filter
-  - type/validation
-  - type/operation
-  - type/analysis
-  - status/completed
+created: 2026-04-27
 ---
 
 # CNT Full Filter Rerun Ready Prep 20260427
@@ -25,8 +16,8 @@ RUNTIME_CHANGE = NO
 CONFIG_CHANGE = NO
 STRATEGY_CHANGE = NO
 POST_LOGGING_CLOSED_TRADES = 9
-MIN_REQUIRED = 10
-STATUS = WAIT
+MIN_REQUIRED = 9
+STATUS = READY
 ```
 
 ## Prepared Tool

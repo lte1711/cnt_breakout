@@ -215,7 +215,10 @@
   },
   "active": "b30c6e1c7a64ec82",
   "lastOpenFiles": [
+    "docs/CNT FULL_FILTER_RERUN_EVALUATION_REPORT_20260427.md",
     "data/engine.lock",
+    "docs/CNT_FULL_FILTER_RERUN_20260427.md",
+    "reports/cnt_full_filter_rerun_20260427.json",
     "archive/docs_backup_tags_20260427_165419/ko/CNT v1.1 ARCHITECTURE DESIGN DOCUMENT KO.md",
     "archive/docs_backup_tags_20260427_165419/ko/CNT OBSIDIAN VERSION VISUALIZATION CONFIGURATION KO.md",
     "archive/docs_backup_tags_20260427_165419/CNT v2 BREAKOUT QUALITY EVALUATION REPORT.md",
@@ -242,14 +245,12 @@
     "archive/docs_backup_tags_20260427_165419/ko/CNT v2 SCHEDULED DATA COLLECTION SETUP KO.md",
     "archive/docs_backup_tags_20260427_165419/ko/CNT v2 RANKER REDESIGN REPORT KO.md",
     "archive/docs_backup_tags_20260427_165419/ko/CNT v2 PULLBACK-ONLY OBSERVATION WINDOW EXECUTION REPORT KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT v2 PRIORITY DECISION REPORT KO.md",
     "archive/docs_backup_tags_20260427_165419/ko",
     "archive/docs_backup_tags_20260427_165419/canvas_color_config.json",
     "archive/docs_backup_tags_20260427_165419",
     "reports/cnt_md_tag_summary_20260427.csv",
     "reports/cnt_md_tag_file_map_20260427.csv",
     "tools/__pycache__/full_filter_rerun_exchange_replay.cpython-312.pyc",
-    "tools/full_filter_rerun_exchange_replay.py",
     "무제.canvas"
   ]
 }

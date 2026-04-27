@@ -4,35 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "06562eec5a926fd8",
+        "id": "1e03175e29d1c005",
         "type": "tabs",
         "children": [
           {
-            "id": "b30c6e1c7a64ec82",
+            "id": "82dbdf26425a4696",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "archive/docs_backup_tags_20260427_165419/ko/CNT v2 VALIDATION REPORT KO.md",
+                "file": "archive/docs_backup_tags_20260427_165419/CNT_POSITIVE_EDGE_EVIDENCE_FROM_BLOCKED_STATE_20260426.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CNT v2 VALIDATION REPORT KO"
-            }
-          },
-          {
-            "id": "06054674f61c5ff6",
-            "type": "leaf",
-            "state": {
-              "type": "webviewer",
-              "state": {
-                "url": "https://obsidian.md/ko/help/plugins/canvas",
-                "title": "Canvas - Obsidian 도움말",
-                "mode": "webview"
-              },
-              "icon": "globe-2",
-              "title": "Canvas - Obsidian 도움말"
+              "title": "CNT_POSITIVE_EDGE_EVIDENCE_FROM_BLOCKED_STATE_20260426"
             }
           }
         ]
@@ -67,12 +53,12 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "Features",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
-                "sortOrder": "alphabetical"
+                "sortOrder": "byCreatedTime"
               },
               "icon": "lucide-search",
               "title": "검색"
@@ -213,38 +199,38 @@
       "audio-recorder:녹음 시작/정지": false
     }
   },
-  "active": "b30c6e1c7a64ec82",
+  "active": "82dbdf26425a4696",
   "lastOpenFiles": [
-    "docs/CNT FULL_FILTER_RERUN_EVALUATION_REPORT_20260427.md",
+    "docs/CNT BREAKOUT_V1_DEACTIVATION_PLAN_20260427.md",
     "data/engine.lock",
+    "archive/docs_backup_tags_20260427_165419/CNT_POST_LOGGING_PARTIAL_VALIDATION_20260427.md",
+    "archive/docs_backup_tags_20260427_165419/CNT_PULLBACK_MARKET_CONTEXT_ANALYSIS_20260426.md",
+    "archive/docs_backup_tags_20260427_165419/CNT_TRADE_BLOCK_AND_MARKET_CONTEXT_REVIEW_20260426.md",
+    "archive/docs_backup_tags_20260427_165419/CNT_MARKET_CONTEXT_LOGGING_LAYER_IMPLEMENTATION_20260426.md",
+    "archive/docs_backup_tags_20260427_165419/CNT_NEXT_CONTEXT_FILTER_VALIDATION_20260426.md",
+    "archive/docs_backup_tags_20260427_165419/ko/CNT v2 VALIDATION REPORT KO.md",
+    "archive/docs_backup_tags_20260427_165419/CNT_PRE_RUNUP_THRESHOLD_ANALYSIS_20260427.md",
     "docs/CNT_FULL_FILTER_RERUN_20260427.md",
+    "docs/CNT FULL_FILTER_RERUN_EVALUATION_REPORT_20260427.md",
+    "docs/CNT FULL_FILTER_RERUN_COMPARATIVE_EVALUATION_REPORT_20260427.md",
+    "docs/CNT FULL_FILTER_RERUN_VALIDATION_REPORT_20260427.md",
+    "docs/CNT FULL_FILTER_RERUN_ENHANCED_VALIDATION_REPORT_20260427.md",
+    "docs/CNT FULL_FILTER_RERUN_FINAL_VALIDATION_SUMMARY_20260427.md",
+    "docs/CNT FULL_FILTER_RERUN_ANALYSIS_COMPLETION_DECLARATION_20260427.md",
+    "docs/CNT_PRE_RUNUP_THRESHOLD_ANALYSIS_20260427.md",
+    "docs/CNT_GRAPH_VIEW_COLOR_CONFIGURATION_APPLICATION_20260427.md",
+    "docs/CNT_POST_LOGGING_PARTIAL_VALIDATION_20260427.md",
+    "archive/docs_backup_tags_20260427_165419/CNT_FULL_FILTER_RERUN_READY_PREP_20260427.md",
+    "archive/docs_backup_tags_20260427_165419/CNT_GRAPH_VIEW_COLOR_CONFIGURATION_APPLICATION_20260427.md",
+    "docs/ko/CNT DOCS KOREAN MIRROR POLICY KO.md",
+    "archive/docs_backup_tags_20260427_165419/ko/CNT DOCS KOREAN MIRROR POLICY KO.md",
     "reports/cnt_full_filter_rerun_20260427.json",
     "archive/docs_backup_tags_20260427_165419/ko/CNT v1.1 ARCHITECTURE DESIGN DOCUMENT KO.md",
     "archive/docs_backup_tags_20260427_165419/ko/CNT OBSIDIAN VERSION VISUALIZATION CONFIGURATION KO.md",
     "archive/docs_backup_tags_20260427_165419/CNT v2 BREAKOUT QUALITY EVALUATION REPORT.md",
     "archive/docs_backup_tags_20260427_165419/ko/00 Docs Index KO.md",
-    "archive/docs_backup_tags_20260427_165419/00 Docs Index.md",
     "tools/cleanup_tags.py",
     "tools/normalize_md_tags.py",
-    "archive/docs_backup_tags_20260427_165419/ko/RECORD TEXT KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/DESIGN SUMMARY KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT VERSION CLASSIFICATION REPORT KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT VERSION CLASSIFICATION AND COLOR CODING GUIDE KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT v2 VALIDATION REPORT KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT v2 VALIDATION CHECKLIST KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT v2 TESTNET PERFORMANCE REPORT KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT v2 TESTNET DATA COLLECTION STATUS REPORT KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT v2 TESTNET DATA COLLECTION INSTRUCTION KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT v2 TEST HARNESS IMPLEMENTATION REPORT KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT v2 TASK SCHEDULER REGISTRATION CHECKLIST KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT v2 STRATEGY ISOLATION COMPARISON KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT v2 STRATEGIC ANALYSIS PLAN KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT v2 STAGE 3 RUNTIME OBSERVATION REPORT KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT v2 SHADOW SEMANTICS AND PORTFOLIO STATE PATCH REPORT KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT v2 SCHEDULED DATA COLLECTION SETUP REPORT KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT v2 SCHEDULED DATA COLLECTION SETUP KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT v2 RANKER REDESIGN REPORT KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT v2 PULLBACK-ONLY OBSERVATION WINDOW EXECUTION REPORT KO.md",
     "archive/docs_backup_tags_20260427_165419/ko",
     "archive/docs_backup_tags_20260427_165419/canvas_color_config.json",
     "archive/docs_backup_tags_20260427_165419",

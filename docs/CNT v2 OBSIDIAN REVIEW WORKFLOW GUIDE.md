@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 OBSIDIAN REVIEW WORKFLOW GUIDE
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - strategy/breakout_v3
+  - obsidian
+  - cnt-v2-obsidian-review-workflow-guide
 ---
 
 # CNT v2 OBSIDIAN REVIEW WORKFLOW GUIDE

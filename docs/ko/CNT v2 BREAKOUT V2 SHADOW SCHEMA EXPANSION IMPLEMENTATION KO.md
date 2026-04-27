@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V2 SHADOW SCHEMA EXPANSION IMPLEMENTATION KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - strategy/breakout_v3
+  - obsidian
+  - cnt-v2-breakout-v2-shadow-schema-expansion-implementation-ko
 ---
 
 # CNT v2 BREAKOUT V2 Shadow Schema 확장 구현

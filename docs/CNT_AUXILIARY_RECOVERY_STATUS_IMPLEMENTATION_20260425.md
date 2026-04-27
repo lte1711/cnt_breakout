@@ -3,8 +3,15 @@ tags:
   - cnt
   - implementation
   - recovery
-aliases:
-  - CNT AUXILIARY RECOVERY STATUS IMPLEMENTATION 20260425
+  - cnt-auxiliary-recovery-status-implementation-20260425
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
 ---
 
 # CNT AUXILIARY RECOVERY STATUS IMPLEMENTATION 20260425

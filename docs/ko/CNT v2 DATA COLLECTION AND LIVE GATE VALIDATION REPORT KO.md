@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 DATA COLLECTION AND LIVE GATE VALIDATION REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - post-logging
+  - type/validation
+  - risk
+  - obsidian
+  - type/analysis
+  - cnt-v2-data-collection-and-live-gate-validation-report-ko
 ---
 
 # CNT v2 데이터 수집 및 live gate 검증 보고

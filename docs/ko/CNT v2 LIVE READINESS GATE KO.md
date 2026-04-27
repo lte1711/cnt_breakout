@@ -1,14 +1,19 @@
 ---
-aliases:
-  - CNT v2 LIVE READINESS GATE KO
 tags:
   - cnt
   - live-readiness
   - gate
   - testnet
   - ko
-status: ACTIVE
-updated: 2026-04-26
+  - status/active
+  - type/documentation
+  - type/validation
+  - type/operation
+  - risk
+  - obsidian
+  - type/analysis
+  - status/completed
+  - cnt-v2-live-readiness-gate-ko
 ---
 
 # CNT v2 라이브 준비도 게이트

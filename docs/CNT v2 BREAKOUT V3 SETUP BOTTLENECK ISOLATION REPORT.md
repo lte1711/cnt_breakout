@@ -1,7 +1,11 @@
 ---
-title: CNT v2 BREAKOUT V3 SETUP BOTTLENECK ISOLATION REPORT
-status: completed
-updated: 2026-04-24
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - strategy/breakout_v3
+  - type/analysis
+  - status/completed
 ---
 
 # CNT v2 BREAKOUT V3 Setup Bottleneck Isolation Report

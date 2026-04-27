@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 LIVE READY POST-READINESS MONITORING PLAN KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - cnt-v2-live-ready-post-readiness-monitoring-plan-ko
 ---
 
 # CNT v2 라이브 준비도 통과 이후 모니터링 계획

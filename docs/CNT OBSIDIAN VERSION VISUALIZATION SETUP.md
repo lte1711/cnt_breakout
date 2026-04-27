@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT OBSIDIAN VERSION VISUALIZATION SETUP
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - status/completed
+  - cnt-obsidian-version-visualization-setup
 ---
 
 # CNT Obsidian 버전 시각화 설정

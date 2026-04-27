@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 EOL NORMALIZATION AND REPORT GENERATION HARDENING WORK INSTRUCTION
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/operation
+  - obsidian
+  - type/analysis
+  - status/completed
+  - cnt-v2-eol-normalization-and-report-generation-hardening-work-instruction
 ---
 
 # CNT v2 EOL Normalization And Report Generation Hardening Work Instruction

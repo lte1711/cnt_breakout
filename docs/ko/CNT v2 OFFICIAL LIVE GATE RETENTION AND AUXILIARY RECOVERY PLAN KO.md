@@ -1,8 +1,15 @@
 ---
-title: CNT v2 OFFICIAL LIVE GATE RETENTION AND AUXILIARY RECOVERY PLAN KO
-status: FINAL
-language: ko
-updated: 2026-04-24
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - status/final
+  - language:-ko
 ---
 
 # CNT v2 공식 Live Gate 유지 및 보조 회복 평가 체계

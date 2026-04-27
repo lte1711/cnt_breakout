@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 ARCHITECTURE DESIGN DOCUMENT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/validation
+  - cnt-v2-architecture-design-document-ko
 ---
 
 # CNT v2 ARCHITECTURE DESIGN DOCUMENT KO

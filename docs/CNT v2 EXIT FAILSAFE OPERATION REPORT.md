@@ -1,6 +1,16 @@
 ---
-aliases:
-  - CNT v2 EXIT FAILSAFE OPERATION REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/validation
+  - type/operation
+  - risk
+  - obsidian
+  - type/analysis
+  - status/completed
+  - cnt-v2-exit-failsafe-operation-report
 ---
 
 # CNT v2 EXIT FAILSAFE OPERATION REPORT

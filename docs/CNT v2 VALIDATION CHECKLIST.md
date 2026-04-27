@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 VALIDATION CHECKLIST
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/validation
+  - risk
+  - cnt-v2-validation-checklist
 ---
 
 좋다. 아래는 **문서화 가능한 형식의 CNT v2 검증 체크리스트 (Validation Checklist)**다.

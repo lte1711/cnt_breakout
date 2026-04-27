@@ -1,6 +1,16 @@
 ---
-aliases:
-  - CNT v2 STAGE 3 RUNTIME OBSERVATION REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
+  - type/validation
+  - status/completed
+  - cnt-v2-stage-3-runtime-observation-report-ko
 ---
 
 # CNT v2 Stage 3 Runtime Observation Report KO

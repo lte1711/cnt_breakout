@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 AUTO VALIDATION & DECISION SYSTEM PROGRESS REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - obsidian
+  - type/analysis
+  - cnt-v2-auto-validation-&-decision-system-progress-report
 ---
 
 # CNT v2 AUTO VALIDATION & DECISION SYSTEM PROGRESS REPORT

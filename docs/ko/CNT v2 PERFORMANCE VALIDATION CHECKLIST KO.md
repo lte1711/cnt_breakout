@@ -1,6 +1,10 @@
 ---
-aliases:
-  - CNT v2 PERFORMANCE VALIDATION CHECKLIST KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - cnt-v2-performance-validation-checklist-ko
 ---
 
 # CNT v2 성능 검증 체크리스트

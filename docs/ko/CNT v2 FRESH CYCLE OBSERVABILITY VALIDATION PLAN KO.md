@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION PLAN KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - offline-experiment
+  - type/operation
+  - strategy/breakout_v3
+  - obsidian
+  - status/completed
+  - cnt-v2-fresh-cycle-observability-validation-plan-ko
 ---
 
 # CNT v2 fresh cycle 관측성 검증 계획

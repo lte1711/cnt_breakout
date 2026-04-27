@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 TESTNET DATA COLLECTION INSTRUCTION KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - risk
+  - obsidian
+  - type/analysis
+  - status/completed
+  - cnt-v2-testnet-data-collection-instruction-ko
 ---
 
 # CNT v2 TESTNET 데이터 수집 지시서

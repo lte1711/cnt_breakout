@@ -1,0 +1,122 @@
+---
+aliases:
+  - CNT v2 PHASE 1 MONITORING IMPLEMENTATION REPORT
+---
+
+# CNT v2 PHASE 1 MONITORING IMPLEMENTATION REPORT
+
+```text
+DOCUMENT_NAME = cnt_v2_phase_1_monitoring_implementation_report
+PROJECT       = CNT
+VERSION       = 2.0
+DATE          = 2026-04-19
+STATUS        = IMPLEMENTED_AND_REVIEWED
+REFERENCE_1   = CNT v2 OPERATIONAL ANALYSIS REPORT
+REFERENCE_2   = CNT v2 PHASE 1 OPERATION MONITORING INSTRUCTION
+```
+
+---
+
+# 1. EXECUTIVE SUMMARY
+
+Two newly added CNT v2 documents were reviewed against the current repository and runtime state.
+
+Conclusion:
+
+* `CNT v2 OPERATIONAL ANALYSIS REPORT.md` is directionally valid, but parts of it are now stale
+* `CNT v2 PHASE 1 OPERATION MONITORING INSTRUCTION.md` is project-compatible and actionable
+* based on the monitoring instruction, `scripts/monitor_runtime.py` was implemented
+
+---
+
+# 2. DOCUMENT FIT ASSESSMENT
+
+## 2.1 CNT v2 OPERATIONAL ANALYSIS REPORT
+
+Fit:
+
+* scheduler active / data collection started: consistent
+* live gate `NOT_READY / INSUFFICIENT_SAMPLE`: consistent
+* architecture summary: consistent
+* breakout not selected, pullback active, mean reversion inactive: consistent in direction
+
+Required correction:
+
+* the report says `closed_trades = 2`, but the current snapshot shows `closed_trades = 3`
+* the report frames the system as broadly healthy, but the runtime log still contains a historical stuck-exit case
+* therefore this report is usable as a reference narrative, not as the latest strict status source
+
+## 2.2 CNT v2 PHASE 1 OPERATION MONITORING INSTRUCTION
+
+Fit:
+
+* aligns with the current Phase 1 observation stage
+* does not require strategy/risk retuning
+* monitoring-only additions are compatible with current operating rules
+
+Decision:
+
+* accepted as valid next-step guidance
+* implemented in code form
+
+---
+
+# 3. IMPLEMENTATION
+
+Added:
+
+* `scripts/monitor_runtime.py`
+
+Implemented behavior:
+
+* reads snapshot and gate decision state
+* inspects recent `portfolio.log`
+* inspects recent `runtime.log`
+* reports:
+  * closed trades
+  * rank score zero streak
+  * strategy bias
+  * risk level
+  * exit failsafe state
+  * live gate state
+  * alert list
+* writes machine-readable output to:
+  * `data/runtime_monitor_report.json`
+
+---
+
+# 4. INITIAL RESULT
+
+Initial monitor result:
+
+```text
+status      = CRITICAL
+closed      = 3
+failsafe    = CHECK_REQUIRED
+live_gate   = NOT_READY / INSUFFICIENT_SAMPLE
+alerts      = EXIT_FAILSAFE_FAILURE
+```
+
+Interpretation:
+
+* the monitor correctly surfaced the historical stuck target-exit case
+* this is useful and expected
+* it means the monitoring layer is conservative enough to flag known operational evidence
+
+---
+
+# 5. CURRENT DECISION
+
+```text
+MONITORING_LAYER = ADDED
+SOURCE_DOC_1     = PARTIALLY_VALID_BUT_STALE
+SOURCE_DOC_2     = VALID_AND_IMPLEMENTED
+NEXT             = CONTINUE PHASE 1 OBSERVATION WITH MONITOR OUTPUT
+```
+
+---
+
+## Obsidian Links
+
+- [[CNT v2 VALIDATION REPORT]]
+

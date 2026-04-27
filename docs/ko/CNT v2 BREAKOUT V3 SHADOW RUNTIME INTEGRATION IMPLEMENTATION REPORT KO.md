@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V3 SHADOW RUNTIME INTEGRATION IMPLEMENTATION REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - risk
+  - strategy/breakout_v3
+  - type/analysis
+  - type/validation
+  - status/completed
+  - cnt-v2-breakout-v3-shadow-runtime-integration-implementation-report-ko
 ---
 
 # CNT v2 BREAKOUT V3 SHADOW RUNTIME INTEGRATION 구현 보고서

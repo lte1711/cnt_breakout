@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 DASHBOARD WARNING ENHANCEMENT INSTRUCTION
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - risk
+  - strategy/breakout_v3
+  - obsidian
+  - cnt-v2-dashboard-warning-enhancement-instruction
 ---
 
 # CNT v2 DASHBOARD WARNING ENHANCEMENT INSTRUCTION

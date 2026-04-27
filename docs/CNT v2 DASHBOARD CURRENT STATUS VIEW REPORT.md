@@ -1,11 +1,18 @@
 ---
-aliases:
-  - CNT v2 Dashboard Current Status View Report
 tags:
   - cnt
   - dashboard
   - recovery
   - operations
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - obsidian
+  - type/analysis
+  - cnt-v2-dashboard-current-status-view-report
 ---
 
 # CNT v2 Dashboard Current Status View Report

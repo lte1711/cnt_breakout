@@ -1,6 +1,17 @@
 ---
-aliases:
-  - CNT v2 VALIDATION REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - post-logging
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
+  - cnt-v2-validation-report-ko
 ---
 
 # CNT v2 검증 보고서

@@ -4,8 +4,12 @@ tags:
   - documentation
   - policy
   - cleanup
-status: ACTIVE
-created: 2026-04-26
+  - status/active
+  - type/documentation
+  - type/validation
+  - type/operation
+  - graph-view
+  - type/analysis
 ---
 
 # CNT Document Emoji Ban Report 20260426

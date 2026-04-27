@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 CURRENT STATUS ASSESSMENT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/operation
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
+  - type/validation
+  - cnt-v2-current-status-assessment-ko
 ---
 
 # CNT v2 현재 상태 평가

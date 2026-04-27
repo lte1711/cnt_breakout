@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT QUALITY EVALUATION REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/validation
+  - type/operation
+  - strategy/breakout_v3
+  - type/analysis
+  - status/completed
+  - cnt-v2-breakout-quality-evaluation-report
 ---
 
 # CNT v2 BREAKOUT QUALITY EVALUATION REPORT

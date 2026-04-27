@@ -1,6 +1,10 @@
 ---
-aliases:
-  - CNT v1.1 IMPLEMENTATION WORK INSTRUCTION
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - risk
+  - cnt-v1.1-implementation-work-instruction
 ---
 
 좋다. 아래는 **문서화 가능한 형식의 CNT v1.1 구현 작업지시서**다.

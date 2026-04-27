@@ -4,8 +4,12 @@ tags:
   - ko
   - trading-status
   - testnet
-created: 2026-04-25
-status: verified
+  - status/verified
+  - type/documentation
+  - status/active
+  - type/operation
+  - strategy/pullback_v1
+  - type/analysis
 ---
 
 # CNT Trading Status Report 20260425 1948 KO

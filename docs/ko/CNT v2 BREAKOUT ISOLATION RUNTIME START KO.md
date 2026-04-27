@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT ISOLATION RUNTIME START KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - obsidian
+  - cnt-v2-breakout-isolation-runtime-start-ko
 ---
 
 # CNT v2 BREAKOUT 격리 런타임 시작

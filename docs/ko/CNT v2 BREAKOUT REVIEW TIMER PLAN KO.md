@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT REVIEW TIMER PLAN KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - cnt-v2-breakout-review-timer-plan-ko
 ---
 
 # CNT v2 BREAKOUT 리뷰 타이머 계획

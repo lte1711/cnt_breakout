@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v1.1 ARCHITECTURE DESIGN DOCUMENT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - risk
+  - strategy/breakout_v3
+  - cnt-v1.1-architecture-design-document
 ---
 
 # CNT v1.1 ARCHITECTURE DESIGN DOCUMENT

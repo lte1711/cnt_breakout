@@ -1,6 +1,16 @@
 ---
-aliases:
-  - CNT v2 POST-OPERATIONAL PATCH VALIDATION REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
+  - cnt-v2-post-operational-patch-validation-report
 ---
 
 # CNT v2 POST-OPERATIONAL PATCH VALIDATION REPORT

@@ -2,8 +2,14 @@
 tags:
   - cnt
   - ko
-aliases:
-  - 00 Docs Index KO
+  - 00-docs-index-ko
+  - type/documentation
+  - status/active
+  - type/operation
+  - strategy/breakout_v3
+  - graph-view
+  - obsidian
+  - type/analysis
 ---
 
 # CNT 한글 문서 인덱스

@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V2 FILTER STACK DECOMPOSITION REVIEW KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - strategy/breakout_v3
+  - status/completed
+  - cnt-v2-breakout-v2-filter-stack-decomposition-review-ko
 ---
 
 # CNT v2 BREAKOUT V2 필터 스택 분해 리뷰

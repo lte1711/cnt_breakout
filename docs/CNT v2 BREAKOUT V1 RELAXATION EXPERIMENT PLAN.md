@@ -1,6 +1,16 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT PLAN
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - offline-experiment
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
+  - cnt-v2-breakout-v1-relaxation-experiment-plan
 ---
 
 # CNT v2 BREAKOUT V1 RELAXATION EXPERIMENT PLAN

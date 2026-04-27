@@ -1,4 +1,19 @@
 ---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - post-logging
+  - context-filter
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - obsidian
+---
+
+---
 ---
 
 # CNT v2 BREAKOUT V2 VALIDATION WINDOW START KO

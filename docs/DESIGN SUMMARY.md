@@ -1,6 +1,12 @@
 ---
-aliases:
-  - DESIGN SUMMARY
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - obsidian
+  - type/validation
+  - status/completed
+  - design-summary
 ---
 
 STEP-ENGINE-STRATEGY-INTEGRATION-RESULT-1

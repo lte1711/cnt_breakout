@@ -1,6 +1,11 @@
 ---
-aliases:
-  - CNT v2 TASK SCHEDULER REGISTRATION CHECKLIST
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - status/completed
+  - cnt-v2-task-scheduler-registration-checklist
 ---
 
 # CNT v2 TASK SCHEDULER REGISTRATION CHECKLIST

@@ -3,7 +3,12 @@ tags:
   - cnt
   - market-analysis
   - pullback-v1
-created: 2026-04-26
+  - type/documentation
+  - status/active
+  - market-context
+  - type/operation
+  - strategy/pullback_v1
+  - type/analysis
 ---
 
 # CNT Pullback Market Context Analysis 20260426
@@ -23,7 +28,7 @@ FACT:
 - Strategy: `pullback_v1`
 - Closed pullback trades in portfolio log: 39
 - Pullback open-trade entry events in runtime log: 39
-- Pullback allowed signals in signal log: 239
+- Pullback allowed signals in signal log: 242
 - Matched closed trades: 39
 - Matched coverage: 100.00%
 - Matched trades without signal context: 0

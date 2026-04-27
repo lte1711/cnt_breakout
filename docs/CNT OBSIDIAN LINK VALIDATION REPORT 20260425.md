@@ -1,11 +1,15 @@
 ---
-aliases:
-  - CNT Obsidian Link Validation Report 20260425
 tags:
   - cnt
   - obsidian
   - validation
   - links
+  - type/documentation
+  - status/active
+  - type/validation
+  - strategy/breakout_v3
+  - type/analysis
+  - cnt-obsidian-link-validation-report-20260425
 ---
 
 # CNT Obsidian Link Validation Report 20260425

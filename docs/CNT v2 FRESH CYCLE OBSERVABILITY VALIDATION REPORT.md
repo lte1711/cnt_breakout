@@ -1,6 +1,16 @@
 ---
-aliases:
-  - CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - type/validation
+  - offline-experiment
+  - type/operation
+  - strategy/breakout_v3
+  - type/analysis
+  - cnt-v2-fresh-cycle-observability-validation-report
 ---
 
 # CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION REPORT

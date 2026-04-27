@@ -1,4 +1,15 @@
 ---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - type/validation
+  - strategy/breakout_v3
+---
+
+---
 ---
 
 # CNT v2 BREAKOUT V2 DESIGN

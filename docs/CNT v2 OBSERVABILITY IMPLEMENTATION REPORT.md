@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 OBSERVABILITY IMPLEMENTATION REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - post-logging
+  - type/validation
+  - type/analysis
+  - cnt-v2-observability-implementation-report
 ---
 
 # CNT v2 OBSERVABILITY IMPLEMENTATION REPORT

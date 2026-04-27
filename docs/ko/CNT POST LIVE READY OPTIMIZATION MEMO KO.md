@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT POST LIVE READY OPTIMIZATION MEMO KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
+  - cnt-post-live-ready-optimization-memo-ko
 ---
 
 # CNT 라이브 준비도 통과 이후 최적화 메모

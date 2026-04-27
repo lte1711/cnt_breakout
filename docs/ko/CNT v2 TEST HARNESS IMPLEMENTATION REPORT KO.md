@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 TEST HARNESS IMPLEMENTATION REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - obsidian
+  - type/analysis
+  - type/validation
+  - cnt-v2-test-harness-implementation-report-ko
 ---
 
 # CNT v2 TEST HARNESS IMPLEMENTATION REPORT KO

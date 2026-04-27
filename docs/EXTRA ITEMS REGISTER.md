@@ -1,6 +1,11 @@
 ---
-aliases:
-  - EXTRA ITEMS REGISTER
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - extra-items-register
 ---
 
 CNT EXTRA ITEMS REGISTER

@@ -4,9 +4,15 @@ tags:
   - precision-analysis
   - runtime
   - testnet
-status: ACTIVE
-created: 2026-04-26
-evidence_time: 2026-04-26 14:34:05
+  - status/active
+  - evidence_time:-2026-04-26-14:34:05
+  - type/documentation
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
 ---
 
 # CNT Precision Analysis Report 20260426

@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT Version Classification And Color Coding Guide
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - obsidian
+  - type/analysis
+  - status/completed
+  - cnt-version-classification-and-color-coding-guide
 ---
 
 # CNT 버전 분류 및 색상 코딩 가이드

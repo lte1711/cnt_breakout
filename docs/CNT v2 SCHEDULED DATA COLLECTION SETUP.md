@@ -1,6 +1,10 @@
 ---
-aliases:
-  - CNT v2 SCHEDULED DATA COLLECTION SETUP
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - cnt-v2-scheduled-data-collection-setup
 ---
 
 # CNT v2 SCHEDULED DATA COLLECTION SETUP

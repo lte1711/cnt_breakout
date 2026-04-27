@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 TESTNET DATA COLLECTION INSTRUCTION
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - risk
+  - obsidian
+  - type/analysis
+  - status/completed
+  - cnt-v2-testnet-data-collection-instruction
 ---
 
 맞다. 현재 판정은 **`PERFORMANCE_VALIDATION_IN_PROGRESS`**가 정확하다.

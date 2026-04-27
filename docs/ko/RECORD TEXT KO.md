@@ -1,6 +1,13 @@
 ---
-aliases:
-  - RECORD TEXT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - obsidian
+  - type/validation
+  - status/completed
+  - record-text-ko
 ---
 
 # RECORD TEXT KO

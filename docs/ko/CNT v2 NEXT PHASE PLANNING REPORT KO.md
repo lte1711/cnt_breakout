@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 NEXT PHASE PLANNING REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - risk
+  - obsidian
+  - type/analysis
+  - cnt-v2-next-phase-planning-report-ko
 ---
 
 # CNT v2 다음 단계 계획 보고서

@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 EXIT FAILSAFE PATCH REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/validation
+  - type/operation
+  - risk
+  - obsidian
+  - type/analysis
+  - cnt-v2-exit-failsafe-patch-report-ko
 ---
 
 # CNT v2 EXIT FAILSAFE PATCH REPORT KO

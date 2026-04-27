@@ -4,8 +4,13 @@ tags:
   - ko
   - incident-review
   - exit
-created: 2026-04-25
-status: verified
+  - status/verified
+  - type/documentation
+  - status/active
+  - context-filter
+  - type/operation
+  - risk
+  - type/analysis
 ---
 
 # CNT Target Exit Price Mismatch Report 20260425 KO

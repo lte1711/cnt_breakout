@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT TREND FILTER CHANGE PLAN
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - type/validation
+  - type/operation
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - cnt-v2-breakout-trend-filter-change-plan
 ---
 
 # CNT v2 BREAKOUT TREND FILTER CHANGE PLAN

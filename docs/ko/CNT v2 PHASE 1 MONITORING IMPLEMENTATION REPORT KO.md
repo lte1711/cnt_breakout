@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 PHASE 1 MONITORING IMPLEMENTATION REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
+  - cnt-v2-phase-1-monitoring-implementation-report-ko
 ---
 
 # CNT v2 PHASE 1 모니터링 구현 보고

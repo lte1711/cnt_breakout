@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 ENGINEERING PHASE PLAN KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - offline-experiment
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - status/completed
+  - cnt-v2-engineering-phase-plan-ko
 ---
 
 # CNT v2 ENGINEERING PHASE PLAN KO

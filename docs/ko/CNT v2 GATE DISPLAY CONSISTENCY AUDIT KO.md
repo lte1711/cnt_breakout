@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 GATE DISPLAY CONSISTENCY AUDIT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - risk
+  - obsidian
+  - cnt-v2-gate-display-consistency-audit-ko
 ---
 
 # CNT v2 gate display 정합성 감사

@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v1.1 STAGE 2 ARCHITECTURE DESIGN DOCUMENT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - risk
+  - cnt-v1.1-stage-2-architecture-design-document-ko
 ---
 
 # CNT v1.1 Stage 2 아키텍처 설계 문서

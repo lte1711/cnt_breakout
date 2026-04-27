@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 SCHEDULED DATA COLLECTION SETUP REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - obsidian
+  - type/analysis
+  - status/completed
+  - cnt-v2-scheduled-data-collection-setup-report-ko
 ---
 
 # CNT v2 SCHEDULED DATA COLLECTION SETUP REPORT KO

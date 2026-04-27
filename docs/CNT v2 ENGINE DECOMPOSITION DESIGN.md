@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 ENGINE DECOMPOSITION DESIGN
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - type/operation
+  - risk
+  - cnt-v2-engine-decomposition-design
 ---
 
 # CNT v2 ENGINE DECOMPOSITION DESIGN

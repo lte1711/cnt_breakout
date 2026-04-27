@@ -1,6 +1,16 @@
 ---
-aliases:
-  - CNT v2 TESTNET PERFORMANCE REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - type/validation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - cnt-v2-testnet-performance-report-ko
 ---
 
 # CNT v2 TESTNET 성능 보고서

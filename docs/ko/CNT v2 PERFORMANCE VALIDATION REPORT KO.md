@@ -1,6 +1,16 @@
 ---
-aliases:
-  - CNT v2 PERFORMANCE VALIDATION REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - post-logging
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/breakout_v3
+  - type/analysis
+  - status/completed
+  - cnt-v2-performance-validation-report-ko
 ---
 
 # CNT v2 성능 검증 보고서

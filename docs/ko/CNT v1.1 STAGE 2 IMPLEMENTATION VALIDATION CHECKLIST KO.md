@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION CHECKLIST KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - type/validation
+  - risk
+  - cnt-v1.1-stage-2-implementation-validation-checklist-ko
 ---
 
 # CNT v1.1 Stage 2 구현 검증 체크리스트

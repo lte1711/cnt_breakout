@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 EOL NORMALIZATION AND REPORT GENERATION HARDENING WORK INSTRUCTION KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - obsidian
+  - type/analysis
+  - type/validation
+  - status/completed
+  - cnt-v2-eol-normalization-and-report-generation-hardening-work-instruction-ko
 ---
 
 # CNT v2 EOL NORMALIZATION AND REPORT HARDENING WORK INSTRUCTION KO

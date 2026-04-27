@@ -1,4 +1,16 @@
 ---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - type/operation
+  - strategy/breakout_v3
+  - type/validation
+---
+
+---
 ---
 
 # CNT v2 BREAKOUT V2 SHADOW RUNTIME IMPLEMENTATION KO

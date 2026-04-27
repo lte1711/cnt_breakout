@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V3 SHADOW EVALUATOR IMPLEMENTATION REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/operation
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
+  - type/validation
+  - cnt-v2-breakout-v3-shadow-evaluator-implementation-report-ko
 ---
 
 # CNT v2 BREAKOUT V3 SHADOW EVALUATOR 구현 보고서

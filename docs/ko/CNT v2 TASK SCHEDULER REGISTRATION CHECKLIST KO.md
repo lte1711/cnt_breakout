@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 TASK SCHEDULER REGISTRATION CHECKLIST KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - obsidian
+  - type/analysis
+  - type/validation
+  - status/completed
+  - cnt-v2-task-scheduler-registration-checklist-ko
 ---
 
 # CNT v2 작업 스케줄러 등록 체크리스트

@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT DOCS KOREAN MIGRATION PLAN KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - status/completed
+  - cnt-docs-korean-migration-plan-ko
 ---
 
 # CNT 문서 한글화 단계별 이행 계획

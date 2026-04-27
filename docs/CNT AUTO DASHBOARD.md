@@ -1,5 +1,13 @@
 ---
-generated_at: 2026-04-24 11:06:09
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
 ---
 
 # CNT Auto-Generated Dashboard

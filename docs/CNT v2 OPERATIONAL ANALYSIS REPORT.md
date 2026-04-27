@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 OPERATIONAL ANALYSIS REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
+  - type/validation
+  - cnt-v2-operational-analysis-report
 ---
 
 # CNT v2 OPERATIONAL ANALYSIS REPORT (REVISED)

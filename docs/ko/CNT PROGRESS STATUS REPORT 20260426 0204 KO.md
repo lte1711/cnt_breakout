@@ -4,8 +4,13 @@ tags:
   - ko
   - progress-report
   - runtime-check
-created: 2026-04-26
-status: verified
+  - status/verified
+  - type/documentation
+  - status/active
+  - market-context
+  - strategy/pullback_v1
+  - type/analysis
+  - status/completed
 ---
 
 # CNT Progress Status Report 20260426 0204 KO

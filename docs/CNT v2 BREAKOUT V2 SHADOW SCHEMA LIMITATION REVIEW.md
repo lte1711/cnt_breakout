@@ -1,4 +1,14 @@
 ---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - type/operation
+  - strategy/breakout_v3
+---
+
+---
 ---
 
 # CNT v2 BREAKOUT V2 SHADOW SCHEMA LIMITATION REVIEW

@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V1 RELAXATION CONTINUATION NOTE
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - offline-experiment
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - cnt-v2-breakout-v1-relaxation-continuation-note
 ---
 
 # CNT v2 BREAKOUT V1 RELAXATION CONTINUATION NOTE

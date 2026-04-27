@@ -1,6 +1,11 @@
 ---
-aliases:
-  - CNT DATA DASHBOARD
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - graph-view
+  - obsidian
+  - cnt-data-dashboard
 ---
 
 # CNT Data Dashboard

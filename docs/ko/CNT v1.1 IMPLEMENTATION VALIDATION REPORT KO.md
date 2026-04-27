@@ -1,6 +1,17 @@
 ---
-aliases:
-  - CNT v1.1 IMPLEMENTATION VALIDATION REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - post-logging
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/breakout_v3
+  - type/analysis
+  - status/completed
+  - cnt-v1.1-implementation-validation-report-ko
 ---
 
 # CNT v1.1 구현 검증 보고서

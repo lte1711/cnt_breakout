@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V2 SHADOW SNAPSHOT EXPANSION IMPLEMENTATION KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - strategy/breakout_v3
+  - obsidian
+  - cnt-v2-breakout-v2-shadow-snapshot-expansion-implementation-ko
 ---
 
 # CNT v2 BREAKOUT V2 SHADOW SNAPSHOT EXPANSION IMPLEMENTATION KO

@@ -1,7 +1,13 @@
 ---
-title: CNT REPOSITORY CLEANUP REPORT KO
-status: completed
-updated: 2026-04-24
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - graph-view
+  - obsidian
+  - type/analysis
+  - status/completed
 ---
 
 # CNT 저장소 정리 보고서

@@ -4,9 +4,14 @@ tags:
   - project-status
   - runtime
   - testnet
-status: ACTIVE
-created: 2026-04-26
-updated: 2026-04-26 14:34:05
+  - status/active
+  - type/documentation
+  - market-context
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - type/analysis
 ---
 
 # CNT Project Status Report 20260426

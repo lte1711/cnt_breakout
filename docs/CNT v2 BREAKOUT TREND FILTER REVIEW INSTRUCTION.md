@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT TREND FILTER REVIEW INSTRUCTION
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - offline-experiment
+  - type/operation
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - cnt-v2-breakout-trend-filter-review-instruction
 ---
 
 # CNT v2 BREAKOUT TREND FILTER REVIEW INSTRUCTION

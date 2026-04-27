@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V2 REDESIGN PREPARATION KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - offline-experiment
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - cnt-v2-breakout-v2-redesign-preparation-ko
 ---
 
 # CNT v2 BREAKOUT V2 재설계 준비

@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION PLAN
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - offline-experiment
+  - type/operation
+  - strategy/breakout_v3
+  - obsidian
+  - status/completed
+  - cnt-v2-fresh-cycle-observability-validation-plan
 ---
 
 # CNT v2 FRESH CYCLE OBSERVABILITY VALIDATION PLAN

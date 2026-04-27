@@ -4,8 +4,14 @@ tags:
   - ko
   - observation
   - runtime-check
-created: 2026-04-25
-status: verified
+  - status/verified
+  - type/documentation
+  - status/active
+  - type/operation
+  - strategy/pullback_v1
+  - type/analysis
+  - type/validation
+  - status/completed
 ---
 
 # CNT Observation Resume Check 20260425 2007 KO

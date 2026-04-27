@@ -1,8 +1,16 @@
 ---
-title: CNT v2 DASHBOARD AUXILIARY RECOVERY VIEW REPORT KO
-status: FINAL
-language: ko
-updated: 2026-04-24
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - status/final
+  - language:-ko
 ---
 
 # CNT v2 대시보드 보조 회복 평가 뷰 반영 보고

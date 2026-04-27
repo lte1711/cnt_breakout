@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 OBSIDIAN INTEGRATED OPERATING PROTOCOL KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - type/operation
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - obsidian
+  - cnt-v2-obsidian-integrated-operating-protocol-ko
 ---
 
 # CNT v2 Obsidian 통합 운영 프로토콜 (한글판)

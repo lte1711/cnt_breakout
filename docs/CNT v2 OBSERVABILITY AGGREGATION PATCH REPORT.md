@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 OBSERVABILITY AGGREGATION PATCH REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - offline-experiment
+  - type/operation
+  - strategy/breakout_v3
+  - type/analysis
+  - status/completed
+  - cnt-v2-observability-aggregation-patch-report
 ---
 
 # CNT v2 OBSERVABILITY AGGREGATION PATCH REPORT

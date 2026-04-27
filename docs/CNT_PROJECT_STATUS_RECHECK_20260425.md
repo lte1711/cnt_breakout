@@ -3,8 +3,12 @@ tags:
   - cnt
   - status
   - validation
-aliases:
-  - CNT PROJECT STATUS RECHECK 20260425
+  - cnt-project-status-recheck-20260425
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - strategy/pullback_v1
 ---
 
 # CNT PROJECT STATUS RECHECK 20260425

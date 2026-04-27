@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v1.1 IMPLEMENTATION VALIDATION CHECKLIST
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - post-logging
+  - context-filter
+  - type/validation
+  - risk
+  - status/completed
+  - cnt-v1.1-implementation-validation-checklist
 ---
 
 # CNT v1.1 IMPLEMENTATION VALIDATION CHECKLIST

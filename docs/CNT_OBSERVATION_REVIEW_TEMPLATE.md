@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - strategy/breakout_v3
+  - type/validation
+  - status/completed
+---
+
 # CNT Observation Review Template
 
 **목적**: Shadow data 축적 후 v3 성능 검증 보고서 작성  
@@ -40,12 +51,12 @@
 ### Regime Gate Distribution
 
 **Timeline**:
-- Event #1-13: market_not_trend_up (100%)
+- Event [[1-13]]: market_not_trend_up (100%)
 - Event #14: market_bias_pass = FALSE
 - Event #19: **market_bias_pass = TRUE** ← Regime open
 - Event #20: range_bias_pass = TRUE
-- Event #21-25: market_bias_pass alternates
-- Event #26-30: trend_up_pass = TRUE (sustained)
+- Event [[21-25]]: market_bias_pass alternates
+- Event [[26-30]]: trend_up_pass = TRUE (sustained)
 
 **First Blocker Distribution**:
 ```

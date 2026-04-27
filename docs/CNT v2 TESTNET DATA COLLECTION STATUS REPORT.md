@@ -1,6 +1,16 @@
 ---
-aliases:
-  - CNT v2 TESTNET DATA COLLECTION STATUS REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - status/completed
+  - cnt-v2-testnet-data-collection-status-report
 ---
 
 # CNT v2 TESTNET DATA COLLECTION STATUS REPORT

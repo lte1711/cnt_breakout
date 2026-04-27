@@ -1,5 +1,11 @@
 ---
-generated_at: 2026-04-24 11:17:35
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - obsidian
+  - type/analysis
 ---
 
 # CNT Version Classification Report

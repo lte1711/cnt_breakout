@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT Operations Dashboard Guide KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - obsidian
+  - type/analysis
+  - cnt-operations-dashboard-guide-ko
 ---
 
 # CNT 운영 대시보드 가이드

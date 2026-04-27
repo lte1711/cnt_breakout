@@ -1,4 +1,15 @@
 ---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - graph-view
+  - obsidian
+  - type/analysis
+---
+
+---
 ---
 
 # CNT Obsidian Parent-Link Simplification Report

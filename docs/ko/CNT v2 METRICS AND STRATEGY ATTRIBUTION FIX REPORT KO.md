@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 Metrics And Strategy Attribution Fix Report KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - cnt-v2-metrics-and-strategy-attribution-fix-report-ko
 ---
 
 # CNT v2 메트릭 및 전략 귀속 보정 보고

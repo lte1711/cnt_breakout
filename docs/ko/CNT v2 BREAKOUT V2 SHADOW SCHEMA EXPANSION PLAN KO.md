@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V2 SHADOW SCHEMA EXPANSION PLAN KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/breakout_v3
+  - cnt-v2-breakout-v2-shadow-schema-expansion-plan-ko
 ---
 
 # CNT v2 BREAKOUT V2 Shadow Schema 확장 계획

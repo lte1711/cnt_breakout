@@ -1,35 +1,35 @@
 {
-  "timestamp": "2026-04-26 16:44:04",
+  "timestamp": "2026-04-27 22:10:05",
   "official_gate": {
-    "status": "NOT_READY",
-    "reason": "INSUFFICIENT_SAMPLE",
-    "expectancy": -0.0005784761904763167,
-    "net_pnl": -0.024296000000005313,
-    "closed_trades": 42
+    "status": "FAIL",
+    "reason": "NON_POSITIVE_EXPECTANCY",
+    "expectancy": -0.00039678431372558356,
+    "net_pnl": -0.02023600000000475,
+    "closed_trades": 51
   },
   "pullback_v1": {
-    "closed_trades": 39,
-    "wins": 20,
-    "losses": 19,
-    "win_rate": 0.5128205128205128,
-    "expectancy": 0.0010845641025639396,
-    "profit_factor": 1.1546030388426254,
-    "net_pnl": 0.042297999999993674,
-    "signals_generated": 657,
-    "signals_selected": 241
+    "closed_trades": 48,
+    "wins": 26,
+    "losses": 22,
+    "win_rate": 0.5416666666666666,
+    "expectancy": 0.0009657916666665446,
+    "profit_factor": 1.1424213284833233,
+    "net_pnl": 0.04635799999999424,
+    "signals_generated": 794,
+    "signals_selected": 306
   },
   "system_excluding_breakout_v1": {
     "excluded_strategy": "breakout_v1",
     "included_strategies": [
       "pullback_v1"
     ],
-    "closed_trades": 39,
-    "wins": 20,
-    "losses": 19,
-    "win_rate": 0.5128205128205128,
-    "expectancy": 0.0010845641025639396,
-    "profit_factor": 1.1546030388426254,
-    "net_pnl": 0.042297999999993674
+    "closed_trades": 48,
+    "wins": 26,
+    "losses": 22,
+    "win_rate": 0.5416666666666666,
+    "expectancy": 0.0009657916666665446,
+    "profit_factor": 1.1424213284833233,
+    "net_pnl": 0.04635799999999424
   },
   "recovery_signal": {
     "status": "RECOVERY_OBSERVATION_IN_PROGRESS",
@@ -43,7 +43,7 @@
   },
   "runtime_state": {
     "active_strategy": "pullback_v1",
-    "last_run_time": "2026-04-26 16:44:00",
+    "last_run_time": "2026-04-27 22:10:01",
     "last_action": "EXECUTION_BLOCKED_BY_RISK",
     "pending_order_exists": false,
     "open_trade_exists": false,

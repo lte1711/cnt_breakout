@@ -1,5 +1,14 @@
 ---
-aliases:
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/validation
+  - type/operation
+  - strategy/breakout_v3
+  - type/analysis
+  - status/completed
   - cnt_v1_closure_validation_report
 ---
 

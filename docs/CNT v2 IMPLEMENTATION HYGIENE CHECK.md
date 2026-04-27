@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 IMPLEMENTATION HYGIENE CHECK
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - strategy/breakout_v3
+  - graph-view
+  - obsidian
+  - type/analysis
+  - cnt-v2-implementation-hygiene-check
 ---
 
 # CNT v2 IMPLEMENTATION HYGIENE CHECK

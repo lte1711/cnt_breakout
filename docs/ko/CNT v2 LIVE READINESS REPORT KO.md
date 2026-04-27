@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 LIVE READINESS REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - risk
+  - obsidian
+  - type/analysis
+  - cnt-v2-live-readiness-report-ko
 ---
 
 # CNT v2 라이브 준비도 보고서

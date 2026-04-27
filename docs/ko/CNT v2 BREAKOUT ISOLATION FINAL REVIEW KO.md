@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT ISOLATION FINAL REVIEW KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - cnt-v2-breakout-isolation-final-review-ko
 ---
 
 # CNT v2 BREAKOUT 격리 최종 리뷰

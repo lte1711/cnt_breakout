@@ -1,6 +1,10 @@
 ---
-aliases:
-  - CNT v2 PERFORMANCE VALIDATION CHECKLIST
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - cnt-v2-performance-validation-checklist
 ---
 
 # CNT v2 PERFORMANCE VALIDATION CHECKLIST

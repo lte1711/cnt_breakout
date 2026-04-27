@@ -1,6 +1,17 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT TIMER JUDGMENT REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - offline-experiment
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - status/completed
+  - cnt-v2-breakout-timer-judgment-report
 ---
 
 # CNT v2 BREAKOUT TIMER JUDGMENT REPORT

@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V3 SHADOW OBSERVATION WINDOW START
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/operation
+  - strategy/breakout_v3
+  - cnt-v2-breakout-v3-shadow-observation-window-start
 ---
 
 # CNT v2 BREAKOUT V3 SHADOW OBSERVATION WINDOW START

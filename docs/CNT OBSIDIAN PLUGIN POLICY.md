@@ -1,6 +1,11 @@
 ---
-aliases:
-  - CNT Obsidian Plugin Policy
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - obsidian
+  - type/analysis
+  - cnt-obsidian-plugin-policy
 ---
 
 # CNT Obsidian Plugin Policy

@@ -1,4 +1,14 @@
 ---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - strategy/breakout_v3
+  - status/completed
+---
+
+---
 ---
 
 # CNT v2 BREAKOUT V2 GATE REDUNDANCY REVIEW

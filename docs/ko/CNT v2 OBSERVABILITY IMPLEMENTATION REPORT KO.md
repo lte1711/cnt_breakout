@@ -1,6 +1,16 @@
 ---
-aliases:
-  - CNT v2 OBSERVABILITY IMPLEMENTATION REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - post-logging
+  - offline-experiment
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - type/validation
+  - cnt-v2-observability-implementation-report-ko
 ---
 
 # CNT v2 관측성 구현 보고서

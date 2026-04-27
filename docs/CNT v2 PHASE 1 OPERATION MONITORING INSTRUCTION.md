@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 PHASE 1 OPERATION MONITORING INSTRUCTION
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/operation
+  - risk
+  - type/analysis
+  - cnt-v2-phase-1-operation-monitoring-instruction
 ---
 
 좋다. 지금 상태에서는 **“수정”이 아니라 “운영 감시 체계 구축”**이 다음 단계다.

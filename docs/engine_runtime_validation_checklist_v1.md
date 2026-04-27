@@ -1,5 +1,14 @@
 ---
-aliases:
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/breakout_v3
+  - obsidian
   - engine_runtime_validation_checklist_v1
 ---
 

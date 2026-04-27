@@ -1,0 +1,274 @@
+{
+  "records": 11,
+  "core_risk_set_blocked": 9,
+  "core_plus_volume_blocked": 11,
+  "by_reason": {
+    "near_trend_pullback_reentry/0.58": {
+      "n": 5,
+      "core": 3,
+      "plus": 5
+    },
+    "trend_pullback_reentry/0.74": {
+      "n": 3,
+      "core": 3,
+      "plus": 3
+    },
+    "trend_pullback_reentry_relaxed_rsi/0.64": {
+      "n": 3,
+      "core": 3,
+      "plus": 3
+    }
+  },
+  "rows": [
+    {
+      "time": "2026-04-26 16:44:04",
+      "decision_id": "ETHUSDT-pullback_v1-1777189442207",
+      "reason": "near_trend_pullback_reentry",
+      "confidence": 0.58,
+      "market_context": "PRIMARY_UP_ENTRY_DOWN",
+      "entry_rsi": 40.235550397868856,
+      "entry_volume_ratio": 0.04925337408628087,
+      "primary_volume_ratio": 0.03668769133406208,
+      "entry_range_pct": 4.294038586129195e-06,
+      "ret30_pre": -0.0002747441445153376,
+      "vol_change_5v5": 0.5506767910201387,
+      "fwd30_ret": 0.0018893850910337573,
+      "fwd30_max": 0.0019838543455856783,
+      "fwd30_min": -8.588114050167572e-05,
+      "issues": [
+        "DEAD_RANGE_CANDLE",
+        "LOW_ENTRY_VOLUME",
+        "NEAR_TREND_SIGNAL"
+      ],
+      "core_risk_set_block": true,
+      "core_plus_volume_block": true
+    },
+    {
+      "time": "2026-04-26 17:24:04",
+      "decision_id": "ETHUSDT-pullback_v1-1777191842504",
+      "reason": "near_trend_pullback_reentry",
+      "confidence": 0.58,
+      "market_context": "PRIMARY_UP_ENTRY_DOWN",
+      "entry_rsi": 41.57114959804763,
+      "entry_volume_ratio": 0.04319190889458223,
+      "primary_volume_ratio": 1.2816064248991286,
+      "entry_range_pct": 4.290041098687367e-06,
+      "ret30_pre": 0.00024888431170611014,
+      "vol_change_5v5": 0.19175775150568816,
+      "fwd30_ret": 0.0010253198225638194,
+      "fwd30_max": 0.002792816755184502,
+      "fwd30_min": -4.290041098697905e-06,
+      "issues": [
+        "DEAD_RANGE_CANDLE",
+        "VOLUME_CONTRACTION",
+        "LOW_ENTRY_VOLUME",
+        "NEAR_TREND_SIGNAL"
+      ],
+      "core_risk_set_block": true,
+      "core_plus_volume_block": true
+    },
+    {
+      "time": "2026-04-26 17:44:04",
+      "decision_id": "ETHUSDT-pullback_v1-1777193042259",
+      "reason": "trend_pullback_reentry",
+      "confidence": 0.74,
+      "market_context": "PRIMARY_UP_ENTRY_UP",
+      "entry_rsi": 48.73408022783712,
+      "entry_volume_ratio": 2.674966779225329,
+      "primary_volume_ratio": 2.4354065028856775,
+      "entry_range_pct": 0.0007543837841777509,
+      "ret30_pre": -0.00021003360537696913,
+      "vol_change_5v5": 0.7838888298834276,
+      "fwd30_ret": -0.0005873601804096129,
+      "fwd30_max": 0.00038585705282390137,
+      "fwd30_min": -0.0010761124473196437,
+      "issues": [
+        "ENTRY_UP_CONTEXT"
+      ],
+      "core_risk_set_block": true,
+      "core_plus_volume_block": true
+    },
+    {
+      "time": "2026-04-26 17:54:04",
+      "decision_id": "ETHUSDT-pullback_v1-1777193642243",
+      "reason": "near_trend_pullback_reentry",
+      "confidence": 0.58,
+      "market_context": "PRIMARY_UP_ENTRY_DOWN",
+      "entry_rsi": 42.713007657050674,
+      "entry_volume_ratio": 0.012932320001645464,
+      "primary_volume_ratio": 0.5709962252306574,
+      "entry_range_pct": 0.0,
+      "ret30_pre": 0.0010296142807502129,
+      "vol_change_5v5": 2.5235097383434977,
+      "fwd30_ret": -0.00016285458371367856,
+      "fwd30_max": 0.0,
+      "fwd30_min": -0.0014614056064832237,
+      "issues": [
+        "DEAD_RANGE_CANDLE",
+        "LOW_ENTRY_VOLUME",
+        "NEAR_TREND_SIGNAL"
+      ],
+      "core_risk_set_block": true,
+      "core_plus_volume_block": true
+    },
+    {
+      "time": "2026-04-26 18:04:04",
+      "decision_id": "ETHUSDT-pullback_v1-1777194242266",
+      "reason": "near_trend_pullback_reentry",
+      "confidence": 0.58,
+      "market_context": "PRIMARY_UP_ENTRY_DOWN",
+      "entry_rsi": 43.400037634235915,
+      "entry_volume_ratio": 0.6646226796532104,
+      "primary_volume_ratio": 3.5370348491455084,
+      "entry_range_pct": 0.000463213155253578,
+      "ret30_pre": -0.00118275238478871,
+      "vol_change_5v5": 0.3317206101220276,
+      "fwd30_ret": 0.0003775560112921905,
+      "fwd30_max": 0.0010683118955885362,
+      "fwd30_min": -0.0003518135559770208,
+      "issues": [
+        "VOLUME_CONTRACTION",
+        "NEAR_TREND_SIGNAL"
+      ],
+      "core_risk_set_block": false,
+      "core_plus_volume_block": true
+    },
+    {
+      "time": "2026-04-26 18:14:04",
+      "decision_id": "ETHUSDT-pullback_v1-1777194842243",
+      "reason": "near_trend_pullback_reentry",
+      "confidence": 0.58,
+      "market_context": "PRIMARY_UP_ENTRY_DOWN",
+      "entry_rsi": 44.81688371683101,
+      "entry_volume_ratio": 0.05631935782307916,
+      "primary_volume_ratio": 0.44814600152176487,
+      "entry_range_pct": 0.0001072570092455542,
+      "ret30_pre": -0.00037307512532314124,
+      "vol_change_5v5": 0.11138352906563367,
+      "fwd30_ret": 0.001093904165415438,
+      "fwd30_max": 0.0010981939856720135,
+      "fwd30_min": -0.00014585388872190297,
+      "issues": [
+        "VOLUME_CONTRACTION",
+        "LOW_ENTRY_VOLUME",
+        "NEAR_TREND_SIGNAL"
+      ],
+      "core_risk_set_block": false,
+      "core_plus_volume_block": true
+    },
+    {
+      "time": "2026-04-26 18:34:04",
+      "decision_id": "ETHUSDT-pullback_v1-1777196042227",
+      "reason": "trend_pullback_reentry",
+      "confidence": 0.74,
+      "market_context": "PRIMARY_UP_ENTRY_UP",
+      "entry_rsi": 44.056378536921095,
+      "entry_volume_ratio": 0.025912546948546368,
+      "primary_volume_ratio": 0.5934589167742229,
+      "entry_range_pct": 0.00014583699713050503,
+      "ret30_pre": 0.0003775560112921905,
+      "vol_change_5v5": 0.9083235062059369,
+      "fwd30_ret": 0.0004803444756098507,
+      "fwd30_max": 0.0016426065549866031,
+      "fwd30_min": 0.0,
+      "issues": [
+        "ENTRY_UP_CONTEXT",
+        "LOW_ENTRY_VOLUME"
+      ],
+      "core_risk_set_block": true,
+      "core_plus_volume_block": true
+    },
+    {
+      "time": "2026-04-26 19:04:04",
+      "decision_id": "ETHUSDT-pullback_v1-1777197842556",
+      "reason": "trend_pullback_reentry",
+      "confidence": 0.74,
+      "market_context": "PRIMARY_UP_ENTRY_UP",
+      "entry_rsi": 44.83681990308838,
+      "entry_volume_ratio": 1.2247732657896888,
+      "primary_volume_ratio": 0.08517836001680983,
+      "entry_range_pct": 0.0001628943758573856,
+      "ret30_pre": 0.0004803444756098507,
+      "vol_change_5v5": 3.0577422440891078,
+      "fwd30_ret": 0.00015432231071921265,
+      "fwd30_max": 0.0015175027220741821,
+      "fwd30_min": 6.001423194645916e-05,
+      "issues": [
+        "ENTRY_UP_CONTEXT"
+      ],
+      "core_risk_set_block": true,
+      "core_plus_volume_block": true
+    },
+    {
+      "time": "2026-04-26 19:24:04",
+      "decision_id": "ETHUSDT-pullback_v1-1777199042702",
+      "reason": "trend_pullback_reentry_relaxed_rsi",
+      "confidence": 0.64,
+      "market_context": "PRIMARY_UP_ENTRY_UP",
+      "entry_rsi": 52.13653621398847,
+      "entry_volume_ratio": 0.5166380789022298,
+      "primary_volume_ratio": 0.5841730002637113,
+      "entry_range_pct": 4.283187205161897e-06,
+      "ret30_pre": -0.00021847717127765343,
+      "vol_change_5v5": 0.7311925294201724,
+      "fwd30_ret": -0.0008183972268759332,
+      "fwd30_max": 0.0002956513542118344,
+      "fwd30_min": -0.0009126628760449673,
+      "issues": [
+        "ENTRY_UP_CONTEXT",
+        "DEAD_RANGE_CANDLE",
+        "RELAXED_RSI_SIGNAL"
+      ],
+      "core_risk_set_block": true,
+      "core_plus_volume_block": true
+    },
+    {
+      "time": "2026-04-26 20:24:04",
+      "decision_id": "ETHUSDT-pullback_v1-1777202642486",
+      "reason": "trend_pullback_reentry_relaxed_rsi",
+      "confidence": 0.64,
+      "market_context": "PRIMARY_UP_ENTRY_UP",
+      "entry_rsi": 53.242903536479005,
+      "entry_volume_ratio": 0.01417339903120649,
+      "primary_volume_ratio": 0.11275488936152595,
+      "entry_range_pct": 0.0,
+      "ret30_pre": 0.0018697039349548916,
+      "vol_change_5v5": 16.348306595365422,
+      "fwd30_ret": null,
+      "fwd30_max": 0.0005221976817846308,
+      "fwd30_min": -0.0008218193024809306,
+      "issues": [
+        "ENTRY_UP_CONTEXT",
+        "DEAD_RANGE_CANDLE",
+        "LOW_ENTRY_VOLUME",
+        "RELAXED_RSI_SIGNAL"
+      ],
+      "core_risk_set_block": true,
+      "core_plus_volume_block": true
+    },
+    {
+      "time": "2026-04-26 20:44:04",
+      "decision_id": "ETHUSDT-pullback_v1-1777203842334",
+      "reason": "trend_pullback_reentry_relaxed_rsi",
+      "confidence": 0.64,
+      "market_context": "PRIMARY_UP_ENTRY_UP",
+      "entry_rsi": 54.013162005424185,
+      "entry_volume_ratio": 0.07491673197492163,
+      "primary_volume_ratio": 0.6246281049203561,
+      "entry_range_pct": 0.0,
+      "ret30_pre": 0.0005655575454803774,
+      "vol_change_5v5": 1.74138826747527,
+      "fwd30_ret": null,
+      "fwd30_max": -9.848841690573984e-05,
+      "fwd30_min": -0.00040251787778877723,
+      "issues": [
+        "ENTRY_UP_CONTEXT",
+        "DEAD_RANGE_CANDLE",
+        "LOW_ENTRY_VOLUME",
+        "RELAXED_RSI_SIGNAL"
+      ],
+      "core_risk_set_block": true,
+      "core_plus_volume_block": true
+    }
+  ]
+}

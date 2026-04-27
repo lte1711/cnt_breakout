@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V2 GATE REDUNDANCY REVIEW KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - strategy/breakout_v3
+  - status/completed
+  - cnt-v2-breakout-v2-gate-redundancy-review-ko
 ---
 
 # CNT v2 BREAKOUT V2 게이트 중복성 리뷰

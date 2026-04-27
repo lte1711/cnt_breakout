@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 STRATEGIC ANALYSIS PLAN KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - offline-experiment
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - obsidian
+  - cnt-v2-strategic-analysis-plan-ko
 ---
 
 # CNT v2 STRATEGIC ANALYSIS PLAN KO

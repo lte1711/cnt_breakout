@@ -4,8 +4,11 @@ tags:
   - live-gate
   - dashboard
   - validation
-status: ACTIVE
-created: 2026-04-26
+  - status/active
+  - type/documentation
+  - type/validation
+  - type/operation
+  - type/analysis
 ---
 
 # CNT Live Gate Threshold 50 Update 20260426

@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 LIVE READY POST-READINESS MONITORING PLAN
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - cnt-v2-live-ready-post-readiness-monitoring-plan
 ---
 
 # CNT v2 LIVE READY POST-READINESS MONITORING PLAN

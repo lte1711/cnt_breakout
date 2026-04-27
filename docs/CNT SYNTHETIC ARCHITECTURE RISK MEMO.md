@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT Synthetic Architecture Risk Memo
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/operation
+  - risk
+  - strategy/breakout_v3
+  - type/analysis
+  - cnt-synthetic-architecture-risk-memo
 ---
 
 # CNT Synthetic Architecture Risk Memo

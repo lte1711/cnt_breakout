@@ -1,6 +1,12 @@
 ---
-aliases:
-  - DESIGN SUMMARY KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - obsidian
+  - type/validation
+  - status/completed
+  - design-summary-ko
 ---
 
 # DESIGN SUMMARY KO

@@ -1,6 +1,11 @@
 ---
-aliases:
-  - CNT v1.1 STAGE 2 ARCHITECTURE DESIGN DOCUMENT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/validation
+  - cnt-v1.1-stage-2-architecture-design-document
 ---
 
 # CNT v1.1 STAGE 2 ARCHITECTURE DESIGN DOCUMENT

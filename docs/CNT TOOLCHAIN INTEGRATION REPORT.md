@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT TOOLCHAIN INTEGRATION REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - obsidian
+  - type/analysis
+  - cnt-toolchain-integration-report
 ---
 
 # CNT Toolchain Integration Report

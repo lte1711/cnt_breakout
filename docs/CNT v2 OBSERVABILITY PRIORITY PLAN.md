@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 OBSERVABILITY PRIORITY PLAN
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - offline-experiment
+  - type/operation
+  - strategy/breakout_v3
+  - obsidian
+  - cnt-v2-observability-priority-plan
 ---
 
 # CNT v2 OBSERVABILITY PRIORITY PLAN

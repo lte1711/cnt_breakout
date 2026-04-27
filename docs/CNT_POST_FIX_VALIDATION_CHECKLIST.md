@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/validation
+  - strategy/breakout_v3
+---
+
 # Shadow Evaluator 수정 후 검증 체크리스트
 
 **목적**: Breakout_v3 shadow evaluator 코드 수정이 실제로 반영되었는지 확인  

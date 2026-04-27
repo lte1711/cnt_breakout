@@ -1,7 +1,12 @@
 ---
-title: CNT v2 DASHBOARD SETUP BOTTLENECK ISOLATION UPGRADE REPORT
-status: completed
-updated: 2026-04-24
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - status/completed
 ---
 
 # CNT v2 Dashboard Setup Bottleneck Isolation Upgrade Report

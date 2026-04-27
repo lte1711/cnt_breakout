@@ -1,6 +1,16 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT TREND FILTER CHANGE REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - type/operation
+  - strategy/breakout_v3
+  - type/analysis
+  - type/validation
+  - status/completed
+  - cnt-v2-breakout-trend-filter-change-report-ko
 ---
 
 # CNT v2 BREAKOUT 추세 필터 변경 보고

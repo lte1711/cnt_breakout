@@ -1,6 +1,13 @@
 ---
-generated_at: 현재 날짜: 2026-04-24 
-새로운 날짜를 입력하십시오: (년-월-일)
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - graph-view
+  - obsidian
+  - type/analysis
+  - type/validation
+  - 새로운-날짜를-입력하십시오:-(년-월-일)
 ---
 
 # CNT Graph 링크 단순화 보고서

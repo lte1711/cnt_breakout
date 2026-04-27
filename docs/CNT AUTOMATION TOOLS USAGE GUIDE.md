@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT AUTOMATION TOOLS USAGE GUIDE
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - strategy/breakout_v3
+  - obsidian
+  - cnt-automation-tools-usage-guide
 ---
 
 # CNT 자동화 도구 사용 가이드

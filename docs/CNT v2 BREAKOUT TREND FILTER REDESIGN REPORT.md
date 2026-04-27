@@ -1,6 +1,17 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT TREND FILTER REDESIGN REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - post-logging
+  - context-filter
+  - type/validation
+  - type/operation
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
+  - cnt-v2-breakout-trend-filter-redesign-report
 ---
 
 # CNT v2 BREAKOUT TREND FILTER REDESIGN REPORT

@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 LIVE GATE ALIGNMENT REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - risk
+  - obsidian
+  - type/analysis
+  - cnt-v2-live-gate-alignment-report
 ---
 
 # CNT v2 LIVE GATE ALIGNMENT REPORT

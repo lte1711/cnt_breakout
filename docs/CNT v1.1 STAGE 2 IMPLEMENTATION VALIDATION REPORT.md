@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - type/validation
+  - risk
+  - type/analysis
+  - status/completed
+  - cnt-v1.1-stage-2-implementation-validation-report
 ---
 
 # CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION REPORT

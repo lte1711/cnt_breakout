@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 PERFORMANCE VALIDATION REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - post-logging
+  - type/validation
+  - type/operation
+  - risk
+  - type/analysis
+  - cnt-v2-performance-validation-report
 ---
 
 # CNT v2 PERFORMANCE VALIDATION REPORT

@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V2 EXPANDED SHADOW OBSERVATION REVIEW
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - cnt-v2-breakout-v2-expanded-shadow-observation-review
 ---
 
 # CNT v2 BREAKOUT V2 EXPANDED SHADOW OBSERVATION REVIEW

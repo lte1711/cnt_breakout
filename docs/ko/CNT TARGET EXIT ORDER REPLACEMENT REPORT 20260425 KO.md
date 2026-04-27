@@ -4,8 +4,13 @@ tags:
   - ko
   - operations-report
   - exit
-created: 2026-04-25
-status: verified
+  - status/verified
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - type/analysis
+  - status/completed
 ---
 
 # CNT Target Exit Order Replacement Report 20260425 KO

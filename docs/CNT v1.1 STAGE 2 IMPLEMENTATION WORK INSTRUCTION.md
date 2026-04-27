@@ -1,6 +1,11 @@
 ---
-aliases:
-  - CNT v1.1 STAGE 2 IMPLEMENTATION WORK INSTRUCTION
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - risk
+  - cnt-v1.1-stage-2-implementation-work-instruction
 ---
 
 # CNT v1.1 STAGE 2 IMPLEMENTATION WORK INSTRUCTION

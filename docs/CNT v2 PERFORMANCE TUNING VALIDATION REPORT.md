@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 PERFORMANCE TUNING VALIDATION REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - post-logging
+  - type/validation
+  - type/operation
+  - type/analysis
+  - cnt-v2-performance-tuning-validation-report
 ---
 
 # CNT v2 PERFORMANCE TUNING VALIDATION REPORT

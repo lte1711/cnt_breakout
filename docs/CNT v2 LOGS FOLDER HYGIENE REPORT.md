@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 LOGS FOLDER HYGIENE REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - post-logging
+  - type/operation
+  - strategy/breakout_v3
+  - type/analysis
+  - cnt-v2-logs-folder-hygiene-report
 ---
 
 # CNT v2 LOGS FOLDER HYGIENE REPORT

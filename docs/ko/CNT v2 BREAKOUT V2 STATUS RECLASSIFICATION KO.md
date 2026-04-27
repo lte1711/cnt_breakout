@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V2 STATUS RECLASSIFICATION KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - offline-experiment
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - obsidian
+  - cnt-v2-breakout-v2-status-reclassification-ko
 ---
 
 # CNT v2 BREAKOUT V2 상태 재분류

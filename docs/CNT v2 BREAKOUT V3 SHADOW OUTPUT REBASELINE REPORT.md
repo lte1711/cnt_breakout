@@ -1,6 +1,11 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V3 SHADOW OUTPUT REBASELINE REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - strategy/breakout_v3
+  - type/analysis
+  - cnt-v2-breakout-v3-shadow-output-rebaseline-report
 ---
 
 # CNT v2 BREAKOUT V3 SHADOW OUTPUT REBASELINE REPORT

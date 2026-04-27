@@ -1,6 +1,13 @@
 ---
-aliases:
-  - RECORD TEXT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - obsidian
+  - type/validation
+  - status/completed
+  - record-text
 ---
 
 전략-엔진 통합 1차 검증 완료.

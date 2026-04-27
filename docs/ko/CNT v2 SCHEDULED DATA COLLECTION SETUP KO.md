@@ -1,6 +1,10 @@
 ---
-aliases:
-  - CNT v2 SCHEDULED DATA COLLECTION SETUP KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - cnt-v2-scheduled-data-collection-setup-ko
 ---
 
 # CNT v2 예약 데이터 수집 설정

@@ -1,8 +1,15 @@
 ---
-title: CNT OBSIDIAN GRAPH HARD SIMPLIFICATION REPORT
-status: FINAL
-language: en
-updated: 2026-04-24
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - strategy/breakout_v3
+  - graph-view
+  - obsidian
+  - type/analysis
+  - status/final
+  - language:-en
 ---
 
 # CNT Obsidian Graph Hard Simplification Report

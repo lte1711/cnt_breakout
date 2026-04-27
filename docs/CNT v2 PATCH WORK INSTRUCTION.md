@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 PATCH WORK INSTRUCTION
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - risk
+  - strategy/pullback_v1
+  - type/validation
+  - status/completed
+  - cnt-v2-patch-work-instruction
 ---
 
 아래는 바로 적용 가능한 **`CNT v2 PATCH WORK INSTRUCTION.md`** 문안이다.

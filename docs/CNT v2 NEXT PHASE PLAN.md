@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 NEXT PHASE PLAN
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - risk
+  - type/analysis
+  - cnt-v2-next-phase-plan
 ---
 
 # CNT v2 NEXT PHASE PLAN

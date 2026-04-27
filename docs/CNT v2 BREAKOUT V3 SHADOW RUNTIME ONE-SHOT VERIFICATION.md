@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V3 SHADOW RUNTIME ONE-SHOT VERIFICATION
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/operation
+  - strategy/breakout_v3
+  - status/completed
+  - cnt-v2-breakout-v3-shadow-runtime-one-shot-verification
 ---
 
 # CNT v2 BREAKOUT V3 SHADOW RUNTIME ONE-SHOT VERIFICATION

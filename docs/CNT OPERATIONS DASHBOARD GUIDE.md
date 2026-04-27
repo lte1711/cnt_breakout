@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT Operations Dashboard Guide
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - cnt-operations-dashboard-guide
 ---
 
 # CNT Operations Dashboard Guide

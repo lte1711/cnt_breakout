@@ -1,8 +1,16 @@
 ---
-title: CNT v2 PULLBACK-ONLY OBSERVATION WINDOW EXECUTION REPORT KO
-status: FINAL
-language: ko
-updated: 2026-04-24
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
+  - type/validation
+  - status/final
+  - language:-ko
 ---
 
 # CNT v2 PULLBACK-ONLY OBSERVATION WINDOW EXECUTION REPORT

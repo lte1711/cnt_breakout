@@ -1,0 +1,384 @@
+{
+  "source": "logs/portfolio.log",
+  "baseline_total_closed": 42,
+  "baseline_pullback_closed": 39,
+  "summary": {
+    "trades": 9,
+    "wins": 6,
+    "losses": 3,
+    "win_rate": 0.6666666666666666,
+    "net_pnl": 0.004060000000000494,
+    "expectancy": 0.000451111111111166,
+    "profit_factor": 1.078215303999392
+  },
+  "by_context": {
+    "PRIMARY_DOWN_ENTRY_DOWN": {
+      "trades": 1,
+      "wins": 1,
+      "losses": 0,
+      "win_rate": 1.0,
+      "net_pnl": 0.00930600000000004,
+      "expectancy": 0.00930600000000004,
+      "profit_factor": null
+    },
+    "PRIMARY_DOWN_ENTRY_UP": {
+      "trades": 3,
+      "wins": 3,
+      "losses": 0,
+      "win_rate": 1.0,
+      "net_pnl": 0.027984000000000564,
+      "expectancy": 0.009328000000000189,
+      "profit_factor": null
+    },
+    "PRIMARY_UP_ENTRY_DOWN": {
+      "trades": 2,
+      "wins": 1,
+      "losses": 1,
+      "win_rate": 0.5,
+      "net_pnl": -0.0025080000000007197,
+      "expectancy": -0.0012540000000003599,
+      "profit_factor": 0.7884972170685978
+    },
+    "PRIMARY_UP_ENTRY_UP": {
+      "trades": 3,
+      "wins": 1,
+      "losses": 2,
+      "win_rate": 0.3333333333333333,
+      "net_pnl": -0.03072199999999939,
+      "expectancy": -0.010240666666666462,
+      "profit_factor": 0.23290886392011342
+    }
+  },
+  "by_signal": {
+    "near_trend_pullback_reentry": {
+      "trades": 3,
+      "wins": 2,
+      "losses": 1,
+      "win_rate": 0.6666666666666666,
+      "net_pnl": 0.00679799999999932,
+      "expectancy": 0.0022659999999997734,
+      "profit_factor": 1.5732838589980525
+    },
+    "trend_pullback_reentry": {
+      "trades": 1,
+      "wins": 1,
+      "losses": 0,
+      "win_rate": 1.0,
+      "net_pnl": 0.009328000000000522,
+      "expectancy": 0.009328000000000522,
+      "profit_factor": null
+    },
+    "trend_pullback_reentry_relaxed_rsi": {
+      "trades": 5,
+      "wins": 3,
+      "losses": 2,
+      "win_rate": 0.6,
+      "net_pnl": -0.012065999999999348,
+      "expectancy": -0.00241319999999987,
+      "profit_factor": 0.6987265917603153
+    }
+  },
+  "by_issue": {
+    "DEAD_RANGE_CANDLE": {
+      "trades": 4,
+      "wins": 3,
+      "losses": 1,
+      "win_rate": 0.75,
+      "net_pnl": 0.0034320000000008805,
+      "expectancy": 0.0008580000000002201,
+      "profit_factor": 1.139784946236597
+    },
+    "ENTRY_ATR_EXPANDED": {
+      "trades": 1,
+      "wins": 0,
+      "losses": 1,
+      "win_rate": 0.0,
+      "net_pnl": -0.015498000000000229,
+      "expectancy": -0.015498000000000229,
+      "profit_factor": 0.0
+    },
+    "ENTRY_UP_CONTEXT": {
+      "trades": 6,
+      "wins": 4,
+      "losses": 2,
+      "win_rate": 0.6666666666666666,
+      "net_pnl": -0.0027379999999988264,
+      "expectancy": -0.00045633333333313774,
+      "profit_factor": 0.9316354556804285
+    },
+    "LARGE_BODY_ENTRY": {
+      "trades": 5,
+      "wins": 3,
+      "losses": 2,
+      "win_rate": 0.6,
+      "net_pnl": -0.008381999999999879,
+      "expectancy": -0.001676399999999976,
+      "profit_factor": 0.7697885196374682
+    },
+    "LOW_ENTRY_VOLUME": {
+      "trades": 3,
+      "wins": 2,
+      "losses": 1,
+      "win_rate": 0.6666666666666666,
+      "net_pnl": -0.00591799999999912,
+      "expectancy": -0.0019726666666663732,
+      "profit_factor": 0.7589605734767352
+    },
+    "NO_LOCAL_ISSUE": {
+      "trades": 1,
+      "wins": 1,
+      "losses": 0,
+      "win_rate": 1.0,
+      "net_pnl": 0.00930600000000004,
+      "expectancy": 0.00930600000000004,
+      "profit_factor": null
+    },
+    "PRIMARY_EMA_EXTENSION": {
+      "trades": 3,
+      "wins": 2,
+      "losses": 1,
+      "win_rate": 0.6666666666666666,
+      "net_pnl": 0.0031800000000002937,
+      "expectancy": 0.001060000000000098,
+      "profit_factor": 1.2051877661633916
+    },
+    "PRIMARY_RSI_OVERHEATED": {
+      "trades": 2,
+      "wins": 2,
+      "losses": 0,
+      "win_rate": 1.0,
+      "net_pnl": 0.01867800000000052,
+      "expectancy": 0.00933900000000026,
+      "profit_factor": null
+    },
+    "VOLUME_CONTRACTION": {
+      "trades": 6,
+      "wins": 4,
+      "losses": 2,
+      "win_rate": 0.6666666666666666,
+      "net_pnl": -0.0027379999999988264,
+      "expectancy": -0.00045633333333313774,
+      "profit_factor": 0.9316354556804285
+    }
+  },
+  "rows": [
+    {
+      "timestamp": "2026-04-27 02:04:03",
+      "strategy": "pullback_v1",
+      "close_action": "STOP_MARKET_FILLED",
+      "pnl": -0.01185800000000072,
+      "win": false,
+      "decision_id": "ETHUSDT-pullback_v1-1777216442577",
+      "market_context": "PRIMARY_UP_ENTRY_DOWN",
+      "signal_reason": "near_trend_pullback_reentry",
+      "confidence": 0.58,
+      "entry_rsi": 47.0959946920186,
+      "primary_rsi": 63.768218960107276,
+      "entry_volume_ratio": 1.1706547357488113,
+      "primary_volume_ratio": 1.174789876322299,
+      "entry_body_ratio": 1.0,
+      "entry_range_pct": 0.0002429522534887789,
+      "entry_atr_pct": 0.0003885663192085205,
+      "primary_atr_pct": 0.0011958798126536201,
+      "issues": [
+        "LARGE_BODY_ENTRY"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27 03:04:04",
+      "strategy": "pullback_v1",
+      "close_action": "SELL_FILLED",
+      "pnl": 0.009284000000000561,
+      "win": true,
+      "decision_id": "ETHUSDT-pullback_v1-1777223642659",
+      "market_context": "PRIMARY_DOWN_ENTRY_UP",
+      "signal_reason": "trend_pullback_reentry_relaxed_rsi",
+      "confidence": 0.64,
+      "entry_rsi": 52.988192453062176,
+      "primary_rsi": 50.5733632331205,
+      "entry_volume_ratio": 0.005559303050743913,
+      "primary_volume_ratio": 1.8165664784845335,
+      "entry_body_ratio": 0.0,
+      "entry_range_pct": 0.0,
+      "entry_atr_pct": 0.00021645424992875305,
+      "primary_atr_pct": 0.0009196848205061974,
+      "issues": [
+        "ENTRY_UP_CONTEXT",
+        "DEAD_RANGE_CANDLE",
+        "LOW_ENTRY_VOLUME",
+        "VOLUME_CONTRACTION"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27 04:14:03",
+      "strategy": "pullback_v1",
+      "close_action": "SELL_FILLED",
+      "pnl": 0.009328000000000522,
+      "win": true,
+      "decision_id": "ETHUSDT-pullback_v1-1777228442747",
+      "market_context": "PRIMARY_UP_ENTRY_UP",
+      "signal_reason": "trend_pullback_reentry",
+      "confidence": 0.74,
+      "entry_rsi": 51.311616072420925,
+      "primary_rsi": 73.36144209022706,
+      "entry_volume_ratio": 0.4354779757785998,
+      "primary_volume_ratio": 0.9039158125858838,
+      "entry_body_ratio": 0.9943502824857523,
+      "entry_range_pct": 0.0007499269139024509,
+      "entry_atr_pct": 0.0005531208679867192,
+      "primary_atr_pct": 0.0016886780160226102,
+      "issues": [
+        "ENTRY_UP_CONTEXT",
+        "LARGE_BODY_ENTRY",
+        "VOLUME_CONTRACTION",
+        "PRIMARY_RSI_OVERHEATED",
+        "PRIMARY_EMA_EXTENSION"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27 04:54:04",
+      "strategy": "pullback_v1",
+      "close_action": "SELL_FILLED",
+      "pnl": 0.00935,
+      "win": true,
+      "decision_id": "ETHUSDT-pullback_v1-1777232042791",
+      "market_context": "PRIMARY_UP_ENTRY_DOWN",
+      "signal_reason": "near_trend_pullback_reentry",
+      "confidence": 0.58,
+      "entry_rsi": 45.302425982805445,
+      "primary_rsi": 66.71614070536786,
+      "entry_volume_ratio": 0.29290536085719265,
+      "primary_volume_ratio": 1.4157439918444161,
+      "entry_body_ratio": 0.9642857142865263,
+      "entry_range_pct": 0.00011842628386769471,
+      "entry_atr_pct": 0.000650171055938026,
+      "primary_atr_pct": 0.0016249572100944848,
+      "issues": [
+        "DEAD_RANGE_CANDLE",
+        "LARGE_BODY_ENTRY",
+        "VOLUME_CONTRACTION",
+        "PRIMARY_RSI_OVERHEATED",
+        "PRIMARY_EMA_EXTENSION"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27 06:34:03",
+      "strategy": "pullback_v1",
+      "close_action": "STOP_MARKET_FILLED",
+      "pnl": -0.02455199999999968,
+      "win": false,
+      "decision_id": "ETHUSDT-pullback_v1-1777233842808",
+      "market_context": "PRIMARY_UP_ENTRY_UP",
+      "signal_reason": "trend_pullback_reentry_relaxed_rsi",
+      "confidence": 0.64,
+      "entry_rsi": 52.93858328165031,
+      "primary_rsi": 64.29282558065933,
+      "entry_volume_ratio": 0.13572306236412557,
+      "primary_volume_ratio": 1.5904895706877367,
+      "entry_body_ratio": 1.0,
+      "entry_range_pct": 0.00018161007893696283,
+      "entry_atr_pct": 0.000403768517991884,
+      "primary_atr_pct": 0.0014152931339735696,
+      "issues": [
+        "ENTRY_UP_CONTEXT",
+        "DEAD_RANGE_CANDLE",
+        "LARGE_BODY_ENTRY",
+        "LOW_ENTRY_VOLUME",
+        "VOLUME_CONTRACTION"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27 07:04:04",
+      "strategy": "pullback_v1",
+      "close_action": "SELL_FILLED",
+      "pnl": 0.00930600000000004,
+      "win": true,
+      "decision_id": "ETHUSDT-pullback_v1-1777240442987",
+      "market_context": "PRIMARY_DOWN_ENTRY_DOWN",
+      "signal_reason": "near_trend_pullback_reentry",
+      "confidence": 0.58,
+      "entry_rsi": 40.37919436295081,
+      "primary_rsi": 34.88656220973283,
+      "entry_volume_ratio": 1.4705943875437912,
+      "primary_volume_ratio": 1.8139880209326709,
+      "entry_body_ratio": 0.07432432432440944,
+      "entry_range_pct": 0.0006282286922231308,
+      "entry_atr_pct": 0.000605280855763841,
+      "primary_atr_pct": 0.001299492446927933,
+      "issues": []
+    },
+    {
+      "timestamp": "2026-04-27 08:24:04",
+      "strategy": "pullback_v1",
+      "close_action": "SELL_FILLED",
+      "pnl": 0.00935,
+      "win": true,
+      "decision_id": "ETHUSDT-pullback_v1-1777244042947",
+      "market_context": "PRIMARY_DOWN_ENTRY_UP",
+      "signal_reason": "trend_pullback_reentry_relaxed_rsi",
+      "confidence": 0.64,
+      "entry_rsi": 52.13652736931425,
+      "primary_rsi": 51.4272250297476,
+      "entry_volume_ratio": 0.04536178791827502,
+      "primary_volume_ratio": 0.5136661665151908,
+      "entry_body_ratio": 1.0,
+      "entry_range_pct": 0.00014382159354331801,
+      "entry_atr_pct": 0.0006486292962664904,
+      "primary_atr_pct": 0.002300431408672218,
+      "issues": [
+        "ENTRY_UP_CONTEXT",
+        "DEAD_RANGE_CANDLE",
+        "LARGE_BODY_ENTRY",
+        "LOW_ENTRY_VOLUME",
+        "VOLUME_CONTRACTION"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27 09:04:04",
+      "strategy": "pullback_v1",
+      "close_action": "SELL_FILLED",
+      "pnl": 0.00935,
+      "win": true,
+      "decision_id": "ETHUSDT-pullback_v1-1777246443087",
+      "market_context": "PRIMARY_DOWN_ENTRY_UP",
+      "signal_reason": "trend_pullback_reentry_relaxed_rsi",
+      "confidence": 0.64,
+      "entry_rsi": 55.27455829850972,
+      "primary_rsi": 48.95868855447089,
+      "entry_volume_ratio": 1.0128399782563873,
+      "primary_volume_ratio": 0.5674806372811659,
+      "entry_body_ratio": 0.08771929824590796,
+      "entry_range_pct": 0.00024099645692935158,
+      "entry_atr_pct": 0.0007143085497325078,
+      "primary_atr_pct": 0.0020705281498243555,
+      "issues": [
+        "ENTRY_UP_CONTEXT"
+      ]
+    },
+    {
+      "timestamp": "2026-04-27 10:34:02",
+      "strategy": "pullback_v1",
+      "close_action": "STOP_MARKET_FILLED",
+      "pnl": -0.015498000000000229,
+      "win": false,
+      "decision_id": "ETHUSDT-pullback_v1-1777252442212",
+      "market_context": "PRIMARY_UP_ENTRY_UP",
+      "signal_reason": "trend_pullback_reentry_relaxed_rsi",
+      "confidence": 0.64,
+      "entry_rsi": 53.87483937301183,
+      "primary_rsi": 62.232812709741516,
+      "entry_volume_ratio": 0.4220018129714062,
+      "primary_volume_ratio": 1.4933055003635671,
+      "entry_body_ratio": 0.7300613496932361,
+      "entry_range_pct": 0.0006823852504312462,
+      "entry_atr_pct": 0.002115437907410402,
+      "primary_atr_pct": 0.004516722483711866,
+      "issues": [
+        "ENTRY_UP_CONTEXT",
+        "VOLUME_CONTRACTION",
+        "PRIMARY_EMA_EXTENSION",
+        "ENTRY_ATR_EXPANDED"
+      ]
+    }
+  ]
+}

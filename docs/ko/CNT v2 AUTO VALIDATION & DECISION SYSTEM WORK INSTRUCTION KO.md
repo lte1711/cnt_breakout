@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 AUTO VALIDATION & DECISION SYSTEM WORK INSTRUCTION KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - obsidian
+  - type/analysis
+  - cnt-v2-auto-validation-&-decision-system-work-instruction-ko
 ---
 
 # CNT v2 자동 검증 및 의사결정 시스템 작업 지시

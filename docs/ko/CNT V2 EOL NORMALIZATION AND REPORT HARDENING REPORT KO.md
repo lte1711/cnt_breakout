@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 EOL NORMALIZATION AND REPORT HARDENING REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - obsidian
+  - type/analysis
+  - type/validation
+  - status/completed
+  - cnt-v2-eol-normalization-and-report-hardening-report-ko
 ---
 
 # CNT v2 EOL NORMALIZATION AND REPORT HARDENING REPORT KO

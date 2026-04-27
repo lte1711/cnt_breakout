@@ -1,6 +1,17 @@
 ---
-aliases:
-  - CNT v2 OBSERVABILITY AGGREGATION PATCH REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - type/validation
+  - offline-experiment
+  - type/operation
+  - strategy/breakout_v3
+  - type/analysis
+  - status/completed
+  - cnt-v2-observability-aggregation-patch-report-ko
 ---
 
 # CNT v2 관측성 집계 패치 보고

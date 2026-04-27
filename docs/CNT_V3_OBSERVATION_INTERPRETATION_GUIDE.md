@@ -1,3 +1,13 @@
+---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - strategy/breakout_v3
+  - type/validation
+---
+
 # Breakout_v3 Observation 해석 가이드
 
 **목적**: 20~30 이벤트 관찰 구간에서 나타나는 신호를 정확히 읽는 방법  
@@ -62,7 +72,7 @@
 
 #### 현재 상태
 ```
-event #1-13:
+event [[1-13]]:
   first_blocker_distribution: {
     market_not_trend_up: 13
   }
@@ -70,7 +80,7 @@ event #1-13:
 
 #### 변화 지점 찾기
 ```
-event #14-30:
+event [[14-30]]:
   "first_blocker_distribution" 변경 여부 추적
   
   target: 

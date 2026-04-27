@@ -1,6 +1,17 @@
 ---
-aliases:
-  - CNT v2 ENGINEERING PHASE PLAN
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/validation
+  - offline-experiment
+  - risk
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - status/completed
+  - cnt-v2-engineering-phase-plan
 ---
 
 # CNT v2 ENGINEERING PHASE PLAN

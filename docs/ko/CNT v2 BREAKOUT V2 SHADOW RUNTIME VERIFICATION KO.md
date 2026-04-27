@@ -1,4 +1,17 @@
 ---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/validation
+---
+
+---
 ---
 
 # CNT v2 BREAKOUT V2 SHADOW RUNTIME VERIFICATION KO

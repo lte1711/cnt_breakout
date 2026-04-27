@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 PRIORITY DECISION REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - offline-experiment
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - cnt-v2-priority-decision-report-ko
 ---
 
 # CNT v2 PRIORITY DECISION REPORT KO

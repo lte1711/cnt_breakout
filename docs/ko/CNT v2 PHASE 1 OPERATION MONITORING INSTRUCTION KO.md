@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 PHASE 1 OPERATION MONITORING INSTRUCTION KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/operation
+  - risk
+  - type/analysis
+  - cnt-v2-phase-1-operation-monitoring-instruction-ko
 ---
 
 # CNT v2 PHASE 1 운영 모니터링 지시

@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 RANKER REDESIGN REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - type/validation
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
+  - status/completed
+  - cnt-v2-ranker-redesign-report
 ---
 
 # CNT v2 Ranker Redesign Report

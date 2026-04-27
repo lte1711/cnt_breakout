@@ -1,4 +1,19 @@
 ---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - post-logging
+  - context-filter
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/breakout_v3
+  - obsidian
+  - status/completed
+---
+
+---
 ---
 
 # CNT v2 BREAKOUT V2 SHADOW VALIDATION SPEC KO

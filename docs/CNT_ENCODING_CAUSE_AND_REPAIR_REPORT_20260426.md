@@ -4,8 +4,14 @@ tags:
   - documentation
   - encoding
   - recovery
-status: ACTIVE
-created: 2026-04-26
+  - status/active
+  - type/documentation
+  - context-filter
+  - type/validation
+  - offline-experiment
+  - type/operation
+  - strategy/breakout_v3
+  - type/analysis
 ---
 
 # CNT Encoding Cause And Repair Report 20260426

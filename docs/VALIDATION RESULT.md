@@ -1,6 +1,13 @@
 ---
-aliases:
-  - VALIDATION RESULT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/validation
+  - obsidian
+  - status/completed
+  - validation-result
 ---
 
 검증 완료 항목:

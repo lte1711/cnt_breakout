@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 IMPLEMENTATION WORK INSTRUCTION KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - cnt-v2-implementation-work-instruction-ko
 ---
 
 # CNT v2 구현 작업 지시서

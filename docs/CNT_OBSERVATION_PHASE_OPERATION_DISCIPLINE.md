@@ -1,3 +1,15 @@
+---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - type/validation
+  - strategy/breakout_v3
+  - status/completed
+---
+
 # CNT Observation Phase 운영 규율
 
 **목적**: Breakout_v3 shadow validation 단계에서 흔들리지 않是기 위한 운영 기준  
@@ -101,10 +113,10 @@ shadow_breakout_v3_snapshot.json
 #### 정상 변화 패턴
 
 ```
-Event #1-13:
+Event [[1-13]]:
   market_not_trend_up: 13 (100%)
 
-Event #14-25:
+Event [[14-25]]:
   market_not_trend_up: 12 (80%)
   range_bias_pass: 1 (8%) ← 처음 변화
   

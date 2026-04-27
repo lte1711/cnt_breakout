@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 VALIDATION CHECKLIST KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/validation
+  - risk
+  - cnt-v2-validation-checklist-ko
 ---
 
 # CNT v2 검증 체크리스트

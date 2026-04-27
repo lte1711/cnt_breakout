@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 STRATEGY ISOLATION COMPARISON
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - obsidian
+  - cnt-v2-strategy-isolation-comparison
 ---
 
 # CNT v2 STRATEGY ISOLATION COMPARISON

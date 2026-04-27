@@ -3,8 +3,15 @@ tags:
   - cnt
   - analysis
   - next-phase
-aliases:
-  - CNT NEXT STEP DATA ANALYSIS 20260425
+  - cnt-next-step-data-analysis-20260425
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
 ---
 
 # CNT NEXT STEP DATA ANALYSIS 20260425

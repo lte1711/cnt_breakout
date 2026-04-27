@@ -1,4 +1,14 @@
 ---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - strategy/breakout_v3
+  - status/completed
+---
+
+---
 ---
 
 # CNT v2 BREAKOUT V2 FILTER STACK DECOMPOSITION REVIEW

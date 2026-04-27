@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT GRAPH VIEW COLOR CONFIGURATION
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - type/validation
+  - graph-view
+  - obsidian
+  - status/completed
+  - cnt-graph-view-color-configuration
 ---
 
 # CNT Graph View 색상 구성
@@ -17,29 +25,29 @@ CNT 프로젝트의 버전 분류 및 색상 코딩 시스템을 Obsidian Graph 
 
 | 버전 | 색상 | HEX 코드 | 태그 쿼리 | 설명 |
 |------|------|----------|-----------|------|
-|  v1.1 | 녹색 | #4CAF50 | `tag:cnt/v1.1` | 완료된 버전 |
-|  v2.0 | 파란색 | #2196F3 | `tag:cnt/v2.0` | 설계된 버전 |
-|  v2.1 | 주황색 | #FF9800 | `tag:cnt/v2.1` | 구현 중인 버전 |
-|  v2.2 | 보라색 | #9C27B0 | `tag:cnt/v2.2` | 자동화 버전 |
-|  v3.0 | 빨간색 | #F44336 | `tag:cnt/v3.0` | 계획된 버전 |
+|  v1.1 | 녹색 | [[4CAF50]] | `tag:cnt/v1.1` | 완료된 버전 |
+|  v2.0 | 파란색 | [[2196F3]] | `tag:cnt/v2.0` | 설계된 버전 |
+|  v2.1 | 주황색 | [[FF9800]] | `tag:cnt/v2.1` | 구현 중인 버전 |
+|  v2.2 | 보라색 | [[9C27B0]] | `tag:cnt/v2.2` | 자동화 버전 |
+|  v3.0 | 빨간색 | [[F44336]] | `tag:cnt/v3.0` | 계획된 버전 |
 
 ### 2. 상태별 색상 그룹
 
 | 상태 | 색상 | HEX 코드 | 태그 쿼리 | 설명 |
 |------|------|----------|-----------|------|
-| 완료 | 녹색 | #4CAF50 | `tag:status/completed` | 완료된 문서 |
-| 활성 | 주황색 | #FF9800 | `tag:status/active` | 활성 문서 |
-| 계획 | 빨간색 | #F44336 | `tag:status/planned` | 계획된 문서 |
+| 완료 | 녹색 | [[4CAF50]] | `tag:status/completed` | 완료된 문서 |
+| 활성 | 주황색 | [[FF9800]] | `tag:status/active` | 활성 문서 |
+| 계획 | 빨간색 | [[F44336]] | `tag:status/planned` | 계획된 문서 |
 
 ### 3. 유형별 색상 그룹
 
 | 유형 | 색상 | HEX 코드 | 태그 쿼리 | 설명 |
 |------|------|----------|-----------|------|
-| 아키텍처 | 파란색 | #2196F3 | `tag:type/architecture` | 설계 문서 |
-| 구현 | 주황색 | #FF9800 | `tag:type/implementation` | 구현 문서 |
-| 검증 | 녹색 | #4CAF50 | `tag:type/validation` | 검증 문서 |
-| 자동화 | 보라색 | #9C27B0 | `tag:type/automation` | 자동화 문서 |
-| 운영 | 청회색 | #607D8B | `tag:type/operation` | 운영 문서 |
+| 아키텍처 | 파란색 | [[2196F3]] | `tag:type/architecture` | 설계 문서 |
+| 구현 | 주황색 | [[FF9800]] | `tag:type/implementation` | 구현 문서 |
+| 검증 | 녹색 | [[4CAF50]] | `tag:type/validation` | 검증 문서 |
+| 자동화 | 보라색 | [[9C27B0]] | `tag:type/automation` | 자동화 문서 |
+| 운영 | 청회색 | [[607D8B]] | `tag:type/operation` | 운영 문서 |
 
 ---
 

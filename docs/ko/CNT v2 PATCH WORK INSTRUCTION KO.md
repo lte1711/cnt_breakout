@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 PATCH WORK INSTRUCTION KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - risk
+  - strategy/pullback_v1
+  - type/validation
+  - status/completed
+  - cnt-v2-patch-work-instruction-ko
 ---
 
 # CNT v2 패치 작업 지시

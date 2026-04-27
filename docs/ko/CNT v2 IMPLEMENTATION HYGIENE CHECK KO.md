@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 IMPLEMENTATION HYGIENE CHECK KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - strategy/breakout_v3
+  - graph-view
+  - obsidian
+  - type/analysis
+  - cnt-v2-implementation-hygiene-check-ko
 ---
 
 # CNT v2 구현 위생 점검

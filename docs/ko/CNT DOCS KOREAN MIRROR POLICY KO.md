@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT DOCS KOREAN MIRROR POLICY KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - cnt-docs-korean-mirror-policy-ko
 ---
 
 # CNT 문서 한글 미러 정책

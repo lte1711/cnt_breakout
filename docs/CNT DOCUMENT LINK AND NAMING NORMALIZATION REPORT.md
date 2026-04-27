@@ -1,4 +1,14 @@
 ---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - graph-view
+  - obsidian
+  - type/analysis
+---
+
+---
 ---
 
 # CNT Document Link And Naming Normalization Report

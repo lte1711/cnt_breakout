@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V3 SHADOW VALIDATION RUNTIME INTEGRATION PLAN KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/breakout_v3
+  - cnt-v2-breakout-v3-shadow-validation-runtime-integration-plan-ko
 ---
 
 # CNT v2 BREAKOUT V3 SHADOW VALIDATION RUNTIME INTEGRATION 계획

@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 LIVE GATE ALIGNMENT REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - risk
+  - obsidian
+  - type/analysis
+  - cnt-v2-live-gate-alignment-report-ko
 ---
 
 # CNT v2 라이브 게이트 정합성 보고서

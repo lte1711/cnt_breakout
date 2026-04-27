@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V3 SHADOW OUTPUT REBASELINE REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - type/validation
+  - cnt-v2-breakout-v3-shadow-output-rebaseline-report-ko
 ---
 
 # CNT v2 BREAKOUT V3 SHADOW OUTPUT 기준선 재설정 보고서

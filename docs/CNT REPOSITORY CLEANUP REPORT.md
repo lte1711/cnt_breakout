@@ -1,7 +1,14 @@
 ---
-title: CNT REPOSITORY CLEANUP REPORT
-status: completed
-updated: 2026-04-24
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - graph-view
+  - obsidian
+  - type/analysis
+  - status/completed
 ---
 
 # CNT Repository Cleanup Report

@@ -1,4 +1,17 @@
 ---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - strategy/breakout_v3
+  - graph-view
+  - obsidian
+  - type/analysis
+  - type/validation
+---
+
+---
 ---
 
 # CNT 문서 링크 및 파일명 정규화 보고서

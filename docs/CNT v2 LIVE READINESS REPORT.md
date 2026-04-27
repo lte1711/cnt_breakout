@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 LIVE READINESS REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - risk
+  - type/analysis
+  - cnt-v2-live-readiness-report
 ---
 
 # CNT v2 LIVE READINESS REPORT

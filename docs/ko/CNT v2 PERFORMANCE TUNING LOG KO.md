@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 PERFORMANCE TUNING LOG KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - post-logging
+  - type/validation
+  - type/operation
+  - risk
+  - obsidian
+  - type/analysis
+  - cnt-v2-performance-tuning-log-ko
 ---
 
 # CNT v2 성능 튜닝 로그

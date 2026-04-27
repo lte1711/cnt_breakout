@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 POST-OPERATIONAL PATCH WORK INSTRUCTION KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - risk
+  - type/validation
+  - status/completed
+  - cnt-v2-post-operational-patch-work-instruction-ko
 ---
 
 # CNT v2 운영 후속 패치 작업 지시

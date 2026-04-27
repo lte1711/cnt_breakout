@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 DASHBOARD PATCH TARGET MAPPING KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - risk
+  - strategy/breakout_v3
+  - cnt-v2-dashboard-patch-target-mapping-ko
 ---
 
 # CNT v2 대시보드 패치 대상 매핑

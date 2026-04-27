@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 DATA COLLECTION AND LIVE GATE VALIDATION REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - post-logging
+  - type/validation
+  - risk
+  - obsidian
+  - type/analysis
+  - cnt-v2-data-collection-and-live-gate-validation-report
 ---
 
 # CNT v2 DATA COLLECTION AND LIVE GATE VALIDATION REPORT

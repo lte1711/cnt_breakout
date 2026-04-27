@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V3 DESIGN DRAFT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/validation
+  - strategy/breakout_v3
+  - cnt-v2-breakout-v3-design-draft
 ---
 
 # CNT v2 BREAKOUT V3 DESIGN DRAFT

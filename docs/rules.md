@@ -1,5 +1,13 @@
 ---
-aliases:
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/validation
+  - type/operation
+  - risk
+  - status/completed
   - rules
 ---
 

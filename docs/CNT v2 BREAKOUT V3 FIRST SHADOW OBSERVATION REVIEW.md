@@ -1,8 +1,14 @@
 ---
-title: CNT v2 BREAKOUT V3 FIRST SHADOW OBSERVATION REVIEW
-status: FINAL
-language: en
-updated: 2026-04-24
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - strategy/breakout_v3
+  - status/completed
+  - status/final
+  - language:-en
 ---
 
 # CNT v2 BREAKOUT V3 FIRST SHADOW OBSERVATION REVIEW

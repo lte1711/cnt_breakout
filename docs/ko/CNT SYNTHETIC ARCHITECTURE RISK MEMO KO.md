@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT SYNTHETIC ARCHITECTURE RISK MEMO KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/breakout_v3
+  - type/analysis
+  - cnt-synthetic-architecture-risk-memo-ko
 ---
 
 # CNT Synthetic Architecture Risk 메모

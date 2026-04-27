@@ -3,7 +3,15 @@ tags:
   - cnt
   - market-context
   - observability
-created: 2026-04-26
+  - type/documentation
+  - status/active
+  - post-logging
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
 ---
 
 # CNT Market Context Logging Layer Implementation 20260426

@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT ISOLATION OBSERVATION WINDOW SPEC
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - cnt-v2-breakout-isolation-observation-window-spec
 ---
 
 # CNT v2 BREAKOUT ISOLATION OBSERVATION WINDOW SPEC

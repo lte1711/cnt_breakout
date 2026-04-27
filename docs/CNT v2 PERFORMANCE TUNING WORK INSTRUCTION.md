@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 PERFORMANCE TUNING WORK INSTRUCTION
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/validation
+  - status/completed
+  - cnt-v2-performance-tuning-work-instruction
 ---
 
 # CNT v2 PERFORMANCE TUNING WORK INSTRUCTION

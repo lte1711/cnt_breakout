@@ -1,3 +1,14 @@
+---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/validation
+---
+
 # Breakout_v1 격리 결정 기록
 
 **결정일**: 2026-04-24  

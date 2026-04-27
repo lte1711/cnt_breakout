@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 GATE DISPLAY CONSISTENCY AUDIT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - risk
+  - cnt-v2-gate-display-consistency-audit
 ---
 
 # CNT v2 GATE DISPLAY CONSISTENCY AUDIT

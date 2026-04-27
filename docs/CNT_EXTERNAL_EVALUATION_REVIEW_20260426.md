@@ -4,8 +4,14 @@ tags:
   - evaluation
   - project-status
   - strategy-review
-status: ACTIVE
-created: 2026-04-26
+  - status/active
+  - type/documentation
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
 ---
 
 # CNT External Evaluation Review 20260426

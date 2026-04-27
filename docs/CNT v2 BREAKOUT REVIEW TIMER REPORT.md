@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT REVIEW TIMER REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - offline-experiment
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - status/completed
+  - cnt-v2-breakout-review-timer-report
 ---
 
 # CNT v2 BREAKOUT REVIEW TIMER REPORT

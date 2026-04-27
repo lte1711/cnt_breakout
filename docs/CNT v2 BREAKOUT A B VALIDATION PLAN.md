@@ -1,4 +1,16 @@
 ---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - post-logging
+  - context-filter
+  - type/validation
+  - type/operation
+  - strategy/breakout_v3
+---
+
+---
 ---
 
 # CNT v2 BREAKOUT A B VALIDATION PLAN

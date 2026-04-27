@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v1.1 IMPLEMENTATION VALIDATION REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - post-logging
+  - type/validation
+  - risk
+  - type/analysis
+  - status/completed
+  - cnt-v1.1-implementation-validation-report
 ---
 
 # CNT v1.1 IMPLEMENTATION VALIDATION REPORT

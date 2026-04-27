@@ -1,6 +1,11 @@
 ---
-aliases:
-  - SHARING CHECKLIST
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - obsidian
+  - sharing-checklist
 ---
 
 Before sharing project snapshots externally:

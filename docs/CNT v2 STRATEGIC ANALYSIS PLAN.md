@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 STRATEGIC ANALYSIS PLAN
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - offline-experiment
+  - type/operation
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - cnt-v2-strategic-analysis-plan
 ---
 
 # CNT v2 STRATEGIC ANALYSIS PLAN

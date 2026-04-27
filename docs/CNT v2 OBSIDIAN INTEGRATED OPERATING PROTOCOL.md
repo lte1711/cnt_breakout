@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 OBSIDIAN INTEGRATED OPERATING PROTOCOL
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - obsidian
+  - cnt-v2-obsidian-integrated-operating-protocol
 ---
 
 # CNT v2 OBSIDIAN INTEGRATED OPERATING PROTOCOL

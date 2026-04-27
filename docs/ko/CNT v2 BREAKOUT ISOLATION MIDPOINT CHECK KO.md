@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT ISOLATION MIDPOINT CHECK KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - cnt-v2-breakout-isolation-midpoint-check-ko
 ---
 
 # CNT v2 BREAKOUT 격리 중간 점검

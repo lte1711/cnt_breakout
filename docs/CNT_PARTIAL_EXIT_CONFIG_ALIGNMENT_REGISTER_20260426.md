@@ -4,8 +4,11 @@ tags:
   - config
   - risk
   - follow-up
-status: ACTIVE
-created: 2026-04-26
+  - status/active
+  - type/documentation
+  - type/validation
+  - type/operation
+  - type/analysis
 ---
 
 # CNT Partial Exit Config Alignment Register 20260426

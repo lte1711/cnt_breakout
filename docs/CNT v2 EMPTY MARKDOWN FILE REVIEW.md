@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 EMPTY MARKDOWN FILE REVIEW
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - obsidian
+  - cnt-v2-empty-markdown-file-review
 ---
 
 # CNT v2 EMPTY MARKDOWN FILE REVIEW

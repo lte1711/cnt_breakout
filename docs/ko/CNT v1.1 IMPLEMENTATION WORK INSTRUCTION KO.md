@@ -1,6 +1,11 @@
 ---
-aliases:
-  - CNT v1.1 IMPLEMENTATION WORK INSTRUCTION KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - risk
+  - status/completed
+  - cnt-v1.1-implementation-work-instruction-ko
 ---
 
 # CNT v1.1 구현 작업 지시서

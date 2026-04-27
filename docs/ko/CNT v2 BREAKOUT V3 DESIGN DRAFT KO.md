@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT V3 DESIGN DRAFT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - type/validation
+  - strategy/breakout_v3
+  - cnt-v2-breakout-v3-design-draft-ko
 ---
 
 # CNT v2 BREAKOUT V3 설계 초안

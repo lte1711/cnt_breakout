@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 GATE DISPLAY ACTUAL PATCH SPEC KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - risk
+  - cnt-v2-gate-display-actual-patch-spec-ko
 ---
 
 # CNT v2 gate display 실제 패치 명세

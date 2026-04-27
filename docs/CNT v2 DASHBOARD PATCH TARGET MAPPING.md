@@ -1,6 +1,10 @@
 ---
-aliases:
-  - CNT v2 DASHBOARD PATCH TARGET MAPPING
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - cnt-v2-dashboard-patch-target-mapping
 ---
 
 # CNT v2 DASHBOARD PATCH TARGET MAPPING

@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v1.1 STAGE 2 IMPLEMENTATION VALIDATION REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - context-filter
+  - type/validation
+  - risk
+  - type/analysis
+  - status/completed
+  - cnt-v1.1-stage-2-implementation-validation-report-ko
 ---
 
 # CNT v1.1 Stage 2 구현 검증 보고서

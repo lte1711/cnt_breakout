@@ -1,6 +1,11 @@
 ---
-aliases:
-  - CNT v1.1 ARCHITECTURE DESIGN DOCUMENT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - risk
+  - strategy/breakout_v3
+  - cnt-v1.1-architecture-design-document-ko
 ---
 
 # CNT v1.1 아키텍처 설계 문서

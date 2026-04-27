@@ -1,6 +1,12 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT LAST 3 TRADES REVIEW
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/operation
+  - strategy/breakout_v3
+  - cnt-v2-breakout-last-3-trades-review
 ---
 
 # CNT v2 BREAKOUT LAST 3 TRADES REVIEW

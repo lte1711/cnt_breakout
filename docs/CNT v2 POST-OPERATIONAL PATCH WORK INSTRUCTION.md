@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 POST-OPERATIONAL PATCH WORK INSTRUCTION
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - risk
+  - type/validation
+  - status/completed
+  - cnt-v2-post-operational-patch-work-instruction
 ---
 
 좋다. 지금 상태는 “운영 가능”까지 올라왔고, 남은 건 **정밀도/관측 품질/아키텍처 일관성 보완 단계**다.

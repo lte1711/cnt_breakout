@@ -1,5 +1,13 @@
 ---
-aliases:
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/operation
+  - obsidian
+  - type/analysis
+  - status/completed
   - gemma4_system_prompt
 ---
 

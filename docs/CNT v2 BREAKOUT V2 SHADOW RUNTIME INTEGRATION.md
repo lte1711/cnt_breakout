@@ -1,4 +1,17 @@
 ---
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+---
+
+---
 ---
 
 # CNT v2 BREAKOUT V2 SHADOW RUNTIME INTEGRATION

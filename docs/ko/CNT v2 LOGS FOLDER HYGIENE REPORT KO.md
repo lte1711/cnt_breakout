@@ -1,6 +1,13 @@
 ---
-aliases:
-  - CNT v2 LOGS FOLDER HYGIENE REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - post-logging
+  - type/operation
+  - strategy/breakout_v3
+  - type/analysis
+  - cnt-v2-logs-folder-hygiene-report-ko
 ---
 
 # CNT v2 logs 폴더 정합성 보고서

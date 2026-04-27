@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 PERFORMANCE TUNING LOG
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - post-logging
+  - type/validation
+  - type/operation
+  - risk
+  - obsidian
+  - type/analysis
+  - cnt-v2-performance-tuning-log
 ---
 
 # CNT v2 PERFORMANCE TUNING LOG

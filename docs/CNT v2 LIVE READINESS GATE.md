@@ -1,13 +1,15 @@
 ---
-aliases:
-  - CNT v2 LIVE READINESS GATE
 tags:
   - cnt
   - live-readiness
   - gate
   - testnet
-status: ACTIVE
-updated: 2026-04-26
+  - status/active
+  - type/documentation
+  - type/validation
+  - type/operation
+  - risk
+  - cnt-v2-live-readiness-gate
 ---
 
 # CNT v2 LIVE READINESS GATE

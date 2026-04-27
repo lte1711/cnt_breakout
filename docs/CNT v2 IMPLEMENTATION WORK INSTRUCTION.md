@@ -1,6 +1,11 @@
 ---
-aliases:
-  - CNT v2 IMPLEMENTATION WORK INSTRUCTION
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - cnt-v2-implementation-work-instruction
 ---
 
 # CNT v2 IMPLEMENTATION WORK INSTRUCTION

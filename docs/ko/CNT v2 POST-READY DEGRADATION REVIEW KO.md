@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 POST-READY DEGRADATION REVIEW KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - post-logging
+  - type/operation
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/validation
+  - cnt-v2-post-ready-degradation-review-ko
 ---
 
 # CNT v2 라이브 준비도 이후 성능 저하 리뷰

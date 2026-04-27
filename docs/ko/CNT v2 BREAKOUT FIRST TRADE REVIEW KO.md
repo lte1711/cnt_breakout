@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT FIRST TRADE REVIEW KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - strategy/breakout_v3
+  - type/analysis
+  - type/validation
+  - cnt-v2-breakout-first-trade-review-ko
 ---
 
 # CNT v2 BREAKOUT 첫 거래 리뷰

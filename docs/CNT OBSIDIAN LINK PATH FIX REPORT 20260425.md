@@ -3,8 +3,12 @@ tags:
   - cnt
   - obsidian
   - validation
-aliases:
-  - CNT Obsidian Link Path Fix Report 20260425
+  - cnt-obsidian-link-path-fix-report-20260425
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - type/analysis
 ---
 
 # CNT Obsidian Link Path Fix Report 20260425

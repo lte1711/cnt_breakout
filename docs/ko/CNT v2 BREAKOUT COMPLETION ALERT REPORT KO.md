@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 BREAKOUT COMPLETION ALERT REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/operation
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - status/completed
+  - cnt-v2-breakout-completion-alert-report-ko
 ---
 
 # CNT v2 BREAKOUT 완료 알림 보고

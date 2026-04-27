@@ -4,8 +4,12 @@ tags:
   - ko
   - implementation-report
   - exit
-created: 2026-04-25
-status: validated
+  - status/validated
+  - type/documentation
+  - status/active
+  - type/analysis
+  - type/validation
+  - status/completed
 ---
 
 # CNT Target Exit Price Fix Report 20260425 KO

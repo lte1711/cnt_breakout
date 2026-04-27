@@ -1,6 +1,14 @@
 ---
-aliases:
-  - CNT v2 OBSERVABILITY VALIDATION GATE
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - offline-experiment
+  - type/operation
+  - strategy/breakout_v3
+  - status/completed
+  - cnt-v2-observability-validation-gate
 ---
 
 # CNT v2 OBSERVABILITY VALIDATION GATE

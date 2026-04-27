@@ -1,6 +1,15 @@
 ---
-aliases:
-  - CNT v2 SHADOW SEMANTICS AND PORTFOLIO STATE PATCH REPORT
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - type/validation
+  - type/operation
+  - risk
+  - strategy/breakout_v3
+  - obsidian
+  - type/analysis
+  - cnt-v2-shadow-semantics-and-portfolio-state-patch-report
 ---
 
 # CNT v2 SHADOW SEMANTICS AND PORTFOLIO STATE PATCH REPORT

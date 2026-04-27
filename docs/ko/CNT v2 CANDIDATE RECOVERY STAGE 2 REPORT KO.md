@@ -1,6 +1,17 @@
 ---
-aliases:
-  - CNT v2 CANDIDATE RECOVERY STAGE 2 REPORT KO
+tags:
+  - cnt
+  - type/documentation
+  - status/active
+  - market-context
+  - context-filter
+  - type/validation
+  - type/operation
+  - strategy/pullback_v1
+  - strategy/breakout_v3
+  - type/analysis
+  - status/completed
+  - cnt-v2-candidate-recovery-stage-2-report-ko
 ---
 
 # CNT v2 Candidate Recovery Stage 2 Report KO

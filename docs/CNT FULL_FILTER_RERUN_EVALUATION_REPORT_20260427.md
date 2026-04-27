@@ -21,29 +21,29 @@ STATISTICAL_POWER = INSUFFICIENT
 
 ---
 
-## 📊 Comparative Analysis
+## Comparative Analysis
 
-### 1️⃣ Offline vs Online Results
+### 1. Offline vs Online Results
 
 | Metric | Offline Baseline | Online Rerun | Status |
 |--------|------------------|--------------|---------|
 | Trades (baseline) | 42 | 9 | - |
-| Trades (filtered) | 29 (retained) | 9 | ❌ Sample Collapse |
-| Expectancy | -0.000578 → +0.004825 | +0.000451 | ✅ Directional Match |
-| Profit Factor | 0.931 → 1.967 | 1.078 | ✅ Improvement |
-| Win Rate | 50% → 58.6% | 66.7% | ✅ Improvement |
+| Trades (filtered) | 29 (retained) | 9 | X Sample Collapse |
+| Expectancy | -0.000578 → +0.004825 | +0.000451 | OK Directional Match |
+| Profit Factor | 0.931 → 1.967 | 1.078 | OK Improvement |
+| Win Rate | 50% → 58.6% | 66.7% | OK Improvement |
 
-### 2️⃣ Directional Alignment Verification
+### 2. Directional Alignment Verification
 
-#### ✅ Confirmed Alignments
-1. **Expectancy Improvement**: Negative → Positive ✅
-2. **Profit Factor**: Below 1.0 → Above 1.0 ✅
-3. **Win Rate**: Improvement maintained ✅
+#### Confirmed Alignments
+1. **Expectancy Improvement**: Negative → Positive (Confirmed)
+2. **Profit Factor**: Below 1.0 → Above 1.0 (Confirmed)
+3. **Win Rate**: Improvement maintained (Confirmed)
 
-#### ❌ Critical Misalignments
-1. **Sample Size**: 29 → 9 (67% reduction) ❌
-2. **Statistical Power**: Insufficient for validation ❌
-3. **Context Stability**: Regime dependency detected ❌
+#### Critical Misalignments
+1. **Sample Size**: 29 → 9 (67% reduction) (Issue)
+2. **Statistical Power**: Insufficient for validation (Issue)
+3. **Context Stability**: Regime dependency detected (Issue)
 
 ---
 
@@ -72,13 +72,13 @@ From `CNT_LIVE_GATE_THRESHOLD_50_UPDATE_20260426.md`:
 | < 20 | Very Low | Unreliable |
 | 20-29 | Low | Questionable |
 | 30-49 | Medium | Cautious |
-| ≥ 50 | High | Reliable |
+| >= 50 | High | Reliable |
 
 **Current Status**: 9 trades = Very Low Confidence
 
 ---
 
-## 📈 Context Split Analysis
+## Context Split Analysis
 
 ### Performance by Market Context
 
@@ -98,7 +98,7 @@ From `CNT_LIVE_GATE_THRESHOLD_50_UPDATE_20260426.md`:
 
 ---
 
-## 🎯 Decision Framework Application
+## Decision Framework Application
 
 ### CNT Official Gate Requirements
 
@@ -114,14 +114,14 @@ Max consecutive losses limited
 
 | Requirement | Current Status | Meets Standard |
 |-------------|----------------|----------------|
-| Min Trades (50) | 9 | ❌ |
-| Positive Expectancy | +0.000451 | ✅ |
-| Positive Profit Factor | 1.078 | ✅ |
-| Statistical Confidence | Very Low | ❌ |
+| Min Trades (50) | 9 | No |
+| Positive Expectancy | +0.000451 | Yes |
+| Positive Profit Factor | 1.078 | Yes |
+| Statistical Confidence | Very Low | No |
 
 ---
 
-## 🔮 Risk Assessment
+## Risk Assessment
 
 ### Implementation Risks
 
@@ -139,9 +139,9 @@ Max consecutive losses limited
 
 ---
 
-## 📋 Next Phase Requirements
+## Next Phase Requirements
 
-### 🔥 Critical Actions Required
+### Critical Actions Required
 
 ```text
 1. Trade Accumulation: Collect minimum 20-30 additional trades
@@ -150,16 +150,16 @@ Max consecutive losses limited
 4. Consistency Testing: Verify results repeat with larger samples
 ```
 
-### ❌ Prohibited Actions
+### Prohibited Actions
 
 ```text
-✘ config.py modification
-✘ filter promotion to production
-✘ strategy parameter changes
-✘ live deployment without validation
+- config.py modification
+- filter promotion to production
+- strategy parameter changes
+- live deployment without validation
 ```
 
-### 📅 Timeline Projections
+### Timeline Projections
 
 | Phase | Target Trades | Estimated Timeline | Confidence |
 |-------|---------------|-------------------|------------|
@@ -170,7 +170,7 @@ Max consecutive losses limited
 
 ---
 
-## 🎯 Final Verdict
+## Final Verdict
 
 ### Decision Matrix
 
@@ -193,7 +193,7 @@ DEPLOYMENT_READINESS = NOT READY
 
 ---
 
-## 📞 Monitoring Plan
+## Monitoring Plan
 
 ### Weekly Checkpoints
 1. **Trade Count**: Monitor accumulation rate
@@ -209,7 +209,7 @@ DEPLOYMENT_READINESS = NOT READY
 
 ---
 
-## 📝 Conclusion
+## Conclusion
 
 **The Full Filter Rerun shows promising directional improvements but suffers from critical statistical power limitations.**
 

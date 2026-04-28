@@ -1,0 +1,36 @@
+{
+  "pullback_v1": {
+    "strategy_name": "pullback_v1",
+    "signals_generated": 899,
+    "signals_selected": 357,
+    "trades_closed": 53,
+    "wins": 28,
+    "losses": 25,
+    "gross_profit": 0.38989700000000166,
+    "gross_loss": 0.3573330000000074,
+    "avg_win": 0.013924892857142917,
+    "avg_loss": 0.014293320000000297,
+    "win_rate": 0.5283018867924528,
+    "expectancy": 0.0006144150943395137,
+    "profit_factor": 1.091130682024872,
+    "confidence_multiplier": 1.0,
+    "last_updated": "2026-04-29 00:14:03"
+  },
+  "breakout_v1": {
+    "strategy_name": "breakout_v1",
+    "signals_generated": 550,
+    "signals_selected": 16,
+    "trades_closed": 3,
+    "wins": 1,
+    "losses": 2,
+    "gross_profit": 0.01392600000000084,
+    "gross_loss": 0.0805199999999998,
+    "avg_win": 0.01392600000000084,
+    "avg_loss": 0.0402599999999999,
+    "win_rate": 0.3333333333333333,
+    "expectancy": -0.022197999999999656,
+    "profit_factor": 0.17295081967214201,
+    "confidence_multiplier": 1.0,
+    "last_updated": "2026-04-29 00:14:00"
+  }
+}

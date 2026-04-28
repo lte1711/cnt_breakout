@@ -1,0 +1,51 @@
+{
+  "strategy": "breakout_v2_shadow",
+  "signal_count": 555,
+  "filtered_signal_count": 555,
+  "allowed_signal_count": 0,
+  "filtered_signal_ratio": 1.0,
+  "allowed_signal_ratio": 0.0,
+  "hypothetical_trades_count": 0,
+  "hypothetical_expectancy": 0.0,
+  "hypothetical_profit_factor": 0.0,
+  "stop_exit_ratio": 0.0,
+  "reason_distribution": {
+    "ema_fast_not_above_slow": 12,
+    "volatility_not_high": 114,
+    "range_bias_up_but_entry_trend_not_up": 68,
+    "range_without_upward_bias": 172,
+    "vwap_distance_too_small": 3,
+    "breakout_not_confirmed": 34,
+    "band_width_too_narrow": 3,
+    "market_not_trend_up": 127,
+    "rsi_overheat": 9,
+    "rsi_below_entry_threshold": 11,
+    "price_not_above_vwap": 2
+  },
+  "expanded_event_count": 441,
+  "secondary_fail_distribution": {
+    "volatility_not_high": 154,
+    "vwap_distance_too_small": 190,
+    "band_width_too_narrow": 384,
+    "band_not_expanding": 316,
+    "volume_not_confirmed": 350,
+    "breakout_not_confirmed": 314,
+    "rsi_below_entry_threshold": 234,
+    "price_not_above_vwap": 208,
+    "ema_fast_not_above_slow": 151,
+    "range_without_upward_bias": 93,
+    "rsi_overheat": 1
+  },
+  "stage_false_counts": {
+    "market_bias_pass": 242,
+    "volatility_pass": 235,
+    "vwap_distance_pass": 402,
+    "band_width_pass": 386,
+    "band_expansion_pass": 316,
+    "volume_pass": 350,
+    "rsi_threshold_pass": 254,
+    "breakout_confirmed": 344,
+    "ema_pass": 214
+  },
+  "last_updated": "2026-04-29T00:14:02+09:00"
+}

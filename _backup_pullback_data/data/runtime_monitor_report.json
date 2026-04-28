@@ -1,0 +1,26 @@
+{
+  "timestamp": "2026-04-19 22:30:50",
+  "status": "CRITICAL",
+  "closed_trades": 3,
+  "runtime_hours_estimate": 5.0,
+  "rank_score_zero_streak": 7,
+  "strategy_bias": {
+    "status": "NONE",
+    "strategy": "pullback_v1",
+    "count": 6
+  },
+  "risk_level": "NORMAL",
+  "failsafe": {
+    "status": "CHECK_REQUIRED",
+    "detail": "pending_limit_remained_active_after_stop_breach"
+  },
+  "live_gate_status": "NOT_READY",
+  "live_gate_reason": "INSUFFICIENT_SAMPLE",
+  "blocked_signal_stats": {
+    "no_ranked_signal": 23
+  },
+  "risk_trigger_stats": {},
+  "alerts": [
+    "EXIT_FAILSAFE_FAILURE"
+  ]
+}

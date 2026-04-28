@@ -1,0 +1,8 @@
+{
+  "event": "breakout_observation_complete",
+  "timestamp": "2026-04-20 18:10:00",
+  "note": "CNT v2 breakout post-change observation window reached the configured completion threshold.",
+  "observed_cycles": 30,
+  "required_cycles": 30,
+  "status": "ALERT_SENT"
+}

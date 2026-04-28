@@ -1,49 +1,50 @@
 {
-  "timestamp": "2026-04-28 15:54:04",
+  "timestamp": "2026-04-29 01:19:31",
   "official_gate": {
-    "status": "LIVE_READY",
-    "reason": "ALL_GATES_PASSED",
-    "expectancy": 0.0006144150943395137,
-    "net_pnl": 0.032563999999994264,
-    "closed_trades": 53
+    "status": "NOT_READY",
+    "reason": "INSUFFICIENT_SAMPLE",
+    "expectancy": 0.0,
+    "net_pnl": 0.0,
+    "closed_trades": 0
   },
   "pullback_v1": {
-    "closed_trades": 53,
-    "wins": 28,
-    "losses": 25,
-    "win_rate": 0.5283018867924528,
-    "expectancy": 0.0006144150943395137,
-    "profit_factor": 1.091130682024872,
-    "net_pnl": 0.032563999999994264,
-    "signals_generated": 840,
-    "signals_selected": 329
+    "closed_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate": 0.0,
+    "expectancy": 0.0,
+    "profit_factor": 0.0,
+    "net_pnl": 0.0,
+    "signals_generated": 1,
+    "signals_selected": 0
   },
   "system_excluding_breakout_v1": {
     "excluded_strategy": "breakout_v1",
     "included_strategies": [
+      "breakout_v3",
       "pullback_v1"
     ],
-    "closed_trades": 53,
-    "wins": 28,
-    "losses": 25,
-    "win_rate": 0.5283018867924528,
-    "expectancy": 0.0006144150943395137,
-    "profit_factor": 1.091130682024872,
-    "net_pnl": 0.032563999999994264
+    "closed_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate": 0.0,
+    "expectancy": 0.0,
+    "profit_factor": 0.0,
+    "net_pnl": 0.0
   },
   "recovery_signal": {
     "status": "RECOVERY_NOT_CONFIRMED",
-    "is_positive_expectancy": true,
-    "is_positive_net_pnl": true,
+    "is_positive_expectancy": false,
+    "is_positive_net_pnl": false,
     "profit_factor_pass": false,
-    "is_statistically_valid": true,
+    "is_statistically_valid": false,
     "all_recovery_criteria_passed": false,
     "min_sample_required": 50,
     "min_profit_factor": 1.1
   },
   "runtime_state": {
-    "active_strategy": "pullback_v1",
-    "last_run_time": "2026-04-28 15:54:00",
+    "active_strategy": "breakout_v3",
+    "last_run_time": "2026-04-29 01:19:28",
     "last_action": "NO_ENTRY_SIGNAL",
     "pending_order_exists": false,
     "open_trade_exists": false,
@@ -53,10 +54,10 @@
   "risk_counter_sync": {
     "daily_loss_count_synced": true,
     "consecutive_losses_synced": true,
-    "state_daily_loss_count": 3,
-    "portfolio_daily_loss_count": 3,
-    "state_consecutive_losses": 2,
-    "portfolio_consecutive_losses": 2
+    "state_daily_loss_count": 0,
+    "portfolio_daily_loss_count": 0,
+    "state_consecutive_losses": 0,
+    "portfolio_consecutive_losses": 0
   },
   "interpretation": "official_gate_remains_authoritative_auxiliary_status_is_observational_only"
 }

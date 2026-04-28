@@ -1,0 +1,6 @@
+{
+  "status": "READY_FOR_NEXT_JUDGMENT",
+  "timestamp": "2026-04-20 09:10:34",
+  "note": "Review breakout_v1 experiment after the planned 8-hour accumulation window.",
+  "event": "breakout_review_due"
+}

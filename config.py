@@ -35,19 +35,15 @@ _load_dotenv()
 
 BINANCE_BASE_URL = "https://testnet.binance.vision"
 REQUEST_TIMEOUT = 5
-
-# Binance timing protection
 RECV_WINDOW = 5000  # ms
 
 # =========================
-# API KEY (binance_client 호환 필수)
+# API KEY
 # =========================
 
-# Supports both OS environment variables and repo-root .env values.
 BINANCE_API_KEY = os.getenv("BINANCE_API_KEY", "")
 BINANCE_API_SECRET = os.getenv("BINANCE_API_SECRET", "")
 
-# (호환 alias)
 API_KEY = BINANCE_API_KEY
 API_SECRET = BINANCE_API_SECRET
 
@@ -55,7 +51,7 @@ API_SECRET = BINANCE_API_SECRET
 # ENGINE CONFIG
 # =========================
 
-SYMBOL = "ETHUSDT"
+SYMBOL = "BNBUSDT"
 
 ENABLE_TEST_ORDER_VALIDATION = True
 
@@ -76,12 +72,10 @@ SHADOW_BREAKOUT_V3_LOG_FILE = "logs/shadow_breakout_v3.jsonl"
 # =========================
 
 STRATEGY_ENABLED = True
-ACTIVE_STRATEGY = "pullback_v1"
+ACTIVE_STRATEGY = "breakout_v3"
 ACTIVE_STRATEGIES = [
-    "pullback_v1",
+    "breakout_v3",
 ]
-# mean_reversion_v1 is registered and parameterized, but remains inactive by default
-# until separate activation validation is completed.
 
 STRATEGY_PARAMS = {
     "breakout_v1": {
@@ -217,10 +211,13 @@ RANKER_PROFIT_FACTOR_WEIGHT = 0.10
 RANKER_TREND_ALIGNMENT_BONUS = 0.08
 RANKER_VOLATILITY_PENALTY = 0.05
 RANKER_RECENT_LOSS_PENALTY = 0.12
+
 STRATEGY_STATIC_BASE_SCORES = {
     "breakout_v1": 0.05,
     "breakout_v2": 0.045,
+    "breakout_v3": 0.045,
     "pullback_v1": 0.04,
     "mean_reversion_v1": 0.03,
 }
+
 AUTO_VALIDATION_MINUTES = 5

@@ -1,0 +1,10 @@
+{
+  "schema_version": "2.0",
+  "total_exposure": 0.0,
+  "open_positions": [],
+  "cash_balance": 0.0,
+  "daily_loss_count": 0,
+  "consecutive_losses": 2,
+  "last_update_time": "2026-04-29 01:07:47",
+  "source": "rebuild_from_runtime"
+}

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-29 02:00:51",
+  "timestamp": "2026-04-29 02:37:28",
   "official_gate": {
     "status": "NOT_READY",
     "reason": "INSUFFICIENT_SAMPLE",
@@ -15,7 +15,7 @@
     "expectancy": 0.0,
     "profit_factor": 0.0,
     "net_pnl": 0.0,
-    "signals_generated": 1,
+    "signals_generated": 2,
     "signals_selected": 0
   },
   "system_excluding_breakout_v1": {
@@ -43,7 +43,7 @@
   },
   "runtime_state": {
     "active_strategy": "breakout_v3",
-    "last_run_time": "2026-04-29 02:00:48",
+    "last_run_time": "2026-04-29 02:37:25",
     "last_action": "NO_ENTRY_SIGNAL",
     "pending_order_exists": false,
     "open_trade_exists": false,

@@ -142,6 +142,7 @@ STRATEGY_PARAMS = {
         "min_volume_multiplier": 1.2,
         "min_trigger_breakout_buffer_ratio": 0.0,
         "min_soft_pass_required": 2,
+        "relaxed_volatility_rsi_buffer": 2,
     },
     "mean_reversion_v1": {
         "ema_period": 20,

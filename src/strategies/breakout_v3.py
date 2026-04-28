@@ -40,6 +40,8 @@ def validate_breakout_v3_params(params: dict) -> None:
         raise ValueError("min_volume_multiplier must be greater than 1.0")
     if params["min_soft_pass_required"] < 1:
         raise ValueError("min_soft_pass_required must be positive")
+    if params.get("relaxed_volatility_rsi_buffer", 0) < 0:
+        raise ValueError("relaxed_volatility_rsi_buffer must be non-negative")
 
 
 def build_breakout_v3_conditions(context: MarketContext, params: dict) -> BreakoutV3Conditions:
@@ -106,7 +108,16 @@ def build_breakout_v3_conditions(context: MarketContext, params: dict) -> Breako
     )
     market_bias_pass = trend_up_pass or range_bias_pass
 
-    volatility_floor_pass = market_state["volatility_state"] == "HIGH"
+    strict_volatility_pass = market_state["volatility_state"] == "HIGH"
+    
+    # Relaxed volatility pass for uptrends with stronger RSI
+    relaxed_volatility_pass = (
+        market_state["market_state"] == "TREND_UP"
+        and rsi_value >= params["rsi_threshold"] + params.get("relaxed_volatility_rsi_buffer", 2)
+        and ema_fast > ema_slow
+    )
+    
+    volatility_floor_pass = strict_volatility_pass or relaxed_volatility_pass
     price_position_pass = current_close > vwap_value
     setup_ready = market_bias_pass and volatility_floor_pass and price_position_pass
 
@@ -232,3 +243,9 @@ class BreakoutV3Strategy(BaseStrategy):
             exit_model=exit_model,
             market_features=market_features,
         )
+
+
+def evaluate_breakout_v3(context: MarketContext, params: dict) -> StrategySignal:
+    """Direct evaluation function for engine integration."""
+    strategy = BreakoutV3Strategy(params)
+    return strategy.evaluate(context)

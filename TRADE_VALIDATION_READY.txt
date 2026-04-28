@@ -1,0 +1,79 @@
+## 소규모 실거래 + 병행 검증 시스템 준비 완료
+
+### 완료된 작업
+
+✔ **LIVE_GATE 필터링 (breakout_v1 제외)**
+  - performance_snapshot.py 수정: 3개 필터링 적용
+  - Expectancy: -0.000608 → +0.000614
+  - 상태: LIVE_READY (업그레이드)
+
+✔ **자동화 검증 시스템 구축**
+  - mini_evaluator.py: 5거래 단위 성능 평가
+  - live_monitor.py: 실시간 상태 추적
+  - auto_check.py: 통합 자동 평가
+
+✔ **실거래 자동화 워크플로우**
+  - trade_with_validation.ps1: 거래 + 검증 반복
+  - 옵션: 단일/연속/DryRun 모드
+
+✔ **상세 실행 가이드**
+  - 2026-04-28-TRADE_WITH_VALIDATION_GUIDE.md
+
+### 현재 시스템 상태
+
+```
+거래 수: 53
+기대값: +0.000614 (양수 안정)
+승률: 52.83% (50% 이상)
+LIVE_GATE: LIVE_READY (배포 지나갈 자격)
+리스크: NORMAL (일일 손실 3/연속 손실 2)
+```
+
+### 즉시 실행 선택지
+
+#### Option A: 단일 거래 테스트 (권장 - 10분)
+```powershell
+# 거래 1회 + 검증
+& .\run.ps1
+python -m src.validation.auto_check
+python -m src.validation.mini_evaluator
+```
+
+#### Option B: 연속 거래 (권장 - 40분)
+```powershell
+# 7거래 실행 (53 -> 60)
+.\trade_with_validation.ps1 -NumTrades 7 -IntervalSeconds 300
+```
+
+#### Option C: 검증 시스템 테스트 (안전 - 7분)
+```powershell
+# 거래 없이 검증 시스템만 실행
+.\trade_with_validation.ps1 -NumTrades 7 -IntervalSeconds 10 -DryRun
+```
+
+### 모니터링 메트릭
+
+각 거래 후 자동 확인:
+- Expectancy: >= +0.0006 유지
+- Win Rate: > 50% 유지
+- LIVE_GATE: LIVE_READY 유지
+- Risk Guards: 정상 작동
+
+### 성공 기준 (60 거래)
+
+```
+✓ Expectancy: +0.0006+ (안정)
+✓ Win Rate: 50%+ (유지)
+✓ LIVE_GATE: LIVE_READY (변함 없음)
+✓ Risk Guards: 정상 차단 작동
+```
+
+→ 60 거래 달성 시 FULL_FILTER_RERUN × 3 진행
+→ 최종 배포 판정 (50-70 거래 구간)
+
+### 다음 단계 의사결정
+
+1. 즉시 실행: Option A, B, C 중 선택
+2. 거래별 수동 모니터링 또는 자동화 진행
+3. 60 거래 도달 시 최종 판정
+

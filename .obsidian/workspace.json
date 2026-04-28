@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "archive/docs_backup_tags_20260427_165419/CNT_POSITIVE_EDGE_EVIDENCE_FROM_BLOCKED_STATE_20260426.md",
+                "file": "docs/CNT LIVE_GATE_BREAKOUT_V1_REMOVAL_PLAN_20260428.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CNT_POSITIVE_EDGE_EVIDENCE_FROM_BLOCKED_STATE_20260426"
+              "title": "CNT LIVE_GATE_BREAKOUT_V1_REMOVAL_PLAN_20260428"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Features",
+                "query": "0428",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -201,8 +201,11 @@
   },
   "active": "82dbdf26425a4696",
   "lastOpenFiles": [
-    "docs/CNT BREAKOUT_V1_DEACTIVATION_PLAN_20260427.md",
+    "archive/docs_backup_tags_20260427_165419/ko/CNT TRADING STATUS REPORT 20260425 1948 KO.md",
+    "archive/docs_backup_tags_20260427_165419/CNT_POSITIVE_EDGE_EVIDENCE_FROM_BLOCKED_STATE_20260426.md",
     "data/engine.lock",
+    "docs/CNT BREAKOUT_V1_DEACTIVATION_FINAL_VERIFICATION_20260427.md",
+    "docs/CNT BREAKOUT_V1_DEACTIVATION_PLAN_20260427.md",
     "archive/docs_backup_tags_20260427_165419/CNT_POST_LOGGING_PARTIAL_VALIDATION_20260427.md",
     "archive/docs_backup_tags_20260427_165419/CNT_PULLBACK_MARKET_CONTEXT_ANALYSIS_20260426.md",
     "archive/docs_backup_tags_20260427_165419/CNT_TRADE_BLOCK_AND_MARKET_CONTEXT_REVIEW_20260426.md",
@@ -226,9 +229,6 @@
     "archive/docs_backup_tags_20260427_165419/ko/CNT DOCS KOREAN MIRROR POLICY KO.md",
     "reports/cnt_full_filter_rerun_20260427.json",
     "archive/docs_backup_tags_20260427_165419/ko/CNT v1.1 ARCHITECTURE DESIGN DOCUMENT KO.md",
-    "archive/docs_backup_tags_20260427_165419/ko/CNT OBSIDIAN VERSION VISUALIZATION CONFIGURATION KO.md",
-    "archive/docs_backup_tags_20260427_165419/CNT v2 BREAKOUT QUALITY EVALUATION REPORT.md",
-    "archive/docs_backup_tags_20260427_165419/ko/00 Docs Index KO.md",
     "tools/cleanup_tags.py",
     "tools/normalize_md_tags.py",
     "archive/docs_backup_tags_20260427_165419/ko",

@@ -111,7 +111,7 @@ def _parse_portfolio_log(log_file: Path) -> dict:
 
         if "selected_strategy=" in line and "selection_reason=highest_score" in line:
             strategy = line.split("selected_strategy=", 1)[1].split()[0]
-            if strategy != "NONE":
+            if strategy != "NONE" and strategy != "breakout_v1":
                 selected_strategy_counts[strategy] += 1
 
         if "blocked_by_policy=" in line:
@@ -137,11 +137,13 @@ def _parse_portfolio_log(log_file: Path) -> dict:
         if "close_pnl_estimate=" in line:
             raw_value = line.split("close_pnl_estimate=", 1)[1].split()[0]
             pnl = _safe_float(raw_value)
+            selected_strategy = "UNKNOWN"
+            if "selected_strategy=" in line:
+                selected_strategy = line.split("selected_strategy=", 1)[1].split()[0]
+            if selected_strategy == "breakout_v1":
+                continue  # breakout_v1 data excluded for purity
             close_pnls.append(pnl)
             if "close_action=" in line:
-                selected_strategy = "UNKNOWN"
-                if "selected_strategy=" in line:
-                    selected_strategy = line.split("selected_strategy=", 1)[1].split()[0]
                 market_context = "UNKNOWN"
                 if "market_context=" in line:
                     market_context = line.split("market_context=", 1)[1].split()[0]
@@ -254,6 +256,8 @@ def build_performance_snapshot(
     for strategy_name, payload in strategy_metrics.items():
         if not isinstance(payload, dict):
             continue
+        if strategy_name == "breakout_v1":
+            continue  # breakout_v1 data excluded for purity
         total_signals += int(payload.get("signals_generated", 0) or 0)
         selected_signals += int(payload.get("signals_selected", 0) or 0)
         closed_trades += int(payload.get("trades_closed", 0) or 0)

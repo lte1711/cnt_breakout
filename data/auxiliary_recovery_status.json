@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-04-29 02:00:51",
+  "official_gate": {
+    "status": "NOT_READY",
+    "reason": "INSUFFICIENT_SAMPLE",
+    "expectancy": 0.0,
+    "net_pnl": 0.0,
+    "closed_trades": 0
+  },
+  "breakout_v3": {
+    "closed_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate": 0.0,
+    "expectancy": 0.0,
+    "profit_factor": 0.0,
+    "net_pnl": 0.0,
+    "signals_generated": 1,
+    "signals_selected": 0
+  },
+  "system_excluding_breakout_v1": {
+    "excluded_strategy": "breakout_v1",
+    "included_strategies": [
+      "breakout_v3"
+    ],
+    "closed_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate": 0.0,
+    "expectancy": 0.0,
+    "profit_factor": 0.0,
+    "net_pnl": 0.0
+  },
+  "recovery_signal": {
+    "status": "RECOVERY_NOT_CONFIRMED",
+    "is_positive_expectancy": false,
+    "is_positive_net_pnl": false,
+    "profit_factor_pass": false,
+    "is_statistically_valid": false,
+    "all_recovery_criteria_passed": false,
+    "min_sample_required": 50,
+    "min_profit_factor": 1.1
+  },
+  "runtime_state": {
+    "active_strategy": "breakout_v3",
+    "last_run_time": "2026-04-29 02:00:48",
+    "last_action": "NO_ENTRY_SIGNAL",
+    "pending_order_exists": false,
+    "open_trade_exists": false,
+    "open_positions_count": 0,
+    "total_exposure": 0.0
+  },
+  "risk_counter_sync": {
+    "daily_loss_count_synced": true,
+    "consecutive_losses_synced": true,
+    "state_daily_loss_count": 0,
+    "portfolio_daily_loss_count": 0,
+    "state_consecutive_losses": 0,
+    "portfolio_consecutive_losses": 0
+  },
+  "interpretation": "official_gate_remains_authoritative_auxiliary_status_is_observational_only"
+}

@@ -522,7 +522,6 @@ src/market/futures_adapter.py=futures_market_adapter_only
 src/logging/portfolio_logger.py=portfolio_log_write_only
 src/strategies/base.py=base_strategy_interface_only
 src/strategies/breakout_v1.py=breakout_strategy_logic_only
-src/strategies/pullback_v1.py=pullback_strategy_logic_only
 src/strategies/mean_reversion_v1.py=mean_reversion_strategy_logic_only
 src/log_writer.py=log_write_only
 src/order_executor.py=order_submission_only

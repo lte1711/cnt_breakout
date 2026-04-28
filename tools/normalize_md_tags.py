@@ -23,7 +23,6 @@ RULES = [
     ("experiment", "offline-experiment"),
     ("runtime", "type/operation"),
     ("risk", "risk"),
-    ("pullback", "strategy/pullback_v1"),
     ("breakout", "strategy/breakout_v3"),
     ("graph", "graph-view"),
     ("obsidian", "obsidian"),

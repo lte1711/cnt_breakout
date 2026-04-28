@@ -50,8 +50,8 @@ def evaluate_mini(snapshot: dict, metrics: dict, decision: dict, trade_count_tar
     
     gate_status = decision.get("status", "UNKNOWN")
     
-    pullback_data = metrics.get("pullback_v1", {})
-    pullback_trades = int(pullback_data.get("trades_closed", 0) or 0)
+    breakout_v3_data = metrics.get("breakout_v3", {})
+    breakout_v3_trades = int(breakout_v3_data.get("trades_closed", 0) or 0)
     
     progress_pct = (closed_trades / trade_count_target * 100) if trade_count_target > 0 else 0
     
@@ -60,7 +60,7 @@ def evaluate_mini(snapshot: dict, metrics: dict, decision: dict, trade_count_tar
         "closed_trades": closed_trades,
         "trade_count_target": trade_count_target,
         "progress_pct": round(progress_pct, 1),
-        "pullback_v1_trades": pullback_trades,
+        "breakout_v3_trades": breakout_v3_trades,
         "expectancy": round(expectancy, 6),
         "win_rate": round(win_rate, 4),
         "net_pnl": round(net_pnl, 8),
@@ -118,7 +118,7 @@ def run_mini_evaluation(
     print()
     print(f"Timestamp: {result['timestamp']}")
     print(f"Progress: {result['closed_trades']}/{result['trade_count_target']} trades ({result['progress_pct']}%)")
-    print(f"pullback_v1 trades: {result['pullback_v1_trades']}")
+    print(f"breakout_v3 trades: {result['breakout_v3_trades']}")
     print()
     print("--- PERFORMANCE METRICS ---")
     print(f"Expectancy: {result['expectancy']:.6f}")

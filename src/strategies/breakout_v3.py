@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import time
+
 from src.indicators import (
     bollinger_bands,
     ema,
@@ -8,8 +10,12 @@ from src.indicators import (
     rolling_vwap,
     rsi,
 )
+from src.market.feature_snapshot import build_market_feature_snapshot
 from src.models.breakout_v3_eval_result import BreakoutV3Conditions
 from src.models.market_context import MarketContext
+from src.models.strategy_signal import StrategySignal
+from src.risk.exit_models import ExitModel
+from src.strategies.base import BaseStrategy
 from src.strategies.breakout_v1 import _classify_market
 
 
@@ -157,3 +163,72 @@ def build_breakout_v3_conditions(context: MarketContext, params: dict) -> Breako
         rsi_threshold_pass=rsi_threshold_pass,
         ema_pass=ema_pass,
     )
+
+
+class BreakoutV3Strategy(BaseStrategy):
+    def __init__(self, params: dict) -> None:
+        self.params = dict(params)
+
+    def validate_params(self, params: dict) -> None:
+        validate_breakout_v3_params(params)
+
+    def evaluate(self, context: MarketContext) -> StrategySignal:
+        market_features = build_market_feature_snapshot(context, self.params)
+        market_state = _classify_market(context, self.params)
+        conditions = build_breakout_v3_conditions(context, self.params)
+
+        entry_allowed = conditions.setup_ready and conditions.breakout_confirmed
+
+        soft_pass_count = sum([
+            conditions.band_width_pass,
+            conditions.band_expansion_pass,
+            conditions.volume_pass,
+            conditions.vwap_distance_pass,
+            conditions.rsi_threshold_pass,
+            conditions.ema_pass,
+        ])
+
+        min_soft_pass_required = self.params.get("min_soft_pass_required", 3)
+        quality_gate_pass = soft_pass_count >= min_soft_pass_required
+
+        entry_allowed = entry_allowed and quality_gate_pass
+
+        reason = "setup_not_ready"
+        if conditions.setup_ready:
+            if not conditions.breakout_confirmed:
+                reason = "breakout_not_confirmed"
+            elif not quality_gate_pass:
+                reason = f"quality_gate_fail_pass_{soft_pass_count}_required_{min_soft_pass_required}"
+            else:
+                reason = "breakout_v3_entry"
+
+        confidence = 0.78 if entry_allowed else 0.0
+
+        exit_model = None
+        entry_price_hint = None
+        if entry_allowed:
+            entry_price_hint = context.last_price
+            target_pct = self.params.get("target_pct", 0.002)
+            stop_loss_pct = self.params.get("stop_loss_pct", 0.0015)
+            exit_model = ExitModel(
+                stop_price=entry_price_hint * (1 - stop_loss_pct),
+                target_price=entry_price_hint * (1 + target_pct),
+            )
+
+        return StrategySignal(
+            strategy_name="breakout_v3",
+            symbol=context.symbol,
+            signal_timestamp=time.time(),
+            signal_age_limit_sec=float(self.params.get("signal_age_limit_sec", 15)),
+            entry_allowed=entry_allowed,
+            side="BUY" if entry_allowed else "NONE",
+            trigger="BREAKOUT" if entry_allowed else "NO_SETUP",
+            reason=reason,
+            confidence=confidence,
+            market_state=market_state["market_state"],
+            trend_bias=market_state.get("trend_bias"),
+            volatility_state=market_state["volatility_state"],
+            entry_price_hint=entry_price_hint,
+            exit_model=exit_model,
+            market_features=market_features,
+        )

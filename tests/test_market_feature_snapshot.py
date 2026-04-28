@@ -20,7 +20,7 @@ class MarketFeatureSnapshotTests(unittest.TestCase):
     def test_build_market_feature_snapshot_contains_required_fields(self) -> None:
         klines = [_kline(index, 100.0 + index) for index in range(40)]
         context = MarketContext(
-            symbol="ETHUSDT",
+            symbol="BNBUSDT",
             primary_interval="1h",
             entry_interval="5m",
             klines_primary=klines,
@@ -40,7 +40,7 @@ class MarketFeatureSnapshotTests(unittest.TestCase):
         )
 
         self.assertEqual(snapshot["schema_version"], "1.0")
-        self.assertEqual(snapshot["symbol"], "ETHUSDT")
+        self.assertEqual(snapshot["symbol"], "BNBUSDT")
         self.assertIn("multi_timeframe_trend", snapshot)
         self.assertIn("rsi", snapshot["entry"])
         self.assertIn("ema_slope_pct", snapshot["entry"])

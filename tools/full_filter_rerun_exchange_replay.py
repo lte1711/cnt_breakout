@@ -31,7 +31,7 @@ OUTPUT_JSON = ROOT / "reports" / "cnt_full_filter_rerun_20260427.json"
 OUTPUT_MD = ROOT / "docs" / "CNT_FULL_FILTER_RERUN_20260427.md"
 READY_DOC = ROOT / "docs" / "CNT_FULL_FILTER_RERUN_READY_PREP_20260427.md"
 
-SYMBOL = "ETHUSDT"
+SYMBOL = "BNBUSDT"
 INTERVAL = "1m"
 LOCAL_TZ = ZoneInfo("Asia/Seoul")
 

@@ -17,7 +17,7 @@ def _signal(
 ) -> StrategySignal:
     return StrategySignal(
         strategy_name=strategy_name,
-        symbol="ETHUSDT",
+        symbol="BNBUSDT",
         signal_timestamp=0.0,
         signal_age_limit_sec=15.0,
         entry_allowed=True,
@@ -35,10 +35,10 @@ def _signal(
 class SignalRankerTests(unittest.TestCase):
     def test_ranker_applies_soft_sample_confidence_before_full_confidence(self) -> None:
         breakout = _signal("breakout_v1", 0.60)
-        pullback = _signal("pullback_v1", 0.60)
+        breakout_v3 = _signal("breakout_v3", 0.60)
 
         selection = rank_signals(
-            [pullback, breakout],
+            [breakout_v3, breakout],
             {
                 "breakout_v1": StrategyPerformance(
                     strategy_name="breakout_v1",
@@ -51,8 +51,8 @@ class SignalRankerTests(unittest.TestCase):
                     expectancy=0.002,
                     profit_factor=1.5,
                 ),
-                "pullback_v1": StrategyPerformance(
-                    strategy_name="pullback_v1",
+                "breakout_v3": StrategyPerformance(
+                    strategy_name="breakout_v3",
                     trades_closed=2,
                     wins=1,
                     losses=1,
@@ -75,10 +75,10 @@ class SignalRankerTests(unittest.TestCase):
 
     def test_ranker_prefers_better_real_performance_signal_even_with_lower_static_score(self) -> None:
         breakout = _signal("breakout_v1", 0.82)
-        pullback = _signal("pullback_v1", 0.74)
+        breakout_v3 = _signal("breakout_v3", 0.74)
 
         selection = rank_signals(
-            [breakout, pullback],
+            [breakout, breakout_v3],
             {
                 "breakout_v1": StrategyPerformance(
                     strategy_name="breakout_v1",
@@ -91,8 +91,8 @@ class SignalRankerTests(unittest.TestCase):
                     expectancy=0.0014410000000004402,
                     profit_factor=1.2609561752988854,
                 ),
-                "pullback_v1": StrategyPerformance(
-                    strategy_name="pullback_v1",
+                "breakout_v3": StrategyPerformance(
+                    strategy_name="breakout_v3",
                     trades_closed=17,
                     wins=10,
                     losses=7,
@@ -106,7 +106,7 @@ class SignalRankerTests(unittest.TestCase):
         )
 
         self.assertIsNotNone(selection.selected_signal)
-        self.assertEqual(selection.selected_signal.strategy_name, "pullback_v1")
+        self.assertEqual(selection.selected_signal.strategy_name, "breakout_v3")
         self.assertFalse(selection.rank_score_components.get("fallback_static_only"))
         self.assertGreater(selection.rank_score_components.get("expectancy_weighted_score", 0.0), 0.0)
         self.assertGreater(selection.rank_score_components.get("win_rate_weighted_score", 0.0), 0.0)
@@ -116,7 +116,7 @@ class SignalRankerTests(unittest.TestCase):
     def test_ranker_records_rejected_reasons_when_no_candidate_exists(self) -> None:
         blocked_signal = StrategySignal(
             strategy_name="breakout_v1",
-            symbol="ETHUSDT",
+            symbol="BNBUSDT",
             signal_timestamp=0.0,
             signal_age_limit_sec=15.0,
             entry_allowed=False,

@@ -17,13 +17,13 @@ class EngineCycleSmokeTests(unittest.TestCase):
             pending=None,
             open_trade=None,
             risk_metrics={"daily_loss_count": 1, "consecutive_losses": 0, "last_loss_time": None},
-            strategy_name_override="pullback_v1",
+            strategy_name_override="breakout_v3",
         )
 
         self.assertEqual(state["schema_version"], "1.0")
         self.assertEqual(state["status"], "stopped")
         self.assertEqual(state["action"], "NO_ENTRY_SIGNAL")
-        self.assertEqual(state["strategy_name"], "pullback_v1")
+        self.assertEqual(state["strategy_name"], "breakout_v3")
         self.assertIn("risk_metrics", state)
 
     def test_save_and_finish_updates_state_and_calls_side_effect_layers(self) -> None:
@@ -61,7 +61,7 @@ class EngineCycleSmokeTests(unittest.TestCase):
                     risk_metrics={"daily_loss_count": 0, "consecutive_losses": 0, "last_loss_time": None},
                     portfolio_state_file=portfolio_state_file,
                     cash_balance=12.5,
-                    strategy_name_override="pullback_v1",
+                    strategy_name_override="breakout_v3",
                 )
 
             self.assertEqual(state["action"], "NO_ENTRY_SIGNAL")
@@ -78,14 +78,14 @@ class EngineCycleSmokeTests(unittest.TestCase):
             load_portfolio.assert_called_once()
             aux_status.assert_called_once()
             save_aux.assert_called_once()
-            self.assertEqual(state["strategy_name"], "pullback_v1")
+            self.assertEqual(state["strategy_name"], "breakout_v3")
 
     def test_run_breakout_v2_shadow_does_not_interrupt_on_log_failure(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             event = {
                 "ts": "2026-04-22T15:00:00+09:00",
-                "symbol": "ETHUSDT",
+                "symbol": "BNBUSDT",
                 "strategy": "breakout_v2_shadow",
                 "signal_generated": True,
                 "entry_allowed": False,
@@ -104,7 +104,7 @@ class EngineCycleSmokeTests(unittest.TestCase):
             ):
                 engine._run_breakout_v2_shadow(
                     project_root=root,
-                    symbol="ETHUSDT",
+                    symbol="BNBUSDT",
                 )
 
             evaluate_shadow.assert_called_once()
@@ -116,7 +116,7 @@ class EngineCycleSmokeTests(unittest.TestCase):
             root = Path(tmpdir)
             event = {
                 "timestamp": "2026-04-24T12:00:00+09:00",
-                "symbol": "ETHUSDT",
+                "symbol": "BNBUSDT",
                 "strategy_name": "breakout_v3_candidate",
                 "allowed": False,
                 "summary_reason": "trigger_blocked",
@@ -138,7 +138,7 @@ class EngineCycleSmokeTests(unittest.TestCase):
             ):
                 engine._run_breakout_v3_shadow(
                     project_root=root,
-                    symbol="ETHUSDT",
+                    symbol="BNBUSDT",
                 )
 
             evaluate_shadow.assert_called_once()

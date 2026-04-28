@@ -15,7 +15,6 @@ OUTPUT_JSON = ROOT / "reports" / "cnt_post_logging_partial_validation_20260427.j
 OUTPUT_MD = ROOT / "docs" / "CNT_POST_LOGGING_PARTIAL_VALIDATION_20260427.md"
 
 BASELINE_TOTAL_CLOSED = 42
-BASELINE_PULLBACK_CLOSED = 39
 
 TIME_RE = re.compile(r"^\[(?P<ts>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\]")
 KV_RE = re.compile(r"(?P<key>[A-Za-z_]+)=(?P<value>\S+)")
@@ -337,7 +336,6 @@ def main() -> None:
     payload = {
         "source": "logs/portfolio.log",
         "baseline_total_closed": BASELINE_TOTAL_CLOSED,
-        "baseline_pullback_closed": BASELINE_PULLBACK_CLOSED,
         "summary": summarize(rows),
         "by_context": grouped(rows, "market_context"),
         "by_signal": grouped(rows, "signal_reason"),

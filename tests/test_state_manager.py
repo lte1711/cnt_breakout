@@ -27,7 +27,7 @@ class StateManagerTests(unittest.TestCase):
     def test_build_portfolio_state_preserves_risk_counters_with_open_trade(self) -> None:
         portfolio_state = build_portfolio_state(
             {
-                "symbol": "ETHUSDT",
+                "symbol": "BNBUSDT",
                 "last_run_time": "2026-04-24 06:24:00",
                 "risk_metrics": {
                     "daily_loss_count": 1,
@@ -39,7 +39,7 @@ class StateManagerTests(unittest.TestCase):
                     "entry_qty": 0.1,
                     "entry_order_id": 123,
                     "entry_side": "BUY",
-                    "strategy_name": "pullback_v1",
+                    "strategy_name": "breakout_v3",
                     "stop_price": 2290.0,
                     "target_price": 2310.0,
                 },

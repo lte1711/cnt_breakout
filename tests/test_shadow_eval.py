@@ -67,7 +67,7 @@ class ShadowEvalTests(unittest.TestCase):
             patch("src.shadow_eval.get_recent_closed_klines", return_value=klines),
             patch("src.shadow_eval.get_price", return_value=109.0),
         ):
-            result = evaluate_breakout_v2_shadow("ETHUSDT", self.params)
+            result = evaluate_breakout_v2_shadow("BNBUSDT", self.params)
 
         expected_keys = {
             "ts",
@@ -86,7 +86,7 @@ class ShadowEvalTests(unittest.TestCase):
             "evaluated_stage_trace",
             "stage_flags",
         }
-        self.assertEqual(result["symbol"], "ETHUSDT")
+        self.assertEqual(result["symbol"], "BNBUSDT")
         self.assertEqual(result["strategy"], "breakout_v2_shadow")
         self.assertTrue(expected_keys.issubset(result.keys()))
         self.assertIsInstance(result["secondary_fail_reasons"], list)

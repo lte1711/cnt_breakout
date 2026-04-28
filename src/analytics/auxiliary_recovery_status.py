@@ -9,7 +9,7 @@ from pathlib import Path
 MIN_RECOVERY_SAMPLE = 50
 MIN_RECOVERY_PROFIT_FACTOR = 1.1
 EXCLUDED_STRATEGY = "breakout_v1"
-ACTIVE_RECOVERY_STRATEGY = "pullback_v1"
+ACTIVE_RECOVERY_STRATEGY = "breakout_v3"
 
 
 def _safe_float(value) -> float:
@@ -128,15 +128,15 @@ def build_auxiliary_recovery_status(
 ) -> dict:
     state = _as_dict(state)
     portfolio_state = _as_dict(portfolio_state)
-    pullback = _strategy_payload(strategy_metrics, ACTIVE_RECOVERY_STRATEGY)
+    breakout = _strategy_payload(strategy_metrics, ACTIVE_RECOVERY_STRATEGY)
     excluding_breakout = _aggregate_excluding(strategy_metrics, EXCLUDED_STRATEGY)
     official_status = live_gate_decision.get("status") if isinstance(live_gate_decision, dict) else None
     official_reason = live_gate_decision.get("reason") if isinstance(live_gate_decision, dict) else None
 
-    is_positive_expectancy = pullback["expectancy"] > 0
-    is_positive_net_pnl = pullback["net_pnl"] > 0
-    profit_factor_pass = pullback["profit_factor"] > min_profit_factor
-    is_statistically_valid = pullback["closed_trades"] >= min_sample_required
+    is_positive_expectancy = breakout["expectancy"] > 0
+    is_positive_net_pnl = breakout["net_pnl"] > 0
+    profit_factor_pass = breakout["profit_factor"] > min_profit_factor
+    is_statistically_valid = breakout["closed_trades"] >= min_sample_required
     all_recovery_criteria_passed = (
         is_positive_expectancy
         and is_positive_net_pnl
@@ -160,7 +160,7 @@ def build_auxiliary_recovery_status(
             "net_pnl": _safe_float(snapshot.get("net_pnl")),
             "closed_trades": _safe_int(snapshot.get("closed_trades")),
         },
-        ACTIVE_RECOVERY_STRATEGY: pullback,
+        ACTIVE_RECOVERY_STRATEGY: breakout,
         "system_excluding_breakout_v1": excluding_breakout,
         "recovery_signal": {
             "status": auxiliary_status,

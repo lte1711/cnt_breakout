@@ -26,7 +26,7 @@ def _context() -> MarketContext:
         entry.append(dict(candle))
 
     return MarketContext(
-        symbol="ETHUSDT",
+        symbol="BNBUSDT",
         primary_interval="5m",
         entry_interval="1m",
         klines_primary=primary,

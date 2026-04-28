@@ -148,7 +148,7 @@ class BreakoutV3ShadowEvalTests(unittest.TestCase):
         self.assertIn("vwap_distance_fail", result.secondary_fail_reasons)
         self.assertIn("ema_fail", result.secondary_fail_reasons)
 
-        event = build_breakout_v3_shadow_event(result, symbol="ETHUSDT", metadata={"timeframe": "5m"})
+        event = build_breakout_v3_shadow_event(result, symbol="BNBUSDT", metadata={"timeframe": "5m"})
         event_dict = event.to_dict()
         self.assertEqual(event_dict["strategy_name"], "breakout_v3_candidate")
         self.assertIn("regime", event_dict["stage_flags"])
@@ -158,7 +158,7 @@ class BreakoutV3ShadowEvalTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             event = build_breakout_v3_shadow_event(
                 evaluate_breakout_v3_shadow(self._conditions()),
-                symbol="ETHUSDT",
+                symbol="BNBUSDT",
                 metadata={"timeframe": "5m"},
             ).to_dict()
             log_file = Path(tmpdir) / "logs" / "shadow_breakout_v3.jsonl"
@@ -167,7 +167,7 @@ class BreakoutV3ShadowEvalTests(unittest.TestCase):
             lines = log_file.read_text(encoding="utf-8").strip().splitlines()
             self.assertEqual(len(lines), 1)
             loaded = json.loads(lines[0])
-            self.assertEqual(loaded["symbol"], "ETHUSDT")
+            self.assertEqual(loaded["symbol"], "BNBUSDT")
             self.assertIn("stage_flags", loaded)
 
     def test_update_breakout_v3_shadow_snapshot_aggregates_from_log(self) -> None:
@@ -185,7 +185,7 @@ class BreakoutV3ShadowEvalTests(unittest.TestCase):
                     ),
                     min_soft_pass_required=4,
                 ),
-                symbol="ETHUSDT",
+                symbol="BNBUSDT",
             ).to_dict()
             allowed_event = build_breakout_v3_shadow_event(
                 evaluate_breakout_v3_shadow(
@@ -199,7 +199,7 @@ class BreakoutV3ShadowEvalTests(unittest.TestCase):
                     ),
                     min_soft_pass_required=3,
                 ),
-                symbol="ETHUSDT",
+                symbol="BNBUSDT",
             ).to_dict()
 
             append_breakout_v3_shadow_log(log_file, blocked_event)
@@ -236,7 +236,7 @@ class BreakoutV3ShadowEvalTests(unittest.TestCase):
                     ),
                     min_soft_pass_required=3,
                 ),
-                symbol="ETHUSDT",
+                symbol="BNBUSDT",
             ).to_dict()
 
             log_file.write_text(json.dumps(event, ensure_ascii=False) + "\n", encoding="utf-8-sig")

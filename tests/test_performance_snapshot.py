@@ -29,8 +29,8 @@ class PerformanceSnapshotTests(unittest.TestCase):
                 "expectancy": 0.0,
                 "profit_factor": 0.0,
             },
-            "pullback_v1": {
-                "strategy_name": "pullback_v1",
+            "breakout_v3": {
+                "strategy_name": "breakout_v3",
                 "signals_generated": 10,
                 "signals_selected": 2,
                 "trades_closed": 1,
@@ -52,7 +52,7 @@ class PerformanceSnapshotTests(unittest.TestCase):
             _write(metrics_file, json.dumps(self._metrics_payload()))
             _write(
                 portfolio_log,
-                "[2026-04-20 00:00:00] symbol=ETHUSDT selected_strategy=NONE reason=no_ranked_signal rank_score=0.0 rank_score_components={} blocked_by_policy=no_ranked_signal\n",
+                "[2026-04-20 00:00:00] symbol=BNBUSDT selected_strategy=NONE reason=no_ranked_signal rank_score=0.0 rank_score_components={} blocked_by_policy=no_ranked_signal\n",
             )
 
             snapshot = build_performance_snapshot(metrics_file, portfolio_log)
@@ -68,7 +68,7 @@ class PerformanceSnapshotTests(unittest.TestCase):
             _write(metrics_file, json.dumps(self._metrics_payload()))
             _write(
                 portfolio_log,
-                "[2026-04-20 00:00:00] symbol=ETHUSDT selected_strategy=NONE reason=no_ranked_signal rank_score=0.0 rank_score_components={} blocked_by_policy=no_ranked_signal blocked_detail=all_filtered total_signals=2 candidate_count=0 rejected_reasons={'volatility_not_high': 2}\n",
+                "[2026-04-20 00:00:00] symbol=BNBUSDT selected_strategy=NONE reason=no_ranked_signal rank_score=0.0 rank_score_components={} blocked_by_policy=no_ranked_signal blocked_detail=all_filtered total_signals=2 candidate_count=0 rejected_reasons={'volatility_not_high': 2}\n",
             )
 
             snapshot = build_performance_snapshot(metrics_file, portfolio_log)
@@ -85,8 +85,8 @@ class PerformanceSnapshotTests(unittest.TestCase):
                 portfolio_log,
                 "\n".join(
                     [
-                        "[2026-04-20 00:00:00] symbol=ETHUSDT selected_strategy=NONE reason=no_ranked_signal rank_score=0.0 rank_score_components={} blocked_by_policy=no_ranked_signal",
-                        "[2026-04-20 00:10:00] symbol=ETHUSDT selected_strategy=NONE reason=no_ranked_signal rank_score=0.0 rank_score_components={} blocked_by_policy=no_ranked_signal blocked_detail=no_candidate total_signals=2 candidate_count=0 rejected_reasons={'market_not_trend_up': 2}",
+                        "[2026-04-20 00:00:00] symbol=BNBUSDT selected_strategy=NONE reason=no_ranked_signal rank_score=0.0 rank_score_components={} blocked_by_policy=no_ranked_signal",
+                        "[2026-04-20 00:10:00] symbol=BNBUSDT selected_strategy=NONE reason=no_ranked_signal rank_score=0.0 rank_score_components={} blocked_by_policy=no_ranked_signal blocked_detail=no_candidate total_signals=2 candidate_count=0 rejected_reasons={'market_not_trend_up': 2}",
                     ]
                 )
                 + "\n",
@@ -109,8 +109,8 @@ class PerformanceSnapshotTests(unittest.TestCase):
                 portfolio_log,
                 "\n".join(
                     [
-                        "[2026-04-20 00:00:00] symbol=ETHUSDT selected_strategy=pullback_v1 confidence=0.74 selection_reason=highest_score reason=trend_pullback_reentry rank_score=1.77 rank_score_components={'score': 1.77} strategy_expectancy_snapshot={'trades_closed': 1} rank_candidates=[{'strategy': 'pullback_v1', 'score': 1.77}]",
-                        "[2026-04-20 00:10:00] symbol=ETHUSDT selected_strategy=pullback_v1 close_action=SELL_FILLED close_pnl_estimate=0.01 strategy_expectancy_snapshot={'trades_closed': 2}",
+                        "[2026-04-20 00:00:00] symbol=BNBUSDT selected_strategy=breakout_v3 confidence=0.74 selection_reason=highest_score reason=breakout_v3_entry rank_score=1.77 rank_score_components={'score': 1.77} strategy_expectancy_snapshot={'trades_closed': 1} rank_candidates=[{'strategy': 'breakout_v3', 'score': 1.77}]",
+                        "[2026-04-20 00:10:00] symbol=BNBUSDT selected_strategy=breakout_v3 close_action=SELL_FILLED close_pnl_estimate=0.01 strategy_expectancy_snapshot={'trades_closed': 2}",
                     ]
                 )
                 + "\n",
@@ -118,7 +118,7 @@ class PerformanceSnapshotTests(unittest.TestCase):
 
             snapshot = build_performance_snapshot(metrics_file, portfolio_log)
 
-            self.assertEqual(snapshot["selected_strategy_counts"], {"pullback_v1": 1})
+            self.assertEqual(snapshot["selected_strategy_counts"], {"breakout_v3": 1})
 
     def test_entry_gate_block_details_are_grouped(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -128,7 +128,7 @@ class PerformanceSnapshotTests(unittest.TestCase):
             _write(metrics_file, json.dumps(self._metrics_payload()))
             _write(
                 portfolio_log,
-                "[2026-04-20 00:00:00] symbol=ETHUSDT selected_strategy=breakout_v1 blocked_by_policy=entry_gate blocked_detail=stale_signal total_signals=2 candidate_count=1 rejected_reasons={'market_not_trend_up': 1}\n",
+                "[2026-04-20 00:00:00] symbol=BNBUSDT selected_strategy=breakout_v1 blocked_by_policy=entry_gate blocked_detail=stale_signal total_signals=2 candidate_count=1 rejected_reasons={'market_not_trend_up': 1}\n",
             )
 
             snapshot = build_performance_snapshot(metrics_file, portfolio_log)
@@ -147,9 +147,9 @@ class PerformanceSnapshotTests(unittest.TestCase):
                 runtime_log,
                 "\n".join(
                     [
-                        "[2026-04-20 00:00:00] action=BUY_SUBMITTED price=2300.0 pending=None open_trade=None strategy_name=pullback_v1 reason=buy_submitted",
-                        "[2026-04-20 00:10:00] action=PROMOTE_TO_OPEN_TRADE price=2301.0 pending=None open_trade={'status': 'OPEN'} strategy_name=pullback_v1 reason=pending_buy_filled",
-                        "[2026-04-20 00:20:00] action=SELL_FILLED price=2305.0 pending=None open_trade=None strategy_name=pullback_v1 reason=target_exit_filled",
+                        "[2026-04-20 00:00:00] action=BUY_SUBMITTED price=2300.0 pending=None open_trade=None strategy_name=breakout_v3 reason=buy_submitted",
+                        "[2026-04-20 00:10:00] action=PROMOTE_TO_OPEN_TRADE price=2301.0 pending=None open_trade={'status': 'OPEN'} strategy_name=breakout_v3 reason=pending_buy_filled",
+                        "[2026-04-20 00:20:00] action=SELL_FILLED price=2305.0 pending=None open_trade=None strategy_name=breakout_v3 reason=target_exit_filled",
                     ]
                 )
                 + "\n",
